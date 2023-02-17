@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,14 +6,12 @@ using Foundation;
 using UIKit;
 using HealthKit;
 
-namespace Fit
-{
+namespace Fit {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// This method is invoked when the application is about to move from active to inactive state.
 		// OpenGL applications should use this method to pause.
 		public override void OnResignActivation (UIApplication application)
@@ -50,7 +48,7 @@ namespace Fit
 
 		void SetupHealthStoreForTabBarControllers ()
 		{
-			var tabBarController = (UITabBarController)Window.RootViewController;
+			var tabBarController = (UITabBarController) Window.RootViewController;
 			foreach (UINavigationController navigationController in tabBarController.ViewControllers) {
 				IHealthStore controller = navigationController.TopViewController as IHealthStore;
 				if (controller != null)

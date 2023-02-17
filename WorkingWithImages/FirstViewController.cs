@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using Foundation;
 using UIKit;
 
-namespace WorkingWithImages
-{
-	public partial class FirstViewController : UIViewController
-	{
+namespace WorkingWithImages {
+	public partial class FirstViewController : UIViewController {
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
@@ -22,7 +20,7 @@ namespace WorkingWithImages
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -31,7 +29,7 @@ namespace WorkingWithImages
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Set image in code
 			// MonkeyImage.Image = UIImage.FromFile ("Images/Red/RedMonkey.png");
 			// MonkeyImage.Image = UIImage.FromBundle ("PurpleMonkey");

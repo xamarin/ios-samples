@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using UIKit;
 using System.Reflection;
 
-namespace AdaptivePhotos
-{
+namespace AdaptivePhotos {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
@@ -25,7 +23,7 @@ namespace AdaptivePhotos
 			var masterNav = new CustomNavigationController (master);
 			var detail = new EmptyViewController ();
 
-			controller.ViewControllers = new UIViewController[] { masterNav, detail };
+			controller.ViewControllers = new UIViewController [] { masterNav, detail };
 			controller.PreferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
 
 			var traitController = new TraitOverrideViewController () {
@@ -39,28 +37,27 @@ namespace AdaptivePhotos
 			return true;
 		}
 
-		public class SplitViewControllerDelegate : UISplitViewControllerDelegate
-		{
+		public class SplitViewControllerDelegate : UISplitViewControllerDelegate {
 			public override bool CollapseSecondViewController (UISplitViewController splitViewController,
-			                                                   UIViewController secondaryViewController, UIViewController primaryViewController)
+															   UIViewController secondaryViewController, UIViewController primaryViewController)
 			{
-				Photo photo = ((CustomViewController)secondaryViewController).ContainedPhoto (null);
+				Photo photo = ((CustomViewController) secondaryViewController).ContainedPhoto (null);
 				if (photo == null) {
 					return true;
 				}
 
-				if (primaryViewController.GetType () == typeof(CustomNavigationController)) {
+				if (primaryViewController.GetType () == typeof (CustomNavigationController)) {
 					var viewControllers = new List<UIViewController> ();
-					foreach (var controller in ((UINavigationController)primaryViewController).ViewControllers) {
+					foreach (var controller in ((UINavigationController) primaryViewController).ViewControllers) {
 						var type = controller.GetType ();
 						MethodInfo method = type.GetMethod ("ContainsPhoto");
 
-						if ((bool)method.Invoke (controller, new object[] { null })) {
+						if ((bool) method.Invoke (controller, new object [] { null })) {
 							viewControllers.Add (controller);
 						}
 					}
 
-					((UINavigationController)primaryViewController).ViewControllers = viewControllers.ToArray<UIViewController> ();
+					((UINavigationController) primaryViewController).ViewControllers = viewControllers.ToArray<UIViewController> ();
 				}
 
 				return false;
@@ -69,12 +66,12 @@ namespace AdaptivePhotos
 			public override UIViewController SeparateSecondaryViewController (UISplitViewController splitViewController,
 																			  UIViewController primaryViewController)
 			{
-				if (primaryViewController.GetType () == typeof(CustomNavigationController)) {
-					foreach (var controller in ((CustomNavigationController)primaryViewController).ViewControllers) {
+				if (primaryViewController.GetType () == typeof (CustomNavigationController)) {
+					foreach (var controller in ((CustomNavigationController) primaryViewController).ViewControllers) {
 						var type = controller.GetType ();
 						MethodInfo method = type.GetMethod ("ContainedPhoto");
 
-						if (method.Invoke (controller, new object[] { null }) != null) {
+						if (method.Invoke (controller, new object [] { null }) != null) {
 							return null;
 						}
 					}

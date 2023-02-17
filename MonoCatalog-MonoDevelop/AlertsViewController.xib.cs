@@ -52,10 +52,11 @@ namespace MonoCatalog {
 
 		void DialogSimpleAction ()
 		{
-			var actionSheet = new UIActionSheet ("UIActionSheet <title>", null, null, "OK", null){
+			var actionSheet = new UIActionSheet ("UIActionSheet <title>", null, null, "OK", null) {
 				Style = UIActionSheetStyle.Default
 			};
-			actionSheet.Clicked += delegate (object sender, UIButtonEventArgs args){
+			actionSheet.Clicked += delegate (object sender, UIButtonEventArgs args)
+			{
 				Console.WriteLine ("Clicked on item {0}", args.ButtonIndex);
 			};
 
@@ -64,10 +65,11 @@ namespace MonoCatalog {
 
 		void DialogOkCancelAction ()
 		{
-			var actionSheet = new UIActionSheet ("UIActionSheet <title>", null, "Cancel", "OK", null){
+			var actionSheet = new UIActionSheet ("UIActionSheet <title>", null, "Cancel", "OK", null) {
 				Style = UIActionSheetStyle.Default
 			};
-			actionSheet.Clicked += delegate (object sender, UIButtonEventArgs args){
+			actionSheet.Clicked += delegate (object sender, UIButtonEventArgs args)
+			{
 				Console.WriteLine ("Clicked on item {0}", args.ButtonIndex);
 			};
 
@@ -76,10 +78,11 @@ namespace MonoCatalog {
 
 		void DialogOtherAction ()
 		{
-			var actionSheet = new UIActionSheet ("UIActionSheet <title>", null, "Cancel", "OK", "Other1"){
+			var actionSheet = new UIActionSheet ("UIActionSheet <title>", null, "Cancel", "OK", "Other1") {
 				Style = UIActionSheetStyle.Default
 			};
-			actionSheet.Clicked += delegate (object sender, UIButtonEventArgs args){
+			actionSheet.Clicked += delegate (object sender, UIButtonEventArgs args)
+			{
 				Console.WriteLine ("Clicked on item {0}", args.ButtonIndex);
 			};
 
@@ -95,13 +98,13 @@ namespace MonoCatalog {
 		void AlertOkCancelAction ()
 		{
 			using (var alert = new UIAlertView ("UIAlertView", "<Alert Message>", null, "Cancel", "OK"))
-			       alert.Show ();
+				alert.Show ();
 		}
 
 		void AlertOtherAction ()
 		{
 			using (var alert = new UIAlertView ("UIAlertView", "<Alert Message>", null, "Cancel", "Button1", "Button2"))
-			       alert.Show ();
+				alert.Show ();
 
 		}
 
@@ -129,15 +132,15 @@ namespace MonoCatalog {
 			{
 				UITableViewCell cell;
 
-				if (indexPath.Row == 0){
+				if (indexPath.Row == 0) {
 					cell = tableView.DequeueReusableCell (kDisplayCell_ID);
 					if (cell == null)
 						cell = new UITableViewCell (UITableViewCellStyle.Default, kDisplayCell_ID);
 					cell.TextLabel.Text = samples [indexPath.Section].Label;
 				} else {
 					cell = tableView.DequeueReusableCell (kSourceCell_ID);
-					if (cell == null){
-						cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID){
+					if (cell == null) {
+						cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID) {
 							SelectionStyle = UITableViewCellSelectionStyle.None
 						};
 						var label = cell.TextLabel;
@@ -172,8 +175,8 @@ namespace MonoCatalog {
 				// deselect current row
 				tableView.DeselectRow (tableView.IndexPathForSelectedRow, true);
 
-				if (indexPath.Row == 0){
-					switch (indexPath.Section){
+				if (indexPath.Row == 0) {
+					switch (indexPath.Section) {
 					case 0:
 						avc.DialogSimpleAction ();
 						break;

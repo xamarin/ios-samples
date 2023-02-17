@@ -258,6 +258,7 @@
 		730228B6210A498000D68C70 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VWFS9Q2KQ;
 				OTHER_LDFLAGS = "-ObjC";
@@ -270,6 +271,7 @@
 		730228B7210A498000D68C70 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VWFS9Q2KQ;
 				OTHER_LDFLAGS = "-ObjC";

@@ -2,15 +2,13 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.FlagOffScreen
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.FlagOffScreen {
+	public class Controller : UIViewController {
 		UIImageView imageView;
 
 		#region -= constructors =-
 
-		public Controller () : base() { }
+		public Controller () : base () { }
 
 		#endregion
 
@@ -31,9 +29,9 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 			// size
 			CGSize bitmapSize = new CGSize (imageView.Frame.Size);
 			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero,
-									      (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
-									      (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
-									      CGImageAlphaInfo.PremultipliedFirst)) {
+										  (int) bitmapSize.Width, (int) bitmapSize.Height, 8,
+										  (int) (4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+										  CGImageAlphaInfo.PremultipliedFirst)) {
 
 				// draw our coordinates for reference
 				DrawCoordinateSpace (context);
@@ -55,8 +53,8 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 			int i, j;
 
 			// general sizes
-			float flagWidth = (float)imageView.Frame.Width * .8f;
-			float flagHeight = (float)(flagWidth / 1.9);
+			float flagWidth = (float) imageView.Frame.Width * .8f;
+			float flagHeight = (float) (flagWidth / 1.9);
 			CGPoint flagOrigin = new CGPoint (imageView.Frame.Width * .1f, imageView.Frame.Height / 3);
 
 			// stripe
@@ -136,7 +134,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 						context.TranslateCTM (starHorizontalCenterSpacing, 0f);
 					}
 					// move the row down, and then back left
-					context.TranslateCTM ( (-i * starHorizontalCenterSpacing), -starVerticalCenterSpacing);
+					context.TranslateCTM ((-i * starHorizontalCenterSpacing), -starVerticalCenterSpacing);
 				}
 				context.RestoreState ();
 
@@ -152,7 +150,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 						context.DrawLayer (starLayer, new CGPoint (0f, 0f));
 						context.TranslateCTM (starHorizontalCenterSpacing, 0);
 					}
-					context.TranslateCTM ( (-i * starHorizontalCenterSpacing), -starVerticalCenterSpacing);
+					context.TranslateCTM ((-i * starHorizontalCenterSpacing), -starVerticalCenterSpacing);
 				}
 				context.RestoreState ();
 			}
@@ -183,7 +181,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 		{
 			// declare vars
 			// 144º
-			float theta = 2 * (float)Math.PI * (2f / 5f);
+			float theta = 2 * (float) Math.PI * (2f / 5f);
 			float radius = starDiameter / 2;
 
 			// move up and over
@@ -191,7 +189,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 
 			context.MoveTo (0, radius);
 			for (int i = 1; i < 5; i++) {
-				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
+				context.AddLineToPoint (radius * (float) Math.Sin (i * theta), radius * (float) Math.Cos (i * theta));
 			}
 			context.SetFillColor (1, 1, 1, 1);
 			context.ClosePath ();
@@ -208,8 +206,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 			#region -= vertical ticks =-
 
 			// create our vertical tick lines
-			using (CGLayer verticalTickLayer = CGLayer.Create (context, new CGSize (20, 3)))
-			{
+			using (CGLayer verticalTickLayer = CGLayer.Create (context, new CGSize (20, 3))) {
 				// draw a single tick
 				verticalTickLayer.Context.FillRect (new CGRect (0, 1, 20, 2));
 
@@ -225,7 +222,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 					if (yPos > 40 && i < (numberOfVerticalTicks - 2)) {
 
 						// draw it every 80 points
-						Math.DivRem ((int)yPos, (int)80, out remainder);
+						Math.DivRem ((int) yPos, (int) 80, out remainder);
 						if (remainder == 0)
 							DrawTextAtPoint (context, 30, (yPos - (textHeight / 2)), yPos.ToString (), textHeight);
 					}
@@ -240,8 +237,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 			#region -= horizontal ticks =-
 
 			// create our horizontal tick lines
-			using (CGLayer horizontalTickLayer = CGLayer.Create (context, new CGSize (3, 20)))
-			{
+			using (CGLayer horizontalTickLayer = CGLayer.Create (context, new CGSize (3, 20))) {
 				horizontalTickLayer.Context.FillRect (new CGRect (1, 0, 2, 20));
 
 				// draw a horizontal tick every 20 pixels
@@ -255,7 +251,7 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 					if (xPos > 100 && i < (numberOfHorizontalTicks - 1)) {
 
 						// draw it every 80 points
-						Math.DivRem ((int)xPos, (int)80, out remainder);
+						Math.DivRem ((int) xPos, (int) 80, out remainder);
 						if (remainder == 0)
 							DrawCenteredTextAtPoint (context, xPos, 30, xPos.ToString (), textHeight);
 					}

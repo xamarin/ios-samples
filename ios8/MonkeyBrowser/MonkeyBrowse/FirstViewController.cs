@@ -3,10 +3,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace MonkeyBrowse
-{
-	public partial class FirstViewController : UIViewController
-	{
+namespace MonkeyBrowse {
+	public partial class FirstViewController : UIViewController {
 		#region Computed Properties
 		/// <summary>
 		/// Gets a value indicating whether this <see cref="MonkeyBrowse.FirstViewController"/> user interface idiom is phone.
@@ -21,7 +19,7 @@ namespace MonkeyBrowse
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
@@ -38,7 +36,7 @@ namespace MonkeyBrowse
 		/// <param name="handle">Handle.</param>
 		public FirstViewController (IntPtr handle) : base (handle)
 		{
-	
+
 		}
 		#endregion
 
@@ -47,7 +45,8 @@ namespace MonkeyBrowse
 		/// Navigates the Webview to the given URL string.
 		/// </summary>
 		/// <param name="url">URL.</param>
-		private void NavigateToURL(string url) {
+		private void NavigateToURL (string url)
+		{
 
 			// Properly formatted?
 			if (!url.StartsWith ("http://")) {
@@ -56,16 +55,16 @@ namespace MonkeyBrowse
 			}
 
 			// Display the give webpage
-			WebView.LoadRequest(new NSUrlRequest(NSUrl.FromString(url)));
+			WebView.LoadRequest (new NSUrlRequest (NSUrl.FromString (url)));
 
 			// Invalidate existing Activity
 			if (UserActivity != null) {
-				UserActivity.Invalidate();
+				UserActivity.Invalidate ();
 				UserActivity = null;
 			}
 
 			// Create a new user Activity to support this tab
-			UserActivity = new NSUserActivity (ThisApp.UserActivityTab1){
+			UserActivity = new NSUserActivity (ThisApp.UserActivityTab1) {
 				Title = "Weather Tab",
 				SupportsContinuationStreams = true
 			};
@@ -87,44 +86,48 @@ namespace MonkeyBrowse
 		/// Shows the busy indicator
 		/// </summary>
 		/// <param name="reason">Reason.</param>
-		private void ShowBusy(string reason) {
+		private void ShowBusy (string reason)
+		{
 
 			// Display reason
 			BusyText.Text = reason;
 
 			//Define Animation
-			UIView.BeginAnimations("Show");
-			UIView.SetAnimationDuration(1.0f);
+			UIView.BeginAnimations ("Show");
+			UIView.SetAnimationDuration (1.0f);
 
 			Handoff.Alpha = 0.5f;
 
 			//Execute Animation
-			UIView.CommitAnimations();
+			UIView.CommitAnimations ();
 		}
 
 		/// <summary>
 		/// Hides the busy.
 		/// </summary>
-		private void HideBusy() {
+		private void HideBusy ()
+		{
 
 			//Define Animation
-			UIView.BeginAnimations("Hide");
-			UIView.SetAnimationDuration(1.0f);
+			UIView.BeginAnimations ("Hide");
+			UIView.SetAnimationDuration (1.0f);
 
 			Handoff.Alpha = 0f;
 
 			//Execute Animation
-			UIView.CommitAnimations();
+			UIView.CommitAnimations ();
 		}
 		#endregion
 
 		#region Public Methods
-		public void PreparingToHandoff() {
+		public void PreparingToHandoff ()
+		{
 			// Inform caller
 			ShowBusy ("Continuing Activity...");
 		}
 
-		public void PerformHandoff(NSUserActivity activity) {
+		public void PerformHandoff (NSUserActivity activity)
+		{
 
 			// Hide busy indicator
 			HideBusy ();
@@ -136,7 +139,7 @@ namespace MonkeyBrowse
 			URL.Text = url;
 
 			// Display the give webpage
-			WebView.LoadRequest(new NSUrlRequest(NSUrl.FromString(url)));
+			WebView.LoadRequest (new NSUrlRequest (NSUrl.FromString (url)));
 
 			// Save activity
 			UserActivity = activity;
@@ -162,28 +165,29 @@ namespace MonkeyBrowse
 			// Wireup Webview notifications
 			WebView.LoadStarted += (sender, e) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
-				ShowBusy(string .Format("Loading {0}...",URL.Text));
+				ShowBusy (string.Format ("Loading {0}...", URL.Text));
 			};
 
 			WebView.LoadFinished += (sender, e) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-				HideBusy();
+				HideBusy ();
 			};
 
 			// Configure URL entry field
 			URL.Placeholder = "(enter url)";
 
 			// Wire-up URL field
-			URL.ShouldReturn = delegate (UITextField field){
+			URL.ShouldReturn = delegate (UITextField field)
+			{
 				field.ResignFirstResponder ();
-				NavigateToURL(field.Text);
+				NavigateToURL (field.Text);
 
 				return true;
 			};
 
 			// Wire-up the Go Button
 			GoButton.Clicked += (sender, e) => {
-				NavigateToURL(URL.Text);
+				NavigateToURL (URL.Text);
 			};
 
 		}

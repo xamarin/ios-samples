@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class MainMenuTableViewCell : UITableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class MainMenuTableViewCell : UITableViewCell {
 		[Outlet]
 		public UIImageView MenuIcon { get; set; }
 

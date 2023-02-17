@@ -3,10 +3,8 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace ManualStoryboard
-{
-	public partial class MainViewController : UIViewController
-	{
+namespace ManualStoryboard {
+	public partial class MainViewController : UIViewController {
 		UIViewController pinkViewController;
 
 		public MainViewController (IntPtr handle) : base (handle)
@@ -21,7 +19,8 @@ namespace ManualStoryboard
 			this.Initialize ();
 		}
 
-		public void Initialize(){
+		public void Initialize ()
+		{
 
 			var myStoryboard = AppDelegate.Storyboard;
 			//Instatiating View Controller with Storyboard ID 'PinkViewController'

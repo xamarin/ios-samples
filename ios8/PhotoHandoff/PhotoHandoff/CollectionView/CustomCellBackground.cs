@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace PhotoHandoff
-{
-	public class CustomCellBackground : UIView
-	{
+namespace PhotoHandoff {
+	public class CustomCellBackground : UIView {
 		public CustomCellBackground ()
 		{
 			BackgroundColor = UIColor.LightGray;

@@ -3,13 +3,12 @@ using System.IO;
 using System.Linq;
 using Foundation;
 
-namespace ElizaCore
-{
-	public class LineSourceFromAssembly :ILineSource
-	{
+namespace ElizaCore {
+	public class LineSourceFromAssembly : ILineSource {
 		private readonly StreamReader reader;
 
-		public LineSourceFromAssembly(string script){
+		public LineSourceFromAssembly (string script)
+		{
 
 			//var documents = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
 			var documents = NSBundle.MainBundle.BundlePath;

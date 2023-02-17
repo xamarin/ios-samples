@@ -4,10 +4,8 @@ using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace PinchIt
-{
-	public partial class Cell : UICollectionViewCell
-	{
+namespace PinchIt {
+	public partial class Cell : UICollectionViewCell {
 		UILabel label;
 
 		[Export ("initWithFrame:")]

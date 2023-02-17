@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using UIKit;
 using CoreGraphics;
 
-namespace HelloGoodbye
-{
-	public class PhotoBackgroundViewController : UIViewController
-	{
+namespace HelloGoodbye {
+	public class PhotoBackgroundViewController : UIViewController {
 		UIImageView backgroundView;
 		UIView containerView;
 
@@ -22,7 +20,7 @@ namespace HelloGoodbye
 
 				backgroundImage = value;
 
-				if(backgroundView != null)
+				if (backgroundView != null)
 					backgroundView.Image = backgroundImage;
 			}
 		}

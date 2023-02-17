@@ -3,11 +3,9 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace LineLayout
-{
+namespace LineLayout {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
@@ -19,7 +17,7 @@ namespace LineLayout
 			return true;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

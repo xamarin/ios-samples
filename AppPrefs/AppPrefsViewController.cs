@@ -2,10 +2,8 @@ using UIKit;
 using System;
 using Foundation;
 
-namespace AppPrefs
-{
-	public partial class AppPrefsViewController : UIViewController
-	{
+namespace AppPrefs {
+	public partial class AppPrefsViewController : UIViewController {
 		NSObject observer;
 
 		public AppPrefsViewController (IntPtr handle) : base (handle)
@@ -18,7 +16,7 @@ namespace AppPrefs
 			base.ViewDidLoad ();
 
 			TableView.Source = new MyUITableViewSource ();
-			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", UpdateSettings);
+			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString) "NSUserDefaultsDidChangeNotification", UpdateSettings);
 
 		}
 
@@ -49,26 +47,25 @@ namespace AppPrefs
 		{
 			// set table view background color
 			switch (Settings.BackgroundColor) {
-				case BackgroundColors.Black:
-					this.TableView.BackgroundColor = UIColor.Black;
-					break;
-				case BackgroundColors.White:
-					this.TableView.BackgroundColor = UIColor.White;
-					break;
-				case BackgroundColors.Blue:
-					this.TableView.BackgroundColor = UIColor.Blue;
-					break;
-				case BackgroundColors.Pattern:
-					this.TableView.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
-					break;
+			case BackgroundColors.Black:
+				this.TableView.BackgroundColor = UIColor.Black;
+				break;
+			case BackgroundColors.White:
+				this.TableView.BackgroundColor = UIColor.White;
+				break;
+			case BackgroundColors.Blue:
+				this.TableView.BackgroundColor = UIColor.Blue;
+				break;
+			case BackgroundColors.Pattern:
+				this.TableView.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
+				break;
 			}
 
 			TableView.ReloadData ();
 		}
 
 		#region UITableViewDataSource
-		class MyUITableViewSource : UITableViewSource
-		{
+		class MyUITableViewSource : UITableViewSource {
 			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;

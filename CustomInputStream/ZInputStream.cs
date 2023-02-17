@@ -4,11 +4,9 @@ using System.Runtime.InteropServices;
 using CoreFoundation;
 using Foundation;
 
-namespace InputStreamTest
-{
+namespace InputStreamTest {
 	[Preserve (AllMembers = true)]
-	public class ZInputStream : NSInputStream
-	{
+	public class ZInputStream : NSInputStream {
 		NSStreamStatus status;
 		long read_length;
 		long total_length;
@@ -61,15 +59,15 @@ namespace InputStreamTest
 
 		protected override bool GetBuffer (out IntPtr buffer, out nuint len)
 		{
-		    // Just call the base implemention (which will return false)
+			// Just call the base implemention (which will return false)
 			return base.GetBuffer (out buffer, out len);
 		}
 
-	/*	protected  override bool GetBuffer(out IntPtr buffer, out uint len)
-		{
-			// Just call the base implemention (which will return false)
-			return base.GetBuffer (out buffer, out len);
-		}*/
+		/*	protected  override bool GetBuffer(out IntPtr buffer, out uint len)
+			{
+				// Just call the base implemention (which will return false)
+				return base.GetBuffer (out buffer, out len);
+			}*/
 
 		protected override bool SetCFClientFlags (CFStreamEventType inFlags, IntPtr inCallback, IntPtr inContextPtr)
 		{

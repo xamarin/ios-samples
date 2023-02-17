@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace ToastModern
-{
-	public class KeyboardTyping : Layer
-	{
+namespace ToastModern {
+	public class KeyboardTyping : Layer {
 		public int KeyboardTypingFrame { get; private set; }
 
 		public override bool Hidden {
@@ -17,7 +15,7 @@ namespace ToastModern
 				if (value) {
 					UIView.PerformWithoutAnimation (() => {
 						for (int i = 0; i < Subviews.Length; i++) {
-							var frame = (Layer)Subviews [i];
+							var frame = (Layer) Subviews [i];
 							frame.Hidden = i != 0;
 						}
 					});

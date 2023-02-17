@@ -5,10 +5,8 @@ using Foundation;
 using MapKit;
 using UIKit;
 
-namespace Protocols_Delegates_Events
-{
-	class SampleMapDelegate : MKMapViewDelegate
-	{
+namespace Protocols_Delegates_Events {
+	class SampleMapDelegate : MKMapViewDelegate {
 		public override void DidSelectAnnotationView (MKMapView mapView, MKAnnotationView annotationView)
 		{
 			var sampleAnnotation = annotationView.Annotation as SampleMapAnnotation;

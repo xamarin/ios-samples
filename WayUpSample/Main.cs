@@ -4,18 +4,15 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace WayUp
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace WayUp {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args);
 		}
 	}
 
-	public partial class WhichWayIsUpAppDelegate : UIApplicationDelegate
-	{
+	public partial class WhichWayIsUpAppDelegate : UIApplicationDelegate {
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -28,7 +25,7 @@ namespace WayUp
 
 	public partial class CrateViewController : UIViewController {
 
-		public CrateViewController (IntPtr handle) : base (handle) {}
+		public CrateViewController (IntPtr handle) : base (handle) { }
 
 		public override bool ShouldAutorotate ()
 		{

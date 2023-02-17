@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace AdaptivePhotos
-{
-	public class User
-	{
+namespace AdaptivePhotos {
+	public class User {
 		public string Name { get; private set; }
 
 		public NSArray Conversations { get; private set; }
@@ -13,8 +11,8 @@ namespace AdaptivePhotos
 
 		public static User UserWithDictionary (NSDictionary dictionary)
 		{
-			string name = (NSString)dictionary.ObjectForKey (new NSString ("name"));
-			var conversationDictionaries = (NSArray)dictionary.ObjectForKey (new NSString ("conversations"));
+			string name = (NSString) dictionary.ObjectForKey (new NSString ("name"));
+			var conversationDictionaries = (NSArray) dictionary.ObjectForKey (new NSString ("conversations"));
 			var conversations = new NSMutableArray (conversationDictionaries.Count);
 
 			for (nuint i = 0; i < conversationDictionaries.Count; i++) {
@@ -22,7 +20,7 @@ namespace AdaptivePhotos
 				conversations.Add (conversation);
 			}
 
-			var lastPhotoDictionary = NSDictionary.FromDictionary ((NSDictionary)dictionary.ObjectForKey (new NSString ("lastPhoto")));
+			var lastPhotoDictionary = NSDictionary.FromDictionary ((NSDictionary) dictionary.ObjectForKey (new NSString ("lastPhoto")));
 
 			return new User {
 				Name = name,

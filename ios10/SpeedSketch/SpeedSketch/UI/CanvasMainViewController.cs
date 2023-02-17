@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -10,10 +10,8 @@ using static UIKit.UIViewAutoresizing;
 using static UIKit.UIGestureRecognizerState;
 using static SpeedSketch.Helpers;
 
-namespace SpeedSketch
-{
-	public class CanvasMainViewController : UIViewController, IUIScrollViewDelegate, IUIGestureRecognizerDelegate
-	{
+namespace SpeedSketch {
+	public class CanvasMainViewController : UIViewController, IUIScrollViewDelegate, IUIGestureRecognizerDelegate {
 		readonly List<UIButton> buttons = new List<UIButton> ();
 		readonly List<NSObject> observers = new List<NSObject> ();
 
@@ -270,7 +268,7 @@ namespace SpeedSketch
 
 			NSObject observer = UIApplication.Notifications.ObserveWillEnterForeground ((sender, e) => {
 				if (PencilMode
-				    && (!LastSeenPencilInteraction.HasValue || (DateTime.Now.Ticks - LastSeenPencilInteraction.Value) > pencilResetInterval))
+					&& (!LastSeenPencilInteraction.HasValue || (DateTime.Now.Ticks - LastSeenPencilInteraction.Value) > pencilResetInterval))
 					StopPencilButtonAction (this, EventArgs.Empty);
 			});
 			observers.Add (observer);
@@ -301,7 +299,7 @@ namespace SpeedSketch
 			if (leftRingControl.HitTest (touch.LocationInView (leftRingControl), null) != null)
 				return false;
 
-			foreach(var button in buttons) {
+			foreach (var button in buttons) {
 				if (button.HitTest (touch.LocationInView (clearButton), null) != null)
 					return false;
 			}

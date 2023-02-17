@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CloudKit;
 using CoreLocation;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public class SaveRecordSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class SaveRecordSample : CodeSample {
 		public SaveRecordSample ()
 			: base (title: "SaveRecord",
 					className: "CKDatabase",
@@ -36,7 +34,7 @@ namespace CloudKitAtlas
 			var recordType = "Items";
 
 			CKRecord record;
-			if (string.IsNullOrWhiteSpace(zoneName)) {
+			if (string.IsNullOrWhiteSpace (zoneName)) {
 				record = string.IsNullOrWhiteSpace (recordName)
 						? new CKRecord (recordType)
 						: new CKRecord (recordType, new CKRecordID (recordName));
@@ -49,10 +47,10 @@ namespace CloudKitAtlas
 
 			string name;
 			if (TryGetString ("name", out name))
-				record ["name"] = (NSString)name;
+				record ["name"] = (NSString) name;
 
 			CLLocation location;
-			if (TryGetLocation("location", out location))
+			if (TryGetLocation ("location", out location))
 				record ["location"] = location;
 
 			NSUrl url;

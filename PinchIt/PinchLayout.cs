@@ -5,12 +5,10 @@ using UIKit;
 using Foundation;
 using CoreAnimation;
 
-namespace PinchIt
-{
-	public class PinchLayout : UICollectionViewFlowLayout
-	{
+namespace PinchIt {
+	public class PinchLayout : UICollectionViewFlowLayout {
 		float pinchedCellScale;
-		CGPoint pinchedCellCenter ;
+		CGPoint pinchedCellCenter;
 		public NSIndexPath pinchedCellPath { get; set; }
 
 		public void applyPinchToLayoutAttributes (UICollectionViewLayoutAttributes layoutAttributes)
@@ -22,7 +20,7 @@ namespace PinchIt
 			}
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var array = base.LayoutAttributesForElementsInRect (rect);
 
@@ -34,7 +32,7 @@ namespace PinchIt
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath indexPath)
 		{
-			var attributes = base.LayoutAttributesForItem(indexPath);
+			var attributes = base.LayoutAttributesForItem (indexPath);
 
 			applyPinchToLayoutAttributes (attributes);
 
@@ -44,13 +42,13 @@ namespace PinchIt
 		public void setPinchedCellScale (float scale)
 		{
 			pinchedCellScale = scale;
-			InvalidateLayout();
+			InvalidateLayout ();
 		}
 
 		public void setPinchedCellCenter (CGPoint origin)
 		{
 			pinchedCellCenter = origin;
-			InvalidateLayout();
+			InvalidateLayout ();
 		}
 	}
 }

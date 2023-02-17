@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 using Foundation;
@@ -42,7 +42,7 @@ namespace MessagesExtension {
 			cacheURL = Path.GetTempPath ();
 
 			NSError error;
-			fileManager.CreateDirectory (cacheURL, true, (NSFileAttributes)null, out error);
+			fileManager.CreateDirectory (cacheURL, true, (NSFileAttributes) null, out error);
 			if (error != null)
 				throw new Exception ($"Unable to create cache URL: {cacheURL}");
 		}
@@ -58,7 +58,7 @@ namespace MessagesExtension {
 
 			// Check if the sticker already exists at the URL
 			if (!NSFileManager.DefaultManager.FileExists (url)) {
-				
+
 				// Create the sticker image and write it to disk.
 				var image = iceCream.RenderSticker (false);
 				var imageData = image?.AsPNG ();

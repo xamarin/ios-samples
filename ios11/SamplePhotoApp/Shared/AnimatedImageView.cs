@@ -1,23 +1,19 @@
-﻿using System;
+using System;
 using CoreAnimation;
 using CoreFoundation;
 using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace SamplePhotoApp
-{
+namespace SamplePhotoApp {
 	[Register (nameof (AnimatedImageView))]
-	public class AnimatedImageView : UIView
-	{
+	public class AnimatedImageView : UIView {
 		AnimatedImage animatedImage;
 		bool isPlaying;
 
-		public AnimatedImage AnimatedImage
-		{
+		public AnimatedImage AnimatedImage {
 			get { return animatedImage; }
-			set
-			{
+			set {
 				animatedImage = value;
 				ResetAnimationState ();
 				UpdateAnimation ();
@@ -25,13 +21,10 @@ namespace SamplePhotoApp
 			}
 		}
 
-		public bool IsPlaying
-		{
+		public bool IsPlaying {
 			get { return isPlaying; }
-			set
-			{
-				if (isPlaying != value)
-				{
+			set {
+				if (isPlaying != value) {
 					isPlaying = value;
 					UpdateAnimation ();
 				}
@@ -72,50 +65,39 @@ namespace SamplePhotoApp
 			base.LayoutSubviews ();
 
 			nfloat viewAspect = 0.0f;
-			if (Bounds.Height > 0.0)
-			{
+			if (Bounds.Height > 0.0) {
 				viewAspect = Bounds.Width / Bounds.Height;
 			}
 			nfloat imageAspect = 0.0f;
-			if (AnimatedImage != null)
-			{
+			if (AnimatedImage != null) {
 				var imageSize = AnimatedImage.Size;
-				if (imageSize.Height > 0.0)
-				{
+				if (imageSize.Height > 0.0) {
 					imageAspect = imageSize.Width / imageSize.Height;
 				}
 			}
 
 			var viewFrame = new CGRect (0.0, 0.0, Bounds.Width, Bounds.Height);
-			if (imageAspect < viewAspect)
-			{
+			if (imageAspect < viewAspect) {
 				viewFrame.Width = Bounds.Height * imageAspect;
 				viewFrame.X = (Bounds.Width / 2.0f) - (0.5f * viewFrame.Width);
-			}
-			else if (imageAspect > 0.0)
-			{
+			} else if (imageAspect > 0.0) {
 				viewFrame.Height = Bounds.Width / imageAspect;
 				viewFrame.Y = (Bounds.Height / 2.0f) - (0.5f * viewFrame.Height);
 			}
 
-			if (AnimatedImage != null)
-			{
-				if (displayView == null)
-				{
+			if (AnimatedImage != null) {
+				if (displayView == null) {
 					var newView = new UIView (CGRect.Empty);
 					AddSubview (newView);
 					displayView = newView;
 					UpdateImage ();
 				}
-			}
-			else
-			{
+			} else {
 				displayView?.RemoveFromSuperview ();
 				displayView = null;
 			}
 
-			if (displayView != null)
-			{
+			if (displayView != null) {
 				displayView.Frame = viewFrame;
 			}
 		}
@@ -132,21 +114,17 @@ namespace SamplePhotoApp
 			UpdateAnimation ();
 		}
 
-		public override nfloat Alpha
-		{
+		public override nfloat Alpha {
 			get { return base.Alpha; }
-			set
-			{
+			set {
 				base.Alpha = value;
 				UpdateAnimation ();
 			}
 		}
 
-		public override bool Hidden
-		{
+		public override bool Hidden {
 			get { return base.Hidden; }
-			set
-			{
+			set {
 				base.Hidden = value;
 				UpdateAnimation ();
 			}
@@ -165,8 +143,7 @@ namespace SamplePhotoApp
 			hasFinishedAnimating = false;
 			isInfiniteLoop = true;
 			remainingLoopCount = 0;
-			if (AnimatedImage != null)
-			{
+			if (AnimatedImage != null) {
 				isInfiniteLoop = AnimatedImage?.FrameCount == 0;
 				remainingLoopCount = AnimatedImage.LoopCount;
 			}
@@ -176,14 +153,11 @@ namespace SamplePhotoApp
 
 		void UpdateAnimation ()
 		{
-			if (ShouldAnimate ())
-			{
+			if (ShouldAnimate ()) {
 				displayLink = CADisplayLink.Create (TimerFired);
 				displayLink.AddToRunLoop (NSRunLoop.Main, NSRunLoopMode.Common);
 				displayLink.PreferredFramesPerSecond = 60;
-			}
-			else
-			{
+			} else {
 				displayLink?.Invalidate ();
 				displayLink = null;
 			}
@@ -192,8 +166,7 @@ namespace SamplePhotoApp
 		void UpdateImage ()
 		{
 			var image = AnimatedImage?.ImageAtIndex (displayedIndex);
-			if (image != null && displayView != null)
-			{
+			if (image != null && displayView != null) {
 				displayView.Layer.Contents = image;
 			}
 		}
@@ -206,8 +179,7 @@ namespace SamplePhotoApp
 			var timestamp = displayLink.Timestamp;
 
 			// If this is the first callback, set things up
-			if (!hasStartedAnimating)
-			{
+			if (!hasStartedAnimating) {
 				elapsedTime = 0.0;
 				previousTime = timestamp;
 				hasStartedAnimating = true;
@@ -220,45 +192,34 @@ namespace SamplePhotoApp
 			// Aaccount for big gaps in playback by just resuming from now
 			// e.g. user presses home button and comes back after a while.
 			// Allow for the possibility of the current delay time being relatively long
-			if (elapsedTime >= Math.Max (10.0, currentDelayTime + 1.0))
-			{
+			if (elapsedTime >= Math.Max (10.0, currentDelayTime + 1.0)) {
 				elapsedTime = 0.0;
 			}
 
 			var changedFrame = false;
-			while (elapsedTime >= currentDelayTime)
-			{
+			while (elapsedTime >= currentDelayTime) {
 				elapsedTime -= currentDelayTime;
 				displayedIndex += 1;
 				changedFrame = true;
-				if (displayedIndex >= AnimatedImage.FrameCount)
-				{
+				if (displayedIndex >= AnimatedImage.FrameCount) {
 					// Time to loop. Start infinite loops over, otherwise decrement loop count and stop if done
-					if (isInfiniteLoop)
-					{
+					if (isInfiniteLoop) {
 						displayedIndex = 0;
-					}
-					else
-					{
+					} else {
 						remainingLoopCount -= 1;
-						if (remainingLoopCount == 0)
-						{
+						if (remainingLoopCount == 0) {
 							hasFinishedAnimating = true;
-							DispatchQueue.MainQueue.DispatchAsync (() =>
-							{
+							DispatchQueue.MainQueue.DispatchAsync (() => {
 								UpdateAnimation ();
 							});
-						}
-						else
-						{
+						} else {
 							displayedIndex = 0;
 						}
 					}
 				}
 			}
 
-			if (changedFrame)
-			{
+			if (changedFrame) {
 				UpdateImage ();
 			}
 		}

@@ -7,11 +7,9 @@ using UIKit;
 using MusicKitSample.Controllers;
 using MediaPlayer;
 
-namespace MusicKitSample
-{
-	public partial class PlayerViewController : UIViewController
-	{
-		
+namespace MusicKitSample {
+	public partial class PlayerViewController : UIViewController {
+
 		#region Fields
 
 		NSObject didUpdateStateToken;
@@ -43,8 +41,8 @@ namespace MusicKitSample
 			// Add the notification observer needed to respond to events
 			// from the `MusicPlayerManager`.
 			didUpdateStateToken = NSNotificationCenter.DefaultCenter.AddObserver (MusicPlayerManager.DidUpdateState,
-			                                                                      HandleMusicPlayerManagerDidUpdateState,
-			                                                                      null);
+																				  HandleMusicPlayerManagerDidUpdateState,
+																				  null);
 
 			UpdatePlaybackControls ();
 			UpdateCurrentItemMetadata ();

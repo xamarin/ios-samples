@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public class ResultOrErrorViewController : UIViewController
-	{
+namespace CloudKitAtlas {
+	public class ResultOrErrorViewController : UIViewController {
 		protected UIBarButtonItem DoneButton { get; set; }
 
 		protected bool IsDrilldown { get; set; } = false;

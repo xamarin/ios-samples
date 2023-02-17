@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -10,14 +10,11 @@ using static UIKit.UIGestureRecognizerState;
 using static SpeedSketch.Helpers;
 using static SpeedSketch.CGMathExtensions;
 
-namespace SpeedSketch
-{
-	public class StrokeGestureRecognizer : UIGestureRecognizer
-	{
+namespace SpeedSketch {
+	public class StrokeGestureRecognizer : UIGestureRecognizer {
 		[Register ("__StrokeGestureRecognizer")]
 		[Preserve (Conditional = true)]
-		class Callback : Token
-		{
+		class Callback : Token {
 			readonly Action<StrokeGestureRecognizer> action;
 
 			internal Callback (Action<StrokeGestureRecognizer> action)
@@ -33,8 +30,7 @@ namespace SpeedSketch
 			}
 		}
 
-		class StrokeIndex
-		{
+		class StrokeIndex {
 			public Stroke Stroke { get; set; }
 			public int Index { get; set; }
 		}
@@ -171,14 +167,14 @@ namespace SpeedSketch
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			if (trackedTouch == null) {
-				trackedTouch = (UITouch)touches.FirstOrDefault ();
+				trackedTouch = (UITouch) touches.FirstOrDefault ();
 				initialTimestamp = trackedTouch.Timestamp;
 
 				if (!IsForPencil)
 					BeginIfNeeded (null);
-					fingerStartTimer = NSTimer.CreateScheduledTimer (cancellationTimeInterval, BeginIfNeeded);
+				fingerStartTimer = NSTimer.CreateScheduledTimer (cancellationTimeInterval, BeginIfNeeded);
 			}
-			if (Append (Touches(touches), evt)) {
+			if (Append (Touches (touches), evt)) {
 				if (IsForPencil)
 					State = Began;
 			}
@@ -193,7 +189,7 @@ namespace SpeedSketch
 
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
-			if (Append (Touches(touches), evt)) {
+			if (Append (Touches (touches), evt)) {
 				if (State == Began)
 					State = Changed;
 			}

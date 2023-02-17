@@ -4,11 +4,9 @@ using System;
 using System.Collections.Generic;
 using CoreGraphics;
 
-namespace MonoDevelopTouchCells
-{
+namespace MonoDevelopTouchCells {
 	[Register]
-	public class CustomCell : UITableViewCell
-	{
+	public class CustomCell : UITableViewCell {
 		public string Title {
 			get { return this.TextLabel.Text; }
 			set { this.TextLabel.Text = value; }

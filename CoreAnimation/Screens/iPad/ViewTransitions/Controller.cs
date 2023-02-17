@@ -3,10 +3,8 @@ using CoreGraphics;
 using CoreFoundation;
 using UIKit;
 
-namespace CoreAnimationExample
-{
-	public class Controller : UIViewController, IDetailView
-	{
+namespace CoreAnimationExample {
+	public class Controller : UIViewController, IDetailView {
 		public event EventHandler ContentsButtonClicked;
 
 		TransitionViewController transitionViewController;

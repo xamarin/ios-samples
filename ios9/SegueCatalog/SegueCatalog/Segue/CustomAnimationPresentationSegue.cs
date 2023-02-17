@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace SegueCatalog
-{
-	public partial class CustomAnimationPresentationSegue : UIStoryboardSegue, IUIViewControllerTransitioningDelegate, IUIViewControllerAnimatedTransitioning
-	{
+namespace SegueCatalog {
+	public partial class CustomAnimationPresentationSegue : UIStoryboardSegue, IUIViewControllerTransitioningDelegate, IUIViewControllerAnimatedTransitioning {
 		public CustomAnimationPresentationSegue (IntPtr handle) : base (handle)
 		{
 		}

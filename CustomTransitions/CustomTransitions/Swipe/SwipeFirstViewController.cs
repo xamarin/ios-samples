@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 
@@ -15,7 +15,7 @@ namespace CustomTransitions {
 			base.ViewDidLoad ();
 
 			var interactiveTransitionRecognizer = new UIScreenEdgePanGestureRecognizer ();
-			interactiveTransitionRecognizer.AddTarget (() => InteractiveTransitionRecognizerAction(interactiveTransitionRecognizer));
+			interactiveTransitionRecognizer.AddTarget (() => InteractiveTransitionRecognizerAction (interactiveTransitionRecognizer));
 			interactiveTransitionRecognizer.Edges = UIRectEdge.Right;
 			View.AddGestureRecognizer (interactiveTransitionRecognizer);
 		}

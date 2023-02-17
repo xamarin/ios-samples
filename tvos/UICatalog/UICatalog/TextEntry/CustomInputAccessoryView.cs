@@ -1,10 +1,10 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Foundation;
 using UIKit;
 
 namespace UICatalog {
 	public class CustomInputAccessoryView : UIView {
-		
+
 		UILabel titleLabel;
 
 		[Export ("initWithFrame:")]
@@ -29,7 +29,7 @@ namespace UICatalog {
 			AddSubview (titleLabel);
 			TranslatesAutoresizingMaskIntoConstraints = false;
 
-			var viewsDictionary = NSMutableDictionary.FromObjectAndKey (titleLabel, (NSString)"titleLabel");
+			var viewsDictionary = NSMutableDictionary.FromObjectAndKey (titleLabel, (NSString) "titleLabel");
 			AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[titleLabel]-|", 0, null, viewsDictionary));
 			AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-[titleLabel]-60-|", 0, null, viewsDictionary));
 		}

@@ -37,7 +37,7 @@ namespace Fox {
 		nfloat smokeBirthRate;
 		nfloat whiteSmokeBirthRate;
 
-		SCNAudioSource [,] steps = new SCNAudioSource [StepsSoundCount, (int)FloorMaterial.Count];
+		SCNAudioSource [,] steps = new SCNAudioSource [StepsSoundCount, (int) FloorMaterial.Count];
 
 		public SCNNode Node { get; private set; }
 
@@ -58,7 +58,7 @@ namespace Fox {
 				if (walking)
 					Node.AddAnimation (walkAnimation, "walk");
 				else
-					Node.RemoveAnimation ((NSString)"walk", 0.2f); // TODO RemoveAnimation should accept "string" and NSString 
+					Node.RemoveAnimation ((NSString) "walk", 0.2f); // TODO RemoveAnimation should accept "string" and NSString 
 			}
 		}
 
@@ -79,18 +79,18 @@ namespace Fox {
 		public Character ()
 		{
 			for (int i = 0; i < StepsSoundCount; i++) {
-				steps [i, (int)FloorMaterial.Grass] = SCNAudioSource.FromFile (string.Format ("game.scnassets/sounds/Step_grass_0{0}.mp3", i));
-				steps [i, (int)FloorMaterial.Grass].Volume = 0.5f;
-				steps [i, (int)FloorMaterial.Rock] = SCNAudioSource.FromFile (string.Format ("game.scnassets/sounds/Step_rock_0{0}.mp3", i));
+				steps [i, (int) FloorMaterial.Grass] = SCNAudioSource.FromFile (string.Format ("game.scnassets/sounds/Step_grass_0{0}.mp3", i));
+				steps [i, (int) FloorMaterial.Grass].Volume = 0.5f;
+				steps [i, (int) FloorMaterial.Rock] = SCNAudioSource.FromFile (string.Format ("game.scnassets/sounds/Step_rock_0{0}.mp3", i));
 				if (i < StepsInWaterSoundCount) {
-					steps [i, (int)FloorMaterial.Water] = SCNAudioSource.FromFile (string.Format ("game.scnassets/sounds/Step_splash_0{0}.mp3", i));
-					steps [i, (int)FloorMaterial.Water].Load ();
+					steps [i, (int) FloorMaterial.Water] = SCNAudioSource.FromFile (string.Format ("game.scnassets/sounds/Step_splash_0{0}.mp3", i));
+					steps [i, (int) FloorMaterial.Water].Load ();
 				} else {
-					steps [i, (int)FloorMaterial.Water] = steps [i % StepsInWaterSoundCount, (int)FloorMaterial.Water];
+					steps [i, (int) FloorMaterial.Water] = steps [i % StepsInWaterSoundCount, (int) FloorMaterial.Water];
 				}
 
-				steps [i, (int)FloorMaterial.Rock].Load ();
-				steps [i, (int)FloorMaterial.Grass].Load ();
+				steps [i, (int) FloorMaterial.Rock].Load ();
+				steps [i, (int) FloorMaterial.Grass].Load ();
 
 				// Load the character.
 				SCNScene characterScene = SCNScene.FromFile ("game.scnassets/panda.scn");
@@ -143,7 +143,7 @@ namespace Fox {
 				);
 
 				// We want contact notifications with the collectables, enemies and walls.
-				colliderNode.PhysicsBody.ContactTestBitMask = (nuint)(int)(Bitmask.SuperCollectable | Bitmask.Collectable | Bitmask.Collision | Bitmask.Enemy);
+				colliderNode.PhysicsBody.ContactTestBitMask = (nuint) (int) (Bitmask.SuperCollectable | Bitmask.Collectable | Bitmask.Collision | Bitmask.Enemy);
 				Node.AddChildNode (colliderNode);
 
 				walkAnimation = LoadAnimationFromSceneNamed ("game.scnassets/walk.scn");
@@ -167,7 +167,7 @@ namespace Fox {
 				return; // We are in the air, no sound to play
 
 			int stepSoundIndex = Math.Min (StepsSoundCount - 1, new Random ().Next (0, 32767) * StepsSoundCount);
-			Node.RunAction (SCNAction.PlayAudioSource (steps[stepSoundIndex, (int)CurrentFloorMaterial], false));
+			Node.RunAction (SCNAction.PlayAudioSource (steps [stepSoundIndex, (int) CurrentFloorMaterial], false));
 		}
 
 		void UpdateWalkSpeed (nfloat speedFactor)
@@ -176,7 +176,7 @@ namespace Fox {
 			if (wasWalking)
 				Walking = false;
 
-			walkAnimation.Speed = (float)(CharacterSpeedFactor * speedFactor);
+			walkAnimation.Speed = (float) (CharacterSpeedFactor * speedFactor);
 			Walking |= wasWalking;
 		}
 
@@ -217,7 +217,7 @@ namespace Fox {
 			foreach (var childNode in scene.RootNode.ChildNodes) {
 				var animationKeys = childNode.ChildNodes [0].GetAnimationKeys ();
 				if (animationKeys?.Length > 0) {
-					animation = childNode.ChildNodes[0].GetAnimation (animationKeys[0]);
+					animation = childNode.ChildNodes [0].GetAnimation (animationKeys [0]);
 					break;
 				}
 			}

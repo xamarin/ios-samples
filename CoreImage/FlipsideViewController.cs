@@ -4,10 +4,8 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace coreimage
-{
-	public partial class FlipsideViewController : UIViewController
-	{
+namespace coreimage {
+	public partial class FlipsideViewController : UIViewController {
 		public FlipsideViewController () : base ("FlipsideViewController", null)
 		{
 		}

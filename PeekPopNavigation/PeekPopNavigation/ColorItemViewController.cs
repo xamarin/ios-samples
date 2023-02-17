@@ -2,74 +2,68 @@ using Foundation;
 using PeekPopNavigation.Models;
 using System;
 using UIKit;
-    
-namespace PeekPopNavigation
-{
-    /// <summary>
-    /// A view controller to show a preview of a color and provide two alternative techniques for
-    /// starring/unstarring and deleting it.The first technique is an action method linked from the 
-    /// navigation bar in the storyboard and the second is to support Peek Quick Actions by overriding the previewActionItems property.
-    /// </summary>
-    public partial class ColorItemViewController : UIViewController
-    {
-        public ColorItemViewController(IntPtr handle) : base(handle) { }
 
-        public ColorData ColorData { get; set; }
+namespace PeekPopNavigation {
+	/// <summary>
+	/// A view controller to show a preview of a color and provide two alternative techniques for
+	/// starring/unstarring and deleting it.The first technique is an action method linked from the 
+	/// navigation bar in the storyboard and the second is to support Peek Quick Actions by overriding the previewActionItems property.
+	/// </summary>
+	public partial class ColorItemViewController : UIViewController {
+		public ColorItemViewController (IntPtr handle) : base (handle) { }
 
-        public ColorItem ColorItem { get; set; }
+		public ColorData ColorData { get; set; }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		public ColorItem ColorItem { get; set; }
 
-            base.Title = this.ColorItem.Name;
-            base.View.BackgroundColor = this.ColorItem.Color;
-            this.starButton.Title = this.GetStarButtonTitle();
-        }
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-        partial void TriggerStar(NSObject sender)
-        {
-            this.ColorItem.Starred = !this.ColorItem.Starred;
-            this.starButton.Title = this.GetStarButtonTitle();
-        }
+			base.Title = this.ColorItem.Name;
+			base.View.BackgroundColor = this.ColorItem.Color;
+			this.starButton.Title = this.GetStarButtonTitle ();
+		}
 
-        partial void Delete(NSObject sender)
-        {
-            this.ColorData.Delete(this.ColorItem);
+		partial void TriggerStar (NSObject sender)
+		{
+			this.ColorItem.Starred = !this.ColorItem.Starred;
+			this.starButton.Title = this.GetStarButtonTitle ();
+		}
 
-            // The color no longer exists so dismiss this view controller.
-            base.NavigationController.PopViewController(true);
-        }
+		partial void Delete (NSObject sender)
+		{
+			this.ColorData.Delete (this.ColorItem);
 
-        private string GetStarButtonTitle()
-        {
-            return this.ColorItem.Starred ? "Unstar" : "Star";
-        }
+			// The color no longer exists so dismiss this view controller.
+			base.NavigationController.PopViewController (true);
+		}
 
-        #region Supporting Peek Quick Actions
+		private string GetStarButtonTitle ()
+		{
+			return this.ColorItem.Starred ? "Unstar" : "Star";
+		}
 
-        public override IUIPreviewActionItem[] PreviewActionItems
-        {
-            get
-            {
-                var starAction = UIPreviewAction.Create(this.GetStarButtonTitle(),
-                                                        UIPreviewActionStyle.Default,
-                                                        (_, __) =>
-                                                        {
-                                                            this.ColorItem.Starred = !this.ColorItem.Starred;
-                                                        });
+		#region Supporting Peek Quick Actions
 
-                var deleteAction = UIPreviewAction.Create("Delete",
-                                                          UIPreviewActionStyle.Destructive,
-                                                          (_, __) =>
-                                                          {
-                                                              this.ColorData.Delete(this.ColorItem);
-                                                          });
+		public override IUIPreviewActionItem [] PreviewActionItems {
+			get {
+				var starAction = UIPreviewAction.Create (this.GetStarButtonTitle (),
+														UIPreviewActionStyle.Default,
+														(_, __) => {
+															this.ColorItem.Starred = !this.ColorItem.Starred;
+														});
 
-                return new IUIPreviewActionItem[] { starAction, deleteAction };
-            }
-        }
+				var deleteAction = UIPreviewAction.Create ("Delete",
+														  UIPreviewActionStyle.Destructive,
+														  (_, __) => {
+															  this.ColorData.Delete (this.ColorItem);
+														  });
 
-        #endregion
-    }
+				return new IUIPreviewActionItem [] { starAction, deleteAction };
+			}
+		}
+
+		#endregion
+	}
 }

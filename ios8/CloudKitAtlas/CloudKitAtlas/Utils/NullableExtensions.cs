@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 
-namespace CloudKitAtlas
-{
-	public static class NullableExtensions
-	{
-		public static T GetValueOrDefault<T> (this T? value, T defaultValue = default(T)) where T : struct
+namespace CloudKitAtlas {
+	public static class NullableExtensions {
+		public static T GetValueOrDefault<T> (this T? value, T defaultValue = default (T)) where T : struct
 		{
 			return ValueOrDefault (value, defaultValue);
 		}

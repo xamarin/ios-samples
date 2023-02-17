@@ -38,7 +38,7 @@ namespace Conference_Diffable {
 			}
 
 			public static bool operator != (Section left, Section right) => !(left == right);
-			public override bool Equals (object obj) => this == (Section)obj;
+			public override bool Equals (object obj) => this == (Section) obj;
 			public bool Equals (Section other) => Value == other.Value;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Value);
 		}
@@ -77,7 +77,7 @@ namespace Conference_Diffable {
 			}
 
 			public static bool operator != (OutlineItem left, OutlineItem right) => !(left == right);
-			public override bool Equals (object obj) => this == (OutlineItem)obj;
+			public override bool Equals (object obj) => this == (OutlineItem) obj;
 			public bool Equals (OutlineItem other) => Id == other.Id;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Id);
 		}
@@ -178,7 +178,7 @@ namespace Conference_Diffable {
 		}
 
 		UICollectionViewLayout GenerateLayout ()
-		{	
+		{
 			var itemHeightDimension = NSCollectionLayoutDimension.CreateAbsolute (44);
 			var itemSize = NSCollectionLayoutSize.Create (NSCollectionLayoutDimension.CreateFractionalWidth (1), itemHeightDimension);
 			var item = NSCollectionLayoutItem.Create (itemSize);

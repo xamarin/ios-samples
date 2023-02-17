@@ -3,11 +3,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace ThreadedCoreData
-{
+namespace ThreadedCoreData {
 	[Register ("APLEarthquakeTableViewCell")]
-	public partial class APLEarthquakeTableViewCell : UITableViewCell
-	{
+	public partial class APLEarthquakeTableViewCell : UITableViewCell {
 		public static readonly NSString Key = new NSString ("EarthquakeCellID");
 		public static readonly UINib Nib;
 		NSDateFormatter dateFormatter;
@@ -38,14 +36,14 @@ namespace ThreadedCoreData
 
 		public static APLEarthquakeTableViewCell Create ()
 		{
-			return (APLEarthquakeTableViewCell)Nib.Instantiate (null, null) [0];
+			return (APLEarthquakeTableViewCell) Nib.Instantiate (null, null) [0];
 		}
 
-		public void ConfigureWithEarthquake(ManagedEarthquake earthquake)
+		public void ConfigureWithEarthquake (ManagedEarthquake earthquake)
 		{
 			locationLabel.Text = earthquake.Location;
 			dateLabel.Text = DateFormatter.StringFor (earthquake.Date);
-			magnitudeLabel.Text = string.Format("{0:#.#}", earthquake.Magnitude);
+			magnitudeLabel.Text = string.Format ("{0:#.#}", earthquake.Magnitude);
 			magnitudeImage.Image = ImageForMagnitude (earthquake.Magnitude.FloatValue);
 		}
 

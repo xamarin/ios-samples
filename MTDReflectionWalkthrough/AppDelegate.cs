@@ -6,11 +6,9 @@ using Foundation;
 using UIKit;
 using MonoTouch.Dialog;
 
-namespace MTDReflectionWalkthrough
-{
+namespace MTDReflectionWalkthrough {
 	[Register ("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		UINavigationController nav;
 
@@ -23,7 +21,7 @@ namespace MTDReflectionWalkthrough
 			var bctx = new BindingContext (null, expense, "Create a task");
 			var dvc = new DialogViewController (bctx.Root);
 
-			nav = new UINavigationController(dvc);
+			nav = new UINavigationController (dvc);
 
 			window.RootViewController = nav;
 			window.MakeKeyAndVisible ();

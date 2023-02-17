@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public enum PlayerActions
-	{
+namespace SpriteKitPhysicsCollisions {
+	public enum PlayerActions {
 		Forward = 0,
 		Left = 1,
 		Right = 2,

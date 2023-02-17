@@ -3,11 +3,9 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace GrowRowTable
-{
-	partial class GrowRowTableCell : UITableViewCell
-	{
-		
+namespace GrowRowTable {
+	partial class GrowRowTableCell : UITableViewCell {
+
 		#region Computed Properties
 		public UIImage Image {
 			get { return CellImage.Image; }

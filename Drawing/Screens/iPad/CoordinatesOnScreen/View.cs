@@ -2,13 +2,11 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.CoordinatesOnScreen
-{
-	public class View : UIView
-	{
+namespace Example_Drawing.Screens.iPad.CoordinatesOnScreen {
+	public class View : UIView {
 		#region -= constructors =-
 
-		public View () : base()
+		public View () : base ()
 		{
 		}
 
@@ -39,7 +37,7 @@ namespace Example_Drawing.Screens.iPad.CoordinatesOnScreen
 
 					// draw a vertical tick every 20 pixels
 					float yPos = 20;
-					int numberOfVerticalTicks = (((int)Frame.Height / 20) - 1);
+					int numberOfVerticalTicks = (((int) Frame.Height / 20) - 1);
 					for (int i = 0; i < numberOfVerticalTicks; i++) {
 
 						// draw the layer
@@ -49,7 +47,7 @@ namespace Example_Drawing.Screens.iPad.CoordinatesOnScreen
 						if (yPos > 40 && i < (numberOfVerticalTicks - 2)) {
 
 							// draw it every 80 points
-							Math.DivRem ((int)yPos, (int)80, out remainder);
+							Math.DivRem ((int) yPos, (int) 80, out remainder);
 							if (remainder == 0)
 								ShowTextAtPoint (context, 30, (yPos - (textHeight / 2)), yPos.ToString (), textHeight);
 						}
@@ -69,14 +67,14 @@ namespace Example_Drawing.Screens.iPad.CoordinatesOnScreen
 
 					// draw a horizontal tick every 20 pixels
 					float xPos = 20;
-					int numberOfHorizontalTicks = (((int)Frame.Width / 20) - 1);
+					int numberOfHorizontalTicks = (((int) Frame.Width / 20) - 1);
 					for (int i = 0; i < numberOfHorizontalTicks; i++) {
 						context.DrawLayer (horizontalTickLayer, new CGPoint (xPos, 0));
 
 						// starting at 100, draw the coordinate text nearly to the top
 						if (xPos > 100 && i < (numberOfHorizontalTicks - 1)) {
 							// draw it every 80 points
-							Math.DivRem ((int)xPos, (int)80, out remainder);
+							Math.DivRem ((int) xPos, (int) 80, out remainder);
 							if (remainder == 0) {
 								ShowCenteredTextAtPoint (context, xPos, 40, xPos.ToString (), textHeight);
 							}

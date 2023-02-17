@@ -5,13 +5,11 @@ using Foundation;
 using UIKit;
 using CoreText;
 
-namespace TextKitDemo
-{
+namespace TextKitDemo {
 	/*
 	 * Our simple data model, contains the various demos that we will display.
 	 */
-	public class DemoModel
-	{
+	public class DemoModel {
 		public static List<DemoModel> Demos = new List<DemoModel> () {
 			new DemoModel ("Basic Interaction", "BasicInteractionViewController", "Basic Interaction.rtf"),
 			new DemoModel ("Exclusion Paths", "ExclusionPathsViewController", "Exclusion Paths.rtf"),
@@ -20,7 +18,7 @@ namespace TextKitDemo
 		};
 
 		public string Title { get; set; }
-		public string ViewControllerIdentifier { get; set;}
+		public string ViewControllerIdentifier { get; set; }
 
 		string TextStoragePath;
 		NSAttributedString AttributedText;
@@ -35,7 +33,7 @@ namespace TextKitDemo
 
 		public static DemoModel GetDemo (NSIndexPath indexPath)
 		{
-			return Demos[indexPath.Row];
+			return Demos [indexPath.Row];
 		}
 
 		public NSAttributedString GetAttributedText ()
@@ -60,7 +58,7 @@ namespace TextKitDemo
 
 				attributedTextHolder.AddAttributes (new UIStringAttributes () { Font = UIFont.PreferredBody },
 													new NSRange (0, attributedTextHolder.Length));
-				AttributedText = (NSAttributedString)attributedTextHolder.Copy ();
+				AttributedText = (NSAttributedString) attributedTextHolder.Copy ();
 			} else {
 				string newFlatText = new NSAttributedString (new NSUrl (path, false), null, ref error).Value;
 				AttributedText = new NSAttributedString (newFlatText, font: UIFont.PreferredBody);

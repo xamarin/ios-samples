@@ -15,7 +15,7 @@ namespace PrivacyPrompts {
 			set;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}
@@ -23,7 +23,7 @@ namespace PrivacyPrompts {
 		public override void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings)
 		{
 			var handler = NotificationsRegistered;
-			if(handler != null)
+			if (handler != null)
 				handler (notificationSettings);
 		}
 	}

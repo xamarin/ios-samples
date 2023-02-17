@@ -1,10 +1,10 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
 namespace StickyCorners {
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate {
-		
+
 		public override UIWindow Window { get; set; }
 
 		// There is no need for a FinishedLaunching method here as the

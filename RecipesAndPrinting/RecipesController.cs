@@ -33,27 +33,25 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace RecipesAndPrinting
-{
-	public class RecipesController
-	{
-		Recipe[] recipes;
+namespace RecipesAndPrinting {
+	public class RecipesController {
+		Recipe [] recipes;
 
 		public RecipesController ()
 		{
 			recipes = CreateDemoData ();
 		}
 
-		public Recipe[] Recipes {
+		public Recipe [] Recipes {
 			get { return recipes; }
 		}
 
-		static Recipe[] CreateDemoData ()
+		static Recipe [] CreateDemoData ()
 		{
 			Assembly assembly = typeof (Recipe).Assembly;
-			Recipe[] recipes = new Recipe [2];
+			Recipe [] recipes = new Recipe [2];
 
-			recipes[0] = new Recipe () {
+			recipes [0] = new Recipe () {
 				Name = "Cherry Cobbler",
 				Description = "Cherry cobbler with homemade whipped cream",
 				PrepTime = "1.5 hours",
@@ -74,7 +72,7 @@ namespace RecipesAndPrinting
 				},
 			};
 
-			recipes[1] = new Recipe () {
+			recipes [1] = new Recipe () {
 				Name = "Chocolate Cake",
 				Description = "Chocolate cake with chocolate frosting",
 				PrepTime = "1 hour",

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GLPaintGameView {
 	public class ShakeMe {
-		public static List <CGPoint []> Data = new List <CGPoint []> () {
+		public static List<CGPoint []> Data = new List<CGPoint []> () {
 			new CGPoint [] {
 				new CGPoint (62.000000f, 366.000000f),
 				new CGPoint (52.000000f, 363.000000f),

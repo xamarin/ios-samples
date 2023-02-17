@@ -1,4 +1,4 @@
-﻿using AuthenticationServices;
+using AuthenticationServices;
 using CoreFoundation;
 using Foundation;
 using UIKit;

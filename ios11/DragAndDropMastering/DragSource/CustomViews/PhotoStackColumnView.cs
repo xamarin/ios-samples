@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UIKit;
 using CoreGraphics;
 using CoreLocation;
 using Foundation;
 
-namespace DragSource
-{
+namespace DragSource {
 	/**
 	 A PhotoStackColumnView is a view that is able to arrange
 	 a given list of views in a vertical stack, applying spacing
@@ -14,46 +13,44 @@ namespace DragSource
 	 UIStackView. This view's purpose is to help lay out other
 	 views in the app.
 	 */
-	public class PhotoStackColumnView : UIView
-	{
+	public class PhotoStackColumnView : UIView {
 		#region Static Variables
 		public static float MinimumMargin = 25f;
 		public static float VerticalSpacing = 10f;
-		public UIStackView StackView = new UIStackView();
+		public UIStackView StackView = new UIStackView ();
 		#endregion
 
 		#region Constructors
-		public PhotoStackColumnView()
+		public PhotoStackColumnView ()
 		{
 		}
 
-		public PhotoStackColumnView(NSCoder coder) : base(coder)
+		public PhotoStackColumnView (NSCoder coder) : base (coder)
 		{
 		}
 
-		public PhotoStackColumnView(UIView[] views) : base(CGRect.Empty)
+		public PhotoStackColumnView (UIView [] views) : base (CGRect.Empty)
 		{
 			StackView.Spacing = VerticalSpacing;
-			AddSubview(StackView);
+			AddSubview (StackView);
 
 			var totalMarginAmount = 2f * MinimumMargin;
-			foreach (UIView view in views)
-			{
-				StackView.AddArrangedSubview(view);
+			foreach (UIView view in views) {
+				StackView.AddArrangedSubview (view);
 
-				view.SetContentCompressionResistancePriority((float)UILayoutPriority.DefaultHigh, UILayoutConstraintAxis.Horizontal);
-				view.SetContentCompressionResistancePriority((float)UILayoutPriority.DefaultHigh, UILayoutConstraintAxis.Vertical);
+				view.SetContentCompressionResistancePriority ((float) UILayoutPriority.DefaultHigh, UILayoutConstraintAxis.Horizontal);
+				view.SetContentCompressionResistancePriority ((float) UILayoutPriority.DefaultHigh, UILayoutConstraintAxis.Vertical);
 
-				var heightMultiplier = 1.0f / (float)views.Length;
+				var heightMultiplier = 1.0f / (float) views.Length;
 				var heightConstant = -totalMarginAmount - VerticalSpacing;
 
-				var vContraints = new[]{
+				var vContraints = new []{
 					view.WidthAnchor.ConstraintLessThanOrEqualTo(this.WidthAnchor, 1.0f, -totalMarginAmount),
 					view.HeightAnchor.ConstraintLessThanOrEqualTo(this.HeightAnchor, heightMultiplier, heightConstant)
 
 				};
 
-				NSLayoutConstraint.ActivateConstraints(vContraints);
+				NSLayoutConstraint.ActivateConstraints (vContraints);
 
 			}
 
@@ -61,12 +58,12 @@ namespace DragSource
 			StackView.Axis = UILayoutConstraintAxis.Vertical;
 			StackView.TranslatesAutoresizingMaskIntoConstraints = false;
 
-			var svContraints = new[]{
+			var svContraints = new []{
 				StackView.CenterXAnchor.ConstraintEqualTo(CenterXAnchor),
 				StackView.CenterYAnchor.ConstraintEqualTo(CenterYAnchor)
 				};
 
-			NSLayoutConstraint.ActivateConstraints(svContraints);
+			NSLayoutConstraint.ActivateConstraints (svContraints);
 
 		}
 		#endregion

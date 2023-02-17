@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace TicTacToe
-{
-	public class TTTHistoryListViewController : UITableViewController
-	{
+namespace TicTacToe {
+	public class TTTHistoryListViewController : UITableViewController {
 		public TTTProfile Profile;
 		NSString CellIdentifier = new NSString ("Cell");
 
@@ -17,7 +15,7 @@ namespace TicTacToe
 		public override void LoadView ()
 		{
 			base.LoadView ();
-			TableView.RegisterClassForCellReuse (typeof(TTTHistoryListTableViewCell), CellIdentifier);
+			TableView.RegisterClassForCellReuse (typeof (TTTHistoryListTableViewCell), CellIdentifier);
 		}
 
 		#region Table View
@@ -61,8 +59,7 @@ namespace TicTacToe
 		#endregion
 	}
 
-	public class TTTHistoryListTableViewCell : UITableViewCell
-	{
+	public class TTTHistoryListTableViewCell : UITableViewCell {
 		[Export ("initWithStyle:reuseIdentifier:")]
 		public TTTHistoryListTableViewCell (UITableViewCellStyle style, string reuseIdentifier) :
 			base (UITableViewCellStyle.Subtitle, reuseIdentifier)

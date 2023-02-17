@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
 
 namespace CustomTransitions {
 	public partial class CheckboardFirstViewController : UIViewController, IUINavigationControllerDelegate {
-		partial void unwindToMenuViewController(UIBarButtonItem sender)
+		partial void unwindToMenuViewController (UIBarButtonItem sender)
 		{
 			DismissViewController (true, null);
 		}

@@ -5,19 +5,17 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Allows for the selection of characteristics. This is mainly used for creating characteristic events and conditions
-	public partial class CharacteristicSelectionViewController : HMCatalogViewController
-	{
-		static readonly NSString AccessoryCell = (NSString)"AccessoryCell";
-		static readonly NSString UnreachableAccessoryCell = (NSString)"UnreachableAccessoryCell";
+	public partial class CharacteristicSelectionViewController : HMCatalogViewController {
+		static readonly NSString AccessoryCell = (NSString) "AccessoryCell";
+		static readonly NSString UnreachableAccessoryCell = (NSString) "UnreachableAccessoryCell";
 		const string ShowServicesSegue = "Show Services";
 
 		readonly List<HMAccessory> accessories = new List<HMAccessory> ();
 
 		[Outlet ("saveButton")]
-		public UIBarButtonItem  SaveButton { get; set; }
+		public UIBarButtonItem SaveButton { get; set; }
 
 		public HMEventTrigger EventTrigger { get; set; }
 
@@ -50,8 +48,8 @@ namespace HomeKitCatalog
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			if (segue.Identifier == ShowServicesSegue) {
-				var senderCell = (UITableViewCell)sender;
-				var servicesVC = (ServicesViewController)segue.IntendedDestinationViewController ();
+				var senderCell = (UITableViewCell) sender;
+				var servicesVC = (ServicesViewController) segue.IntendedDestinationViewController ();
 				var cellIndex = TableView.IndexPathForCell (senderCell).Row;
 				servicesVC.AllowsAllWrites = true;
 				servicesVC.OnlyShowsControlServices = true;

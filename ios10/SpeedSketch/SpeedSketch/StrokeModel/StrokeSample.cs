@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreGraphics;
 
 using static CoreGraphics.CGAffineTransform;
 
-namespace SpeedSketch
-{
-	public class StrokeSample
-	{
+namespace SpeedSketch {
+	public class StrokeSample {
 		// From the Apple's doc:
 		// A touch object persists throughout a multi-touch sequence.
 		// Never retain a touch object when handling an event.

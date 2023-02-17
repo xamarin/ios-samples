@@ -49,7 +49,7 @@ namespace CollectionView {
 			});
 
 			// Add the custom recognizer to the collection view
-			CollectionView.AddGestureRecognizer(longPressGesture);
+			CollectionView.AddGestureRecognizer (longPressGesture);
 		}
 
 		public override void AwakeFromNib ()
@@ -61,7 +61,7 @@ namespace CollectionView {
 			// Wireup events
 			waterfallLayout.SizeForItem += (collectionView, layout, indexPath) => {
 				var collection = collectionView as WaterfallCollectionView;
-				return new CGSize ((View.Bounds.Width - 40) / 3, collection.Source.Heights [(int)indexPath.Item]);
+				return new CGSize ((View.Bounds.Width - 40) / 3, collection.Source.Heights [(int) indexPath.Item]);
 			};
 
 			// Attach the custom layout to the collection

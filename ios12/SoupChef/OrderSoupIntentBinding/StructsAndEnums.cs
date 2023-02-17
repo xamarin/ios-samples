@@ -1,12 +1,10 @@
 using System;
 using ObjCRuntime;
 
-namespace SoupChef
-{
+namespace SoupChef {
 	// [Watch (5,0), iOS (12,0)]
 	[Native]
-	public enum OrderSoupIntentResponseCode : long
-	{
+	public enum OrderSoupIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,

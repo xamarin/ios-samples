@@ -6,28 +6,25 @@ using UIKit;
 
 using XMBindingLibrary;
 
-namespace XMBindingLibrarySample
-{
-	public class CustomViewController : DialogViewController
-	{
+namespace XMBindingLibrarySample {
+	public class CustomViewController : DialogViewController {
 		XMCustomView customView;
 
-		public CustomViewController()
-			: base(new RootElement("XMCustomView Binding") { UnevenRows = true }, true)
+		public CustomViewController ()
+			: base (new RootElement ("XMCustomView Binding") { UnevenRows = true }, true)
 		{
 		}
 
-		public override void LoadView()
+		public override void LoadView ()
 		{
-			base.LoadView();
+			base.LoadView ();
 
-			customView = new XMCustomView
-			{
+			customView = new XMCustomView {
 				// The XMCustomView Name Property
 				Name = "Xamarin User",
 
 				// The instance method uses a frame calculation.
-				Frame = new CGRect(10, 10, View.Bounds.Width - 40, 150),
+				Frame = new CGRect (10, 10, View.Bounds.Width - 40, 150),
 			};
 
 			// This is the custom event we bound.
@@ -39,9 +36,9 @@ namespace XMBindingLibrarySample
 			// customView.Delegate = new CustomViewDelegate();
 
 			// The instance method we bound.
-			customView.CustomizeView($"Yo {customView.Name}, I heard you like bindings! Xamarin makes it super easy with binding projects. Try it out!");
+			customView.CustomizeView ($"Yo {customView.Name}, I heard you like bindings! Xamarin makes it super easy with binding projects. Try it out!");
 
-			Root.Add(new[]
+			Root.Add (new []
 			{
 				new Section("Custom View")
 				{
@@ -57,15 +54,15 @@ namespace XMBindingLibrarySample
 			});
 		}
 
-		public override void ViewDidLoad()
+		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad();
+			base.ViewDidLoad ();
 
 			NavigationItem.HidesBackButton = false;
-			NavigationItem.BackBarButtonItem = new UIBarButtonItem("Utilities", UIBarButtonItemStyle.Plain, null);
+			NavigationItem.BackBarButtonItem = new UIBarButtonItem ("Utilities", UIBarButtonItemStyle.Plain, null);
 		}
 
-		void Handle_UseEvent()
+		void Handle_UseEvent ()
 		{
 			customView.Delegate = null;
 
@@ -73,47 +70,44 @@ namespace XMBindingLibrarySample
 			customView.ViewWasTouched += Handle_CustomViewViewWasTouched;
 		}
 
-		void Handle_UseDelegate()
+		void Handle_UseDelegate ()
 		{
 			// set the delegate
-			customView.Delegate = new CustomViewDelegate(this);
+			customView.Delegate = new CustomViewDelegate (this);
 		}
 
-		void Handle_DoTouchOperation()
+		void Handle_DoTouchOperation ()
 		{
-			using (var temp = new CustomViewDelegate(this))
-			{
-				customView.DoTouch(temp);
+			using (var temp = new CustomViewDelegate (this)) {
+				customView.DoTouch (temp);
 			}
 		}
 
-		void Handle_CustomViewViewWasTouched(object sender, EventArgs e)
+		void Handle_CustomViewViewWasTouched (object sender, EventArgs e)
 		{
-			Handle_ViewTouched("EVENT");
+			Handle_ViewTouched ("EVENT");
 		}
 
-		void Handle_ViewTouched(string where)
+		void Handle_ViewTouched (string where)
 		{
-			NSThread.Current.BeginInvokeOnMainThread(() =>
-			{
-				var vc = UIAlertController.Create("Touched", $"Our bound XMCustomView was touched from the {where}!", UIAlertControllerStyle.Alert);
-				vc.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-				PresentViewController(vc, true, null);
+			NSThread.Current.BeginInvokeOnMainThread (() => {
+				var vc = UIAlertController.Create ("Touched", $"Our bound XMCustomView was touched from the {where}!", UIAlertControllerStyle.Alert);
+				vc.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, null));
+				PresentViewController (vc, true, null);
 			});
 		}
 
-		class CustomViewDelegate : XMCustomViewDelegate
-		{
+		class CustomViewDelegate : XMCustomViewDelegate {
 			CustomViewController viewController;
 
-			public CustomViewDelegate(CustomViewController viewController)
+			public CustomViewDelegate (CustomViewController viewController)
 			{
 				this.viewController = viewController;
 			}
 
-			public override void ViewWasTouched(XMCustomView view)
+			public override void ViewWasTouched (XMCustomView view)
 			{
-				viewController.Handle_ViewTouched("DELEGATE");
+				viewController.Handle_ViewTouched ("DELEGATE");
 			}
 		}
 	}

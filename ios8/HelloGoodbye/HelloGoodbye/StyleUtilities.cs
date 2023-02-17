@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using UIKit;
 
-namespace HelloGoodbye
-{
-	public static class StyleUtilities
-	{
+namespace HelloGoodbye {
+	public static class StyleUtilities {
 		const float kOverlayCornerRadius = 10;
 		const float kButtonVerticalContentInset = 10;
 		const float kButtonHorizontalContentInset = 10;
@@ -23,7 +21,7 @@ namespace HelloGoodbye
 		public static UIColor OverlayColor {
 			get {
 				return UIAccessibility.IsReduceTransparencyEnabled ? UIColor.White
-						                                           : UIColor.FromWhiteAlpha (white:1f, alpha: 0.8f);
+																   : UIColor.FromWhiteAlpha (white: 1f, alpha: 0.8f);
 			}
 		}
 
@@ -42,7 +40,7 @@ namespace HelloGoodbye
 		public static UIColor DetailColor {
 			get {
 				return UIAccessibility.DarkerSystemColosEnabled ? UIColor.Black
-						                                        : UIColor.Gray;
+																: UIColor.Gray;
 			}
 		}
 
@@ -106,7 +104,7 @@ namespace HelloGoodbye
 			}
 		}
 
-		public static UILabel CreateStandardLabel()
+		public static UILabel CreateStandardLabel ()
 		{
 			UILabel label = new UILabel {
 				TextColor = ForegroundColor,
@@ -117,14 +115,14 @@ namespace HelloGoodbye
 			return label;
 		}
 
-		public static UILabel CreateDetailLabel()
+		public static UILabel CreateDetailLabel ()
 		{
-			UILabel label = CreateStandardLabel();
+			UILabel label = CreateStandardLabel ();
 			label.TextColor = DetailColor;
 			return label;
 		}
 
-		public static UIButton CreateOverlayRoundedRectButton()
+		public static UIButton CreateOverlayRoundedRectButton ()
 		{
 			UIButton button = new UIButton (UIButtonType.Custom);
 			button.TranslatesAutoresizingMaskIntoConstraints = false;
@@ -135,10 +133,10 @@ namespace HelloGoodbye
 			return button;
 		}
 
-		static UIImage CreateOverlayRoundedRectImage()
+		static UIImage CreateOverlayRoundedRectImage ()
 		{
 			UIImage roundedRectImage = null;
-			SizeF imageSize = new SizeF(2 * kOverlayCornerRadius, 2 * kOverlayCornerRadius);
+			SizeF imageSize = new SizeF (2 * kOverlayCornerRadius, 2 * kOverlayCornerRadius);
 			UIGraphics.BeginImageContextWithOptions (imageSize, false, UIScreen.MainScreen.Scale);
 
 			var rect = new RectangleF (PointF.Empty, imageSize);

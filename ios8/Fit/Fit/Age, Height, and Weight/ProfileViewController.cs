@@ -4,17 +4,15 @@ using Foundation;
 using HealthKit;
 using UIKit;
 
-namespace Fit
-{
-	public partial class ProfileViewController : UITableViewController, IHealthStore
-	{
+namespace Fit {
+	public partial class ProfileViewController : UITableViewController, IHealthStore {
 		NSNumberFormatter numberFormatter;
 
 		public HKHealthStore HealthStore { get; set; }
 
 		NSSet DataTypesToWrite {
 			get {
-				return NSSet.MakeNSObjectSet <HKObjectType> (new HKObjectType[] {
+				return NSSet.MakeNSObjectSet<HKObjectType> (new HKObjectType [] {
 					HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.DietaryEnergyConsumed),
 					HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.ActiveEnergyBurned),
 					HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.Height),
@@ -25,7 +23,7 @@ namespace Fit
 
 		NSSet DataTypesToRead {
 			get {
-				return NSSet.MakeNSObjectSet <HKObjectType> (new HKObjectType[] {
+				return NSSet.MakeNSObjectSet<HKObjectType> (new HKObjectType [] {
 					HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.DietaryEnergyConsumed),
 					HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.ActiveEnergyBurned),
 					HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.Height),
@@ -78,7 +76,7 @@ namespace Fit
 			var now = NSDate.Now;
 
 			NSDateComponents ageComponents = NSCalendar.CurrentCalendar.Components (NSCalendarUnit.Year, dateOfBirth, now,
-				                                 NSCalendarOptions.WrapCalendarComponents);
+												 NSCalendarOptions.WrapCalendarComponents);
 
 			nint usersAge = ageComponents.Year;
 
@@ -103,7 +101,8 @@ namespace Fit
 					usersHeight = mostRecentQuantity.GetDoubleValue (heightUnit);
 				}
 
-				InvokeOnMainThread (delegate {
+				InvokeOnMainThread (delegate
+				{
 					heightValueLabel.Text = numberFormatter.StringFromNumber (new NSNumber (usersHeight));
 				});
 			});
@@ -127,32 +126,33 @@ namespace Fit
 					usersWeight = mostRecentQuantity.GetDoubleValue (weightUnit);
 				}
 
-				InvokeOnMainThread (delegate {
+				InvokeOnMainThread (delegate
+				{
 					weightValueLabel.Text = numberFormatter.StringFromNumber (new NSNumber (usersWeight));
 				});
 			}
 			);
 		}
 
-		void FetchMostRecentData (HKQuantityType quantityType, Action <HKQuantity, NSError> completion)
+		void FetchMostRecentData (HKQuantityType quantityType, Action<HKQuantity, NSError> completion)
 		{
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
-			var query = new HKSampleQuery (quantityType, null, 1, new NSSortDescriptor[] { timeSortDescriptor },
-				            (HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
-					if (completion != null && error != null) {
-						completion (null, error);
-						return;
-					}
+			var query = new HKSampleQuery (quantityType, null, 1, new NSSortDescriptor [] { timeSortDescriptor },
+							(HKSampleQuery resultQuery, HKSample [] results, NSError error) => {
+								if (completion != null && error != null) {
+									completion (null, error);
+									return;
+								}
 
-					HKQuantity quantity = null;
-					if (results.Length != 0) {
-						var quantitySample = (HKQuantitySample)results [results.Length - 1];
-						quantity = quantitySample.Quantity;
-					}
+								HKQuantity quantity = null;
+								if (results.Length != 0) {
+									var quantitySample = (HKQuantitySample) results [results.Length - 1];
+									quantity = quantitySample.Quantity;
+								}
 
-					if (completion != null)
-						completion (quantity, error);
-				});
+								if (completion != null)
+									completion (quantity, error);
+							});
 
 			HealthStore.ExecuteQuery (query);
 		}
@@ -218,7 +218,7 @@ namespace Fit
 				var textField = alertController.TextFields [0];
 				double value;
 				Double.TryParse (textField.Text, out value);
-				if(valueChangedHandler != null)
+				if (valueChangedHandler != null)
 					valueChangedHandler (value);
 				TableView.DeselectRow (indexPath, true);
 			});

@@ -5,15 +5,13 @@ using UIKit;
 using TransitionsDemo.AnimationControllers;
 using TransitionsDemo.InteractionControllers;
 
-namespace TransitionsDemo
-{
-	public partial class ViewController : UIViewController, IUIViewControllerTransitioningDelegate
-	{
+namespace TransitionsDemo {
+	public partial class ViewController : UIViewController, IUIViewControllerTransitioningDelegate {
 		private static nuint colorIndex = 0;
 		private NSArray colors;
 
 		[Export ("initWithCoder:")]
-		public ViewController (NSCoder coder) : base(coder)
+		public ViewController (NSCoder coder) : base (coder)
 		{
 			WeakTransitioningDelegate = this;
 		}
@@ -21,7 +19,7 @@ namespace TransitionsDemo
 		public override void ViewDidLoad ()
 		{
 			colors = NSArray.FromNSObjects (UIColor.Red, UIColor.Orange, UIColor.Yellow,
-			                                UIColor.Green, UIColor.Blue, UIColor.Purple);
+											UIColor.Green, UIColor.Blue, UIColor.Purple);
 
 			View.BackgroundColor = colors.GetItem<UIColor> (colorIndex);
 			colorIndex = (colorIndex + 1) % colors.Count;
@@ -39,12 +37,12 @@ namespace TransitionsDemo
 
 		[Export ("animationControllerForPresentedController:presentingController:sourceController:")]
 		public IUIViewControllerAnimatedTransitioning PresentingController (UIViewController presented,
-		                                                                    UIViewController presenting,
-		                                                                    UIViewController source)
+																			UIViewController presenting,
+																			UIViewController source)
 		{
 			if (AppDelegate.SettingsInteractionController != null) {
 				AppDelegate.SettingsInteractionController.WireToViewController (presented,
-				                                                                CEInteractionOperation.Dismiss);
+																				CEInteractionOperation.Dismiss);
 			}
 
 			if (AppDelegate.SettingsAnimationController != null)

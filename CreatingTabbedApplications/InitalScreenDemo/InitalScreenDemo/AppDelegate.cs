@@ -1,13 +1,11 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace InitalScreenDemo
-{
+namespace InitalScreenDemo {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 
 		public override UIWindow Window {
@@ -21,9 +19,9 @@ namespace InitalScreenDemo
 			// If not required for your application you can safely delete this method
 
 			// Code to start the Xamarin Test Cloud Agent
-			#if ENABLE_TEST_CLOUD
+#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
-			#endif
+#endif
 
 			return true;
 		}

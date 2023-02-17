@@ -10,10 +10,8 @@ using CoreGraphics;
 using System.Threading.Tasks;
 using StoreKit;
 
-namespace MusicKitSample
-{
-	public partial class RecentlyPlayedTableViewController : UITableViewController, IMediaSearchTableViewCellDelegate
-	{
+namespace MusicKitSample {
+	public partial class RecentlyPlayedTableViewController : UITableViewController, IMediaSearchTableViewCellDelegate {
 		#region Fields
 
 		static readonly object padlock = new object ();
@@ -142,7 +140,7 @@ namespace MusicKitSample
 				InvokeOnMainThread (() => TableView.ReloadData ());
 			}
 		}
-		 
+
 		#endregion
 
 		#region MediaItemTableViewCell Delegate

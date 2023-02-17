@@ -1,11 +1,9 @@
-﻿
-namespace ARKitVision
-{
-    public enum MessageType
-    {
-        TrackingStateEscalation,
-        PlaneEstimation,
-        ContentPlacement,
-        FocusSquare
-    }
+
+namespace ARKitVision {
+	public enum MessageType {
+		TrackingStateEscalation,
+		PlaneEstimation,
+		ContentPlacement,
+		FocusSquare
+	}
 }

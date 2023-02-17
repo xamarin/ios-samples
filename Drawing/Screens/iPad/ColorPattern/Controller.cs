@@ -2,15 +2,13 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.ColorPattern
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.ColorPattern {
+	public class Controller : UIViewController {
 		UIImageView imageView;
 
 		#region -= constructors =-
 
-		public Controller () : base() { }
+		public Controller () : base () { }
 
 		#endregion
 
@@ -31,9 +29,9 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 			// size
 			CGSize bitmapSize = new CGSize (View.Frame.Size);
 			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero,
-									      (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
-									      (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
-									      CGImageAlphaInfo.PremultipliedFirst)) {
+										  (int) bitmapSize.Width, (int) bitmapSize.Height, 8,
+										  (int) (4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+										  CGImageAlphaInfo.PremultipliedFirst)) {
 
 				// declare vars
 				CGRect patternRect = new CGRect (0, 0, 16, 16);
@@ -47,7 +45,7 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 								   true, DrawPolkaDotPattern);
 
 				// set our fill as our pattern, color doesn't matter because the pattern handles it
-				context.SetFillPattern (pattern, new nfloat[] { 1 });
+				context.SetFillPattern (pattern, new nfloat [] { 1 });
 
 				// fill the entire view with that pattern
 				context.FillRect (imageView.Frame);
@@ -73,7 +71,7 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 			// declare vars
 			float starDiameter = 16;
 			// 144º
-			float theta = 2 * (float)Math.PI * (2f / 5f);
+			float theta = 2 * (float) Math.PI * (2f / 5f);
 			float radius = starDiameter / 2;
 
 			// move up and over
@@ -81,7 +79,7 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 
 			context.MoveTo (0, radius);
 			for (int i = 1; i < 5; i++) {
-				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
+				context.AddLineToPoint (radius * (float) Math.Sin (i * theta), radius * (float) Math.Cos (i * theta));
 			}
 			// fill our star as dark gray
 			context.SetFillColor (.3f, .3f, .3f, 1);

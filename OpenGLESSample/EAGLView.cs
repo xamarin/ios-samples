@@ -8,10 +8,8 @@ using OpenGLES;
 using OpenTK.Graphics.ES11;
 using ObjCRuntime;
 
-namespace OpenGLESSample
-{
-	public partial class EAGLView : UIView
-	{
+namespace OpenGLESSample {
+	public partial class EAGLView : UIView {
 		int BackingWidth;
 		int BackingHeight;
 		iPhoneOSGraphicsContext Context;
@@ -39,26 +37,26 @@ namespace OpenGLESSample
 			);
 			Context = (iPhoneOSGraphicsContext) ((IGraphicsContextInternal) GraphicsContext.CurrentContext).Implementation;
 
-			Context.MakeCurrent(null);
+			Context.MakeCurrent (null);
 			AnimationInterval = 1.0 / 60.0;
 		}
 
 		void DrawView ()
 		{
-			float[] squareVertices = {
+			float [] squareVertices = {
 				-0.5f, -0.5f,
 				0.5f, -0.5f,
 				-0.5f, 0.5f,
 				0.5f, 0.5f,
 			};
-			byte[] squareColors = {
+			byte [] squareColors = {
 				255, 255,   0, 255,
 				0,   255, 255, 255,
 				0,     0,   0,   0,
 				255,   0, 255, 255,
 			};
 
-			Context.MakeCurrent(null);
+			Context.MakeCurrent (null);
 			GL.Oes.BindFramebuffer (All.FramebufferOes, ViewFrameBuffer);
 			GL.Viewport (0, 0, BackingWidth, BackingHeight);
 
@@ -84,7 +82,7 @@ namespace OpenGLESSample
 
 		public override void LayoutSubviews ()
 		{
-			Context.MakeCurrent(null);
+			Context.MakeCurrent (null);
 			DestroyFrameBuffer ();
 			CreateFrameBuffer ();
 			DrawView ();
@@ -107,7 +105,7 @@ namespace OpenGLESSample
 			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferHeightOes, out BackingHeight);
 
 			if (GL.Oes.CheckFramebufferStatus (All.FramebufferOes) != All.FramebufferCompleteOes) {
-				Console.Error.WriteLine("failed to make complete framebuffer object {0}",
+				Console.Error.WriteLine ("failed to make complete framebuffer object {0}",
 					GL.Oes.CheckFramebufferStatus (All.FramebufferOes));
 			}
 			return true;

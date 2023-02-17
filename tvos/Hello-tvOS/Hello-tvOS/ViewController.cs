@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace MySingleView
-{
-	public partial class ViewController : UIViewController
-	{
+namespace MySingleView {
+	public partial class ViewController : UIViewController {
 		private int numberOfTimesClicked = 0;
 
 		public ViewController (IntPtr handle) : base (handle)
@@ -16,7 +14,7 @@ namespace MySingleView
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -25,7 +23,7 @@ namespace MySingleView
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Set the initial value for the label
 			ClickedLabel.Text = "Button has not been clicked yet.";
 		}
@@ -53,10 +51,11 @@ namespace MySingleView
 		#endregion
 
 		#region Actions
-		partial void ClickedButton (Foundation.NSObject sender) {
+		partial void ClickedButton (Foundation.NSObject sender)
+		{
 
 			// Update counter and label
-			ClickedLabel.Text = string.Format("The button has been clicked {0} time{1}.",++numberOfTimesClicked, (numberOfTimesClicked < 2) ? "" : "s");
+			ClickedLabel.Text = string.Format ("The button has been clicked {0} time{1}.", ++numberOfTimesClicked, (numberOfTimesClicked < 2) ? "" : "s");
 		}
 		#endregion
 	}

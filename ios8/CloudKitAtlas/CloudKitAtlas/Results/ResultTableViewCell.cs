@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class ResultTableViewCell : UITableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class ResultTableViewCell : UITableViewCell {
 		[Outlet]
 		public UILabel ResultLabel { get; set; }
 

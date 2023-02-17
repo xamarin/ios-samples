@@ -6,12 +6,10 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
-	public partial class RoomViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
-		static readonly NSString AccessoryCell = (NSString)"AccessoryCell";
-		static readonly NSString UnreachableAccessoryCell = (NSString)"UnreachableAccessoryCell";
+namespace HomeKitCatalog {
+	public partial class RoomViewController : HMCatalogViewController, IHMAccessoryDelegate {
+		static readonly NSString AccessoryCell = (NSString) "AccessoryCell";
+		static readonly NSString UnreachableAccessoryCell = (NSString) "UnreachableAccessoryCell";
 		static readonly string ModifyAccessorySegue = "Modify Accessory";
 
 		HMRoom room;
@@ -123,9 +121,9 @@ namespace HomeKitCatalog
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue (segue, sender);
-			var indexPath = TableView.IndexPathForCell ((UITableViewCell)sender);
+			var indexPath = TableView.IndexPathForCell ((UITableViewCell) sender);
 			if (segue.Identifier == ModifyAccessorySegue) {
-				var modifyViewController = (ModifyAccessoryViewController)segue.IntendedDestinationViewController ();
+				var modifyViewController = (ModifyAccessoryViewController) segue.IntendedDestinationViewController ();
 				modifyViewController.Accessory = Room.Accessories [indexPath.Row];
 			}
 		}
@@ -139,7 +137,7 @@ namespace HomeKitCatalog
 			var newAccessoryIndex = Accessories.IndexOf (accessory);
 			if (newAccessoryIndex >= 0) {
 				var newAccessoryIndexPath = NSIndexPath.FromRowSection (newAccessoryIndex, 0);
-				TableView.InsertRows (new []{ newAccessoryIndexPath }, UITableViewRowAnimation.Automatic);
+				TableView.InsertRows (new [] { newAccessoryIndexPath }, UITableViewRowAnimation.Automatic);
 			}
 		}
 
@@ -183,7 +181,7 @@ namespace HomeKitCatalog
 		{
 			var index = Accessories.IndexOf (accessory);
 			if (index >= 0)
-				TableView.ReloadRows (new []{ NSIndexPath.FromRowSection (index, 0) }, UITableViewRowAnimation.Automatic);
+				TableView.ReloadRows (new [] { NSIndexPath.FromRowSection (index, 0) }, UITableViewRowAnimation.Automatic);
 		}
 
 		#endregion

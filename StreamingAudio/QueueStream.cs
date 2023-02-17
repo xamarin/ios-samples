@@ -3,10 +3,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.IO;
 
-namespace StreamingAudio
-{
-	public class QueueStream : Stream
-	{
+namespace StreamingAudio {
+	public class QueueStream : Stream {
 		Stream writeStream;
 		Stream readStream;
 		long size;
@@ -40,7 +38,7 @@ namespace StreamingAudio
 			set { throw new NotImplementedException (); }
 		}
 
-		public override int Read (byte[] buffer, int offset, int count)
+		public override int Read (byte [] buffer, int offset, int count)
 		{
 			lock (plock) {
 				while (true) {
@@ -60,7 +58,7 @@ namespace StreamingAudio
 			}
 		}
 
-		public void Push (byte[] buffer, int offset, int count)
+		public void Push (byte [] buffer, int offset, int count)
 		{
 			lock (plock) {
 				writeStream.Write (buffer, offset, count);
@@ -89,7 +87,7 @@ namespace StreamingAudio
 			base.Dispose (disposing);
 		}
 
-#region non implemented abstract members of Stream
+		#region non implemented abstract members of Stream
 
 		public override void Flush ()
 		{
@@ -105,12 +103,12 @@ namespace StreamingAudio
 			throw new NotImplementedException ();
 		}
 
-		public override void Write (byte[] buffer, int offset, int count)
+		public override void Write (byte [] buffer, int offset, int count)
 		{
 			throw new NotImplementedException ();
 		}
 
-#endregion
+		#endregion
 
 	}
 }

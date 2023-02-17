@@ -5,14 +5,12 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// The View used as the Details section of the Spilt View to display detailed information
 	/// about the Row highlighted in the Master section.
 	/// </summary>
-	public partial class AttractionView : UIView
-	{
+	public partial class AttractionView : UIView {
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:tvTable.AttractionView"/> class.

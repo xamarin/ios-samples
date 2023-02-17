@@ -2,8 +2,7 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace PaintCode
-{
+namespace PaintCode {
 	/// <summary>
 	/// Blue button example
 	/// http://paintcodeapp.com/examples.html
@@ -53,7 +52,7 @@ namespace PaintCode
 
 		public override void EndTracking (UITouch uitouch, UIEvent uievent)
 		{
-			if (isPressed && Enabled){
+			if (isPressed && Enabled) {
 				if (Tapped != null)
 					Tapped (this);
 			}
@@ -80,7 +79,7 @@ namespace PaintCode
 				//UIColor background = Enabled ? isPressed ? HighlightedColor : NormalColor : DisabledColor;
 
 				UIColor buttonColor = NormalColor; //UIColor.FromRGBA (0.00f, 0.37f, 0.89f, 1.00f);
-				var buttonColorRGBA = new nfloat[4];
+				var buttonColorRGBA = new nfloat [4];
 				buttonColor.GetRGBA (
 					out buttonColorRGBA [0],
 					out buttonColorRGBA [1],
@@ -89,7 +88,7 @@ namespace PaintCode
 				);
 				if (isPressed) {
 					// Get the Hue Saturation Brightness Alpha copy of the color
-					var buttonColorHSBA = new nfloat[4];
+					var buttonColorHSBA = new nfloat [4];
 					buttonColor.GetHSBA (
 						out buttonColorHSBA [0],
 						out buttonColorHSBA [1],
@@ -99,7 +98,7 @@ namespace PaintCode
 					// Change the brightness to a fixed value (0.5f)
 					buttonColor = UIColor.FromHSBA (buttonColorHSBA [0], buttonColorHSBA [1], 0.5f, buttonColorHSBA [3]);
 					// Re-set the base buttonColorRGBA because everything else is relative to it
-					buttonColorRGBA = new nfloat[4];
+					buttonColorRGBA = new nfloat [4];
 					buttonColor.GetRGBA (
 						out buttonColorRGBA [0],
 						out buttonColorRGBA [1],
@@ -112,39 +111,39 @@ namespace PaintCode
 
 					// ------------- START PAINTCODE -------------
 
-//// Color Declarations
+					//// Color Declarations
 					UIColor upColorOut = UIColor.FromRGBA (0.79f, 0.79f, 0.79f, 1.00f);
 					UIColor bottomColorDown = UIColor.FromRGBA (0.21f, 0.21f, 0.21f, 1.00f);
 					UIColor upColorInner = UIColor.FromRGBA (0.17f, 0.18f, 0.20f, 1.00f);
 					UIColor bottomColorInner = UIColor.FromRGBA (0.98f, 0.98f, 0.99f, 1.00f);
 
 					UIColor buttonFlareUpColor = UIColor.FromRGBA (
-						                            (buttonColorRGBA [0] * 0.3f + 0.7f),
-						                            (buttonColorRGBA [1] * 0.3f + 0.7f),
-						                            (buttonColorRGBA [2] * 0.3f + 0.7f),
-						                            (buttonColorRGBA [3] * 0.3f + 0.7f)
-					                            );
+													(buttonColorRGBA [0] * 0.3f + 0.7f),
+													(buttonColorRGBA [1] * 0.3f + 0.7f),
+													(buttonColorRGBA [2] * 0.3f + 0.7f),
+													(buttonColorRGBA [3] * 0.3f + 0.7f)
+												);
 					UIColor buttonTopColor = UIColor.FromRGBA (
-						                        (buttonColorRGBA [0] * 0.8f),
-						                        (buttonColorRGBA [1] * 0.8f),
-						                        (buttonColorRGBA [2] * 0.8f),
-						                        (buttonColorRGBA [3] * 0.8f + 0.2f)
-					                        );
+												(buttonColorRGBA [0] * 0.8f),
+												(buttonColorRGBA [1] * 0.8f),
+												(buttonColorRGBA [2] * 0.8f),
+												(buttonColorRGBA [3] * 0.8f + 0.2f)
+											);
 					UIColor buttonBottomColor = UIColor.FromRGBA (
-						                           (buttonColorRGBA [0] * 0 + 1),
-						                           (buttonColorRGBA [1] * 0 + 1),
-						                           (buttonColorRGBA [2] * 0 + 1),
-						                           (buttonColorRGBA [3] * 0 + 1)
-					                           );
+												   (buttonColorRGBA [0] * 0 + 1),
+												   (buttonColorRGBA [1] * 0 + 1),
+												   (buttonColorRGBA [2] * 0 + 1),
+												   (buttonColorRGBA [3] * 0 + 1)
+											   );
 					UIColor buttonFlareBottomColor = UIColor.FromRGBA (
-						                                (buttonColorRGBA [0] * 0.8f + 0.2f),
-						                                (buttonColorRGBA [1] * 0.8f + 0.2f),
-						                                (buttonColorRGBA [2] * 0.8f + 0.2f),
-						                                (buttonColorRGBA [3] * 0.8f + 0.2f)
-					                                );
+														(buttonColorRGBA [0] * 0.8f + 0.2f),
+														(buttonColorRGBA [1] * 0.8f + 0.2f),
+														(buttonColorRGBA [2] * 0.8f + 0.2f),
+														(buttonColorRGBA [3] * 0.8f + 0.2f)
+													);
 					UIColor flareWhite = UIColor.FromRGBA (1.00f, 1.00f, 1.00f, 0.83f);
 
-//// Gradient Declarations
+					//// Gradient Declarations
 					var ringGradientColors = new CGColor [] {
 						upColorOut.CGColor,
 						bottomColorDown.CGColor
@@ -176,16 +175,16 @@ namespace PaintCode
 					var buttonFlareGradientLocations = new nfloat [] { 0, 1 };
 					var buttonFlareGradient = new CGGradient (colorSpace, buttonFlareGradientColors, buttonFlareGradientLocations);
 
-//// Shadow Declarations
+					//// Shadow Declarations
 					var buttonInnerShadow = UIColor.Black.CGColor;
 					var buttonInnerShadowOffset = new CGSize (0, -0);
 					var buttonInnerShadowBlurRadius = 5;
 					var buttonOuterShadow = UIColor.Black.CGColor;
 					var buttonOuterShadowOffset = new CGSize (0, 2);
 
-					var buttonOuterShadowBlurRadius = isPressed ? 2 : 5;	// ADDED this code after PaintCode
+					var buttonOuterShadowBlurRadius = isPressed ? 2 : 5;    // ADDED this code after PaintCode
 
-//// outerOval Drawing
+					//// outerOval Drawing
 					var outerOvalPath = UIBezierPath.FromOval (new CGRect (5, 5, 63, 63));
 					context.SaveState ();
 					context.SetShadow (buttonOuterShadowOffset, buttonOuterShadowBlurRadius, buttonOuterShadow);
@@ -195,7 +194,7 @@ namespace PaintCode
 					context.EndTransparencyLayer ();
 					context.RestoreState ();
 
-//// overlayOval Drawing
+					//// overlayOval Drawing
 					var overlayOvalPath = UIBezierPath.FromOval (new CGRect (5, 5, 63, 63));
 					context.SaveState ();
 					overlayOvalPath.AddClip ();
@@ -205,14 +204,14 @@ namespace PaintCode
 						CGGradientDrawingOptions.DrawsBeforeStartLocation | CGGradientDrawingOptions.DrawsAfterEndLocation);
 					context.RestoreState ();
 
-//// innerOval Drawing
+					//// innerOval Drawing
 					var innerOvalPath = UIBezierPath.FromOval (new CGRect (12, 12, 49, 49));
 					context.SaveState ();
 					innerOvalPath.AddClip ();
 					context.DrawLinearGradient (ringInnerGradient, new CGPoint (36.5f, 12), new CGPoint (36.5f, 61), 0);
 					context.RestoreState ();
 
-//// buttonOval Drawing
+					//// buttonOval Drawing
 					var buttonOvalPath = UIBezierPath.FromOval (new CGRect (14, 13, 46, 46));
 					context.SaveState ();
 					buttonOvalPath.AddClip ();
@@ -222,7 +221,7 @@ namespace PaintCode
 						CGGradientDrawingOptions.DrawsBeforeStartLocation | CGGradientDrawingOptions.DrawsAfterEndLocation);
 					context.RestoreState ();
 
-////// buttonOval Inner Shadow
+					////// buttonOval Inner Shadow
 					var buttonOvalBorderRect = buttonOvalPath.Bounds;
 					buttonOvalBorderRect.Inflate (buttonInnerShadowBlurRadius, buttonInnerShadowBlurRadius);
 					buttonOvalBorderRect.Offset (-buttonInnerShadowOffset.Width, -buttonInnerShadowOffset.Height);
@@ -235,7 +234,7 @@ namespace PaintCode
 
 					context.SaveState ();
 					{
-						var xOffset = buttonInnerShadowOffset.Width + (float)Math.Round (buttonOvalBorderRect.Width);
+						var xOffset = buttonInnerShadowOffset.Width + (float) Math.Round (buttonOvalBorderRect.Width);
 						var yOffset = buttonInnerShadowOffset.Height;
 						context.SetShadow (
 							new CGSize (xOffset + (xOffset >= 0 ? 0.1f : -0.1f), yOffset + (yOffset >= 0 ? 0.1f : -0.1f)),
@@ -243,14 +242,14 @@ namespace PaintCode
 							buttonInnerShadow);
 
 						buttonOvalPath.AddClip ();
-						var transform = CGAffineTransform.MakeTranslation (-(float)Math.Round (buttonOvalBorderRect.Width), 0);
+						var transform = CGAffineTransform.MakeTranslation (-(float) Math.Round (buttonOvalBorderRect.Width), 0);
 						buttonOvalNegativePath.ApplyTransform (transform);
 						UIColor.Gray.SetFill ();
 						buttonOvalNegativePath.Fill ();
 					}
 					context.RestoreState ();
 
-//// flareOval Drawing
+					//// flareOval Drawing
 					var flareOvalPath = UIBezierPath.FromOval (new CGRect (22, 14, 29, 15));
 					context.SaveState ();
 					flareOvalPath.AddClip ();

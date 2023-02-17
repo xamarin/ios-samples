@@ -5,10 +5,8 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace StoryboardTable
-{
-	public partial class MasterViewController : UITableViewController
-	{
+namespace StoryboardTable {
+	public partial class MasterViewController : UITableViewController {
 		List<Chore> chores;
 
 		public MasterViewController (IntPtr handle) : base (handle)
@@ -30,21 +28,21 @@ namespace StoryboardTable
 				if (navctlr != null) {
 					var source = TableView.Source as RootTableSource;
 					var rowPath = TableView.IndexPathForSelectedRow;
-					var item = source.GetItem(rowPath.Row);
+					var item = source.GetItem (rowPath.Row);
 					navctlr.SetTask (this, item); // to be defined on the TaskDetailViewController
 				}
 			}
 		}
 
-		public void CreateTask () 
+		public void CreateTask ()
 		{
 			// first, add the task to the underlying data
-			var newId = chores[chores.Count - 1].Id + 1;
-			var newChore = new Chore(){Id=newId};
+			var newId = chores [chores.Count - 1].Id + 1;
+			var newChore = new Chore () { Id = newId };
 			chores.Add (newChore);
 
 			// then open the detail view to edit it
-			var detail = Storyboard.InstantiateViewController("detail") as TaskDetailViewController;
+			var detail = Storyboard.InstantiateViewController ("detail") as TaskDetailViewController;
 			detail.SetTask (this, newChore);
 			NavigationController.PushViewController (detail, true);
 		}
@@ -52,21 +50,21 @@ namespace StoryboardTable
 		public void SaveTask (Chore chore)
 		{
 			//var oldTask = chores.Find(t => t.Id == chore.Id);
-			NavigationController.PopViewController(true);
+			NavigationController.PopViewController (true);
 		}
 
-		public void DeleteTask (Chore chore) 
+		public void DeleteTask (Chore chore)
 		{
-			var oldTask = chores.Find(t => t.Id == chore.Id);
+			var oldTask = chores.Find (t => t.Id == chore.Id);
 			chores.Remove (oldTask);
-			NavigationController.PopViewController(true);
+			NavigationController.PopViewController (true);
 		}
 
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -81,14 +79,14 @@ namespace StoryboardTable
 				CreateTask ();
 			};
 		}
-			
+
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 
 			// bind every time, to reflect deletion in the Detail view
-			TableView.Source = new RootTableSource(chores.ToArray ());
+			TableView.Source = new RootTableSource (chores.ToArray ());
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -108,76 +106,76 @@ namespace StoryboardTable
 
 		#endregion
 
-//		class DataSource : UITableViewSource
-//		{
-//			static readonly NSString CellIdentifier = new NSString ("Cell");
-//			readonly List<object> objects = new List<object> ();
-//			readonly MasterViewController controller;
-//
-//			public DataSource (MasterViewController controller)
-//			{
-//				this.controller = controller;
-//			}
-//
-//			public IList<object> Objects {
-//				get { return objects; }
-//			}
-//				
-//
-//			// Customize the number of sections in the table view.
-//			public override int NumberOfSections (UITableView tableView)
-//			{
-//				return 1;
-//			}
-//
-//			public override int RowsInSection (UITableView tableview, int section)
-//			{
-//				return objects.Count;
-//			}
-//
-//			// Customize the appearance of table view cells.
-//			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
-//			{
-//				var cell = (UITableViewCell)tableView.DequeueReusableCell (CellIdentifier, indexPath);
-//
-//				cell.TextLabel.Text = objects [indexPath.Row].ToString ();
-//
-//				return cell;
-//			}
-//
-//			public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
-//			{
-//				// Return false if you do not want the specified item to be editable.
-//				return true;
-//			}
-//
-//			public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
-//			{
-//				if (editingStyle == UITableViewCellEditingStyle.Delete) {
-//					// Delete the row from the data source.
-//					objects.RemoveAt (indexPath.Row);
-//					controller.TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
-//				} else if (editingStyle == UITableViewCellEditingStyle.Insert) {
-//					// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//				}
-//			}
-//
-//			/*
-//			// Override to support rearranging the table view.
-//			public override void MoveRow (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
-//			{
-//			}
-//			*/
-//
-//			/*
-//			// Override to support conditional rearranging of the table view.
-//			public override bool CanMoveRow (UITableView tableView, NSIndexPath indexPath)
-//			{
-//				// Return false if you do not want the item to be re-orderable.
-//				return true;
-//			}
-//			*/
-//		}
+		//		class DataSource : UITableViewSource
+		//		{
+		//			static readonly NSString CellIdentifier = new NSString ("Cell");
+		//			readonly List<object> objects = new List<object> ();
+		//			readonly MasterViewController controller;
+		//
+		//			public DataSource (MasterViewController controller)
+		//			{
+		//				this.controller = controller;
+		//			}
+		//
+		//			public IList<object> Objects {
+		//				get { return objects; }
+		//			}
+		//				
+		//
+		//			// Customize the number of sections in the table view.
+		//			public override int NumberOfSections (UITableView tableView)
+		//			{
+		//				return 1;
+		//			}
+		//
+		//			public override int RowsInSection (UITableView tableview, int section)
+		//			{
+		//				return objects.Count;
+		//			}
+		//
+		//			// Customize the appearance of table view cells.
+		//			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
+		//			{
+		//				var cell = (UITableViewCell)tableView.DequeueReusableCell (CellIdentifier, indexPath);
+		//
+		//				cell.TextLabel.Text = objects [indexPath.Row].ToString ();
+		//
+		//				return cell;
+		//			}
+		//
+		//			public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
+		//			{
+		//				// Return false if you do not want the specified item to be editable.
+		//				return true;
+		//			}
+		//
+		//			public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+		//			{
+		//				if (editingStyle == UITableViewCellEditingStyle.Delete) {
+		//					// Delete the row from the data source.
+		//					objects.RemoveAt (indexPath.Row);
+		//					controller.TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
+		//				} else if (editingStyle == UITableViewCellEditingStyle.Insert) {
+		//					// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+		//				}
+		//			}
+		//
+		//			/*
+		//			// Override to support rearranging the table view.
+		//			public override void MoveRow (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
+		//			{
+		//			}
+		//			*/
+		//
+		//			/*
+		//			// Override to support conditional rearranging of the table view.
+		//			public override bool CanMoveRow (UITableView tableView, NSIndexPath indexPath)
+		//			{
+		//				// Return false if you do not want the item to be re-orderable.
+		//				return true;
+		//			}
+		//			*/
+		//		}
 
 
 	}

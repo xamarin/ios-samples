@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using Foundation;
 using UIKit;
 using InfColorPicker;
 
-namespace InfColorPickerSample
-{
-	public partial class InfColorPickerSampleViewController : UIViewController
-	{
+namespace InfColorPickerSample {
+	public partial class InfColorPickerSampleViewController : UIViewController {
 		#region Private Variables
 		private ColorSelectedDelegate _selector;
 		#endregion
@@ -22,14 +20,14 @@ namespace InfColorPickerSample
 		#region Private Methods
 		private void HandleTouchUpInsideWithStrongDelegate (object sender, EventArgs e)
 		{
-			InfColorPickerController picker = InfColorPickerController.ColorPickerViewController();
+			InfColorPickerController picker = InfColorPickerController.ColorPickerViewController ();
 			picker.Delegate = _selector;
 			picker.PresentModallyOverViewController (this);
 		}
 
 		private void HandleTouchUpInsideWithWeakDelegate (object sender, EventArgs e)
 		{
-			InfColorPickerController picker = InfColorPickerController.ColorPickerViewController();
+			InfColorPickerController picker = InfColorPickerController.ColorPickerViewController ();
 			picker.WeakDelegate = this;
 			picker.SourceColor = this.View.BackgroundColor;
 			picker.PresentModallyOverViewController (this);
@@ -37,7 +35,7 @@ namespace InfColorPickerSample
 		#endregion
 
 		#region Public Methods
-		[Export("colorPickerControllerDidFinish:")]
+		[Export ("colorPickerControllerDidFinish:")]
 		public void ColorPickerControllerDidFinish (InfColorPickerController controller)
 		{
 			View.BackgroundColor = controller.ResultColor;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
@@ -9,11 +9,9 @@ using System.Collections.Generic;
 using ObjCRuntime;
 using System.Runtime.InteropServices;
 
-namespace PhotoHandoff
-{
-	[Register("DetailViewController")]
-	public class DetailViewController : UIViewController, IUIScrollViewDelegate, IUIPopoverPresentationControllerDelegate, IUIStateRestoring
-	{
+namespace PhotoHandoff {
+	[Register ("DetailViewController")]
+	public class DetailViewController : UIViewController, IUIScrollViewDelegate, IUIPopoverPresentationControllerDelegate, IUIStateRestoring {
 		const int BlurButtonTag = 1;
 		const int SepiaButtonTag = 2;
 
@@ -23,34 +21,34 @@ namespace PhotoHandoff
 		const string kFilterButtonKey = "kFilterButtonKey";
 		const string kActivityViewControllerKey = "kActivityViewControllerKey";
 
-		[Outlet("imageView")]
+		[Outlet ("imageView")]
 		UIImageView ImageView { get; set; }
 		UIImage image;
 
 		bool filtering;
 		bool needsFilter;
 
-		Dictionary<string, ImageFilter> filters = new Dictionary<string, ImageFilter>();
+		Dictionary<string, ImageFilter> filters = new Dictionary<string, ImageFilter> ();
 
-		[Outlet("scrollView")]
+		[Outlet ("scrollView")]
 		UIScrollView ScrollView { get; set; }
 
-		[Outlet("constraintLeft")]
+		[Outlet ("constraintLeft")]
 		NSLayoutConstraint ConstraintLeft { get; set; }
 
-		[Outlet("constraintRight")]
+		[Outlet ("constraintRight")]
 		NSLayoutConstraint ConstraintRight { get; set; }
 
-		[Outlet("constraintTop")]
+		[Outlet ("constraintTop")]
 		NSLayoutConstraint ConstraintTop { get; set; }
 
-		[Outlet("constraintBottom")]
+		[Outlet ("constraintBottom")]
 		NSLayoutConstraint ConstraintBottom { get; set; }
 
-		[Outlet("blurButton")]
+		[Outlet ("blurButton")]
 		UIBarButtonItem BlurButton { get; set; }
 
-		[Outlet("sepiaButton")]
+		[Outlet ("sepiaButton")]
 		UIBarButtonItem SepiaButton { get; set; }
 
 		nfloat lastZoomScale;
@@ -65,7 +63,7 @@ namespace PhotoHandoff
 		public DataSource DataSource { get; set; }
 
 		public DetailViewController (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 		}
 
@@ -98,7 +96,7 @@ namespace PhotoHandoff
 			base.Dispose (disposing);
 		}
 
-		void CleanupFilters()
+		void CleanupFilters ()
 		{
 			foreach (var item in filters)
 				item.Value.DirtyChanged -= OnDirtyChanged;
@@ -117,8 +115,8 @@ namespace PhotoHandoff
 			if (image == null)
 				return;
 
-			var blurFilter = (BlurFilter)GetFilter (BlurFilter.Key);
-			var modifyFilter = (ModifyFilter)GetFilter (ModifyFilter.Key);
+			var blurFilter = (BlurFilter) GetFilter (BlurFilter.Key);
+			var modifyFilter = (ModifyFilter) GetFilter (ModifyFilter.Key);
 			bool dirty = blurFilter != null ? blurFilter.Dirty : false;
 			dirty |= modifyFilter != null ? modifyFilter.Dirty : false;
 			filtering = true;
@@ -127,39 +125,39 @@ namespace PhotoHandoff
 
 			Action runFilters = () => {
 				var filterInput = new CIImage (image.CGImage);
-				CIImage filteredCIImage = Apply(blurFilter, filterInput, dirty);
+				CIImage filteredCIImage = Apply (blurFilter, filterInput, dirty);
 
 				filterInput = filteredCIImage ?? new CIImage (image.CGImage);
-				filteredCIImage = Apply(modifyFilter, filterInput, dirty) ?? filteredCIImage;
+				filteredCIImage = Apply (modifyFilter, filterInput, dirty) ?? filteredCIImage;
 
 				CGImage cgFilteredImage = null;
 				if (filteredCIImage != null) {
-					CIContext context = CIContext.FromOptions (new CIContextOptions{ UseSoftwareRenderer = false });
+					CIContext context = CIContext.FromOptions (new CIContextOptions { UseSoftwareRenderer = false });
 					cgFilteredImage = context.CreateCGImage (filteredCIImage, filteredCIImage.Extent);
 				}
 
 				if (coalesce)
-					InvokeOnMainThread (() => Apply(cgFilteredImage, image, dirty));
+					InvokeOnMainThread (() => Apply (cgFilteredImage, image, dirty));
 				else
-					Apply(cgFilteredImage, image, dirty);
+					Apply (cgFilteredImage, image, dirty);
 			};
 
 			if (coalesce)
-				Task.Delay (250).ContinueWith (_ => runFilters());
+				Task.Delay (250).ContinueWith (_ => runFilters ());
 			else
 				runFilters ();
 
 			blurFilter.Dirty = modifyFilter.Dirty = false;
 		}
 
-		ImageFilter GetFilter(string key)
+		ImageFilter GetFilter (string key)
 		{
 			ImageFilter filter;
 			filters.TryGetValue (key, out filter);
 			return filter;
 		}
 
-		void Apply(CGImage filteredImage, UIImage defaultImage, bool dirty)
+		void Apply (CGImage filteredImage, UIImage defaultImage, bool dirty)
 		{
 			if (filteredImage != null) {
 				ImageView.Image = new UIImage (filteredImage);
@@ -181,7 +179,7 @@ namespace PhotoHandoff
 			UpdateZoom ();
 		}
 
-		void TryStartIndicatorForFilter()
+		void TryStartIndicatorForFilter ()
 		{
 			if (currentFilterViewController == null)
 				return;
@@ -189,7 +187,7 @@ namespace PhotoHandoff
 			currentFilterViewController.ActivityIndicator.StartAnimating ();
 		}
 
-		void TryStopIndicatorForFilter()
+		void TryStopIndicatorForFilter ()
 		{
 			if (currentFilterViewController == null)
 				return;
@@ -197,7 +195,7 @@ namespace PhotoHandoff
 			currentFilterViewController.ActivityIndicator.StopAnimating ();
 		}
 
-		bool TryInit(bool animate)
+		bool TryInit (bool animate)
 		{
 			if (image != null)
 				return true; // already initialized
@@ -213,7 +211,7 @@ namespace PhotoHandoff
 			return true;
 		}
 
-		void SetTitleImage(string title, UIImage img, bool animate)
+		void SetTitleImage (string title, UIImage img, bool animate)
 		{
 			if (animate) {
 				ImageView.Alpha = 0;
@@ -228,7 +226,7 @@ namespace PhotoHandoff
 			}
 		}
 
-		CIImage Apply(BlurFilter blurFilter, CIImage input, bool dirty)
+		CIImage Apply (BlurFilter blurFilter, CIImage input, bool dirty)
 		{
 			if (blurFilter == null || !blurFilter.Active || !dirty)
 				return null;
@@ -240,7 +238,7 @@ namespace PhotoHandoff
 			return filter.OutputImage;
 		}
 
-		CIImage Apply(ModifyFilter modifyFilter, CIImage input, bool dirty)
+		CIImage Apply (ModifyFilter modifyFilter, CIImage input, bool dirty)
 		{
 			if (modifyFilter == null || !modifyFilter.Active || !dirty)
 				return null;
@@ -257,9 +255,9 @@ namespace PhotoHandoff
 		{
 			InvokeOnMainThread (() => {
 				if (currentFilterViewController != null)
-					currentFilterViewController.DismissViewController(false, completionHandler);
-				else if(completionHandler != null)
-					completionHandler();
+					currentFilterViewController.DismissViewController (false, completionHandler);
+				else if (completionHandler != null)
+					completionHandler ();
 			});
 		}
 
@@ -315,7 +313,7 @@ namespace PhotoHandoff
 
 			var img = ImageView.Image;
 			var imgSize = img != null ? img.Size : CGSize.Empty;
-			nfloat minZoom = NMath.Min(scrollSize.Width / imgSize.Width, scrollSize.Height / imgSize.Height);
+			nfloat minZoom = NMath.Min (scrollSize.Width / imgSize.Width, scrollSize.Height / imgSize.Height);
 
 			minZoom = NMath.Min (1, minZoom);
 
@@ -341,27 +339,27 @@ namespace PhotoHandoff
 
 		#region Filtering
 
-		void OnDirtyChanged(object sender, EventArgs e)
+		void OnDirtyChanged (object sender, EventArgs e)
 		{
-			var filter = (ImageFilter)sender;
+			var filter = (ImageFilter) sender;
 
-			if(filter.Dirty)
+			if (filter.Dirty)
 				UpdateImage (true, false);
 		}
 
-		ImageFilter CreateImageFilter(string key)
+		ImageFilter CreateImageFilter (string key)
 		{
 			ImageFilter filter;
 			if (!filters.TryGetValue (key, out filter)) {
 				filter = CreateFilter (key, true);
 				Subscribe (filter);
-				filters[key] = filter;
+				filters [key] = filter;
 			}
 
 			return filter;
 		}
 
-		static ImageFilter CreateFilter(string key, bool setDefaults)
+		static ImageFilter CreateFilter (string key, bool setDefaults)
 		{
 			ImageFilter filter = null;
 			if (key == BlurFilter.Key)
@@ -373,7 +371,7 @@ namespace PhotoHandoff
 
 			UIApplication.RegisterObjectForStateRestoration (filter, key);
 			filter.Dirty = false;
-			filter.RestorationType = typeof(DetailViewController);
+			filter.RestorationType = typeof (DetailViewController);
 			return filter;
 		}
 
@@ -393,14 +391,14 @@ namespace PhotoHandoff
 
 		// We are notified when our FilterViewController is
 		// being dismissed on its own
-		public void WasDismissed()
+		public void WasDismissed ()
 		{
 			currentFilterViewController = null;
 		}
 
-		void CreateAndPresentFilterVC(UIBarButtonItem sender, ImageFilter filter, string identifier)
+		void CreateAndPresentFilterVC (UIBarButtonItem sender, ImageFilter filter, string identifier)
 		{
-			currentFilterViewController = (FilterViewController)Storyboard.InstantiateViewController (identifier);
+			currentFilterViewController = (FilterViewController) Storyboard.InstantiateViewController (identifier);
 			currentFilterViewController.Filter = filter;
 			currentFilterViewController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
 			currentFilterViewController.PopoverPresentationController.BarButtonItem = sender;
@@ -415,10 +413,10 @@ namespace PhotoHandoff
 			PresentViewController (currentFilterViewController, true, () => UpdateImage (false, false));
 		}
 
-		[Export("presentFilter:")]
-		void PresentFilter(NSObject sender)
+		[Export ("presentFilter:")]
+		void PresentFilter (NSObject sender)
 		{
-			var button = (UIBarButtonItem)sender;
+			var button = (UIBarButtonItem) sender;
 			string key = null, identifier = null;
 
 			if (button.Tag == BlurButtonTag) {
@@ -436,17 +434,17 @@ namespace PhotoHandoff
 			ImageFilter filter = CreateImageFilter (key);
 
 			// check for activity view controller is open, dismiss it
-			TryDismiss (activityViewController, ()=> {
+			TryDismiss (activityViewController, () => {
 				activityViewController = null;
-				TryDismiss(currentFilterViewController, () => CreateAndPresentFilterVC (button, filter, identifier));
+				TryDismiss (currentFilterViewController, () => CreateAndPresentFilterVC (button, filter, identifier));
 			});
 		}
 
-		void TryDismiss(UIViewController controller, Action completionHandler)
+		void TryDismiss (UIViewController controller, Action completionHandler)
 		{
 			if (controller != null)
 				controller.DismissViewController (false, completionHandler);
-			else if(completionHandler != null)
+			else if (completionHandler != null)
 				completionHandler ();
 		}
 
@@ -467,16 +465,16 @@ namespace PhotoHandoff
 				return;
 
 			ImageFilter filter = CreateImageFilter (key);
-			var filterViewController = (FilterViewController)segue.DestinationViewController;
+			var filterViewController = (FilterViewController) segue.DestinationViewController;
 			filterViewController.Filter = filter;
 		}
 
-		void CleanupActivity()
+		void CleanupActivity ()
 		{
 			activityViewController = null;
 		}
 
-		void SetupActivityCompletion()
+		void SetupActivityCompletion ()
 		{
 			if (activityViewController == null)
 				return;
@@ -484,21 +482,21 @@ namespace PhotoHandoff
 			activityViewController.SetCompletionHandler ((aType, completed, items, aError) => CleanupActivity ());
 		}
 
-		[Export("share:")]
-		void Share(NSObject sender)
+		[Export ("share:")]
+		void Share (NSObject sender)
 		{
 			if (ImageView.Image == null)
 				return;
 
-			var items = new NSObject[] {
+			var items = new NSObject [] {
 				ImageView.Image
 			};
 			activityViewController = new UIActivityViewController (items, null) {
 				ModalPresentationStyle = UIModalPresentationStyle.Popover,
 				RestorationIdentifier = "Activity"
 			};
-			if(activityViewController.PopoverPresentationController != null)
-				activityViewController.PopoverPresentationController.BarButtonItem = (UIBarButtonItem)sender;
+			if (activityViewController.PopoverPresentationController != null)
+				activityViewController.PopoverPresentationController.BarButtonItem = (UIBarButtonItem) sender;
 			SetupActivityCompletion ();
 
 			TryDismiss (currentFilterViewController, () => {
@@ -515,7 +513,7 @@ namespace PhotoHandoff
 		#region UIStateRestoration
 
 		[Export ("objectWithRestorationIdentifierPath:coder:")]
-		static UIStateRestoring Restore (string[] identifierComponents, NSCoder coder)
+		static UIStateRestoring Restore (string [] identifierComponents, NSCoder coder)
 		{
 			string key = identifierComponents [identifierComponents.Length - 1];
 			return CreateFilter (key, false);
@@ -525,12 +523,12 @@ namespace PhotoHandoff
 		{
 			base.EncodeRestorableState (coder);
 			// TODO: https://trello.com/c/TydBAJP0
-			coder.Encode ((NSString)ImageIdentifier, kImageIdentifierKey);
+			coder.Encode ((NSString) ImageIdentifier, kImageIdentifierKey);
 			coder.Encode (DataSource, kDataSourceKey);
 			coder.Encode (filters.Convert (), kImageFiltersKey);
 
 			if (!string.IsNullOrEmpty (currentlyPresentedFilterTitle))
-				coder.Encode ((NSString)currentlyPresentedFilterTitle, kFilterButtonKey);
+				coder.Encode ((NSString) currentlyPresentedFilterTitle, kFilterButtonKey);
 
 			coder.Encode (activityViewController, kActivityViewControllerKey);
 		}
@@ -540,19 +538,19 @@ namespace PhotoHandoff
 			base.DecodeRestorableState (coder);
 
 			// TODO: https://trello.com/c/TydBAJP0
-			ImageIdentifier = (NSString)coder.DecodeObject (kImageIdentifierKey);
-			DataSource = (DataSource)coder.DecodeObject (kDataSourceKey);
+			ImageIdentifier = (NSString) coder.DecodeObject (kImageIdentifierKey);
+			DataSource = (DataSource) coder.DecodeObject (kDataSourceKey);
 
 			NSObject nDict;
 			if (coder.TryDecodeObject (kImageFiltersKey, out nDict))
-				filters = ((NSDictionary)nDict).Convert<ImageFilter> ();
+				filters = ((NSDictionary) nDict).Convert<ImageFilter> ();
 
 			// TODO: https://trello.com/c/TydBAJP0
-			currentlyPresentedFilterTitle = (NSString)coder.DecodeObject (kFilterButtonKey);
+			currentlyPresentedFilterTitle = (NSString) coder.DecodeObject (kFilterButtonKey);
 
 			NSObject avc;
 			if (coder.TryDecodeObject (kActivityViewControllerKey, out avc))
-				activityViewController = (UIActivityViewController)avc;
+				activityViewController = (UIActivityViewController) avc;
 
 			SetupActivityCompletion ();
 		}
@@ -566,31 +564,31 @@ namespace PhotoHandoff
 			TryPresentFilterButton ();
 		}
 
-		void CenterImageView()
+		void CenterImageView ()
 		{
 			CGSize size = View.Bounds.Size;
 			CGPoint imageCenter = ImageView.Center;
-			var center = new CGPoint(size.Width / 2, size.Height / 2);
+			var center = new CGPoint (size.Width / 2, size.Height / 2);
 			ImageView.Center = center;
 			ImageView.Bounds = View.Bounds;
 			UpdateImage (false, false);
 		}
 
-		void SubscribeToFilters()
+		void SubscribeToFilters ()
 		{
 			foreach (var kvp in filters)
 				Subscribe (kvp.Value);
 		}
 
-		void Subscribe(ImageFilter subject)
+		void Subscribe (ImageFilter subject)
 		{
 			subject.DirtyChanged += OnDirtyChanged;
 		}
 
-		void TryPresentFilterButton()
+		void TryPresentFilterButton ()
 		{
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom != UIUserInterfaceIdiom.Pad
-			    || string.IsNullOrEmpty (currentlyPresentedFilterTitle))
+				|| string.IsNullOrEmpty (currentlyPresentedFilterTitle))
 				return;
 
 			UIBarButtonItem button = GetCurrentFilterButton ();
@@ -598,7 +596,7 @@ namespace PhotoHandoff
 				InvokeOnMainThread (() => PresentFilter (button));
 		}
 
-		UIBarButtonItem GetCurrentFilterButton()
+		UIBarButtonItem GetCurrentFilterButton ()
 		{
 			if (currentlyPresentedFilterTitle == "blur")
 				return BlurButton;
@@ -636,17 +634,17 @@ namespace PhotoHandoff
 			activity.AddUserInfoEntries (info.Dictionary);
 		}
 
-		UserInfo GetFilterValues()
+		UserInfo GetFilterValues ()
 		{
 			var info = new UserInfo ();
 
 			// obtain the filter values and save them
 			ImageFilter filter;
-			if(filters.TryGetValue (BlurFilter.Key, out filter))
-				info.BlurRadius = ((BlurFilter)filter).BlurRadius;
+			if (filters.TryGetValue (BlurFilter.Key, out filter))
+				info.BlurRadius = ((BlurFilter) filter).BlurRadius;
 
 			if (filters.TryGetValue (ModifyFilter.Key, out filter))
-				info.Intensity = ((ModifyFilter)filter).Intensity;
+				info.Intensity = ((ModifyFilter) filter).Intensity;
 
 			return info;
 		}
@@ -668,14 +666,14 @@ namespace PhotoHandoff
 
 			// setup our filters (if not already allocated) and assign their values
 			float blurFilterValue = userInfo.BlurRadius;
-			var blurFilter = (BlurFilter)CreateImageFilter (BlurFilter.Key);
+			var blurFilter = (BlurFilter) CreateImageFilter (BlurFilter.Key);
 			blurFilter.BlurRadius = blurFilterValue;
 
 			// the blur has changed from the activity on the other device
 			blurFilter.Dirty = blurFilterValue > 0 ? true : blurFilter.Dirty;
 
 			var sepiaFilterValue = userInfo.Intensity;
-			var sepiaFilter = (ModifyFilter)CreateImageFilter (ModifyFilter.Key);
+			var sepiaFilter = (ModifyFilter) CreateImageFilter (ModifyFilter.Key);
 			sepiaFilter.Intensity = sepiaFilterValue;
 			// the sepia has changed from the activity on the other device
 			sepiaFilter.Dirty = sepiaFilterValue > 0 ? true : sepiaFilter.Dirty;
@@ -694,11 +692,11 @@ namespace PhotoHandoff
 				activityViewController.DismissViewController (false, null);
 		}
 
-		void SetActivityViewControllerCompletionHandler(UserInfo info)
+		void SetActivityViewControllerCompletionHandler (UserInfo info)
 		{
 			activityViewController.SetCompletionHandler ((activityType, completed, returnedItems, error) => {
-				CleanupActivity();
-				RestoreActivityForImageIdentifier(info);
+				CleanupActivity ();
+				RestoreActivityForImageIdentifier (info);
 			});
 		}
 

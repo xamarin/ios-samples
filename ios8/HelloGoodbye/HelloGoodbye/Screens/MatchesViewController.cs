@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using UIKit;
@@ -6,10 +6,8 @@ using Foundation;
 using CoreGraphics;
 using ObjCRuntime;
 
-namespace HelloGoodbye
-{
-	public class MatchesViewController : PhotoBackgroundViewController
-	{
+namespace HelloGoodbye {
+	public class MatchesViewController : PhotoBackgroundViewController {
 		const float HelloGoodbyeVerticalMargin = 5f;
 		const float SwipeAnimationDuration = 0.5f;
 		const float ZoomAnimationDuration = 0.3f;
@@ -19,7 +17,7 @@ namespace HelloGoodbye
 		UIView swipeInstructionsView;
 		UIView allMatchesViewedExplanatoryView;
 
-		NSLayoutConstraint[] cardViewVerticalConstraints;
+		NSLayoutConstraint [] cardViewVerticalConstraints;
 
 		List<Person> matches;
 		int currentMatchIndex;
@@ -46,7 +44,7 @@ namespace HelloGoodbye
 				matches.Add (match);
 			}
 
-			Title = "Matches".LocalizedString("Title of the matches page");
+			Title = "Matches".LocalizedString ("Title of the matches page");
 
 			BackgroundImage = UIImage.FromBundle ("dessert.jpg");
 		}
@@ -69,14 +67,14 @@ namespace HelloGoodbye
 
 			// Define the vertical positioning of the card
 			// These constraints will be removed when the card animates off screen
-			cardViewVerticalConstraints = new NSLayoutConstraint[] {
+			cardViewVerticalConstraints = new NSLayoutConstraint [] {
 				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, dummyView, NSLayoutAttribute.CenterY, 1f, 0f),
 				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Top, NSLayoutRelation.GreaterThanOrEqual, swipeInstructionsView, NSLayoutAttribute.Bottom, 1f, HelloGoodbyeVerticalMargin)
 			};
 			constraints.AddRange (cardViewVerticalConstraints);
 
 			// Ensure that the card is centered horizontally within the container view, and doesn't exceed its width
-			constraints.AddRange (new NSLayoutConstraint[] {
+			constraints.AddRange (new NSLayoutConstraint [] {
 				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, containerView, NSLayoutAttribute.CenterX, 1f, 0f),
 				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Left, NSLayoutRelation.GreaterThanOrEqual, containerView, NSLayoutAttribute.Left, 1f, 0f),
 				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Right, NSLayoutRelation.LessThanOrEqual, containerView, NSLayoutAttribute.Right, 1f, 0f),
@@ -84,18 +82,18 @@ namespace HelloGoodbye
 
 			// When the matches run out, we'll show this message
 			allMatchesViewedExplanatoryView = AddAllMatchesViewExplanatoryViewToContainerView (containerView, constraints);
-			containerView.AddConstraints (constraints.ToArray());
+			containerView.AddConstraints (constraints.ToArray ());
 		}
 
-		UIView AddDummyViewToContainerView(UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
+		UIView AddDummyViewToContainerView (UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
 		{
-			UIView dummyView = new UIView{
+			UIView dummyView = new UIView {
 				TranslatesAutoresizingMaskIntoConstraints = false
 			};
 			containerView.AddSubview (dummyView);
 
 			// The horizontal layout of the dummy view does not matter, but for completeness, we give it a width of 0 and center it horizontally.
-			constraints.AddRange (new NSLayoutConstraint[] {
+			constraints.AddRange (new NSLayoutConstraint [] {
 				NSLayoutConstraint.Create (dummyView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 0f, 0f),
 				NSLayoutConstraint.Create (dummyView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, containerView, NSLayoutAttribute.CenterX, 1f, 0f),
 				NSLayoutConstraint.Create (dummyView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, topItem, NSLayoutAttribute.Bottom, 1f, 0f),
@@ -105,7 +103,7 @@ namespace HelloGoodbye
 			return dummyView;
 		}
 
-		CardView AddCardViewToView(UIView containerView)
+		CardView AddCardViewToView (UIView containerView)
 		{
 			CardView cv = new CardView ();
 			cv.Update (CurrentMatch);
@@ -113,7 +111,7 @@ namespace HelloGoodbye
 			this.cardView = cv;
 			containerView.AddSubview (cv);
 
-			UISwipeGestureRecognizer swipeUpRecognizer = new UISwipeGestureRecognizer(HandleSwipeUp);
+			UISwipeGestureRecognizer swipeUpRecognizer = new UISwipeGestureRecognizer (HandleSwipeUp);
 			swipeUpRecognizer.Direction = UISwipeGestureRecognizerDirection.Up;
 			cv.AddGestureRecognizer (swipeUpRecognizer);
 
@@ -127,26 +125,26 @@ namespace HelloGoodbye
 			string sayGoodbyeName = "Say goodbye".LocalizedString ("Accessibility action to say goodbye");
 			goodbyeAction = new UIAccessibilityCustomAction (sayGoodbyeName, probe: SayGoodbye);
 
-			UIView[] elements = NSArray.FromArray<UIView> ((NSArray)cv.GetAccessibilityElements ());
+			UIView [] elements = NSArray.FromArray<UIView> ((NSArray) cv.GetAccessibilityElements ());
 			foreach (UIView element in elements)
-				element.AccessibilityCustomActions = new UIAccessibilityCustomAction[] { helloAction, goodbyeAction };
+				element.AccessibilityCustomActions = new UIAccessibilityCustomAction [] { helloAction, goodbyeAction };
 
 			return cv;
 		}
 
-		void HandleSwipeUp(UISwipeGestureRecognizer gestureRecognizer)
+		void HandleSwipeUp (UISwipeGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Recognized)
 				SayHello (helloAction);
 		}
 
-		void HandleSwipeDown(UISwipeGestureRecognizer gestureRecognizer)
+		void HandleSwipeDown (UISwipeGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Recognized)
 				SayGoodbye (goodbyeAction);
 		}
 
-		UIView AddAllMatchesViewExplanatoryViewToContainerView(UIView containerView, List<NSLayoutConstraint> constraints)
+		UIView AddAllMatchesViewExplanatoryViewToContainerView (UIView containerView, List<NSLayoutConstraint> constraints)
 		{
 			UIView overlayView = AddOverlayViewToContainerView (containerView);
 
@@ -172,19 +170,19 @@ namespace HelloGoodbye
 			return overlayView;
 		}
 
-		bool SayHello(UIAccessibilityCustomAction customAction)
+		bool SayHello (UIAccessibilityCustomAction customAction)
 		{
 			AnimateCardsForHello (true);
 			return true;
 		}
 
-		bool SayGoodbye(UIAccessibilityCustomAction customAction)
+		bool SayGoodbye (UIAccessibilityCustomAction customAction)
 		{
 			AnimateCardsForHello (false);
 			return true;
 		}
 
-		void AnimateCardsForHello(bool forHello)
+		void AnimateCardsForHello (bool forHello)
 		{
 			AnimateCardOffScreenToTop (forHello, () => {
 				currentMatchIndex++;
@@ -218,7 +216,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		void FadeCardIntoView()
+		void FadeCardIntoView ()
 		{
 			cardView.Alpha = 0f;
 			UIView.Animate (FadeAnimationDuration, () => {
@@ -226,15 +224,15 @@ namespace HelloGoodbye
 			});
 		}
 
-		void ZoomCardIntoView()
+		void ZoomCardIntoView ()
 		{
-			cardView.Transform = CGAffineTransform.MakeScale(0f, 0f);
+			cardView.Transform = CGAffineTransform.MakeScale (0f, 0f);
 			UIView.Animate (ZoomAnimationDuration, () => {
 				cardView.Transform = CGAffineTransform.MakeIdentity ();
 			});
 		}
 
-		void AnimateCardOffScreenToTop(bool toTop, Action completion)
+		void AnimateCardOffScreenToTop (bool toTop, Action completion)
 		{
 			NSLayoutConstraint offScreenConstraint = null;
 			if (toTop)
@@ -259,7 +257,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		UIView AddSwipeInstructionsToContainerView(UIView containerView, List<NSLayoutConstraint>constraints)
+		UIView AddSwipeInstructionsToContainerView (UIView containerView, List<NSLayoutConstraint> constraints)
 		{
 			UIView overlayView = AddOverlayViewToContainerView (containerView);
 
@@ -270,8 +268,8 @@ namespace HelloGoodbye
 			swipeInstructionsLabel.AccessibilityLabel = "Swipe up to say \"Hello!\"\nSwipe down to say \"Goodbye\"".LocalizedString ("Accessibility instructions for the Matches page");
 
 			float overlayMargin = StyleUtilities.OverlayMargin;
-			NSLayoutConstraint topMarginConstraint = NSLayoutConstraint.Create(overlayView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, TopLayoutGuide, NSLayoutAttribute.Bottom, 1f, overlayMargin);
-			float priority = (int)UILayoutPriority.Required - 1;
+			NSLayoutConstraint topMarginConstraint = NSLayoutConstraint.Create (overlayView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, TopLayoutGuide, NSLayoutAttribute.Bottom, 1f, overlayMargin);
+			float priority = (int) UILayoutPriority.Required - 1;
 			topMarginConstraint.Priority = priority;
 			constraints.Add (topMarginConstraint);
 
@@ -287,14 +285,14 @@ namespace HelloGoodbye
 			return overlayView;
 		}
 
-		UIView AddOverlayViewToContainerView(UIView containerView)
+		UIView AddOverlayViewToContainerView (UIView containerView)
 		{
 			UIView overlayView = new UIView {
 				BackgroundColor = StyleUtilities.OverlayColor,
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
 			overlayView.Layer.CornerRadius = StyleUtilities.OverlayCornerRadius;
-			containerView.AddSubview(overlayView);
+			containerView.AddSubview (overlayView);
 
 			return overlayView;
 		}

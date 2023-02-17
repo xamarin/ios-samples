@@ -9,10 +9,8 @@ using ImageIO;
 using CoreVideo;
 using System.Diagnostics;
 
-namespace BracketStripes
-{
-	public class StripedImage : NSObject
-	{
+namespace BracketStripes {
+	public class StripedImage : NSObject {
 		private CGSize imageSize;
 		private CGSize stripeSize;
 		private int stride;
@@ -31,20 +29,20 @@ namespace BracketStripes
 		private void PrepareImage (CGSize size)
 		{
 			nint bitsPerComponent = 8;
-			nint width = (nint)size.Width;
+			nint width = (nint) size.Width;
 			nint paddedWidth = (width + 15);
 			nint bytesPerPixel = 4;
 			nint bytesPerRow = paddedWidth * bytesPerPixel;
 
 			using (var colorSpace = CGColorSpace.CreateDeviceRGB ()) {
-				renderContext = new CGBitmapContext (null, (nint)size.Width, (nint)size.Height, bitsPerComponent, bytesPerRow, colorSpace, CGImageAlphaInfo.PremultipliedFirst);
+				renderContext = new CGBitmapContext (null, (nint) size.Width, (nint) size.Height, bitsPerComponent, bytesPerRow, colorSpace, CGImageAlphaInfo.PremultipliedFirst);
 			}
 		}
 
 		public void AddSampleBuffer (CMSampleBuffer sampleBuffer)
 		{
-			var stopwatch = new Stopwatch();
-			stopwatch.Start();
+			var stopwatch = new Stopwatch ();
+			stopwatch.Start ();
 
 			using (var image = CreateImage (sampleBuffer)) {
 				var imageRect = new CGRect (0, 0, image.Width, image.Height);
@@ -63,7 +61,7 @@ namespace BracketStripes
 				renderContext.RestoreState ();
 			}
 
-			stopwatch.Stop();
+			stopwatch.Stop ();
 			Console.WriteLine ("Render time for contributor {0}: {1} msec", stripeIndex, stopwatch.Elapsed);
 
 			stripeIndex = (stripeIndex + 1) % stride;
@@ -96,7 +94,7 @@ namespace BracketStripes
 			CMBlockBuffer blockBuffer = sampleBuffer.GetDataBuffer ();
 
 			if (blockBuffer != null) {
-				if (subType != (int)CMVideoCodecType.JPEG)
+				if (subType != (int) CMVideoCodecType.JPEG)
 					throw new Exception ("Block buffer must be JPEG encoded.");
 
 				var jpegData = new NSMutableData ();
@@ -114,14 +112,14 @@ namespace BracketStripes
 				}
 			} else {
 
-				if (subType != (int)CVPixelFormatType.CV32BGRA)
+				if (subType != (int) CVPixelFormatType.CV32BGRA)
 					throw new Exception ("Image buffer must be BGRA encoded.");
 
 				CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ();
 
 				using (var colorSpace = CGColorSpace.CreateDeviceRGB ())
 				using (var bitmapContext = new CGBitmapContext (imageBuffer.Handle,
-					                           (int)imageBuffer.DisplaySize.Width, (int)imageBuffer.DisplaySize.Height, 8, 0, colorSpace, CGImageAlphaInfo.NoneSkipFirst)) {
+											   (int) imageBuffer.DisplaySize.Width, (int) imageBuffer.DisplaySize.Height, 8, 0, colorSpace, CGImageAlphaInfo.NoneSkipFirst)) {
 					image = bitmapContext.ToImage ();
 				}
 			}

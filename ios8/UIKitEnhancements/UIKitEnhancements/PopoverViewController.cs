@@ -6,10 +6,8 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace UIKitEnhancements
-{
-	public partial class PopoverViewController : UIViewController
-	{
+namespace UIKitEnhancements {
+	public partial class PopoverViewController : UIViewController {
 		#region Constructors
 		public PopoverViewController (IntPtr handle) : base (handle)
 		{
@@ -24,36 +22,36 @@ namespace UIKitEnhancements
 			// Wireup Show button
 			ShowButton.TouchUpInside += (sender, e) => {
 				// Create a UIImage view to show in the popover
-				UIImageView  monkeyIcon = new UIImageView(new CGRect(0,0,256,256));
-				monkeyIcon.Image = UIImage.FromFile("MonkeyIcon.png");
+				UIImageView monkeyIcon = new UIImageView (new CGRect (0, 0, 256, 256));
+				monkeyIcon.Image = UIImage.FromFile ("MonkeyIcon.png");
 				monkeyIcon.UserInteractionEnabled = true;
 
 				// Create a view controller to act as the popover
-				UIViewController popover = new UIViewController();
+				UIViewController popover = new UIViewController ();
 				popover.View = monkeyIcon;
 				popover.ModalPresentationStyle = UIModalPresentationStyle.Popover;
 
 				// Grab Image
-				var image = UIImage.FromFile("298-circlex.png");
+				var image = UIImage.FromFile ("298-circlex.png");
 
 				// Add a close button
-				var closeButton = new ImageButton(new CGRect(popover.View.Frame.Size.Width,20,image.Size.Width,image.Size.Height));
+				var closeButton = new ImageButton (new CGRect (popover.View.Frame.Size.Width, 20, image.Size.Width, image.Size.Height));
 				closeButton.UserInteractionEnabled = true;
 				closeButton.Image = image;
-				monkeyIcon.AddSubview(closeButton);
+				monkeyIcon.AddSubview (closeButton);
 
 				// Wireup the close button
 				closeButton.Touched += (button) => {
-					popover.DismissViewController(true,null);
+					popover.DismissViewController (true, null);
 				};
 
 				// Present the popover
-				PresentViewController(popover,true,null);
+				PresentViewController (popover, true, null);
 
 				// Configure the popover for the iPad, the popover displays as a modal view on the
 				// iPhone
 				UIPopoverPresentationController presentationPopover = popover.PopoverPresentationController;
-				if (presentationPopover!=null) {
+				if (presentationPopover != null) {
 					presentationPopover.SourceView = this.View;
 					presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
 					presentationPopover.SourceRect = ShowButton.Frame;

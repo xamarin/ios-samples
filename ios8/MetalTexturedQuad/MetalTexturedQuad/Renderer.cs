@@ -8,10 +8,8 @@ using Metal;
 using OpenTK;
 using UIKit;
 
-namespace MetalTexturedQuad
-{
-	public class Renderer
-	{
+namespace MetalTexturedQuad {
+	public class Renderer {
 		const float interfaceOrientationLandscapeAngle = 35.0f;
 		const float interfaceOrientationPortraitAngle = 50.0f;
 		const float prespectiveNear = 0.1f;
@@ -37,10 +35,10 @@ namespace MetalTexturedQuad
 		Texture mpInTexture;
 		IMTLRenderPipelineState pipelineState;
 
-		#pragma warning disable 649
+#pragma warning disable 649
 		// Dimensions
 		CGSize size;
-		#pragma warning restore 649
+#pragma warning restore 649
 
 		// Viewing matrix is derived from an eye point, a reference point
 		// indicating the center of the scene, and an up vector.
@@ -149,7 +147,7 @@ namespace MetalTexturedQuad
 
 			// we need to set the framebuffer only property of the layer to NO so we
 			// can perform compute on the drawable's texture
-			var metalLayer = (CAMetalLayer)renderView.Layer;
+			var metalLayer = (CAMetalLayer) renderView.Layer;
 			metalLayer.FramebufferOnly = false;
 
 			if (!PreparePipelineState ())
@@ -231,7 +229,7 @@ namespace MetalTexturedQuad
 		bool PrepareTransformBuffer ()
 		{
 			// allocate regions of memory for the constant buffer
-			transformBuffer = device.CreateBuffer ((nuint)Marshal.SizeOf<Matrix4> (), MTLResourceOptions.CpuCacheModeDefault);
+			transformBuffer = device.CreateBuffer ((nuint) Marshal.SizeOf<Matrix4> (), MTLResourceOptions.CpuCacheModeDefault);
 
 			if (transformBuffer == null)
 				return false;
@@ -304,9 +302,9 @@ namespace MetalTexturedQuad
 			float near = prespectiveNear;
 			float far = prespectiveFar;
 			float rangle = MathUtils.Radians (angle);
-			float length = near * (float)Math.Tan (rangle);
+			float length = near * (float) Math.Tan (rangle);
 
-			float right = length / (float)mpQuad.Aspect;
+			float right = length / (float) mpQuad.Aspect;
 			float left = -right;
 			float top = length;
 			float bottom = -top;
@@ -324,8 +322,8 @@ namespace MetalTexturedQuad
 		void UpdateBuffer ()
 		{
 			// Update the buffer associated with the linear _transformation matrix
-			int rawsize = Marshal.SizeOf <Matrix4> ();
-			var rawdata = new byte[rawsize];
+			int rawsize = Marshal.SizeOf<Matrix4> ();
+			var rawdata = new byte [rawsize];
 
 			GCHandle pinnedTransform = GCHandle.Alloc (transform, GCHandleType.Pinned);
 			IntPtr ptr = pinnedTransform.AddrOfPinnedObject ();

@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace CloudKitAtlas
-{
-	public class CodeSampleGroup
-	{
+namespace CloudKitAtlas {
+	public class CodeSampleGroup {
 		public string Title { get; }
 		public UIImage Icon { get; }
 		public CodeSample [] CodeSamples { get; }

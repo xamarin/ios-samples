@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 
@@ -29,10 +29,10 @@ namespace CustomTransitions {
 		{
 			if (segue.Identifier == "BackToFirstViewController") {
 				if (TransitioningDelegate is SwipeTransitionDelegate) {
-					var transitionDelegate = (SwipeTransitionDelegate)TransitioningDelegate;
+					var transitionDelegate = (SwipeTransitionDelegate) TransitioningDelegate;
 
 					if (sender is UIScreenEdgePanGestureRecognizer)
-						transitionDelegate.GestureRecognizer = (UIScreenEdgePanGestureRecognizer)sender;
+						transitionDelegate.GestureRecognizer = (UIScreenEdgePanGestureRecognizer) sender;
 					else
 						transitionDelegate.GestureRecognizer = null;
 

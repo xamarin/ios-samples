@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
 using Foundation;
 using UIKit;
 
-namespace MetalBasic3D
-{
+namespace MetalBasic3D {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 
 		public override UIWindow Window {
@@ -45,7 +43,7 @@ namespace MetalBasic3D
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			GameViewController controller = (GameViewController)Window.RootViewController;
+			GameViewController controller = (GameViewController) Window.RootViewController;
 
 			if (controller == null) {
 				Console.WriteLine ("ERROR: Failed creating a view controller!");
@@ -55,7 +53,7 @@ namespace MetalBasic3D
 			var renderer = new Renderer ();
 			controller.Delegate = renderer;
 
-			GameView renderView = (GameView)controller.View;
+			GameView renderView = (GameView) controller.View;
 
 			if (renderView == null) {
 				Console.WriteLine ("ERROR: Failed creating a renderer view!");

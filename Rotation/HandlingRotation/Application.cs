@@ -3,7 +3,7 @@ using UIKit;
 
 namespace HandlingRotation {
 	public class Application {// : UIApplication
-		public static void Main (string[] args)
+		public static void Main (string [] args)
 		{
 			try {
 				UIApplication.Main (args, null, "AppDelegate");

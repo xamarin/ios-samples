@@ -6,10 +6,8 @@ using Foundation;
 using EventKit;
 using Accounts;
 
-namespace PrivacyPrompts
-{
-	public partial class PrivacyClassesTableViewController : UITableViewController
-	{
+namespace PrivacyPrompts {
+	public partial class PrivacyClassesTableViewController : UITableViewController {
 		const string LocationSegueId = "LocationSegue";
 		const string MotionSegueId = "MotionSegue";
 		const string DefaultSegueId = "DefaultSegue";
@@ -63,11 +61,11 @@ namespace PrivacyPrompts
 			vc.Title = currentSelection.ToString ();
 
 			if (segue.Identifier == DefaultSegueId)
-				Setup ((PrivacyDetailViewController)vc, currentSelection);
+				Setup ((PrivacyDetailViewController) vc, currentSelection);
 			else if (segue.Identifier == MotionSegueId)
-				Setup ((MotionPrivacyController)vc);
+				Setup ((MotionPrivacyController) vc);
 			else if (segue.Identifier == LocationSegueId)
-				Setup ((LocationPrivacyViewController)vc);
+				Setup ((LocationPrivacyViewController) vc);
 			else
 				base.PrepareForSegue (segue, sender);
 		}
@@ -79,119 +77,119 @@ namespace PrivacyPrompts
 			PerformSegue (segueId, this);
 		}
 
-		DataClass GetDataClass(NSIndexPath indexPath)
+		DataClass GetDataClass (NSIndexPath indexPath)
 		{
 			return availableItems [indexPath.Row];
 		}
 
-		string GetSegueIdFor(DataClass type)
+		string GetSegueIdFor (DataClass type)
 		{
 			switch (type) {
-				case DataClass.Location:
-					return LocationSegueId;
+			case DataClass.Location:
+				return LocationSegueId;
 
-				case DataClass.Motion:
-					return MotionSegueId;
+			case DataClass.Motion:
+				return MotionSegueId;
 
-				case DataClass.Advertising:
-				case DataClass.AppleMusic:
-				case DataClass.Bluetooth:
-				case DataClass.Calendars:
-				case DataClass.Contacts:
-				case DataClass.Facebook:
-				case DataClass.Microphone:
-				case DataClass.Notifications:
-				case DataClass.Photos:
-				case DataClass.Reminders:
-				case DataClass.SinaWeibo:
-				case DataClass.SpeechRecognition:
-				case DataClass.TencentWeibo:
-				case DataClass.Twitter:
-				case DataClass.Video:
-					return DefaultSegueId;
+			case DataClass.Advertising:
+			case DataClass.AppleMusic:
+			case DataClass.Bluetooth:
+			case DataClass.Calendars:
+			case DataClass.Contacts:
+			case DataClass.Facebook:
+			case DataClass.Microphone:
+			case DataClass.Notifications:
+			case DataClass.Photos:
+			case DataClass.Reminders:
+			case DataClass.SinaWeibo:
+			case DataClass.SpeechRecognition:
+			case DataClass.TencentWeibo:
+			case DataClass.Twitter:
+			case DataClass.Video:
+				return DefaultSegueId;
 
-				default:
-					throw new NotImplementedException ();
+			default:
+				throw new NotImplementedException ();
 			}
 		}
 
-		void Setup(PrivacyDetailViewController vc, DataClass type)
+		void Setup (PrivacyDetailViewController vc, DataClass type)
 		{
 			IPrivacyManager manager = null;
 			switch (type) {
-				case DataClass.Reminders:
-					manager = new EKEntityPrivacyManager (EKEntityType.Reminder);
-					break;
+			case DataClass.Reminders:
+				manager = new EKEntityPrivacyManager (EKEntityType.Reminder);
+				break;
 
-				case DataClass.Calendars:
-					manager = new EKEntityPrivacyManager (EKEntityType.Event);
-					break;
+			case DataClass.Calendars:
+				manager = new EKEntityPrivacyManager (EKEntityType.Event);
+				break;
 
-				case DataClass.Facebook:
-					manager = new SocialNetworkPrivacyManager (ACAccountType.Facebook);
-					break;
+			case DataClass.Facebook:
+				manager = new SocialNetworkPrivacyManager (ACAccountType.Facebook);
+				break;
 
-				case DataClass.Twitter:
-					manager = new SocialNetworkPrivacyManager (ACAccountType.Twitter);
-					break;
+			case DataClass.Twitter:
+				manager = new SocialNetworkPrivacyManager (ACAccountType.Twitter);
+				break;
 
-				case DataClass.SinaWeibo:
-					manager = new SocialNetworkPrivacyManager (ACAccountType.SinaWeibo);
-					break;
+			case DataClass.SinaWeibo:
+				manager = new SocialNetworkPrivacyManager (ACAccountType.SinaWeibo);
+				break;
 
-				case DataClass.TencentWeibo:
-					manager = new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo);
-					break;
+			case DataClass.TencentWeibo:
+				manager = new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo);
+				break;
 
-				case DataClass.Notifications:
-					manager = new NotificationsPrivacyManager ((AppDelegate)UIApplication.SharedApplication.Delegate);
-					break;
+			case DataClass.Notifications:
+				manager = new NotificationsPrivacyManager ((AppDelegate) UIApplication.SharedApplication.Delegate);
+				break;
 
-				case DataClass.Contacts:
-					manager = new AddressBookPrivacyManager ();
-					break;
+			case DataClass.Contacts:
+				manager = new AddressBookPrivacyManager ();
+				break;
 
-				case DataClass.Photos:
-					manager = new PhotoPrivacyManager ();
-					break;
+			case DataClass.Photos:
+				manager = new PhotoPrivacyManager ();
+				break;
 
-				case DataClass.Video:
-					manager = new VideoCapturePrivacyManager ();
-					break;
+			case DataClass.Video:
+				manager = new VideoCapturePrivacyManager ();
+				break;
 
-				case DataClass.Microphone:
-					manager = new MicrophonePrivacyManager ();
-					break;
+			case DataClass.Microphone:
+				manager = new MicrophonePrivacyManager ();
+				break;
 
-				case DataClass.Bluetooth:
-					manager = new BluetoothPrivacyManager ();
-					break;
+			case DataClass.Bluetooth:
+				manager = new BluetoothPrivacyManager ();
+				break;
 
-				case DataClass.Advertising:
-					manager = new AdvertisingPrivacyManager ();
-					break;
+			case DataClass.Advertising:
+				manager = new AdvertisingPrivacyManager ();
+				break;
 
-				case DataClass.AppleMusic:
-					manager = new AppleMusicPrivacyManager();
-					break;
+			case DataClass.AppleMusic:
+				manager = new AppleMusicPrivacyManager ();
+				break;
 
-				case DataClass.SpeechRecognition:
-					manager = new SpeechRecognitionPrivacyManager();
-					break;
+			case DataClass.SpeechRecognition:
+				manager = new SpeechRecognitionPrivacyManager ();
+				break;
 
-				default:
-					throw new NotImplementedException ();
+			default:
+				throw new NotImplementedException ();
 			}
 
 			vc.PrivacyManager = manager;
 		}
 
-		void Setup(MotionPrivacyController vc)
+		void Setup (MotionPrivacyController vc)
 		{
 			vc.PrivacyManager = new MotionPrivacyManager ();
 		}
 
-		void Setup(LocationPrivacyViewController vc)
+		void Setup (LocationPrivacyViewController vc)
 		{
 			vc.PrivacyManager = new LocationPrivacyManager ();
 		}

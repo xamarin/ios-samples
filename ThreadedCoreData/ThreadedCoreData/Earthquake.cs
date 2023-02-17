@@ -3,13 +3,11 @@ using CoreData;
 using Foundation;
 using ObjCRuntime;
 
-namespace ThreadedCoreData
-{
-	public class ManagedEarthquake : NSManagedObject
-	{
+namespace ThreadedCoreData {
+	public class ManagedEarthquake : NSManagedObject {
 		public NSNumber Magnitude {
 			get {
-				return (NSNumber)Runtime.GetNSObject (ValueForKey (new NSString ("magnitude")));
+				return (NSNumber) Runtime.GetNSObject (ValueForKey (new NSString ("magnitude")));
 			}
 			set {
 				SetValueForKey (value, new NSString ("magnitude"));
@@ -18,7 +16,7 @@ namespace ThreadedCoreData
 
 		public NSString Location {
 			get {
-				return (NSString)Runtime.GetNSObject (ValueForKey (new NSString ("location")));
+				return (NSString) Runtime.GetNSObject (ValueForKey (new NSString ("location")));
 			}
 			set {
 				SetValueForKey (value, new NSString ("location"));
@@ -27,7 +25,7 @@ namespace ThreadedCoreData
 
 		public NSDate Date {
 			get {
-				return (NSDate)Runtime.GetNSObject (ValueForKey (new NSString ("date")));
+				return (NSDate) Runtime.GetNSObject (ValueForKey (new NSString ("date")));
 			}
 			set {
 				SetValueForKey (value, new NSString ("date"));
@@ -36,7 +34,7 @@ namespace ThreadedCoreData
 
 		public NSString USGSWebLink {
 			get {
-				return (NSString)Runtime.GetNSObject (ValueForKey (new NSString ("USGSWebLink")));
+				return (NSString) Runtime.GetNSObject (ValueForKey (new NSString ("USGSWebLink")));
 			}
 			set {
 				SetValueForKey (value, new NSString ("USGSWebLink"));
@@ -45,7 +43,7 @@ namespace ThreadedCoreData
 
 		public NSNumber Latitude {
 			get {
-				return (NSNumber)Runtime.GetNSObject (ValueForKey (new NSString ("latitude")));
+				return (NSNumber) Runtime.GetNSObject (ValueForKey (new NSString ("latitude")));
 			}
 			set {
 				SetValueForKey (value, new NSString ("latitude"));
@@ -54,25 +52,24 @@ namespace ThreadedCoreData
 
 		public NSNumber Longitude {
 			get {
-				return (NSNumber)Runtime.GetNSObject (ValueForKey (new NSString ("longitude")));
+				return (NSNumber) Runtime.GetNSObject (ValueForKey (new NSString ("longitude")));
 			}
 			set {
 				SetValueForKey (value, new NSString ("longitude"));
 			}
 		}
 
-		public ManagedEarthquake (NSEntityDescription description, NSManagedObjectContext context) : base(description, context)
+		public ManagedEarthquake (NSEntityDescription description, NSManagedObjectContext context) : base (description, context)
 		{
 			this.IsDirectBinding = true;
 		}
 
-		public ManagedEarthquake (IntPtr handle): base(handle)
+		public ManagedEarthquake (IntPtr handle) : base (handle)
 		{
 		}
 	}
 
-	public class Earthquake
-	{
+	public class Earthquake {
 		public NSNumber Magnitude { get; set; }
 
 		public NSString Location { get; set; }

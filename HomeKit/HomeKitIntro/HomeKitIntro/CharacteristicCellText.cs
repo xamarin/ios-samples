@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class CharacteristicCellText : UITableViewCell
-	{
+namespace HomeKitIntro {
+	public partial class CharacteristicCellText : UITableViewCell {
 		#region Static Properties
 		public static readonly NSString Key = new NSString ("CharacteristicCellText");
 		#endregion
@@ -28,7 +26,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The controller.</value>
 		public CharacteristicTableViewController Controller { get; set; }
-		#endregion 
+		#endregion
 
 		#region Constructors
 		public CharacteristicCellText (IntPtr handle) : base (handle)
@@ -37,7 +35,8 @@ namespace HomeKitIntro
 		#endregion
 
 		#region Public Methods
-		public void DisplayInfo(string title, string value, bool enabled) {
+		public void DisplayInfo (string title, string value, bool enabled)
+		{
 
 			// Update UI
 			TItle.Text = title;
@@ -56,7 +55,8 @@ namespace HomeKitIntro
 		/// <summary>
 		/// Wireups the events.
 		/// </summary>
-		private void WireupEvents () {
+		private void WireupEvents ()
+		{
 
 			// Already wired up?
 			if (_wiredup)
@@ -64,14 +64,14 @@ namespace HomeKitIntro
 
 			// Wire text field
 			Text.ShouldReturn += (UITextField field) => {
-				field.ResignFirstResponder();
+				field.ResignFirstResponder ();
 
 				// Set updated value to the characteristic
-				Characteristic.WriteValue(NSObject.FromObject(Text.Text),(err) =>{
+				Characteristic.WriteValue (NSObject.FromObject (Text.Text), (err) => {
 					// Was there an error?
-					if (err!=null) {
+					if (err != null) {
 						// Yes, inform user
-						AlertView.PresentOKAlert("Update Error",err.LocalizedDescription,Controller);
+						AlertView.PresentOKAlert ("Update Error", err.LocalizedDescription, Controller);
 					}
 				});
 
@@ -79,14 +79,14 @@ namespace HomeKitIntro
 			};
 
 			Text.ShouldEndEditing += (UITextField field) => {
-				field.ResignFirstResponder();
+				field.ResignFirstResponder ();
 
 				// Set updated value to the characteristic
-				Characteristic.WriteValue(NSObject.FromObject(Text.Text),(err) =>{
+				Characteristic.WriteValue (NSObject.FromObject (Text.Text), (err) => {
 					// Was there an error?
-					if (err!=null) {
+					if (err != null) {
 						// Yes, inform user
-						AlertView.PresentOKAlert("Update Error",err.LocalizedDescription,Controller);
+						AlertView.PresentOKAlert ("Update Error", err.LocalizedDescription, Controller);
 					}
 				});
 

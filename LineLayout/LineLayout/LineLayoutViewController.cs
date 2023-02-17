@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace LineLayout
-{
-	public partial class LineLayoutViewController : UICollectionViewController
-	{
+namespace LineLayout {
+	public partial class LineLayoutViewController : UICollectionViewController {
 		static readonly NSString cellToken = new NSString ("MY_CELL");
 
 		public LineLayoutViewController (UICollectionViewFlowLayout layout) : base (layout)
@@ -15,7 +13,7 @@ namespace LineLayout
 
 		public override void ViewDidLoad ()
 		{
-			CollectionView.RegisterClassForCell (typeof(Cell), cellToken);
+			CollectionView.RegisterClassForCell (typeof (Cell), cellToken);
 		}
 
 		public override nint GetItemsCount (UICollectionView collectionView, nint section)

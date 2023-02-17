@@ -4,11 +4,9 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents a section in the `TimeConditionViewController`.
-	enum TimeConditionTableViewSection
-	{
+	enum TimeConditionTableViewSection {
 		// This section contains the segmented control to
 		// choose a time condition type.
 		TimeOrSun,
@@ -25,42 +23,38 @@ namespace HomeKitCatalog
 
 	// Represents the type of time condition.
 	// The condition can be an exact time, or relative to a solar event.
-	enum TimeConditionType
-	{
+	enum TimeConditionType {
 		Time,
 		Sun
 	}
 
 	// Represents the type of solar event.
 	// This can be sunrise or sunset.
-	public enum TimeConditionSunState
-	{
+	public enum TimeConditionSunState {
 		Sunrise,
 		Sunset
 	}
 
 	// Represents the condition order.
 	// Conditions can be before, after, or exactly at a given time.
-	public enum TimeConditionOrder
-	{
+	public enum TimeConditionOrder {
 		Before,
 		After,
 		At
 	}
 
-	public partial class TimeConditionViewController : HMCatalogViewController
-	{
-		static readonly NSString selectionCell = (NSString)"SelectionCell";
-		static readonly NSString timePickerCell = (NSString)"TimePickerCell";
-		static readonly NSString segmentedTimeCell = (NSString)"SegmentedTimeCell";
+	public partial class TimeConditionViewController : HMCatalogViewController {
+		static readonly NSString selectionCell = (NSString) "SelectionCell";
+		static readonly NSString timePickerCell = (NSString) "TimePickerCell";
+		static readonly NSString segmentedTimeCell = (NSString) "SegmentedTimeCell";
 
-		static readonly string[] BeforeOrAfterTitles = {
+		static readonly string [] BeforeOrAfterTitles = {
 			"Before",
 			"After",
 			"At",
 		};
 
-		static readonly string[] SunriseSunsetTitles = {
+		static readonly string [] SunriseSunsetTitles = {
 			"Sunrise",
 			"Sunset",
 		};
@@ -97,12 +91,12 @@ namespace HomeKitCatalog
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			return Enum.GetNames (typeof(TimeConditionTableViewSection)).Length;
+			return Enum.GetNames (typeof (TimeConditionTableViewSection)).Length;
 		}
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch ((TimeConditionTableViewSection)(int)section) {
+			switch ((TimeConditionTableViewSection) (int) section) {
 			case TimeConditionTableViewSection.TimeOrSun:
 				return 1;
 			case TimeConditionTableViewSection.BeforeOrAfter:
@@ -119,7 +113,7 @@ namespace HomeKitCatalog
 		// Switches based on the section to generate a cell.
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((TimeConditionTableViewSection)indexPath.Section) {
+			switch ((TimeConditionTableViewSection) indexPath.Section) {
 			case TimeConditionTableViewSection.TimeOrSun:
 				return GetSegmentedCell (tableView, indexPath);
 			case TimeConditionTableViewSection.BeforeOrAfter:
@@ -140,7 +134,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			switch ((TimeConditionTableViewSection)(int)section) {
+			switch ((TimeConditionTableViewSection) (int) section) {
 			case TimeConditionTableViewSection.TimeOrSun:
 				return "Condition Type";
 			case TimeConditionTableViewSection.BeforeOrAfter:
@@ -154,7 +148,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			switch ((TimeConditionTableViewSection)(int)section) {
+			switch ((TimeConditionTableViewSection) (int) section) {
 			case TimeConditionTableViewSection.TimeOrSun:
 				return "Time conditions can relate to specific times or special events, like sunrise and sunset.";
 			case TimeConditionTableViewSection.BeforeOrAfter:
@@ -175,18 +169,18 @@ namespace HomeKitCatalog
 
 			tableView.DeselectRow (indexPath, true);
 
-			switch ((TimeConditionTableViewSection)indexPath.Section) {
+			switch ((TimeConditionTableViewSection) indexPath.Section) {
 			case TimeConditionTableViewSection.TimeOrSun:
-				timeType = (TimeConditionType)indexPath.Row;
+				timeType = (TimeConditionType) indexPath.Row;
 				ReloadDynamicSections ();
 				return;
 			case TimeConditionTableViewSection.BeforeOrAfter:
-				order = (TimeConditionOrder)indexPath.Row;
+				order = (TimeConditionOrder) indexPath.Row;
 				tableView.ReloadSections (NSIndexSet.FromIndex (indexPath.Section), UITableViewRowAnimation.Automatic);
 				break;
 			case TimeConditionTableViewSection.Value:
 				if (timeType == TimeConditionType.Sun)
-					sunState = (TimeConditionSunState)indexPath.Row;
+					sunState = (TimeConditionSunState) indexPath.Row;
 				tableView.ReloadSections (NSIndexSet.FromIndex (indexPath.Section), UITableViewRowAnimation.Automatic);
 				break;
 			default:
@@ -199,15 +193,15 @@ namespace HomeKitCatalog
 		UITableViewCell GetSectionCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (selectionCell, indexPath);
-			switch ((TimeConditionTableViewSection)indexPath.Section) {
+			switch ((TimeConditionTableViewSection) indexPath.Section) {
 			case TimeConditionTableViewSection.BeforeOrAfter:
 				cell.TextLabel.Text = BeforeOrAfterTitles [indexPath.Row];
-				cell.Accessory = ((int)order == indexPath.Row) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+				cell.Accessory = ((int) order == indexPath.Row) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
 				break;
 			case TimeConditionTableViewSection.Value:
 				if (timeType == TimeConditionType.Sun) {
 					cell.TextLabel.Text = SunriseSunsetTitles [indexPath.Row];
-					cell.Accessory = ((int)sunState == indexPath.Row) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+					cell.Accessory = ((int) sunState == indexPath.Row) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
 				}
 				break;
 			case TimeConditionTableViewSection.TimeOrSun:
@@ -221,7 +215,7 @@ namespace HomeKitCatalog
 		// Generates a date picker cell and sets the internal date picker when created.
 		UITableViewCell GetDatePickerCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (TimePickerCell)tableView.DequeueReusableCell (timePickerCell, indexPath);
+			var cell = (TimePickerCell) tableView.DequeueReusableCell (timePickerCell, indexPath);
 			// Save the date picker so we can get the result later.
 			datePicker = cell.DatePicker;
 			return cell;
@@ -230,8 +224,8 @@ namespace HomeKitCatalog
 		/// Generates a segmented cell and sets its target when created.
 		UITableViewCell GetSegmentedCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (SegmentedTimeCell)tableView.DequeueReusableCell (segmentedTimeCell, indexPath);
-			cell.SegmentedControl.SelectedSegment = (int)timeType;
+			var cell = (SegmentedTimeCell) tableView.DequeueReusableCell (segmentedTimeCell, indexPath);
+			cell.SegmentedControl.SelectedSegment = (int) timeType;
 			cell.SegmentedControl.ValueChanged -= OnSegmentedControlDidChange;
 			cell.SegmentedControl.ValueChanged += OnSegmentedControlDidChange;
 			return cell;
@@ -250,18 +244,18 @@ namespace HomeKitCatalog
 		// Updates the time type and reloads dynamic sections.
 		void OnSegmentedControlDidChange (object sender, EventArgs e)
 		{
-			var segmentedControl = (UISegmentedControl)sender;
-			timeType = (TimeConditionType)(int)segmentedControl.SelectedSegment;
+			var segmentedControl = (UISegmentedControl) sender;
+			timeType = (TimeConditionType) (int) segmentedControl.SelectedSegment;
 			ReloadDynamicSections ();
 		}
-		
+
 
 		// Reloads the BeforeOrAfter and Value section.
 		void ReloadDynamicSections ()
 		{
 			if (timeType == TimeConditionType.Sun && order == TimeConditionOrder.At)
 				order = TimeConditionOrder.Before;
-			var reloadIndexSet = NSIndexSet.FromNSRange (new NSRange ((int)TimeConditionTableViewSection.BeforeOrAfter, 2));
+			var reloadIndexSet = NSIndexSet.FromNSRange (new NSRange ((int) TimeConditionTableViewSection.BeforeOrAfter, 2));
 			TableView.ReloadSections (reloadIndexSet, UITableViewRowAnimation.Automatic);
 		}
 

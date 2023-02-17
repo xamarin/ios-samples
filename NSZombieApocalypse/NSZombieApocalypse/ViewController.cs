@@ -7,10 +7,8 @@ using CoreFoundation;
 using CoreAnimation;
 using ObjCRuntime;
 
-namespace NSZombieApocalypse
-{
-	public enum TimerEvent
-	{
+namespace NSZombieApocalypse {
+	public enum TimerEvent {
 		AlmostInfiniteLoop,
 		LogicBomb,
 		Leak,
@@ -19,8 +17,7 @@ namespace NSZombieApocalypse
 		StagnantReleasePool
 	}
 
-	public partial class ViewController : UIViewController
-	{
+	public partial class ViewController : UIViewController {
 		const int NSEC_PER_SEC = 1000000000;
 
 		bool buttonDraggedToPad;
@@ -79,7 +76,7 @@ namespace NSZombieApocalypse
 			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("voiceOverFinished:"), null, null);
 		}
 
-		[Export("voiceOverFinished:")]
+		[Export ("voiceOverFinished:")]
 		void voiceOverFinished (NSObject notification)
 		{
 			isVoiceOverSpeaking = false;
@@ -89,7 +86,7 @@ namespace NSZombieApocalypse
 		{
 			paused = true;
 			miniPadView.PauseZombies ();
-			UIAccessibility.PostNotification(UIAccessibilityPostNotification.Announcement, (NSString)"Apocalypse On Pause");
+			UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString) "Apocalypse On Pause");
 		}
 
 		void Unpause ()
@@ -97,7 +94,7 @@ namespace NSZombieApocalypse
 			paused = false;
 			ZombiesOnATimer ();
 			miniPadView.UnpauseZombies ();
-			UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString)"Apocalypse resumed");
+			UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString) "Apocalypse resumed");
 		}
 
 		public void HelpDidClose (HelpView view)
@@ -129,7 +126,7 @@ namespace NSZombieApocalypse
 		TimerEvent nextZombieEvent ()
 		{
 			int random = rand.Next ();
-			float point = (float)random / (float)Int32.MaxValue;
+			float point = (float) random / (float) Int32.MaxValue;
 			if (point < .03)
 				return TimerEvent.AlmostInfiniteLoop;
 			else if (point < .10)
@@ -152,13 +149,13 @@ namespace NSZombieApocalypse
 			case TimerEvent.AlmostInfiniteLoop:
 				return "An infinite loop broke out! (15MB)";
 			case TimerEvent.Leak:
-				return  "Memory leak! (3MB)";
+				return "Memory leak! (3MB)";
 			case TimerEvent.LogicBomb:
 				return "A logic bomb went off in your code! (4MB)";
 			case TimerEvent.OverRetain:
 				return "An object was retained too many times (6MB)";
 			case TimerEvent.StagnantReleasePool:
-				return  "Your release pools stopped draining! (23MB)";
+				return "Your release pools stopped draining! (23MB)";
 			}
 
 			return string.Empty;
@@ -210,14 +207,14 @@ namespace NSZombieApocalypse
 			MonitorZombiePressure ();
 			manageVisibleZombies ();
 
-			var popTime = new DispatchTime (DispatchTime.Now, (long)6 * NSEC_PER_SEC);
+			var popTime = new DispatchTime (DispatchTime.Now, (long) 6 * NSEC_PER_SEC);
 			DispatchQueue.MainQueue.DispatchAfter (popTime, ZombiesOnATimer);
 		}
 
 		void manageVisibleZombies ()
 		{
 			float level = meterView.ZombieLevel;
-			int zombieCount = (int)Math.Floor (level * 10);
+			int zombieCount = (int) Math.Floor (level * 10);
 			if (zombieCount < miniPadView.ZombieCount) {
 				while (zombieCount < miniPadView.ZombieCount)
 					miniPadView.RemoveZombie ();
@@ -234,13 +231,13 @@ namespace NSZombieApocalypse
 			statusView.Status = "Your program has started. The zombies are massing";
 
 			const double delayInSeconds = 2;
-			var popTime = new DispatchTime (DispatchTime.Now, (long)(delayInSeconds * NSEC_PER_SEC));
+			var popTime = new DispatchTime (DispatchTime.Now, (long) (delayInSeconds * NSEC_PER_SEC));
 			DispatchQueue.MainQueue.DispatchAfter (popTime, ZombiesOnATimer);
 		}
 
 		void UpdateScoreForDroppedButton (ButtonView button)
 		{
-			var buttonType = (ButtonType)(int)button.Tag;
+			var buttonType = (ButtonType) (int) button.Tag;
 			float change = 0;
 			switch (buttonType) {
 			case ButtonType.Free:
@@ -271,7 +268,7 @@ namespace NSZombieApocalypse
 		public void ButtonSelected (ButtonView button)
 		{
 			if (!isVoiceOverSpeaking)
-				UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString)"Memory Selected, drag to zombies to play");
+				UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString) "Memory Selected, drag to zombies to play");
 		}
 
 		public void ButtonDragged (ButtonView button, UITouch location)
@@ -288,14 +285,14 @@ namespace NSZombieApocalypse
 					buttonDraggedToPad = true;
 					if (!isVoiceOverSpeaking) {
 						isVoiceOverSpeaking = true;
-						UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString)"Memory object near the zombies, Lift to deploy");
+						UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString) "Memory object near the zombies, Lift to deploy");
 					}
 				}
 			} else {
 				if (buttonDraggedToPad) {
 					if (!isVoiceOverSpeaking) {
 						isVoiceOverSpeaking = true;
-						UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString)"Memory object outside iPad. Lift to Cancel");
+						UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString) "Memory object outside iPad. Lift to Cancel");
 					}
 				}
 				buttonDraggedToPad = false;
@@ -313,17 +310,17 @@ namespace NSZombieApocalypse
 			CGPoint point = location.LocationInView (miniPadView);
 			if (miniPadView.PointInside (point, null)) {
 				UpdateScoreForDroppedButton (button);
-				UIView.Animate (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float)Math.PI / 180), async () => {
-					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float)Math.PI / 180));
-					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float)Math.PI / 180));
-					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float)Math.PI / 180));
+				UIView.Animate (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float) Math.PI / 180), async () => {
+					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float) Math.PI / 180));
+					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float) Math.PI / 180));
+					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float) Math.PI / 180));
 					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (0));
 				});
 			}
 
 			delayInSeconds = 0.5;
 
-			var popTime = new DispatchTime (DispatchTime.Now, (long)(delayInSeconds * NSEC_PER_SEC));
+			var popTime = new DispatchTime (DispatchTime.Now, (long) (delayInSeconds * NSEC_PER_SEC));
 			DispatchQueue.MainQueue.DispatchAfter (popTime, async () => {
 				await UIView.AnimateAsync (0.35f, () => {
 					CGRect bounds = trackingView.Bounds;

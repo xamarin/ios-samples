@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace TextKitDemo
-{
-	public partial class WebViewController : UIViewController
-	{
+namespace TextKitDemo {
+	public partial class WebViewController : UIViewController {
 		public WebViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -26,15 +24,14 @@ namespace TextKitDemo
 			};
 
 			doneButton.Clicked += (sender, e) => {
-				DismissViewController(true,null);
+				DismissViewController (true, null);
 			};
 
 			toolBar.Delegate = new MyUIToolbarDelegate ();
 		}
 	}
 
-	public class MyUIToolbarDelegate : UIToolbarDelegate
-	{
+	public class MyUIToolbarDelegate : UIToolbarDelegate {
 		public MyUIToolbarDelegate () : base ()
 		{
 		}

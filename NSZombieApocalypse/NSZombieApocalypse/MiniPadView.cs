@@ -6,11 +6,9 @@ using Foundation;
 using CoreGraphics;
 using AVFoundation;
 
-namespace NSZombieApocalypse
-{
-	public sealed class MiniPadView : UIControl
-	{
-		readonly List <WalkingDead> zombies;
+namespace NSZombieApocalypse {
+	public sealed class MiniPadView : UIControl {
+		readonly List<WalkingDead> zombies;
 
 		AVAudioPlayer newZombieSound, removeZombieSound;
 
@@ -20,7 +18,7 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		public MiniPadView (CGRect frame): base(frame)
+		public MiniPadView (CGRect frame) : base (frame)
 		{
 			var image = UIImage.FromBundle ("iPadImage.png");
 			Frame = new CGRect (Frame.Location, image.Size);
@@ -29,7 +27,7 @@ namespace NSZombieApocalypse
 			var imageView = new UIImageView (image);
 			AddSubview (imageView);
 
-			zombies = new List <WalkingDead> ();
+			zombies = new List<WalkingDead> ();
 
 			var audioNewZombie = NSUrl.FromFilename ("NewZombie.mp3");
 			var audioRemoveZombie = NSUrl.FromFilename ("RemoveZombie.mp3");

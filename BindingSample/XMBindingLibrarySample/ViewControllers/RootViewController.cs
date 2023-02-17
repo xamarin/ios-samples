@@ -1,23 +1,21 @@
 using UIKit;
 
-namespace XMBindingLibrarySample
-{
-	public class RootViewController : UINavigationController
-	{
+namespace XMBindingLibrarySample {
+	public class RootViewController : UINavigationController {
 		UtilitiesViewController utilViewController;
 
-		public override void LoadView()
+		public override void LoadView ()
 		{
-			base.LoadView();
+			base.LoadView ();
 
-			utilViewController = new UtilitiesViewController();
+			utilViewController = new UtilitiesViewController ();
 		}
 
-		public override void ViewDidLoad()
+		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad();
+			base.ViewDidLoad ();
 
-			PushViewController(utilViewController, true);
+			PushViewController (utilViewController, true);
 		}
 	}
 }

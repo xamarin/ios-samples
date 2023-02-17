@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 using Foundation;
@@ -10,10 +10,8 @@ using CoreMedia;
 using CoreFoundation;
 
 
-namespace AudioTapProcessor
-{
-	public class AudioTapProcessor : NSObject
-	{
+namespace AudioTapProcessor {
+	public class AudioTapProcessor : NSObject {
 		AVAssetTrack audioAssetTrack;
 		MTAudioProcessingTap audioProcessingTap;
 		AVAudioTapProcessorContext context;
@@ -81,7 +79,7 @@ namespace AudioTapProcessor
 			audioProcessingTap = new MTAudioProcessingTap (callbacks, MTAudioProcessingTapCreationFlags.PreEffects);
 			audioMixInputParameters.AudioTapProcessor = audioProcessingTap;
 
-			audioMix.InputParameters = new AVAudioMixInputParameters[] { audioMixInputParameters };
+			audioMix.InputParameters = new AVAudioMixInputParameters [] { audioMixInputParameters };
 
 			return audioMix;
 		}
@@ -93,7 +91,7 @@ namespace AudioTapProcessor
 		unsafe void UpdateCenterFrequency (float frequency)
 		{
 			// Update center frequency of bandpass filter Audio Unit.
-			float newFrequency = CalcNewCenterFrequency ((float)context.SampleRate, frequency);
+			float newFrequency = CalcNewCenterFrequency ((float) context.SampleRate, frequency);
 			SetCenterFrequency (newFrequency);
 		}
 
@@ -148,12 +146,12 @@ namespace AudioTapProcessor
 		#region MTAudioProcessingTap Callbacks
 
 		unsafe void TapProcess (MTAudioProcessingTap tap, nint numberFrames, MTAudioProcessingTapFlags flags,
-		                        AudioBuffers bufferList,
-		                        out nint numberFramesOut,
-		                        out MTAudioProcessingTapFlags flagsOut)
+								AudioBuffers bufferList,
+								out nint numberFramesOut,
+								out MTAudioProcessingTapFlags flagsOut)
 		{
 			numberFramesOut = 0;
-			flagsOut = (MTAudioProcessingTapFlags)0;
+			flagsOut = (MTAudioProcessingTapFlags) 0;
 
 			// Skip processing when format not supported.
 			if (!context.SupportedTapProcessingFormat) {
@@ -169,8 +167,8 @@ namespace AudioTapProcessor
 						Flags = AudioTimeStamp.AtsFlags.SampleTimeValid
 					};
 
-					var f = (AudioUnitRenderActionFlags)0;
-					var status = context.AudioUnit.Render (ref f, audioTimeStamp, 0, (uint)numberFrames, bufferList);
+					var f = (AudioUnitRenderActionFlags) 0;
+					var status = context.AudioUnit.Render (ref f, audioTimeStamp, 0, (uint) numberFrames, bufferList);
 					if (status != AudioUnitStatus.NoError) {
 						Console.WriteLine ("AudioUnitRender(): {0}", status);
 						return;
@@ -207,7 +205,7 @@ namespace AudioTapProcessor
 			};
 
 			// We don't use tapStorage we store all data within context field
-			tapStorage = (void*)IntPtr.Zero;
+			tapStorage = (void*) IntPtr.Zero;
 		}
 
 		unsafe void Finalaze (MTAudioProcessingTap tap)
@@ -246,10 +244,10 @@ namespace AudioTapProcessor
 				error = audioUnit.SetRenderCallback (Render, AudioUnitScopeType.Input);
 
 			if (error == AudioUnitStatus.NoError)
-				error = audioUnit.SetMaximumFramesPerSlice ((uint)maxFrames, AudioUnitScopeType.Global);
+				error = audioUnit.SetMaximumFramesPerSlice ((uint) maxFrames, AudioUnitScopeType.Global);
 
 			if (error == AudioUnitStatus.NoError)
-				error = (AudioUnitStatus)audioUnit.Initialize ();
+				error = (AudioUnitStatus) audioUnit.Initialize ();
 
 			if (error != AudioUnitStatus.NoError) {
 				audioUnit.Dispose ();
@@ -290,7 +288,7 @@ namespace AudioTapProcessor
 			MTAudioProcessingTapFlags flags;
 			CMTimeRange range;
 			nint n;
-			var error = (AudioUnitStatus)(int)audioProcessingTap.GetSourceAudio ((nint)numberFrames, data, out flags, out range, out n);
+			var error = (AudioUnitStatus) (int) audioProcessingTap.GetSourceAudio ((nint) numberFrames, data, out flags, out range, out n);
 			if (error != AudioUnitStatus.NoError)
 				Console.WriteLine ("{0} audioProcessingTap.GetSourceAudio failed", error);
 			return error;
@@ -306,14 +304,14 @@ namespace AudioTapProcessor
 				AudioBuffer pBuffer = bufferList [i];
 				long cSamples = numberFrames * (context.IsNonInterleaved ? 1 : pBuffer.NumberChannels);
 
-				float* pData = (float*)(void*)pBuffer.Data;
+				float* pData = (float*) (void*) pBuffer.Data;
 
 				float rms = 0;
 				for (int j = 0; j < cSamples; j++)
 					rms += pData [j] * pData [j];
 
 				if (cSamples > 0)
-					rms = (float)Math.Sqrt (rms / cSamples);
+					rms = (float) Math.Sqrt (rms / cSamples);
 
 				if (i == 0)
 					context.LeftChannelVolume = rms;

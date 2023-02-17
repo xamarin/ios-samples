@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays groups in various configurations. 
  * This controller demonstrates sophisticated layouts using nested groups.
 */
@@ -9,11 +9,9 @@ using UIKit;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
+namespace WatchkitExtension {
 	[Register ("GroupDetailController")]
-	public class GroupDetailController : WKInterfaceController
-	{
+	public class GroupDetailController : WKInterfaceController {
 		public GroupDetailController ()
 		{
 		}

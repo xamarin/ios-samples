@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 
-namespace XMBindingLibrary
-{
-	partial class XMUtilities
-	{
+namespace XMBindingLibrary {
+	partial class XMUtilities {
 		// NOTE:
 		// We can add additional members in this file that were never in the
 		// original binding.
-		public nint Subtract(nint operandUn, nint operandDeux)
+		public nint Subtract (nint operandUn, nint operandDeux)
 		{
-			return Add(operandUn, -operandDeux);
+			return Add (operandUn, -operandDeux);
 		}
 	}
 }

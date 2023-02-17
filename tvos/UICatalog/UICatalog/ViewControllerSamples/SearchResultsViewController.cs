@@ -10,8 +10,8 @@ namespace UICatalog {
 		public static readonly string StoryboardIdentifier = "SearchResultsViewController";
 
 		DataItemCellComposer cellComposer = new DataItemCellComposer ();
-		DataItem[] allDataItems = DataItem.SampleItems;
-		DataItem[] filteredDataItems = DataItem.SampleItems;
+		DataItem [] allDataItems = DataItem.SampleItems;
+		DataItem [] filteredDataItems = DataItem.SampleItems;
 
 		string filterString;
 		string FilterString {
@@ -21,7 +21,7 @@ namespace UICatalog {
 			set {
 				if (filterString == value)
 					return;
-				
+
 				filterString = value;
 				filteredDataItems = string.IsNullOrEmpty (filterString) ?
 					allDataItems : allDataItems.Where (c => c.Title.Contains (filterString)).ToArray ();
@@ -31,7 +31,7 @@ namespace UICatalog {
 		}
 
 		[Export ("initWithCoder:")]
-		public SearchResultsViewController (NSCoder coder): base (coder)
+		public SearchResultsViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -48,7 +48,7 @@ namespace UICatalog {
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			var cell = collectionView.DequeueReusableCell (DataItemCollectionViewCell.ReuseIdentifier, indexPath);
-			return (UICollectionViewCell)cell;
+			return (UICollectionViewCell) cell;
 		}
 
 		public override void WillDisplayCell (UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath)
@@ -57,7 +57,7 @@ namespace UICatalog {
 			if (currentCell == null)
 				throw new Exception ("Expected to display a `DataItemCollectionViewCell`.");
 
-			var item = filteredDataItems[indexPath.Row];
+			var item = filteredDataItems [indexPath.Row];
 			cellComposer.ComposeCell (currentCell, item);
 		}
 

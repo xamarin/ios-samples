@@ -8,11 +8,9 @@ using CoreMidi;
 using MonoTouch.Dialog;
 using System.Threading;
 
-namespace CoreMidiSample
-{
+namespace CoreMidiSample {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		DialogViewController dvc;
 		UIWindow window;
 		MidiClient client;
@@ -58,20 +56,20 @@ namespace CoreMidiSample
 
 		RootElement MakeHardware ()
 		{
-			int sources = (int)Midi.SourceCount;
-			int destinations = (int)Midi.DestinationCount;
+			int sources = (int) Midi.SourceCount;
+			int destinations = (int) Midi.DestinationCount;
 
 			var sourcesSection = new Section ("Sources");
 			sourcesSection.AddAll (
 				from x in Enumerable.Range (0, sources)
 				let source = MidiEndpoint.GetSource (x)
-				select (Element)new StringElement (source.DisplayName, source.IsNetworkSession ? "Network" : "Local")
+				select (Element) new StringElement (source.DisplayName, source.IsNetworkSession ? "Network" : "Local")
 			);
 			var targetsSection = new Section ("Targets");
 			targetsSection.AddAll (
 				from x in Enumerable.Range (0, destinations)
 				let target = MidiEndpoint.GetDestination (x)
-				select (Element)new StringElement (target.DisplayName, target.IsNetworkSession ? "Network" : "Local")
+				select (Element) new StringElement (target.DisplayName, target.IsNetworkSession ? "Network" : "Local")
 			);
 			return new RootElement ("Endpoints (" + sources + ", " + destinations + ")") {
 				sourcesSection,
@@ -83,17 +81,17 @@ namespace CoreMidiSample
 		{
 			var internalDevices = new Section ("Internal Devices");
 			internalDevices.AddAll (
-				from x in Enumerable.Range (0, (int)Midi.DeviceCount)
+				from x in Enumerable.Range (0, (int) Midi.DeviceCount)
 				let dev = Midi.GetDevice (x)
 				where dev.EntityCount > 0
 				select MakeDevice (dev)
 			);
 			var externalDevices = new Section ("External Devices");
 			externalDevices.AddAll (
-				from x in Enumerable.Range (0, (int)Midi.ExternalDeviceCount)
+				from x in Enumerable.Range (0, (int) Midi.ExternalDeviceCount)
 				let dev = Midi.GetExternalDevice (x)
 				where dev.EntityCount > 0
-				select (Element)MakeDevice (dev)
+				select (Element) MakeDevice (dev)
 			);
 			return new RootElement ("Devices (" + Midi.DeviceCount + ", " + Midi.ExternalDeviceCount + ")") {
 				internalDevices,
@@ -104,21 +102,21 @@ namespace CoreMidiSample
 		Element MakeDevice (MidiDevice dev)
 		{
 			var entities = new Section ("Entities");
-			foreach (var ex in Enumerable.Range(0, (int)dev.EntityCount)) {
+			foreach (var ex in Enumerable.Range (0, (int) dev.EntityCount)) {
 				var entity = dev.GetEntity (ex);
 				var sourceSection = new Section ("Sources");
 				sourceSection.AddAll (
-					from sx in Enumerable.Range (0, (int)entity.Sources)
+					from sx in Enumerable.Range (0, (int) entity.Sources)
 					let endpoint = entity.GetSource (sx)
 					select MakeEndpoint (endpoint)
 				);
 				var destinationSection = new Section ("Destinations");
 				destinationSection.AddAll (
-					from sx in Enumerable.Range (0, (int)entity.Destinations)
+					from sx in Enumerable.Range (0, (int) entity.Destinations)
 					let endpoint = entity.GetDestination (sx)
 					select MakeEndpoint (endpoint)
 				);
-				entities.Add(new RootElement (entity.Name) {
+				entities.Add (new RootElement (entity.Name) {
 					sourceSection,
 					destinationSection
 				});
@@ -157,11 +155,12 @@ namespace CoreMidiSample
 
 		void ReloadDevices ()
 		{
-			BeginInvokeOnMainThread (delegate {
+			BeginInvokeOnMainThread (delegate
+			{
 				hardwareSection.Remove (0);
 				hardwareSection.Remove (0);
-				hardwareSection.Add ((Element)MakeHardware ());
-				hardwareSection.Add ((Element)MakeDevices ());
+				hardwareSection.Add ((Element) MakeHardware ());
+				hardwareSection.Add ((Element) MakeDevices ());
 			});
 		}
 
@@ -172,7 +171,7 @@ namespace CoreMidiSample
 			for (int i = 0; i < Midi.DestinationCount; i++) {
 				var endpoint = MidiEndpoint.GetDestination (i);
 
-				var note = (byte)(rand.Next () % 127);
+				var note = (byte) (rand.Next () % 127);
 
 				// play note
 				outputPort.Send (endpoint, new MidiPacket [] { new MidiPacket (0, new byte [] { 0x90, note, 127 }) });
@@ -189,28 +188,35 @@ namespace CoreMidiSample
 		void SetupMidi ()
 		{
 			client = new MidiClient ("CoreMidiSample MIDI CLient");
-			client.ObjectAdded += delegate(object sender, ObjectAddedOrRemovedEventArgs e) {
+			client.ObjectAdded += delegate (object sender, ObjectAddedOrRemovedEventArgs e)
+			{
 
 			};
-			client.ObjectAdded += delegate {
+			client.ObjectAdded += delegate
+			{
 				ReloadDevices ();
 			};
-			client.ObjectRemoved += delegate {
+			client.ObjectRemoved += delegate
+			{
 				ReloadDevices ();
 			};
-			client.PropertyChanged += delegate(object sender, ObjectPropertyChangedEventArgs e) {
+			client.PropertyChanged += delegate (object sender, ObjectPropertyChangedEventArgs e)
+			{
 				Console.WriteLine ("Changed");
 			};
-			client.ThruConnectionsChanged += delegate {
+			client.ThruConnectionsChanged += delegate
+			{
 				Console.WriteLine ("Thru connections changed");
 			};
-			client.SerialPortOwnerChanged += delegate {
+			client.SerialPortOwnerChanged += delegate
+			{
 				Console.WriteLine ("Serial port changed");
 			};
 
 			outputPort = client.CreateOutputPort ("CoreMidiSample Output Port");
 			inputPort = client.CreateInputPort ("CoreMidiSample Input Port");
-			inputPort.MessageReceived += delegate(object sender, MidiPacketsEventArgs e) {
+			inputPort.MessageReceived += delegate (object sender, MidiPacketsEventArgs e)
+			{
 				Console.WriteLine ("Got {0} packets", e.Packets.Length);
 			};
 			ConnectExistingDevices ();
@@ -231,7 +237,7 @@ namespace CoreMidiSample
 			}
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

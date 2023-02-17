@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
 using UIKit;
 
-namespace Storyboard.Conditional
-{
+namespace Storyboard.Conditional {
 
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		public static UIStoryboard Storyboard = UIStoryboard.FromName ("MainStoryboard", null);
 		public static UIViewController initialViewController;

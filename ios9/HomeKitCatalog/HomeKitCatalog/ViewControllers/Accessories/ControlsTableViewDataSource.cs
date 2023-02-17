@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,16 +6,14 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `UITableViewDataSource` that populates the table in `ControlsViewController`.
-	public class ControlsTableViewDataSource: UITableViewDataSource
-	{
-		static readonly NSString serviceCell = (NSString)"ServiceCell";
-		static readonly NSString unreachableServiceCell = (NSString)"UnreachableServiceCell";
+	public class ControlsTableViewDataSource : UITableViewDataSource {
+		static readonly NSString serviceCell = (NSString) "ServiceCell";
+		static readonly NSString unreachableServiceCell = (NSString) "UnreachableServiceCell";
 
 		Dictionary<string, List<HMService>> serviceTable;
-		string[] sortedKeys;
+		string [] sortedKeys;
 
 		UITableView tableView;
 
@@ -50,7 +48,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return sortedKeys != null ? sortedKeys [(int)section] : null;
+			return sortedKeys != null ? sortedKeys [(int) section] : null;
 		}
 
 		public override nint NumberOfSections (UITableView tableView)
@@ -73,7 +71,7 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			return serviceTable [sortedKeys [(int)section]].Count;
+			return serviceTable [sortedKeys [(int) section]].Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -81,7 +79,7 @@ namespace HomeKitCatalog
 			var service = ServiceForIndexPath (indexPath);
 			var reuseIdentifier = service.Accessory.Reachable ? serviceCell : unreachableServiceCell;
 
-			var cell = (ServiceCell)tableView.DequeueReusableCell (reuseIdentifier, indexPath);
+			var cell = (ServiceCell) tableView.DequeueReusableCell (reuseIdentifier, indexPath);
 			cell.Service = service;
 
 			return cell;

@@ -1,141 +1,120 @@
-﻿
-namespace XamarinShot.Models
-{
-    using Foundation;
-    using SceneKit;
-    using XamarinShot.Models.Enums;
-    using XamarinShot.Utils;
-    using System;
-    using System.Linq;
 
-    public class VictoryInteraction : IInteraction
-    {
-        private const double TimeUntilPhysicsReleased = 10d;
-       
-        private const double FadeTime = 0.5d;
+namespace XamarinShot.Models {
+	using Foundation;
+	using SceneKit;
+	using XamarinShot.Models.Enums;
+	using XamarinShot.Utils;
+	using System;
+	using System.Linq;
 
-        private readonly NSLock @lock = new NSLock(); // need thread protection because main thread is the one that called didWin()
+	public class VictoryInteraction : IInteraction {
+		private const double TimeUntilPhysicsReleased = 10d;
 
-        private readonly SCNNode victoryNode;
+		private const double FadeTime = 0.5d;
 
-        private Team teamWon = Team.None;
+		private readonly NSLock @lock = new NSLock (); // need thread protection because main thread is the one that called didWin()
 
-        private double activationStartTime;
+		private readonly SCNNode victoryNode;
 
-        public VictoryInteraction(IInteractionDelegate @delegate)
-        {
-            this.Delegate = @delegate;
-            this.victoryNode = SCNNodeExtensions.LoadSCNAsset("victory");
-        }
+		private Team teamWon = Team.None;
 
-        public IInteractionDelegate Delegate { get; private set; }
+		private double activationStartTime;
 
-        public bool DisplayedVictory { get; private set; }
+		public VictoryInteraction (IInteractionDelegate @delegate)
+		{
+			this.Delegate = @delegate;
+			this.victoryNode = SCNNodeExtensions.LoadSCNAsset ("victory");
+		}
 
-        public bool GameDone { get; private set; }
+		public IInteractionDelegate Delegate { get; private set; }
 
-        public void ActivateVictory()
-        {
-            if (!this.DisplayedVictory)
-            {
-                this.@lock.Lock();
+		public bool DisplayedVictory { get; private set; }
 
-                if(this.Delegate == null) 
-                {
-                    throw new Exception("No Delegate");
-                }
+		public bool GameDone { get; private set; }
 
-                this.Delegate.AddNodeToLevel(this.victoryNode);
-                this.victoryNode.WorldPosition = new SCNVector3(0f, 15f, 0f);
+		public void ActivateVictory ()
+		{
+			if (!this.DisplayedVictory) {
+				this.@lock.Lock ();
 
-                var eulerAnglesY = teamWon == Team.TeamA ? (float)Math.PI : 0f; // Rotate Victory to face in the right direction
-                this.victoryNode.EulerAngles = new SCNVector3(this.victoryNode.EulerAngles.X, eulerAnglesY, this.victoryNode.EulerAngles.Z);
-                foreach(var child in this.victoryNode.ChildNodes)
-                {
-                    child.PhysicsBody?.ResetTransform();
-                }
+				if (this.Delegate == null) {
+					throw new Exception ("No Delegate");
+				}
 
-                this.DisplayedVictory = true;
-                this.activationStartTime = GameTime.Time;
+				this.Delegate.AddNodeToLevel (this.victoryNode);
+				this.victoryNode.WorldPosition = new SCNVector3 (0f, 15f, 0f);
 
-                // Set color to that of winning team
-                this.victoryNode.SetPaintColors(this.teamWon);
+				var eulerAnglesY = teamWon == Team.TeamA ? (float) Math.PI : 0f; // Rotate Victory to face in the right direction
+				this.victoryNode.EulerAngles = new SCNVector3 (this.victoryNode.EulerAngles.X, eulerAnglesY, this.victoryNode.EulerAngles.Z);
+				foreach (var child in this.victoryNode.ChildNodes) {
+					child.PhysicsBody?.ResetTransform ();
+				}
 
-                this.Delegate.PlayWinSound();
+				this.DisplayedVictory = true;
+				this.activationStartTime = GameTime.Time;
 
-                this.@lock.Unlock();
-            }
-        }
+				// Set color to that of winning team
+				this.victoryNode.SetPaintColors (this.teamWon);
 
-        public void Update(CameraInfo cameraInfo)
-        {
-            if (this.DisplayedVictory)
-            {
-                // Enlarge victory text before falling down
-                this.victoryNode.Opacity = (float)(DigitExtensions.Clamp((GameTime.Time - this.activationStartTime) / FadeTime, 0d, 1d));
+				this.Delegate.PlayWinSound ();
 
-                if (GameTime.Time - this.activationStartTime > TimeUntilPhysicsReleased)
-                {
-                    foreach(var child in this.victoryNode.ChildNodes)
-                    {
-                        if (child.PhysicsBody != null)
-                        {
-                            child.PhysicsBody.VelocityFactor = SCNVector3.One;
-                            child.PhysicsBody.AngularVelocityFactor = SCNVector3.One;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // Update win condition
-                if (this.DidWin() && this.teamWon != Team.None)
-                {
-                    this.ActivateVictory();
-                }
-            }
-        }
+				this.@lock.Unlock ();
+			}
+		}
 
-        public void HandleTouch(TouchType type, Ray camera) { }
+		public void Update (CameraInfo cameraInfo)
+		{
+			if (this.DisplayedVictory) {
+				// Enlarge victory text before falling down
+				this.victoryNode.Opacity = (float) (DigitExtensions.Clamp ((GameTime.Time - this.activationStartTime) / FadeTime, 0d, 1d));
 
-        private bool DidWin()
-        {
-            if(this.Delegate == null)
-            {
-                throw new Exception("No Delegate");
-            }
+				if (GameTime.Time - this.activationStartTime > TimeUntilPhysicsReleased) {
+					foreach (var child in this.victoryNode.ChildNodes) {
+						if (child.PhysicsBody != null) {
+							child.PhysicsBody.VelocityFactor = SCNVector3.One;
+							child.PhysicsBody.AngularVelocityFactor = SCNVector3.One;
+						}
+					}
+				}
+			} else {
+				// Update win condition
+				if (this.DidWin () && this.teamWon != Team.None) {
+					this.ActivateVictory ();
+				}
+			}
+		}
 
-            var catapults = this.Delegate.Catapults;
+		public void HandleTouch (TouchType type, Ray camera) { }
 
-            var teamToCatapultCount = new int[] { 0, 0, 0 };
-            foreach(var catapult in catapults.Where(catapult => !catapult.Disabled))
-            {
-                teamToCatapultCount[(int)catapult.Team] += 1;
-            }
+		private bool DidWin ()
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No Delegate");
+			}
 
-            var gameDone = true;
-            if (teamToCatapultCount[1] == 0 && teamToCatapultCount[2] == 0)
-            {
-                this.teamWon = Team.None;
-            } 
-            else if (teamToCatapultCount[1] == 0)
-            {
-                this.teamWon = Team.TeamB;
-            } 
-            else if (teamToCatapultCount[2] == 0)
-            {
-                this.teamWon = Team.TeamA;
-            }
-            else 
-            {
-                gameDone = false;
-            }
+			var catapults = this.Delegate.Catapults;
 
-            return gameDone;
-        }
+			var teamToCatapultCount = new int [] { 0, 0, 0 };
+			foreach (var catapult in catapults.Where (catapult => !catapult.Disabled)) {
+				teamToCatapultCount [(int) catapult.Team] += 1;
+			}
 
-        public void DidCollision(SCNNode node, SCNNode otherNode, SCNVector3 position, float impulse) { }
+			var gameDone = true;
+			if (teamToCatapultCount [1] == 0 && teamToCatapultCount [2] == 0) {
+				this.teamWon = Team.None;
+			} else if (teamToCatapultCount [1] == 0) {
+				this.teamWon = Team.TeamB;
+			} else if (teamToCatapultCount [2] == 0) {
+				this.teamWon = Team.TeamA;
+			} else {
+				gameDone = false;
+			}
 
-        public void Handle(GameActionType gameAction, Player player) { }
-    }
+			return gameDone;
+		}
+
+		public void DidCollision (SCNNode node, SCNNode otherNode, SCNVector3 position, float impulse) { }
+
+		public void Handle (GameActionType gameAction, Player player) { }
+	}
 }

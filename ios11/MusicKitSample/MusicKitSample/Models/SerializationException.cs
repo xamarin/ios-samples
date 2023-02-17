@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 using System.Runtime.Serialization;
-namespace MusicKitSample.Models
-{
-	public class SerializationException : Exception
-	{
+namespace MusicKitSample.Models {
+	public class SerializationException : Exception {
 		#region Properties
 
 		public string JsonKey { get; private set; }
@@ -14,7 +12,7 @@ namespace MusicKitSample.Models
 
 				if (!string.IsNullOrEmpty (JsonKey))
 					return message + Environment.NewLine + $"The key {JsonKey} is missing.";
-				
+
 				return message;
 			}
 		}

@@ -5,10 +5,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvCollection
-{
-	public partial class CityCollectionViewController : UICollectionViewController
-	{
+namespace tvCollection {
+	public partial class CityCollectionViewController : UICollectionViewController {
 		#region Computed Properties
 		public CityCollectionView Collection {
 			get { return CollectionView as CityCollectionView; }

@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace AdaptivePhotos
-{
-	public class OverlayView : UIView
-	{
+namespace AdaptivePhotos {
+	public class OverlayView : UIView {
 		UILabel label;
 
 		public string Text {
@@ -76,7 +74,7 @@ namespace AdaptivePhotos
 			base.TraitCollectionDidChange (previousTraitCollection);
 
 			if ((TraitCollection.VerticalSizeClass != previousTraitCollection.VerticalSizeClass) ||
-			    (TraitCollection.VerticalSizeClass != previousTraitCollection.HorizontalSizeClass)) {
+				(TraitCollection.VerticalSizeClass != previousTraitCollection.HorizontalSizeClass)) {
 				InvalidateIntrinsicContentSize ();
 			}
 		}

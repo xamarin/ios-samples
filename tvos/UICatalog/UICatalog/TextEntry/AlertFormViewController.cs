@@ -15,7 +15,7 @@ namespace UICatalog {
 		UIAlertAction secureTextAlertAction;
 
 		[Export ("initWithCoder:")]
-		public AlertFormViewController (NSCoder coder): base (coder)
+		public AlertFormViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -55,7 +55,7 @@ namespace UICatalog {
 				textField.Placeholder = "Name";
 				textField.InputAccessoryView = new CustomInputAccessoryView ("Enter your name");
 			});
-				
+
 			alertController.AddTextField (textField => {
 				textField.KeyboardType = UIKeyboardType.EmailAddress;
 				textField.Placeholder = "example@example.com";
@@ -85,7 +85,7 @@ namespace UICatalog {
 		{
 			if (secureTextAlertAction == null)
 				throw new Exception ("secureTextAlertAction has not been set");
-			var textField = (UITextField)sender;
+			var textField = (UITextField) sender;
 
 			var text = textField.Text ?? string.Empty;
 			secureTextAlertAction.Enabled = text.Length >= 5;

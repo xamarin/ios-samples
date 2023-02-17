@@ -36,14 +36,12 @@ using UIKit;
 using AVFoundation;
 using System.Threading.Tasks;
 
-namespace MultichannelMixer
-{
+namespace MultichannelMixer {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 
 		public override UIWindow Window {
@@ -89,7 +87,7 @@ namespace MultichannelMixer
 				throw new ApplicationException ();
 
 			// add interruption handler
-			sessionInstance.BeginInterruption += (object sender, EventArgs e) => ((MultichannelMixerViewController)Window.RootViewController).StopForInterruption ();
+			sessionInstance.BeginInterruption += (object sender, EventArgs e) => ((MultichannelMixerViewController) Window.RootViewController).StopForInterruption ();
 			sessionInstance.EndInterruption += (object sender, EventArgs e) => AVAudioSession.SharedInstance ().SetActive (true); // make sure to activate the session
 
 			// activate the audio session
@@ -99,7 +97,7 @@ namespace MultichannelMixer
 			Debug.Print ("Hardware Sample Rate: {0} Hz", sessionInstance.SampleRate);
 
 			// initialize the mixerController object
-			var controller = (MultichannelMixerViewController)Window.RootViewController;
+			var controller = (MultichannelMixerViewController) Window.RootViewController;
 			controller.Mixer.InitializeAUGraph ();
 		}
 	}

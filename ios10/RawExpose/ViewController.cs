@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 
 using UIKit;
 
-namespace RawExpose
-{
-	public partial class ViewController : UIViewController
-	{
+namespace RawExpose {
+	public partial class ViewController : UIViewController {
 		protected ViewController (IntPtr handle)
 			: base (handle)
 		{

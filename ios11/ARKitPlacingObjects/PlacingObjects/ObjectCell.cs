@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace PlacingObjects
-{
-	[Register("ObjectCell")]
-	public class ObjectCell : UITableViewCell
-	{
+namespace PlacingObjects {
+	[Register ("ObjectCell")]
+	public class ObjectCell : UITableViewCell {
 		public readonly static string Identifier = "ObjectCell";
 
 		[Outlet]
@@ -17,19 +15,17 @@ namespace PlacingObjects
 
 		VirtualObjectDefinition virtualObject;
 
-		public VirtualObjectDefinition VirtualObject
-		{
+		public VirtualObjectDefinition VirtualObject {
 			get => virtualObject;
 
-			set
-			{
+			set {
 				objectTitleLabel.Text = value.DisplayName;
 				objectImageView.Image = value.ThumbImage;
 				virtualObject = value;
 			}
 		}
 
-		public ObjectCell(IntPtr ptr) : base(ptr)
+		public ObjectCell (IntPtr ptr) : base (ptr)
 		{
 
 		}

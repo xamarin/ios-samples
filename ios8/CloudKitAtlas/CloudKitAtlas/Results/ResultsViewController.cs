@@ -8,10 +8,8 @@ using CoreGraphics;
 using ObjCRuntime;
 using CoreFoundation;
 
-namespace CloudKitAtlas
-{
-	public partial class ResultsViewController : ResultOrErrorViewController, IUITableViewDelegate, IUITableViewDataSource, IUIScrollViewDelegate
-	{
+namespace CloudKitAtlas {
+	public partial class ResultsViewController : ResultOrErrorViewController, IUITableViewDelegate, IUITableViewDataSource, IUIScrollViewDelegate {
 		[Outlet]
 		public TableView TableView { get; set; }
 
@@ -91,13 +89,13 @@ namespace CloudKitAtlas
 		{
 			return (Results.Items.Count == 0 || Results.ShowAsList)
 					? Results.Items.Count
-					: Results.Items [0].AttributeList [(int)section].Attributes.Count;
+					: Results.Items [0].AttributeList [(int) section].Attributes.Count;
 		}
 
 		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			if (Results.ShowAsList) {
-				var resultCell = (ResultTableViewCell)tableView.DequeueReusableCell ("ResultCell", indexPath);
+				var resultCell = (ResultTableViewCell) tableView.DequeueReusableCell ("ResultCell", indexPath);
 				var result = Results.Items [indexPath.Row];
 				resultCell.ResultLabel.Text = result.SummaryField ?? string.Empty;
 				resultCell.ChangeLabelWidthConstraint.Constant = 15;
@@ -116,13 +114,13 @@ namespace CloudKitAtlas
 			var attribute = Results.Items [0].AttributeList [indexPath.Section].Attributes [indexPath.Row];
 			var value = attribute.Value;
 			if (value == null) {
-				var attribCell = (AttributeKeyTableViewCell)tableView.DequeueReusableCell ("AttributeKeyCell", indexPath);
+				var attribCell = (AttributeKeyTableViewCell) tableView.DequeueReusableCell ("AttributeKeyCell", indexPath);
 				attribCell.AttributeKey.Text = attribute.Key;
 				return attribCell;
 			}
 
 			if (attribute.Image != null) {
-				var imgCell = (ImageTableViewCell)tableView.DequeueReusableCell ("ImageCell", indexPath);
+				var imgCell = (ImageTableViewCell) tableView.DequeueReusableCell ("ImageCell", indexPath);
 				imgCell.AttributeKey.Text = attribute.Key;
 				imgCell.AttributeValue.Text = string.IsNullOrWhiteSpace (value) ? "-" : value;
 				imgCell.AssetImage.Image = attribute.Image;
@@ -130,7 +128,7 @@ namespace CloudKitAtlas
 			}
 
 			var cellIdentifier = attribute.IsNested ? "NestedAttributeCell" : "AttributeCell";
-			var cell = (AttributeTableViewCell)tableView.DequeueReusableCell (cellIdentifier, indexPath);
+			var cell = (AttributeTableViewCell) tableView.DequeueReusableCell (cellIdentifier, indexPath);
 			cell.AttributeKey.Text = attribute.Key;
 			cell.AttributeValue.Text = string.IsNullOrWhiteSpace (value) ? "-" : value;
 
@@ -148,7 +146,7 @@ namespace CloudKitAtlas
 				return codeSample.ListHeading;
 
 			var result = Results.Items [0];
-			return result.AttributeList [(int)section].Title;
+			return result.AttributeList [(int) section].Title;
 		}
 
 		[Export ("tableView:heightForRowAtIndexPath:")]
@@ -234,7 +232,7 @@ namespace CloudKitAtlas
 			resultsViewController.Results = new Results (new IResult [] { result });
 			resultsViewController.CodeSample = CodeSample;
 			resultsViewController.IsDrilldown = true;
-		
+
 			TableView.DeselectRow (indexPath, false);
 		}
 

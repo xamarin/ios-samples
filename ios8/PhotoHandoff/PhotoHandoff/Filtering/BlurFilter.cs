@@ -1,17 +1,15 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace PhotoHandoff
-{
-	public class BlurFilter : ImageFilter
-	{
+namespace PhotoHandoff {
+	public class BlurFilter : ImageFilter {
 		const string BlurRadiusKey = "kImageFilterBlurRadiusKey";
 		internal const string Key = "BlurFilter";
 
 		public float BlurRadius { get; set; }
 
 		public BlurFilter (bool active)
-			: base(active)
+			: base (active)
 		{
 		}
 

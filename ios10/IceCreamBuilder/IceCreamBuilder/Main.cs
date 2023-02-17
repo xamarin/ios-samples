@@ -1,10 +1,10 @@
-﻿using UIKit;
+using UIKit;
 
 namespace IceCreamBuilder {
 	public class Application {
-		static void Main(string[] args)
+		static void Main (string [] args)
 		{
-			UIApplication.Main(args, null, "AppDelegate");
+			UIApplication.Main (args, null, "AppDelegate");
 		}
 	}
 }

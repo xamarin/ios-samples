@@ -3,11 +3,9 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace Chat
-{
+namespace Chat {
 	[Register ("IncomingCell")]
-	public class IncomingCell : BubbleCell
-	{
+	public class IncomingCell : BubbleCell {
 		static readonly UIImage normalBubbleImage;
 		static readonly UIImage highlightedBubbleImage;
 
@@ -55,7 +53,7 @@ namespace Chat
 			BubbleImage = normalBubbleImage;
 
 			ContentView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[bubble]",
-				0, 
+				0,
 				"bubble", BubbleImageView));
 			ContentView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-2-[bubble]-2-|",
 				0,

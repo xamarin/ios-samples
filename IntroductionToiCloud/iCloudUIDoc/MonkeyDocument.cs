@@ -34,7 +34,7 @@ namespace Cloud {
 			Console.WriteLine ("LoadFromContents({0})", typeName);
 
 			if (contents != null)
-				dataModel = NSString.FromData ((NSData)contents, NSStringEncoding.UTF8);
+				dataModel = NSString.FromData ((NSData) contents, NSStringEncoding.UTF8);
 
 			// LoadFromContents called when an update occurs
 			NSNotificationCenter.DefaultCenter.PostNotificationName ("monkeyDocumentModified", this);
@@ -47,7 +47,7 @@ namespace Cloud {
 			outError = null;
 
 			Console.WriteLine ("ContentsForType({0})", typeName);
-			Console.WriteLine ("DocumentText:{0}",dataModel);
+			Console.WriteLine ("DocumentText:{0}", dataModel);
 
 			NSData docData = dataModel.Encode (NSStringEncoding.UTF8);
 			return docData;

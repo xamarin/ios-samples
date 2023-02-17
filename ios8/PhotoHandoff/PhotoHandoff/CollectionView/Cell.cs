@@ -1,23 +1,21 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace PhotoHandoff
-{
-	[Register("Cell")]
-	public class Cell : UICollectionViewCell
-	{
+namespace PhotoHandoff {
+	[Register ("Cell")]
+	public class Cell : UICollectionViewCell {
 		UIColor labelColor;
 
-		[Outlet("image")]
+		[Outlet ("image")]
 		public UIImageView Image { get; set; }
 
-		[Outlet("label")]
+		[Outlet ("label")]
 		public UILabel Label { get; set; }
 
 		public Cell (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 			SelectedBackgroundView = new CustomCellBackground ();
 		}

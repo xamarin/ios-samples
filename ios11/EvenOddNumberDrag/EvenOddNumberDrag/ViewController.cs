@@ -1,127 +1,115 @@
-﻿using System;
+using System;
 using UIKit;
 using Foundation;
 
-namespace EvenOddNumberDrag
-{
-    public partial class ViewController : UIViewController, IUIDragInteractionDelegate, IUIDropInteractionDelegate
-    {
-        #region Fields
+namespace EvenOddNumberDrag {
+	public partial class ViewController : UIViewController, IUIDragInteractionDelegate, IUIDropInteractionDelegate {
+		#region Fields
 
-        Random random;
-        UIDropInteraction evenDropInteraction;
-        UIDropInteraction oddDropInteraction;
+		Random random;
+		UIDropInteraction evenDropInteraction;
+		UIDropInteraction oddDropInteraction;
 
-        #endregion
+		#endregion
 
-        #region Constructors
+		#region Constructors
 
-        protected ViewController(IntPtr handle) : base(handle) { }
+		protected ViewController (IntPtr handle) : base (handle) { }
 
-        #endregion
+		#endregion
 
-        #region UIViewController overrides
+		#region UIViewController overrides
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-            SetupDragAndDrop();
+			SetupDragAndDrop ();
 
-            random = new Random();
-            GenerateNumber();
-        }
+			random = new Random ();
+			GenerateNumber ();
+		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
+		public override void DidReceiveMemoryWarning ()
+		{
+			base.DidReceiveMemoryWarning ();
+		}
 
-        #endregion
+		#endregion
 
-        #region Methods
+		#region Methods
 
-        protected void SetupDragAndDrop()
-        {
-            NumberLabel.UserInteractionEnabled = true;
-            EvenNumbersLabel.UserInteractionEnabled = true;
-            OddNumbersLabel.UserInteractionEnabled = true;
+		protected void SetupDragAndDrop ()
+		{
+			NumberLabel.UserInteractionEnabled = true;
+			EvenNumbersLabel.UserInteractionEnabled = true;
+			OddNumbersLabel.UserInteractionEnabled = true;
 
-            var numberDragInteraction = new UIDragInteraction(this);
-            NumberLabel.AddInteraction(numberDragInteraction);
+			var numberDragInteraction = new UIDragInteraction (this);
+			NumberLabel.AddInteraction (numberDragInteraction);
 
-            // On iPad, this defaults to true. On iPhone, this defaults to 
-            // false. Since this app should work on the iPhone, enable the the 
-            // drag interaction.
-            numberDragInteraction.Enabled = true;
+			// On iPad, this defaults to true. On iPhone, this defaults to 
+			// false. Since this app should work on the iPhone, enable the the 
+			// drag interaction.
+			numberDragInteraction.Enabled = true;
 
-            evenDropInteraction = new UIDropInteraction(this);
-            EvenNumbersLabel.AddInteraction(evenDropInteraction);
-            oddDropInteraction = new UIDropInteraction(this);
-            OddNumbersLabel.AddInteraction(oddDropInteraction);
-        }
+			evenDropInteraction = new UIDropInteraction (this);
+			EvenNumbersLabel.AddInteraction (evenDropInteraction);
+			oddDropInteraction = new UIDropInteraction (this);
+			OddNumbersLabel.AddInteraction (oddDropInteraction);
+		}
 
-        protected void GenerateNumber()
-        {
-            NumberLabel.Text = random.Next(500).ToString();
-        }
+		protected void GenerateNumber ()
+		{
+			NumberLabel.Text = random.Next (500).ToString ();
+		}
 
-        #endregion 
+		#endregion
 
-        #region IUIDragInteractionDelegate
+		#region IUIDragInteractionDelegate
 
-        public UIDragItem[] GetItemsForBeginningSession(UIDragInteraction interaction, IUIDragSession session)
-        {
-            bool isEven = Convert.ToInt16(NumberLabel.Text) % 2 == 0;
-            var provider = new NSItemProvider(new NSString(NumberLabel.Text));
-            var item = new UIDragItem(provider)
-            {
-                LocalObject = new NSNumber(isEven)
-            };
-            return new UIDragItem[] { item };
-        }
+		public UIDragItem [] GetItemsForBeginningSession (UIDragInteraction interaction, IUIDragSession session)
+		{
+			bool isEven = Convert.ToInt16 (NumberLabel.Text) % 2 == 0;
+			var provider = new NSItemProvider (new NSString (NumberLabel.Text));
+			var item = new UIDragItem (provider) {
+				LocalObject = new NSNumber (isEven)
+			};
+			return new UIDragItem [] { item };
+		}
 
-        #endregion
+		#endregion
 
-        #region IUIDropInteractionDelegate
+		#region IUIDropInteractionDelegate
 
-        [Export("dropInteraction:sessionDidUpdate:")]
-        public UIDropProposal SessionDidUpdate(UIDropInteraction interaction, IUIDropSession session)
-        {
-            UIDropProposal proposal;
-            var isEven = (session.Items[0].LocalObject as NSNumber).BoolValue;
-            if( interaction == oddDropInteraction && !isEven ) 
-            {
-                proposal = new UIDropProposal(UIDropOperation.Copy);
-            }
-            else if( interaction == evenDropInteraction && isEven )
-            {
-                proposal = new UIDropProposal(UIDropOperation.Copy);
-            }
-            else
-            {
-                proposal = new UIDropProposal(UIDropOperation.Forbidden);
-            }
-            return proposal;
-        }
+		[Export ("dropInteraction:sessionDidUpdate:")]
+		public UIDropProposal SessionDidUpdate (UIDropInteraction interaction, IUIDropSession session)
+		{
+			UIDropProposal proposal;
+			var isEven = (session.Items [0].LocalObject as NSNumber).BoolValue;
+			if (interaction == oddDropInteraction && !isEven) {
+				proposal = new UIDropProposal (UIDropOperation.Copy);
+			} else if (interaction == evenDropInteraction && isEven) {
+				proposal = new UIDropProposal (UIDropOperation.Copy);
+			} else {
+				proposal = new UIDropProposal (UIDropOperation.Forbidden);
+			}
+			return proposal;
+		}
 
-        [Export("dropInteraction:performDrop:")]
-        public void PerformDrop(UIDropInteraction interaction, IUIDropSession session)
-        {
-            var label = interaction == oddDropInteraction ? OddNumbersLabel : EvenNumbersLabel;
-            session.LoadObjects<NSString>(strings =>
-            {
-                if (String.IsNullOrEmpty(label.Text))
-                {
-                    label.Text = strings[0];
-                }
-                else
-                {
-                    label.Text = $"{strings[0]}, {label.Text}";
-                }
-            });
-            GenerateNumber();
-        }
-        #endregion
-    }
+		[Export ("dropInteraction:performDrop:")]
+		public void PerformDrop (UIDropInteraction interaction, IUIDropSession session)
+		{
+			var label = interaction == oddDropInteraction ? OddNumbersLabel : EvenNumbersLabel;
+			session.LoadObjects<NSString> (strings => {
+				if (String.IsNullOrEmpty (label.Text)) {
+					label.Text = strings [0];
+				} else {
+					label.Text = $"{strings [0]}, {label.Text}";
+				}
+			});
+			GenerateNumber ();
+		}
+		#endregion
+	}
 }

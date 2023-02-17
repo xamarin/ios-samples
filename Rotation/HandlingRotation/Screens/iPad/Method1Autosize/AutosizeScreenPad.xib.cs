@@ -14,18 +14,18 @@ namespace HandlingRotation.Screens.iPad.Method1Autosize {
 		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
-		public AutosizeScreenPad (IntPtr handle) : base(handle)
+		public AutosizeScreenPad (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public AutosizeScreenPad (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public AutosizeScreenPad (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public AutosizeScreenPad () : base("AutosizeScreen", null)
+		public AutosizeScreenPad () : base ("AutosizeScreen", null)
 		{
 			Initialize ();
 		}
@@ -56,14 +56,13 @@ namespace HandlingRotation.Screens.iPad.Method1Autosize {
 			// we're passed to orientation that it will rotate to. in our case, we could
 			// just return true, but this switch illustrates how you can test for the
 			// different cases
-			switch (toInterfaceOrientation)
-			{
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
-				default:
-					return true;
+			switch (toInterfaceOrientation) {
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+			default:
+				return true;
 			}
 		}
 
@@ -81,14 +80,14 @@ namespace HandlingRotation.Screens.iPad.Method1Autosize {
 			tableItems.Add ("Elbow");
 		}
 
-		[Export("tableView:numberOfRowsInSection:")]
+		[Export ("tableView:numberOfRowsInSection:")]
 		public int RowsInSection (UITableView tableView, int section)
 		{
 			Console.WriteLine ("RowsInSection");
 			return tableItems.Count;
 		}
 
-		[Export("tableView:cellForRowAtIndexPath:")]
+		[Export ("tableView:cellForRowAtIndexPath:")]
 		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			Console.WriteLine ("GetCell");
@@ -104,7 +103,7 @@ namespace HandlingRotation.Screens.iPad.Method1Autosize {
 			}
 
 			// set the cell properties
-			cell.TextLabel.Text = this.tableItems[indexPath.Row];
+			cell.TextLabel.Text = this.tableItems [indexPath.Row];
 
 			// return the cell
 			return cell;

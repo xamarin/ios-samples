@@ -1,73 +1,65 @@
-﻿
-namespace XamarinShot.Models.GestureRecognizers
-{
-    using Foundation;
-    using System;
-    using UIKit;
 
-    /// <summary>
-    /// A custom rotation gesture reconizer that fires only when a threshold is passed.
-    /// </summary>
-    [Register("ThresholdRotationGestureRecognizer")]
-    public class ThresholdRotationGestureRecognizer : UIRotationGestureRecognizer
-    {
-        /// The threshold in screen pixels after which this gesture is detected.
-        private static float Threshold = (float)Math.PI / 18f; // (10°)
+namespace XamarinShot.Models.GestureRecognizers {
+	using Foundation;
+	using System;
+	using UIKit;
 
-        private nfloat previousRotation = 0f;
+	/// <summary>
+	/// A custom rotation gesture reconizer that fires only when a threshold is passed.
+	/// </summary>
+	[Register ("ThresholdRotationGestureRecognizer")]
+	public class ThresholdRotationGestureRecognizer : UIRotationGestureRecognizer {
+		/// The threshold in screen pixels after which this gesture is detected.
+		private static float Threshold = (float) Math.PI / 18f; // (10°)
 
-        private nfloat rotationDelta = 0f;
+		private nfloat previousRotation = 0f;
 
-        public ThresholdRotationGestureRecognizer(IntPtr handle) : base(handle) { }
+		private nfloat rotationDelta = 0f;
 
-        /// <summary>
-        /// Indicates whether the currently active gesture has exceeeded the threshold.
-        /// </summary>
-        public bool IsThresholdExceeded { get; private set; }
+		public ThresholdRotationGestureRecognizer (IntPtr handle) : base (handle) { }
 
-        /// <summary>
-        /// Observe when the gesture's `state` changes to reset the threshold.
-        /// </summary>
-        public override UIGestureRecognizerState State
-        {
-            get
-            {
-                return base.State;
-            }
+		/// <summary>
+		/// Indicates whether the currently active gesture has exceeeded the threshold.
+		/// </summary>
+		public bool IsThresholdExceeded { get; private set; }
 
-            set
-            {
-                base.State = value;
-                switch (base.State)
-                {
-                    case UIGestureRecognizerState.Began:
-                    case UIGestureRecognizerState.Changed:
-                        break;
-                    default:
-                        // Reset threshold check.
-                        this.IsThresholdExceeded = false;
-                        this.previousRotation = 0f;
-                        this.rotationDelta = 0f;
-                        break;
-                }
-            }
-        }
+		/// <summary>
+		/// Observe when the gesture's `state` changes to reset the threshold.
+		/// </summary>
+		public override UIGestureRecognizerState State {
+			get {
+				return base.State;
+			}
 
-        public override void TouchesMoved(NSSet touches, UIEvent evt)
-        {
-            base.TouchesMoved(touches, evt);
+			set {
+				base.State = value;
+				switch (base.State) {
+				case UIGestureRecognizerState.Began:
+				case UIGestureRecognizerState.Changed:
+					break;
+				default:
+					// Reset threshold check.
+					this.IsThresholdExceeded = false;
+					this.previousRotation = 0f;
+					this.rotationDelta = 0f;
+					break;
+				}
+			}
+		}
 
-            if (this.IsThresholdExceeded)
-            {
-                this.rotationDelta = this.Rotation - this.previousRotation;
-                this.previousRotation = this.Rotation;
-            }
+		public override void TouchesMoved (NSSet touches, UIEvent evt)
+		{
+			base.TouchesMoved (touches, evt);
 
-            if (!this.IsThresholdExceeded && Math.Abs(this.Rotation) > ThresholdRotationGestureRecognizer.Threshold)
-            {
-                this.IsThresholdExceeded = true;
-                this.previousRotation = this.Rotation;
-            }
-        }
-    }
+			if (this.IsThresholdExceeded) {
+				this.rotationDelta = this.Rotation - this.previousRotation;
+				this.previousRotation = this.Rotation;
+			}
+
+			if (!this.IsThresholdExceeded && Math.Abs (this.Rotation) > ThresholdRotationGestureRecognizer.Threshold) {
+				this.IsThresholdExceeded = true;
+				this.previousRotation = this.Rotation;
+			}
+		}
+	}
 }

@@ -5,17 +5,15 @@ using Foundation;
 using System.Collections.Generic;
 using CoreGraphics;
 
-namespace TransitionsDemo.AnimationControllers
-{
-	public class CEFlipAnimationController : CEReversibleAnimationController
-	{
+namespace TransitionsDemo.AnimationControllers {
+	public class CEFlipAnimationController : CEReversibleAnimationController {
 		public CEFlipAnimationController ()
 		{
 		}
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
-		                                        UIViewController fromViewController, UIViewController toViewController,
-		                                        UIView fromView, UIView toView)
+												UIViewController fromViewController, UIViewController toViewController,
+												UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 			containerView.AddSubview (toView);
@@ -47,12 +45,12 @@ namespace TransitionsDemo.AnimationControllers
 			UpdateAnchorPointAndOffset (new CGPoint (Reverse ? 0f : 1f, 0.5f), flippedSectionOfFromView);
 			UpdateAnchorPointAndOffset (new CGPoint (Reverse ? 1f : 0f, 0.5f), flippedSectionOfToView);
 
-			flippedSectionOfToView.Layer.Transform = Rotate (Reverse ? (float)Math.PI / 2 : -(float)Math.PI / 2);
+			flippedSectionOfToView.Layer.Transform = Rotate (Reverse ? (float) Math.PI / 2 : -(float) Math.PI / 2);
 			double duration = TransitionDuration (transitionContext);
 
 			Action animations = () => {
 				UIView.AddKeyframeWithRelativeStartTime (0.0, 0.5, () => {
-					flippedSectionOfFromView.Layer.Transform = Rotate (Reverse ? -(float)Math.PI / 2 : (float)Math.PI / 2);
+					flippedSectionOfFromView.Layer.Transform = Rotate (Reverse ? -(float) Math.PI / 2 : (float) Math.PI / 2);
 					flippedSectionOfFromViewShadow.Alpha = 1f;
 				});
 
@@ -92,14 +90,14 @@ namespace TransitionsDemo.AnimationControllers
 
 			var shadowView = new UIView (viewWithShadow.Bounds);
 
-			var colors = new CGColor[] {
+			var colors = new CGColor [] {
 				UIColor.FromWhiteAlpha(0f, 0f).CGColor,
 				UIColor.FromWhiteAlpha(0f, 0.5f).CGColor
 			};
 
 			var gradient = new CAGradientLayer () {
 				Frame = shadowView.Bounds,
-				Colors =  colors
+				Colors = colors
 			};
 
 			gradient.StartPoint = new CGPoint (reverse ? 0f : 1f, 0f);
@@ -134,7 +132,7 @@ namespace TransitionsDemo.AnimationControllers
 		private void UpdateAnchorPointAndOffset (CGPoint anchorPoint, UIView view)
 		{
 			view.Layer.AnchorPoint = anchorPoint;
-			float newX = (float)(view.Frame.X + (anchorPoint.X - 0.5f) * view.Frame.Width);
+			float newX = (float) (view.Frame.X + (anchorPoint.X - 0.5f) * view.Frame.Width);
 			view.Frame = new CGRect (newX, view.Frame.Y, view.Frame.Width, view.Frame.Height);
 		}
 

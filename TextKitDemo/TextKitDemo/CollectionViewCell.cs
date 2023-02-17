@@ -4,10 +4,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace TextKitDemo
-{
-	public partial class CollectionViewCell : UICollectionViewCell
-	{
+namespace TextKitDemo {
+	public partial class CollectionViewCell : UICollectionViewCell {
 		public CollectionViewCell (IntPtr handle) : base (handle)
 		{
 			Initialize ();
@@ -24,7 +22,8 @@ namespace TextKitDemo
 			BackgroundColor = UIColor.DarkGray;
 			Layer.CornerRadius = 5;
 
-			UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate {
+			UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate
+			{
 				CalculateAndSetFonts ();
 			});
 		}

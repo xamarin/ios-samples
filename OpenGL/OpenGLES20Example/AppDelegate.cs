@@ -4,11 +4,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace OpenGLES20Example
-{
+namespace OpenGLES20Example {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)

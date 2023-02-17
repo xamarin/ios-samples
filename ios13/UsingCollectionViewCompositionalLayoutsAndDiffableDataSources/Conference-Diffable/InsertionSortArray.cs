@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -22,7 +22,7 @@ namespace Conference_Diffable {
 			public SortNode (int value, int maxValue)
 			{
 				Value = value;
-				var hue = value / (nfloat)maxValue;
+				var hue = value / (nfloat) maxValue;
 				Color = UIColor.FromHSBA (hue, 1, 1, 1);
 
 				Id = new NSUuid ().ToString ();
@@ -43,7 +43,7 @@ namespace Conference_Diffable {
 			}
 
 			public static bool operator != (SortNode left, SortNode right) => !(left == right);
-			public override bool Equals (object obj) => this == (SortNode)obj;
+			public override bool Equals (object obj) => this == (SortNode) obj;
 			public bool Equals (SortNode other) => Id == other.Id;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Id);
 		}
@@ -56,7 +56,7 @@ namespace Conference_Diffable {
 
 		public InsertionSortArray (int count)
 		{
-			Nodes = Enumerable.Range (0, count).Select (i =>  new SortNode (i, count)).ToArray ();
+			Nodes = Enumerable.Range (0, count).Select (i => new SortNode (i, count)).ToArray ();
 			SortNodes ();
 			Id = new NSUuid ().ToString ();
 		}
@@ -115,7 +115,7 @@ namespace Conference_Diffable {
 		}
 
 		public static bool operator != (InsertionSortArray left, InsertionSortArray right) => !(left == right);
-		public override bool Equals (object obj) => this == (InsertionSortArray)obj;
+		public override bool Equals (object obj) => this == (InsertionSortArray) obj;
 		public bool Equals (InsertionSortArray other) => Id == other.Id;
 		public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Id);
 	}

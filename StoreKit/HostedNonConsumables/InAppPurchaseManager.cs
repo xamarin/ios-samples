@@ -8,19 +8,17 @@ using StoreKit;
 
 using SharedCode;
 
-namespace NonConsumables
-{
-	public class InAppPurchaseManager : PurchaseManager
-	{
+namespace NonConsumables {
+	public class InAppPurchaseManager : PurchaseManager {
 		protected override void CompleteTransaction (string productId)
 		{
 			// Register the purchase, so it is remembered for next time
-			HostedProductManager.Purchase(productId);
+			HostedProductManager.Purchase (productId);
 		}
 
 		protected override void RestoreTransaction (string productId)
 		{
-			HostedProductManager.Purchase(productId); // it's as though it was purchased again
+			HostedProductManager.Purchase (productId); // it's as though it was purchased again
 		}
 
 		/// <summary>
@@ -38,13 +36,13 @@ namespace NonConsumables
 				System.IO.Directory.CreateDirectory (targetfolder);
 
 			foreach (var file in System.IO.Directory.EnumerateFiles
-			         (System.IO.Path.Combine(download.ContentUrl.Path,"Contents"))) {
+					 (System.IO.Path.Combine (download.ContentUrl.Path, "Contents"))) {
 				Console.WriteLine (" file to copy  " + file);
 
 				var fileName = file.Substring (file.LastIndexOf ("/") + 1);
-				var newFilePath = System.IO.Path.Combine(targetfolder, fileName);
+				var newFilePath = System.IO.Path.Combine (targetfolder, fileName);
 
-				if (!System.IO.File.Exists(newFilePath))
+				if (!System.IO.File.Exists (newFilePath))
 					System.IO.File.Copy (file, newFilePath);
 				else
 					Console.WriteLine ("already exists " + newFilePath);

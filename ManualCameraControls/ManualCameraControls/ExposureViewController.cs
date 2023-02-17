@@ -8,10 +8,8 @@ using UIKit;
 using ObjCRuntime;
 using System.Runtime.InteropServices;
 
-namespace ManualCameraControls
-{
-	public partial class ExposureViewController : UIViewController
-	{
+namespace ManualCameraControls {
+	public partial class ExposureViewController : UIViewController {
 		#region Private Variables
 
 		bool Automatic = true;
@@ -28,7 +26,7 @@ namespace ManualCameraControls
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
 			get {
-				return (AppDelegate)UIApplication.SharedApplication.Delegate;
+				return (AppDelegate) UIApplication.SharedApplication.Delegate;
 			}
 		}
 
@@ -57,7 +55,7 @@ namespace ManualCameraControls
 		/// <param name="time">Time.</param>
 		float CMTimeGetSeconds (CMTime time)
 		{
-			return (float)time.Value / (float)time.TimeScale;
+			return (float) time.Value / (float) time.TimeScale;
 		}
 
 		#endregion
@@ -103,7 +101,7 @@ namespace ManualCameraControls
 					var minDurationSeconds = Math.Max (CMTimeGetSeconds (ThisApp.CaptureDevice.ActiveFormat.MinExposureDuration), ExposureMinimumDuration);
 					var maxDurationSeconds = CMTimeGetSeconds (ThisApp.CaptureDevice.ActiveFormat.MaxExposureDuration);
 					var p = (newDurationSeconds - minDurationSeconds) / (maxDurationSeconds - minDurationSeconds);
-					Duration.Value = (float)Math.Pow (p, 1.0f / ExposureDurationPower);
+					Duration.Value = (float) Math.Pow (p, 1.0f / ExposureDurationPower);
 				});
 
 				ISO.BeginInvokeOnMainThread (() => {
@@ -124,7 +122,7 @@ namespace ManualCameraControls
 					// Take action based on the segment selected
 					switch (Segments.SelectedSegment) {
 					case 0:
-					// Activate auto exposure and start monitoring position
+						// Activate auto exposure and start monitoring position
 						Duration.Enabled = false;
 						ISO.Enabled = false;
 						ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.ContinuousAutoExposure;
@@ -132,7 +130,7 @@ namespace ManualCameraControls
 						Automatic = true;
 						break;
 					case 1:
-					// Lock exposure and allow the user to control the camera
+						// Lock exposure and allow the user to control the camera
 						SampleTimer.Stop ();
 						ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.Locked;
 						Automatic = false;
@@ -140,7 +138,7 @@ namespace ManualCameraControls
 						ISO.Enabled = false;
 						break;
 					case 2:
-					// Custom exposure and allow the user to control the camera
+						// Custom exposure and allow the user to control the camera
 						SampleTimer.Stop ();
 						ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.Custom;
 						Automatic = false;
@@ -165,7 +163,7 @@ namespace ManualCameraControls
 				var p = Math.Pow (Duration.Value, ExposureDurationPower);
 				var minDurationSeconds = Math.Max (ThisApp.CaptureDevice.ActiveFormat.MinExposureDuration.Seconds, ExposureMinimumDuration);
 				var maxDurationSeconds = ThisApp.CaptureDevice.ActiveFormat.MaxExposureDuration.Seconds;
-				var newDurationSeconds = p * (maxDurationSeconds - minDurationSeconds ) + minDurationSeconds;
+				var newDurationSeconds = p * (maxDurationSeconds - minDurationSeconds) + minDurationSeconds;
 
 				NSError err;
 				// Update Focus position

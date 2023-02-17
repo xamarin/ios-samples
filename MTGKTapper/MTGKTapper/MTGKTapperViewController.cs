@@ -4,10 +4,8 @@ using Foundation;
 using UIKit;
 using GameKit;
 
-namespace MTGKTapper
-{
-	public partial class MTGKTapperViewController : UIViewController
-	{
+namespace MTGKTapper {
+	public partial class MTGKTapperViewController : UIViewController {
 		const string EasyLeaderboardID = "com.appledts.EasyTapList";
 		const string HardLeaderboardID = "com.appledts.HardTapList";
 		const string AwesomeLeaderboardID = "com.appledts.AwesomeTapList";
@@ -36,7 +34,7 @@ namespace MTGKTapper
 			// Perform any additional setup after loading the view, typically from a nib.
 			InitGameCenter ();
 
-			string[] categories = { "Easy", "Hard", "Awesome" };
+			string [] categories = { "Easy", "Hard", "Awesome" };
 			var selectCategory = new UIActionSheet ("Choose Leaderboard", null, "Cancel", null, categories);
 			selectCategory.Dismissed += (sender, e) => {
 				switch (e.ButtonIndex) {

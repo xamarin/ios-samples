@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 using UIKit;
@@ -6,10 +6,8 @@ using CoreImage;
 using Foundation;
 using CoreGraphics;
 
-namespace LookInside
-{
-	public class OverlayViewController : UIViewController
-	{
+namespace LookInside {
+	public class OverlayViewController : UIViewController {
 		CIImage baseCIImage;
 
 		UIVisualEffectView backgroundView;
@@ -44,7 +42,7 @@ namespace LookInside
 			}
 		}
 
-		public OverlayViewController()
+		public OverlayViewController ()
 		{
 			ModalPresentationStyle = UIModalPresentationStyle.Custom;
 			Setup ();
@@ -54,7 +52,7 @@ namespace LookInside
 		{
 			base.ViewDidLoad ();
 
-			foregroundContentView = new UIVisualEffectView(UIVibrancyEffect.FromBlurEffect(blurEffect));
+			foregroundContentView = new UIVisualEffectView (UIVibrancyEffect.FromBlurEffect (blurEffect));
 			backgroundView = new UIVisualEffectView (blurEffect);
 			foregroundContentScrollView = new UIScrollView ();
 
@@ -68,18 +66,18 @@ namespace LookInside
 			UpdateLabels ();
 		}
 
-		void ConfigureCIObjects()
+		void ConfigureCIObjects ()
 		{
 			baseCIImage = CIImage.FromCGImage (PhotoView.Image.CGImage);
 		}
 
-		void OnSliderChanged(object sender, EventArgs e)
+		void OnSliderChanged (object sender, EventArgs e)
 		{
 			UpdateLabels ();
 			ApplyFilters ();
 		}
 
-		void UpdateLabels()
+		void UpdateLabels ()
 		{
 			// Update labels
 			hueLabel.Text = string.Format ("Hue: {0}", hueSlider.Value);
@@ -87,7 +85,7 @@ namespace LookInside
 			brightnessLabel.Text = string.Format ("Brightness: {0}", brightnessSlider.Value);
 		}
 
-		void ApplyFilters()
+		void ApplyFilters ()
 		{
 			float hue = hueSlider.Value;
 			float saturation = saturationSlider.Value;
@@ -96,14 +94,14 @@ namespace LookInside
 			// Apply effects to image
 			CIImage result = null;
 
-			using(var colorControlsFilter = new CIColorControls ()) {
+			using (var colorControlsFilter = new CIColorControls ()) {
 				colorControlsFilter.Image = baseCIImage;
 				colorControlsFilter.Saturation = saturation;
 				colorControlsFilter.Brightness = brightness;
 				result = colorControlsFilter.OutputImage;
 			}
 
-			using(var hueAdjustFilter = new CIHueAdjust ()) {
+			using (var hueAdjustFilter = new CIHueAdjust ()) {
 				hueAdjustFilter.Image = result;
 				hueAdjustFilter.Angle = hue;
 				result = hueAdjustFilter.OutputImage;
@@ -122,7 +120,7 @@ namespace LookInside
 			result.Dispose ();
 		}
 
-		void OnSaveClicked(object sender, EventArgs e)
+		void OnSaveClicked (object sender, EventArgs e)
 		{
 			PhotoView.Image.Dispose ();
 			PhotoView.Image = imageView.Image;
@@ -130,7 +128,7 @@ namespace LookInside
 			});
 		}
 
-		UISlider ConfiguredOverlaySlider()
+		UISlider ConfiguredOverlaySlider ()
 		{
 			UISlider slider = new UISlider ();
 			slider.TranslatesAutoresizingMaskIntoConstraints = false;
@@ -139,7 +137,7 @@ namespace LookInside
 			return slider;
 		}
 
-		void Setup()
+		void Setup ()
 		{
 			imageView = new UIImageView ();
 			imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
@@ -147,7 +145,7 @@ namespace LookInside
 			blurEffect = UIBlurEffect.FromStyle (UIBlurEffectStyle.ExtraLight);
 		}
 
-		void ConfigureViews()
+		void ConfigureViews ()
 		{
 			View.BackgroundColor = UIColor.Clear;
 
@@ -192,53 +190,53 @@ namespace LookInside
 			foregroundContentScrollView.AddSubview (imageView);
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[backgroundView]|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"backgroundView", backgroundView));
-			View.AddConstraints (NSLayoutConstraint.FromVisualFormat("V:|[backgroundView]|",
-				(NSLayoutFormatOptions)0,
+			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[backgroundView]|",
+				(NSLayoutFormatOptions) 0,
 				"backgroundView", backgroundView));
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[foregroundContentScrollView]|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"foregroundContentScrollView", foregroundContentScrollView));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[foregroundContentScrollView]|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"foregroundContentScrollView", foregroundContentScrollView));
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[foregroundContentView]|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"foregroundContentView", foregroundContentView));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[foregroundContentView]|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"foregroundContentView", foregroundContentView));
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[hueLabel]-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"hueLabel", hueLabel));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[hueSlider]-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"hueSlider", hueSlider));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[saturationLabel]-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"saturationLabel", saturationLabel));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[saturationSlider]-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"saturationSlider", saturationSlider));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[brightnessLabel]-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"brightnessLabel", brightnessLabel));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[brightnessSlider]-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"brightnessSlider", brightnessSlider));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|-[saveButton]-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"saveButton", saveButton));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[imageView(==foregroundContentScrollView)]|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"imageView", imageView,
 				"foregroundContentScrollView", foregroundContentScrollView));
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-(>=30)-[hueLabel]-[hueSlider]-[saturationLabel]-[saturationSlider]-[brightnessLabel]-[brightnessSlider]-[saveButton]-(>=10)-[imageView(==200)]|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"hueLabel", hueLabel,
 				"hueSlider", hueSlider,
 				"saturationLabel", saturationLabel,
@@ -249,7 +247,7 @@ namespace LookInside
 				"imageView", imageView));
 		}
 
-		void PrepareForReuse()
+		void PrepareForReuse ()
 		{
 			imageView.Image = PhotoView.Image;
 

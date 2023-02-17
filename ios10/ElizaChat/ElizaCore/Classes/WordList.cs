@@ -3,12 +3,10 @@
 
 using System.Collections.Generic;
 
-namespace ElizaCore
-{
+namespace ElizaCore {
 	/// <summary>Eliza word list.</summary>
 	/// <remarks>Eliza word list.</remarks>
-	public class WordList : List<string>
-	{
+	public class WordList : List<string> {
 		private const long serialVersionUID = 1L;
 
 		/// <summary>Print a word list on one line.</summary>
@@ -16,7 +14,7 @@ namespace ElizaCore
 		public virtual void Print (int indent)
 		{
 			for (int i = 0; i < Count; i++) {
-				string s = (string)this [i];
+				string s = (string) this [i];
 				ConsoleSurrogate.Write (s + "  ");
 			}
 			ConsoleSurrogate.WriteLine ();
@@ -30,7 +28,7 @@ namespace ElizaCore
 		internal virtual bool Find (string s)
 		{
 			for (int i = 0; i < Count; i++) {
-				if (s.Equals ((string)this [i])) {
+				if (s.Equals ((string) this [i])) {
 					return true;
 				}
 			}

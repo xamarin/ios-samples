@@ -11,7 +11,7 @@ namespace MonoCatalog {
 
 	public partial class SegmentViewController : UIViewController {
 
-		public SegmentViewController () : base ("SegmentViewController", null) {}
+		public SegmentViewController () : base ("SegmentViewController", null) { }
 
 		UILabel MakeLabel (string title, CGRect frame)
 		{
@@ -19,7 +19,7 @@ namespace MonoCatalog {
 				TextAlignment = UITextAlignment.Left,
 				Text = title,
 				Font = UIFont.BoldSystemFontOfSize (17f),
-				TextColor = new UIColor (76/255f, 86/255f, 108/255f, 1.0f),
+				TextColor = new UIColor (76 / 255f, 86 / 255f, 108 / 255f, 1.0f),
 				BackgroundColor = UIColor.Clear
 			};
 		}
@@ -40,7 +40,7 @@ namespace MonoCatalog {
 			var segmentedControl = new UISegmentedControl (new object [] {
 					UIImage.FromFile ("images/segment_check.png"),
 					UIImage.FromFile ("images/segment_search.png"),
-					UIImage.FromFile ("images/segment_tools.png")}){
+					UIImage.FromFile ("images/segment_tools.png")}) {
 				Frame = new CGRect (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Plain,
 				SelectedSegment = 1,
@@ -52,13 +52,14 @@ namespace MonoCatalog {
 			View.AddSubview (MakeLabel ("UISegmentedControlStyleBordered", new CGRect (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
 
-			segmentedControl = new UISegmentedControl (items){
+			segmentedControl = new UISegmentedControl (items) {
 				Frame = new CGRect (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Bordered,
 				SelectedSegment = 1,
 				AccessibilityLabel = "Bordered"
 			};
-			segmentedControl.ValueChanged += delegate {
+			segmentedControl.ValueChanged += delegate
+			{
 				Console.WriteLine ("Value changed");
 			};
 			View.AddSubview (segmentedControl);
@@ -66,7 +67,7 @@ namespace MonoCatalog {
 
 			View.AddSubview (MakeLabel ("UISegmentedControlStyleBar", new CGRect (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
-			segmentedControl = new UISegmentedControl (items){
+			segmentedControl = new UISegmentedControl (items) {
 				Frame = new CGRect (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Bar,
 				SelectedSegment = 1,
@@ -77,12 +78,12 @@ namespace MonoCatalog {
 
 			View.AddSubview (MakeLabel ("UISegmentedControlStyleBar (tinted)", new CGRect (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
-			segmentedControl = new UISegmentedControl (items){
+			segmentedControl = new UISegmentedControl (items) {
 				Frame = new CGRect (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Bar,
 				TintColor = UIColor.FromRGB (0.7f, 0.171f, 0.1f),
-								SelectedSegment = 1,
-								AccessibilityLabel = "Tinted"
+				SelectedSegment = 1,
+				AccessibilityLabel = "Tinted"
 			};
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;

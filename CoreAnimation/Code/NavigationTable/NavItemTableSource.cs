@@ -4,14 +4,12 @@ using UIKit;
 using Foundation;
 using System.Reflection;
 
-namespace CoreAnimationExample
-{
+namespace CoreAnimationExample {
 	/// <summary>
 	/// Combined DataSource and Delegate for our UITableView
 	/// </summary>
-	public class NavItemTableSource : UITableViewSource
-	{
-		static readonly NSString cellIdentifier = (NSString)"NavTableCellView";
+	public class NavItemTableSource : UITableViewSource {
+		static readonly NSString cellIdentifier = (NSString) "NavTableCellView";
 
 		public event EventHandler<RowClickedEventArgs> RowClicked;
 
@@ -35,7 +33,7 @@ namespace CoreAnimationExample
 		/// </summary>
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return  navItems [(int)section].Items.Count;
+			return navItems [(int) section].Items.Count;
 		}
 
 		/// <summary>
@@ -43,7 +41,7 @@ namespace CoreAnimationExample
 		/// </summary>
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return navItems [(int)section].Name;
+			return navItems [(int) section].Name;
 		}
 
 		/// <summary>
@@ -51,7 +49,7 @@ namespace CoreAnimationExample
 		/// </summary>
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			return navItems [(int)section].Footer;
+			return navItems [(int) section].Footer;
 		}
 
 		/// <summary>

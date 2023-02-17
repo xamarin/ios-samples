@@ -5,10 +5,8 @@ using System.Collections.Generic;
 using CoreGraphics;
 using Foundation;
 
-namespace TransitionsDemo.AnimationControllers
-{
-	public class CEFoldAnimationController : CEReversibleAnimationController
-	{
+namespace TransitionsDemo.AnimationControllers {
+	public class CEFoldAnimationController : CEReversibleAnimationController {
 		public int Folds { get; private set; }
 
 		public CEFoldAnimationController ()
@@ -17,8 +15,8 @@ namespace TransitionsDemo.AnimationControllers
 		}
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
-		                                        UIViewController fromViewController, UIViewController toViewController,
-		                                        UIView fromView, UIView toView)
+												UIViewController fromViewController, UIViewController toViewController,
+												UIView fromView, UIView toView)
 		{
 			// Add the toView to the container
 			UIView containerView = transitionContext.ContainerView;
@@ -33,7 +31,7 @@ namespace TransitionsDemo.AnimationControllers
 
 			CGSize size = toView.Frame.Size;
 
-			float foldWidth = (float)(size.Width * 0.5f / Folds);
+			float foldWidth = (float) (size.Width * 0.5f / Folds);
 
 			// arrays that hold the snapshot views
 			var fromViewFolds = new List<UIView> ();
@@ -58,12 +56,12 @@ namespace TransitionsDemo.AnimationControllers
 				// on the shadow, with each view positioned at the very edge of the screen
 				UIView leftToViewFold = CreateSnapshot (toView, true, offset, true);
 				leftToViewFold.Layer.Position = new CGPoint (Reverse ? size.Width : 0f, size.Height / 2f);
-				leftToViewFold.Layer.Transform = CATransform3D.MakeRotation ((float)Math.PI / 2f, 0f, 1f, 0f);
+				leftToViewFold.Layer.Transform = CATransform3D.MakeRotation ((float) Math.PI / 2f, 0f, 1f, 0f);
 				toViewFolds.Add (leftToViewFold);
 
 				UIView rightToViewFold = CreateSnapshot (toView, true, offset + foldWidth, false);
 				rightToViewFold.Layer.Position = new CGPoint (Reverse ? size.Width : 0f, size.Height / 2f);
-				rightToViewFold.Layer.Transform = CATransform3D.MakeRotation (-(float)Math.PI / 2f, 0f, 1f, 0f);
+				rightToViewFold.Layer.Transform = CATransform3D.MakeRotation (-(float) Math.PI / 2f, 0f, 1f, 0f);
 				toViewFolds.Add (rightToViewFold);
 			}
 
@@ -82,12 +80,12 @@ namespace TransitionsDemo.AnimationControllers
 					// on the shadow, with each view positioned at the edge of thw screen.
 					UIView leftFromView = fromViewFolds [i * 2];
 					leftFromView.Layer.Position = new CGPoint (Reverse ? 0f : size.Width, size.Height / 2f);
-					leftFromView.Layer.Transform = transform.Rotate ((float)Math.PI / 2f, 0f, 1f, 0f);
+					leftFromView.Layer.Transform = transform.Rotate ((float) Math.PI / 2f, 0f, 1f, 0f);
 					leftFromView.Subviews [1].Alpha = 1f;
 
 					UIView rightFromView = fromViewFolds [i * 2 + 1];
 					rightFromView.Layer.Position = new CGPoint (Reverse ? 0f : size.Width, size.Height / 2f);
-					rightFromView.Layer.Transform = transform.Rotate (-(float)Math.PI / 2f, 0f, 1f, 0f);
+					rightFromView.Layer.Transform = transform.Rotate (-(float) Math.PI / 2f, 0f, 1f, 0f);
 					rightFromView.Subviews [1].Alpha = 1f;
 
 					// the left and right side of the fold for the to- view, with identity transform and 0.0 alpha
@@ -126,7 +124,7 @@ namespace TransitionsDemo.AnimationControllers
 		{
 			CGSize size = view.Frame.Size;
 			UIView containerView = view.Superview;
-			float foldWidth = (float)(size.Width * 0.5f / Folds);
+			float foldWidth = (float) (size.Width * 0.5f / Folds);
 
 			UIView snapshotView;
 
@@ -164,7 +162,7 @@ namespace TransitionsDemo.AnimationControllers
 			// create a shadow
 			var shadowView = new UIView (viewWithShadow.Bounds);
 
-			var colors = new CGColor[] {
+			var colors = new CGColor [] {
 				UIColor.FromWhiteAlpha(0f, 0f).CGColor,
 				UIColor.FromWhiteAlpha(0f, 1f).CGColor
 			};

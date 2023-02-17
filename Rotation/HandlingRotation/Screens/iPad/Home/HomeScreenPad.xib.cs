@@ -11,18 +11,18 @@ namespace HandlingRotation.Screens.iPad.Home {
 		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
-		public HomeScreenPad (IntPtr handle) : base(handle)
+		public HomeScreenPad (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public HomeScreenPad (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public HomeScreenPad (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public HomeScreenPad () : base("HomeScreen", null)
+		public HomeScreenPad () : base ("HomeScreen", null)
 		{
 			Initialize ();
 		}
@@ -70,12 +70,12 @@ namespace HandlingRotation.Screens.iPad.Home {
 			// just return true, but this switch illustrates how you can test for the
 			// different cases
 			switch (toInterfaceOrientation) {
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
-				default:
-					return true;
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+			default:
+				return true;
 			}
 		}
 	}

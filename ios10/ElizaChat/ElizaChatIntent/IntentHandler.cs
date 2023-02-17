@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Foundation;
 using Intents;
 using ElizaCore;
 
-namespace ElizaChatIntent
-{
+namespace ElizaChatIntent {
 	// As an example, this class is set up to handle Message intents.
 	// You will want to replace this or add other intents as appropriate.
 	// The intents you wish to handle must be declared in the extension's Info.plist.
@@ -15,8 +14,7 @@ namespace ElizaChatIntent
 	// "<myApp> John saying hello"
 	// "Search for messages in <myApp>"
 	[Register ("IntentHandler")]
-	public class IntentHandler : INExtension, IINSendMessageIntentHandling, IINSearchForMessagesIntentHandling, IINSetMessageAttributeIntentHandling
-	{
+	public class IntentHandler : INExtension, IINSendMessageIntentHandling, IINSearchForMessagesIntentHandling, IINSetMessageAttributeIntentHandling {
 		#region Computed Properties
 		public ElizaAddressBook AddressBook { get; set; } = new ElizaAddressBook ();
 		public ElizaMain Eliza { get; set; } = new ElizaMain ();
@@ -67,7 +65,7 @@ namespace ElizaChatIntent
 					break;
 				case 1:
 					// We have exactly one matching contact
-					resolutionResults.Add (INPersonResolutionResult.GetSuccess (matchingContacts[0]));
+					resolutionResults.Add (INPersonResolutionResult.GetSuccess (matchingContacts [0]));
 					break;
 				default:
 					// We need Siri's help to ask user to pick one from the matches.

@@ -3,29 +3,26 @@ using MonoTouch.Dialog;
 
 using XMBindingLibrary;
 
-namespace XMBindingLibrarySample
-{
-	public class UtilitiesViewController : DialogViewController
-	{
+namespace XMBindingLibrarySample {
+	public class UtilitiesViewController : DialogViewController {
 		XMUtilities utility;
 
-		public UtilitiesViewController()
-			: base(new RootElement("XMUtilities Binding"), true)
+		public UtilitiesViewController ()
+			: base (new RootElement ("XMUtilities Binding"), true)
 		{
 		}
 
-		public override void LoadView()
+		public override void LoadView ()
 		{
-			base.LoadView();
+			base.LoadView ();
 
-			utility = new XMUtilities();
+			utility = new XMUtilities ();
 
-			utility.SetCallback(new XMUtilityCallback(message =>
-			{
-				SetResultElementValue("Callback: " + message);
+			utility.SetCallback (new XMUtilityCallback (message => {
+				SetResultElementValue ("Callback: " + message);
 			}));
 
-			Root.Add(new[]
+			Root.Add (new []
 			{
 				new Section("Operands")
 				{
@@ -62,75 +59,73 @@ namespace XMBindingLibrarySample
 			});
 		}
 
-		void Handle_AddOperation()
+		void Handle_AddOperation ()
 		{
-			var one = Root[0][1] as EntryElement;
-			var two = Root[0][2] as EntryElement;
+			var one = Root [0] [1] as EntryElement;
+			var two = Root [0] [2] as EntryElement;
 
-			int.TryParse(one.Value, out var un);
-			int.TryParse(two.Value, out var deux);
+			int.TryParse (one.Value, out var un);
+			int.TryParse (two.Value, out var deux);
 
-			SetResultElementValue($"{utility.Add(un, deux)}");
+			SetResultElementValue ($"{utility.Add (un, deux)}");
 		}
 
-		void Handle_SubtractOperation()
+		void Handle_SubtractOperation ()
 		{
-			var one = Root[0][1] as EntryElement;
-			var two = Root[0][2] as EntryElement;
+			var one = Root [0] [1] as EntryElement;
+			var two = Root [0] [2] as EntryElement;
 
-			int.TryParse(one.Value, out var un);
-			int.TryParse(two.Value, out var deux);
+			int.TryParse (one.Value, out var un);
+			int.TryParse (two.Value, out var deux);
 
-			SetResultElementValue($"{utility.Subtract(un, deux)}");
+			SetResultElementValue ($"{utility.Subtract (un, deux)}");
 		}
 
-		void Handle_MultiplyOperation()
+		void Handle_MultiplyOperation ()
 		{
-			var one = Root[0][1] as EntryElement;
-			var two = Root[0][2] as EntryElement;
+			var one = Root [0] [1] as EntryElement;
+			var two = Root [0] [2] as EntryElement;
 
-			int.TryParse(one.Value, out var un);
-			int.TryParse(two.Value, out var deux);
+			int.TryParse (one.Value, out var un);
+			int.TryParse (two.Value, out var deux);
 
-			SetResultElementValue($"{utility.Multiply(un, deux)}");
+			SetResultElementValue ($"{utility.Multiply (un, deux)}");
 		}
 
-		void Handle_EchoOperation()
+		void Handle_EchoOperation ()
 		{
-			var nameElement = Root[0][0] as EntryElement;
-			SetResultElementValue(XMUtilities.Echo(nameElement.Value));
+			var nameElement = Root [0] [0] as EntryElement;
+			SetResultElementValue (XMUtilities.Echo (nameElement.Value));
 		}
 
-		void Handle_SpeakOperation()
+		void Handle_SpeakOperation ()
 		{
-			SetResultElementValue(utility.Speak());
+			SetResultElementValue (utility.Speak ());
 		}
 
-		void Handle_SpeakGreetingOperation()
+		void Handle_SpeakGreetingOperation ()
 		{
-			SetResultElementValue(utility.Speak(XMGreeting.Goodbye));
+			SetResultElementValue (utility.Speak (XMGreeting.Goodbye));
 		}
 
-		void Handle_HelloOperation()
+		void Handle_HelloOperation ()
 		{
-			var nameElement = Root[0][0] as EntryElement;
-			SetResultElementValue(utility.Hello(nameElement.Value));
+			var nameElement = Root [0] [0] as EntryElement;
+			SetResultElementValue (utility.Hello (nameElement.Value));
 		}
 
-		void Handle_InvokeCallback()
+		void Handle_InvokeCallback ()
 		{
-			utility.InvokeCallback("Callback invoked!");
+			utility.InvokeCallback ("Callback invoked!");
 		}
 
-		void SetResultElementValue(string value)
+		void SetResultElementValue (string value)
 		{
-			NSThread.Current.BeginInvokeOnMainThread(() =>
-			{
-				if (Root[1][0] is StringElement e)
-				{
+			NSThread.Current.BeginInvokeOnMainThread (() => {
+				if (Root [1] [0] is StringElement e) {
 					e.Caption = value;
 
-					TableView.ReloadData();
+					TableView.ReloadData ();
 				}
 			});
 		}

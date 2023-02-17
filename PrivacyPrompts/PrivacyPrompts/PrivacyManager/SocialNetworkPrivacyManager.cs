@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using Accounts;
 using Foundation;
 
-namespace PrivacyPrompts
-{
-	public class SocialNetworkPrivacyManager : IPrivacyManager, IDisposable
-	{
+namespace PrivacyPrompts {
+	public class SocialNetworkPrivacyManager : IPrivacyManager, IDisposable {
 		readonly ACAccountStore accountStore;
 		readonly NSString socialNetwork;
 
@@ -23,11 +21,11 @@ namespace PrivacyPrompts
 			ACAccountType account = accountStore.FindAccountType (socialNetwork);
 
 			var tcs = new TaskCompletionSource<object> ();
-			accountStore.RequestAccess (account, options, (granted, error) => tcs.SetResult(null));
+			accountStore.RequestAccess (account, options, (granted, error) => tcs.SetResult (null));
 			return tcs.Task;
 		}
 
-		AccountStoreOptions GetOptions()
+		AccountStoreOptions GetOptions ()
 		{
 			if (socialNetwork == ACAccountType.Facebook)
 				return GetFacebookOptions ();
@@ -38,7 +36,7 @@ namespace PrivacyPrompts
 			return null;
 		}
 
-		AccountStoreOptions GetFacebookOptions()
+		AccountStoreOptions GetFacebookOptions ()
 		{
 			AccountStoreOptions options = new AccountStoreOptions () { FacebookAppId = "MY_CODE" };
 			options.SetPermissions (ACFacebookAudience.Friends, new [] {
@@ -49,7 +47,7 @@ namespace PrivacyPrompts
 			return options;
 		}
 
-		AccountStoreOptions GetTencentWeibo()
+		AccountStoreOptions GetTencentWeibo ()
 		{
 			return new AccountStoreOptions {
 				TencentWeiboAppId = "MY_ID"

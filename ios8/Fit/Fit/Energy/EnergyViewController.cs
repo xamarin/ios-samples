@@ -4,10 +4,8 @@ using HealthKit;
 using ObjCRuntime;
 using UIKit;
 
-namespace Fit
-{
-	public partial class EnergyViewController : UITableViewController, IHealthStore
-	{
+namespace Fit {
+	public partial class EnergyViewController : UITableViewController, IHealthStore {
 		double simulatedBurntEnergy;
 		double consumedEnergy;
 		double netEnergy;
@@ -28,7 +26,7 @@ namespace Fit
 			}
 		}
 
-		public HKHealthStore HealthStore  { get; set; }
+		public HKHealthStore HealthStore { get; set; }
 
 		public double SimulatedBurntEnergy {
 			get {
@@ -79,7 +77,8 @@ namespace Fit
 		{
 			RefreshControl.BeginRefreshing ();
 			FetchMostRecentData ((totalJoulesConsumed, error) => {
-				InvokeOnMainThread (delegate {
+				InvokeOnMainThread (delegate
+				{
 					SimulatedBurntEnergy = new Random ().Next (0, 300000);
 					ConsumedEnergy = totalJoulesConsumed;
 					NetEnergy = consumedEnergy - simulatedBurntEnergy;
@@ -88,28 +87,28 @@ namespace Fit
 			});
 		}
 
-		void FetchMostRecentData (Action <double, NSError> completionHandler)
+		void FetchMostRecentData (Action<double, NSError> completionHandler)
 		{
 			var calendar = NSCalendar.CurrentCalendar;
 			var startDate = DateTime.Now.Date;
 			var endDate = startDate.AddDays (1);
 
 			var sampleType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.DietaryEnergyConsumed);
-			var predicate = HKQuery.GetPredicateForSamples ((NSDate)startDate, (NSDate)endDate, HKQueryOptions.StrictStartDate);
+			var predicate = HKQuery.GetPredicateForSamples ((NSDate) startDate, (NSDate) endDate, HKQueryOptions.StrictStartDate);
 
 			var query = new HKStatisticsQuery (sampleType, predicate, HKStatisticsOptions.CumulativeSum,
-				            (HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
+							(HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
 
-					if (error != null && completionHandler != null)
-						completionHandler (0.0f, error);
+								if (error != null && completionHandler != null)
+									completionHandler (0.0f, error);
 
-					var totalCalories = results.SumQuantity ();
-					if (totalCalories == null)
-						totalCalories = HKQuantity.FromQuantity (HKUnit.Joule, 0.0);
+								var totalCalories = results.SumQuantity ();
+								if (totalCalories == null)
+									totalCalories = HKQuantity.FromQuantity (HKUnit.Joule, 0.0);
 
-					if (completionHandler != null)
-						completionHandler (totalCalories.GetDoubleValue (HKUnit.Joule), error);
-			});
+								if (completionHandler != null)
+									completionHandler (totalCalories.GetDoubleValue (HKUnit.Joule), error);
+							});
 
 			HealthStore.ExecuteQuery (query);
 		}

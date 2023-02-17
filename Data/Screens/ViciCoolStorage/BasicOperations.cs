@@ -7,17 +7,15 @@ using System.Data;
 using System.IO;
 using Vici.CoolStorage;
 
-namespace Xamarin.Screens.ViciCoolStorage
-{
-	public partial class BasicOperations : UITableViewController
-	{
+namespace Xamarin.Screens.ViciCoolStorage {
+	public partial class BasicOperations : UITableViewController {
 		protected CSList<Person> people;
 		protected TableSource tableSource;
 
 		#region Constructors
 
 		public BasicOperations (IntPtr handle) : base (handle) { Initialize (); }
-		[Export("initWithCoder:")]
+		[Export ("initWithCoder:")]
 		public BasicOperations (NSCoder coder) : base (coder) { Initialize (); }
 		public BasicOperations () : base ("DataSample", null) { Initialize (); }
 
@@ -38,7 +36,7 @@ namespace Xamarin.Screens.ViciCoolStorage
 			Console.WriteLine ("database creation: " + stopwatch.ElapsedMilliseconds.ToString ());
 
 			// query a list of people from the db
-			people = Person.List();
+			people = Person.List ();
 
 			// performance timing
 			Console.WriteLine ("database query: " + stopwatch.ElapsedMilliseconds.ToString ());
@@ -47,7 +45,7 @@ namespace Xamarin.Screens.ViciCoolStorage
 			tableSource = new BasicOperations.TableSource (people);
 
 			// initialize the table view and set the source
-			this.TableView = new UITableView (){
+			this.TableView = new UITableView () {
 				Source = tableSource
 			};
 
@@ -102,11 +100,10 @@ namespace Xamarin.Screens.ViciCoolStorage
 		}
 
 		// A simple data source for our table
-		protected class TableSource : UITableViewSource
-		{
+		protected class TableSource : UITableViewSource {
 			CSList<Person> items;
 
-			public TableSource (CSList<Person> items) : base() { this.items = items; }
+			public TableSource (CSList<Person> items) : base () { this.items = items; }
 
 			public override nint NumberOfSections (UITableView tableView) { return 1; }
 
@@ -118,7 +115,7 @@ namespace Xamarin.Screens.ViciCoolStorage
 				cell = tableView.DequeueReusableCell ("item");
 				if (cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Default, "item");
-				cell.TextLabel.Text = this.items[indexPath.Row].FirstName + " " + this.items[indexPath.Row].LastName;
+				cell.TextLabel.Text = this.items [indexPath.Row].FirstName + " " + this.items [indexPath.Row].LastName;
 				return cell;
 			}
 

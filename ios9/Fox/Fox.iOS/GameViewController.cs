@@ -5,10 +5,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace Fox.iOS
-{
-	public partial class GameViewController : UIViewController
-	{
+namespace Fox.iOS {
+	public partial class GameViewController : UIViewController {
 		public GameViewController (IntPtr handle) : base (handle)
 		{
 		}

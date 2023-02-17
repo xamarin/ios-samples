@@ -4,10 +4,8 @@ using Foundation;
 using UIKit;
 using System.Threading.Tasks;
 
-namespace Controls
-{
-	public partial class ControlsViewController : UIViewController
-	{
+namespace Controls {
+	public partial class ControlsViewController : UIViewController {
 		public ControlsViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -26,14 +24,14 @@ namespace Controls
 		{
 			base.ViewDidLoad ();
 
-				label1.Text = "New Label";
-				View.Add (label1);
+			label1.Text = "New Label";
+			View.Add (label1);
 
-//			new System.Threading.Thread (new System.Threading.ThreadStart (() => {
-//				InvokeOnMainThread (() => {
-//					label1.Text = "updated in thread";
-//				});
-//			})).Start ();
+			//			new System.Threading.Thread (new System.Threading.ThreadStart (() => {
+			//				InvokeOnMainThread (() => {
+			//					label1.Text = "updated in thread";
+			//				});
+			//			})).Start ();
 
 			Button1.TouchUpInside += (sender, e) => {
 				label1.Text = "button1 clicked";
@@ -59,7 +57,8 @@ namespace Controls
 				alert.AddButton ("custom button 1");
 				alert.AddButton ("Cancel");
 				// last button added is the 'cancel' button (index of '2')
-				alert.Clicked += delegate(object a, UIButtonEventArgs b) {
+				alert.Clicked += delegate (object a, UIButtonEventArgs b)
+				{
 					Console.WriteLine ("Button " + b.ButtonIndex.ToString () + " clicked");
 				};
 				alert.Show ();
@@ -68,21 +67,21 @@ namespace Controls
 				textview1.ResignFirstResponder ();
 			};
 
-				// SLIDER
-				slider1.MinValue = -1;
-				slider1.MaxValue = 2;
-				slider1.Value = 0.5f;
+			// SLIDER
+			slider1.MinValue = -1;
+			slider1.MaxValue = 2;
+			slider1.Value = 0.5f;
 
-				// customize
-				//			slider1.MinimumTrackTintColor = UIColor.Gray;
-				//			slider1.MaximumTrackTintColor = UIColor.Green;
+			// customize
+			//			slider1.MinimumTrackTintColor = UIColor.Gray;
+			//			slider1.MaximumTrackTintColor = UIColor.Green;
 
-				// BOOLEAN
-				switch1.On = true;
+			// BOOLEAN
+			switch1.On = true;
 
 			//DISMISS KEYBOARD ON RETURN BUTTON PRESS.
 			this.textfield1.ShouldReturn += (textField) => {
-				textField.ResignFirstResponder();
+				textField.ResignFirstResponder ();
 				return true;
 			};
 
@@ -93,17 +92,17 @@ namespace Controls
 
 		partial void slider1_valueChanged (UISlider sender)
 		{
-			sliderLabel.Text = ((UISlider)sender).Value.ToString ();
+			sliderLabel.Text = ((UISlider) sender).Value.ToString ();
 		}
 
 		partial void button2_TouchUpInside (UIButton sender)
 		{
 			textfield1.ResignFirstResponder ();
-			textview1.ResignFirstResponder();
+			textview1.ResignFirstResponder ();
 
-			new UIAlertView("Button2 touched", "This method was declared as an event, which creates an [Action] in the designer.cs file",
+			new UIAlertView ("Button2 touched", "This method was declared as an event, which creates an [Action] in the designer.cs file",
 				null, "Cancel", null)
-				.Show();
+				.Show ();
 		}
 
 		//
@@ -112,40 +111,40 @@ namespace Controls
 		async partial void button3_TouchUpInside (UIButton sender)
 		{
 			textfield1.ResignFirstResponder ();
-			textview1.ResignFirstResponder();
+			textview1.ResignFirstResponder ();
 
 			label1.Text = "async method started";
 
-			await Task.Delay(1000);
+			await Task.Delay (1000);
 
 			label1.Text = "1 second passed";
 
-			await Task.Delay(2000);
+			await Task.Delay (2000);
 
 			label1.Text = "2 more seconds passed";
 
-			await Task.Delay(1000);
+			await Task.Delay (1000);
 
-			new UIAlertView("Async method complete", "This method contained async awaits",
+			new UIAlertView ("Async method complete", "This method contained async awaits",
 				null, "Cancel", null)
-				.Show();
+				.Show ();
 
 			label1.Text = "async method completed";
 		}
 
-		partial void button4_TouchUpInside(UIButton sender)
+		partial void button4_TouchUpInside (UIButton sender)
 		{
 			//One Button Alert
 			UIAlertView alert = new UIAlertView ("Title", "The message", null, "OK", null);
-			alert.Show();
+			alert.Show ();
 
 			//Two button Alert
-//			UIAlertView alert = new UIAlertView ("Alert Title", "Choose from two buttons", null, "OK", new string[] {"Cancel"});
-//			alert.Clicked += (s, b) => {
-//				label1.Text = "Button " + b.ButtonIndex.ToString () + " clicked";
-//				Console.WriteLine ("Button " + b.ButtonIndex.ToString () + " clicked");
-//			};
-//			alert.Show();
+			//			UIAlertView alert = new UIAlertView ("Alert Title", "Choose from two buttons", null, "OK", new string[] {"Cancel"});
+			//			alert.Clicked += (s, b) => {
+			//				label1.Text = "Button " + b.ButtonIndex.ToString () + " clicked";
+			//				Console.WriteLine ("Button " + b.ButtonIndex.ToString () + " clicked");
+			//			};
+			//			alert.Show();
 		}
 
 		public override void ViewWillAppear (bool animated)

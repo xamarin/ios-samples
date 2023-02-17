@@ -24,7 +24,7 @@ namespace Fox {
 		UITouch padTouch;
 
 		CGRect padRect;
-		SKSpriteNode[] flowers = new SKSpriteNode[3];
+		SKSpriteNode [] flowers = new SKSpriteNode [3];
 		SKLabelNode pearlLabel;
 		SKNode overlayGroup;
 		int pearlCount;
@@ -95,7 +95,7 @@ namespace Fox {
 				flowers [i] = SKSpriteNode.FromImageNamed ("Images/FlowerEmpty.png");
 				flowers [i].Position = new CGPoint (110f + i * 40f, -50f);
 				flowers [i].XScale = flowers [i].YScale = 0.25f;
-				overlayGroup.AddChild (flowers[i]);
+				overlayGroup.AddChild (flowers [i]);
 			}
 
 			// The peal icon and count.
@@ -165,7 +165,7 @@ namespace Fox {
 				if (TouchIsInRect (touch, padRect))
 					padTouch = padTouch ?? touch;
 				else if (panningTouch == null)
-					panningTouch = (UITouch)touches.AnyObject;
+					panningTouch = (UITouch) touches.AnyObject;
 
 				if (padTouch != null && panningTouch != null)
 					break;
@@ -264,7 +264,7 @@ namespace Fox {
 		SCNVector3 ComputeDirection ()
 		{
 			CGPoint p = DirectionFromPressedKeys ();
-			var dir = new SCNVector3 ((float)p.X, 0f, (float)p.Y);
+			var dir = new SCNVector3 ((float) p.X, 0f, (float) p.Y);
 			var p0 = new SCNVector3 (0f, 0f, 0f);
 
 			dir = PointOfView.PresentationNode.ConvertPositionToNode (dir, null);

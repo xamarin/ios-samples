@@ -2,10 +2,8 @@ using System;
 using Foundation;
 using System.Collections.Generic;
 
-namespace TicTacToe
-{
-	public enum TTTGameResult
-	{
+namespace TicTacToe {
+	public enum TTTGameResult {
 		InProgress,
 		Victory,
 		Defeat,
@@ -13,8 +11,7 @@ namespace TicTacToe
 	}
 
 	[Serializable]
-	public class TTTGame
-	{
+	public class TTTGame {
 		const string EncodingKeyResult = "result";
 		const string EncodingKeyRating = "rating";
 		const string EncodingKeyDate = "date";
@@ -57,7 +54,7 @@ namespace TicTacToe
 		}
 
 		bool hasMove (TTTMoveXPosition xPosition, TTTMoveYPosition yPosition,
-		              ref TTTMovePlayer player)
+					  ref TTTMovePlayer player)
 		{
 			foreach (var move in Moves) {
 				if (move.XPosition == xPosition && move.YPosition == yPosition) {
@@ -70,9 +67,9 @@ namespace TicTacToe
 		}
 
 		bool GetWinningPlayer (out TTTMovePlayer playerOut, out TTTMoveXPosition startXPosition,
-		                       out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
-		                       out TTTMoveYPosition endYPosition, TTTMoveXPosition[] xPositions,
-		                       TTTMoveYPosition[] yPositions)
+							   out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
+							   out TTTMoveYPosition endYPosition, TTTMoveXPosition [] xPositions,
+							   TTTMoveYPosition [] yPositions)
 		{
 			bool moveExists = false;
 			TTTMovePlayer player = TTTMovePlayer.None;
@@ -115,85 +112,85 @@ namespace TicTacToe
 		}
 
 		bool GetWinningPlayer (out TTTMovePlayer player, out TTTMoveXPosition startXPosition,
-		                       out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
-		                       out TTTMoveYPosition endYPosition, TTTMoveXPosition xPosition)
+							   out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
+							   out TTTMoveYPosition endYPosition, TTTMoveXPosition xPosition)
 		{
-			TTTMoveXPosition[] xPositions = new TTTMoveXPosition[TTTMove.SidePositionsCount];
+			TTTMoveXPosition [] xPositions = new TTTMoveXPosition [TTTMove.SidePositionsCount];
 
 			for (int n = 0; n < TTTMove.SidePositionsCount; n++)
 				xPositions [n] = xPosition;
 
-			TTTMoveYPosition[] yPositions = new TTTMoveYPosition[TTTMove.SidePositionsCount];
+			TTTMoveYPosition [] yPositions = new TTTMoveYPosition [TTTMove.SidePositionsCount];
 			yPositions [0] = TTTMoveYPosition.Top;
 			yPositions [1] = TTTMoveYPosition.Center;
 			yPositions [2] = TTTMoveYPosition.Bottom;
 
 			return GetWinningPlayer (out player, out startXPosition, out startYPosition, out endXPosition,
-			                         out endYPosition, xPositions, yPositions);
+									 out endYPosition, xPositions, yPositions);
 		}
 
 		bool GetWinningPlayer (out TTTMovePlayer player, out TTTMoveXPosition startXPosition,
-		                       out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
-		                       out TTTMoveYPosition endYPosition, TTTMoveYPosition yPosition)
+							   out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
+							   out TTTMoveYPosition endYPosition, TTTMoveYPosition yPosition)
 		{
-			TTTMoveYPosition[] yPositions = new TTTMoveYPosition[TTTMove.SidePositionsCount];
+			TTTMoveYPosition [] yPositions = new TTTMoveYPosition [TTTMove.SidePositionsCount];
 			for (int n = 0; n < TTTMove.SidePositionsCount; n++)
 				yPositions [n] = yPosition;
 
-			TTTMoveXPosition[] xPositions = new TTTMoveXPosition[TTTMove.SidePositionsCount];
+			TTTMoveXPosition [] xPositions = new TTTMoveXPosition [TTTMove.SidePositionsCount];
 			xPositions [0] = TTTMoveXPosition.Left;
 			xPositions [1] = TTTMoveXPosition.Center;
 			xPositions [2] = TTTMoveXPosition.Right;
 
 			return GetWinningPlayer (out player, out startXPosition, out startYPosition,
-			                         out endXPosition, out endYPosition, xPositions, yPositions);
+									 out endXPosition, out endYPosition, xPositions, yPositions);
 		}
 
 		bool GetWinningPlayer (out TTTMovePlayer player, out TTTMoveXPosition startXPosition,
-		                       out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
-		                       out TTTMoveYPosition endYPosition, int direction)
+							   out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
+							   out TTTMoveYPosition endYPosition, int direction)
 		{
-			TTTMoveXPosition[] xPositions = new TTTMoveXPosition[TTTMove.SidePositionsCount];
-			TTTMoveYPosition[] yPositions = new TTTMoveYPosition[TTTMove.SidePositionsCount];
+			TTTMoveXPosition [] xPositions = new TTTMoveXPosition [TTTMove.SidePositionsCount];
+			TTTMoveYPosition [] yPositions = new TTTMoveYPosition [TTTMove.SidePositionsCount];
 			int n = 0;
 
 			for (var xPosition = TTTMoveXPosition.Left; xPosition <= TTTMoveXPosition.Right; xPosition++) {
 				xPositions [n] = xPosition;
-				yPositions [n] = (TTTMoveYPosition)((int)xPosition * direction);
+				yPositions [n] = (TTTMoveYPosition) ((int) xPosition * direction);
 				n++;
 			}
 
 			return GetWinningPlayer (out player, out startXPosition, out startYPosition,
-			                         out endXPosition, out endYPosition, xPositions, yPositions);
+									 out endXPosition, out endYPosition, xPositions, yPositions);
 		}
 
 		public bool GetWinningPlayer (out TTTMovePlayer player, out TTTMoveXPosition startXPosition,
-		                              out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
-		                              out TTTMoveYPosition endYPosition)
+									  out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
+									  out TTTMoveYPosition endYPosition)
 		{
 			bool hasWinner;
 			for (var xPosition = TTTMoveXPosition.Left; xPosition <= TTTMoveXPosition.Right; xPosition++) {
 				hasWinner = GetWinningPlayer (out player, out startXPosition, out startYPosition,
-				                              out endXPosition, out endYPosition, xPosition);
+											  out endXPosition, out endYPosition, xPosition);
 				if (hasWinner)
 					return hasWinner;
 			}
 
 			for (var yPosition = TTTMoveYPosition.Top; yPosition <= TTTMoveYPosition.Bottom; yPosition++) {
 				hasWinner = GetWinningPlayer (out player, out startXPosition, out startYPosition,
-				                              out endXPosition, out endYPosition, yPosition);
+											  out endXPosition, out endYPosition, yPosition);
 
 				if (hasWinner)
 					return hasWinner;
 			}
 
 			hasWinner = GetWinningPlayer (out player, out startXPosition, out startYPosition,
-			                              out endXPosition, out endYPosition, 1);
+										  out endXPosition, out endYPosition, 1);
 			if (hasWinner)
 				return hasWinner;
 
 			hasWinner = GetWinningPlayer (out player, out startXPosition, out startYPosition,
-			                              out endXPosition, out endYPosition, -1);
+										  out endXPosition, out endYPosition, -1);
 
 			return hasWinner;
 		}
@@ -205,8 +202,8 @@ namespace TicTacToe
 			TTTMoveYPosition startYPosition, endYPosition;
 
 			bool hasWinner = GetWinningPlayer (out player, out startXPosition,
-			                                   out startYPosition, out endXPosition,
-			                                   out endYPosition);
+											   out startYPosition, out endXPosition,
+											   out endYPosition);
 
 			if (hasWinner)
 				return player == TTTMovePlayer.Me ? TTTGameResult.Victory : TTTGameResult.Defeat;

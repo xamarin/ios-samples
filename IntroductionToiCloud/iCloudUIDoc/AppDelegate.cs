@@ -76,7 +76,7 @@ namespace Cloud {
 				SearchScopes = new NSObject [] { NSMetadataQuery.UbiquitousDocumentsScope }
 			};
 
-			var pred = NSPredicate.FromFormat ("%K == %@", new NSObject[] {
+			var pred = NSPredicate.FromFormat ("%K == %@", new NSObject [] {
 				NSMetadataQuery.ItemFSNameKey, new NSString (MonkeyDocFilename)
 			});
 
@@ -89,7 +89,7 @@ namespace Cloud {
 				NSMetadataQuery.DidFinishGatheringNotification,
 				query
 			);
-			
+
 			query.StartQuery ();
 		}
 
@@ -97,7 +97,7 @@ namespace Cloud {
 		void DidFinishGathering (NSNotification notification)
 		{
 			Console.WriteLine ("DidFinishGathering");
-			var metadataQuery = (NSMetadataQuery)notification.Object;
+			var metadataQuery = (NSMetadataQuery) notification.Object;
 			metadataQuery.DisableUpdates ();
 			metadataQuery.StopQuery ();
 
@@ -107,13 +107,13 @@ namespace Cloud {
 
 		void LoadDocument (NSMetadataQuery metadataQuery)
 		{
-			Console.WriteLine ("LoadDocument");	
+			Console.WriteLine ("LoadDocument");
 
 			if (metadataQuery.ResultCount == 1) {
-				var item = (NSMetadataItem)metadataQuery.ResultAtIndex (0);
-				var url = (NSUrl)item.ValueForAttribute (NSMetadataQuery.ItemURLKey);
+				var item = (NSMetadataItem) metadataQuery.ResultAtIndex (0);
+				var url = (NSUrl) item.ValueForAttribute (NSMetadataQuery.ItemURLKey);
 				doc = new MonkeyDocument (url);
-				
+
 				doc.Open (success => {
 					if (success) {
 						Console.WriteLine ("iCloud document opened");
@@ -141,15 +141,15 @@ namespace Cloud {
 						Console.WriteLine ("Save completion:" + saveSuccess);
 						if (saveSuccess) {
 							monkeyDoc.Open (openSuccess => {
-							Console.WriteLine ("Open completion:" + openSuccess);
-							if (openSuccess) {
-								Console.WriteLine ("new document for iCloud");
-								Console.WriteLine (" == " + monkeyDoc.DocumentString);
-								viewController.DisplayDocument (monkeyDoc);
-							} else {
-								Console.WriteLine ("couldn't open");
-							}
-						});
+								Console.WriteLine ("Open completion:" + openSuccess);
+								if (openSuccess) {
+									Console.WriteLine ("new document for iCloud");
+									Console.WriteLine (" == " + monkeyDoc.DocumentString);
+									viewController.DisplayDocument (monkeyDoc);
+								} else {
+									Console.WriteLine ("couldn't open");
+								}
+							});
 						} else {
 							Console.WriteLine ("couldn't save");
 						}

@@ -4,8 +4,7 @@ using Foundation;
 using UIKit;
 using ObjCRuntime;
 
-namespace SegueCatalog
-{
+namespace SegueCatalog {
 	/// <summary>
 	/// This segue subclass demonstrates how to adapt a view controller that has been
 	/// modally presented by a segue. An instance of this segue is triggered by the 
@@ -15,8 +14,7 @@ namespace SegueCatalog
 	/// full-screen presentation, using the same view controller. We would like to 
 	/// provide an alternative representation in the adapted case.
 	/// </summary>
-	public partial class AdaptableFormSheetSegue : UIStoryboardSegue, IUIAdaptivePresentationControllerDelegate
-	{
+	public partial class AdaptableFormSheetSegue : UIStoryboardSegue, IUIAdaptivePresentationControllerDelegate {
 		public AdaptableFormSheetSegue (IntPtr handle)
 			: base (handle)
 		{
@@ -51,7 +49,7 @@ namespace SegueCatalog
 			class.
 			*/
 
-			var adaptableFormSheetSegueBundle = NSBundle.FromClass (new Class (typeof(AdaptableFormSheetSegue)));
+			var adaptableFormSheetSegueBundle = NSBundle.FromClass (new Class (typeof (AdaptableFormSheetSegue)));
 			return UIStoryboard.FromName ("Detail", adaptableFormSheetSegueBundle).InstantiateViewController ("Adapted");
 		}
 	}

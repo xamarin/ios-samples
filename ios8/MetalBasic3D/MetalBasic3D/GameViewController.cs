@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -9,11 +9,9 @@ using OpenTK;
 using Metal;
 using UIKit;
 
-namespace MetalBasic3D
-{
+namespace MetalBasic3D {
 	[Register ("GameViewController")]
-	public class GameViewController : UIViewController
-	{
+	public class GameViewController : UIViewController {
 		CADisplayLink timer;
 		double timeSinceLastDrawPreviousTime;
 		bool lastDrawOccurred;
@@ -76,7 +74,7 @@ namespace MetalBasic3D
 				timeSinceLastDrawPreviousTime = currentTime;
 			}
 
-			((GameView)View).Display ();
+			((GameView) View).Display ();
 			Delegate.RenderViewControllerUpdate (this);
 		}
 

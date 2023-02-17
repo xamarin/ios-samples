@@ -99,7 +99,7 @@ namespace ButtonTapper3000 {
 		void SelectChallenge (GKScoreChallenge challenge)
 		{
 			string leaderboardID = challenge.Score.LeaderboardIdentifier;
-			string[] substrings = leaderboardID.Split ('.');
+			string [] substrings = leaderboardID.Split ('.');
 			string leaderboardSubstring = substrings [substrings.Length - 1];
 			string timeString = leaderboardSubstring.Substring (0, 9);
 			string modeString = leaderboardSubstring.Substring (9);
@@ -147,13 +147,14 @@ namespace ButtonTapper3000 {
 
 			GKScore score = new GKScore () {
 				LeaderboardIdentifier = MainGame.Prefix + "15secondseasymode",
-				Context = (ulong)GameTypePlayed.Easy15,
+				Context = (ulong) GameTypePlayed.Easy15,
 				Value = 10
 			};
 
 			UIViewController challengeController = score.ChallengeComposeController (
 				GKLocalPlayer.LocalPlayer.Friends, "Beat it!",
-				delegate (UIViewController composeController, bool didIssueChallenge, string[] sentPlayerIDs) {
+				delegate (UIViewController composeController, bool didIssueChallenge, string [] sentPlayerIDs)
+				{
 					AppDelegate.Shared.ViewController.DismissViewController (true, null);
 				}
 			);
@@ -179,8 +180,7 @@ namespace ButtonTapper3000 {
 		}
 	}
 
-	class PlayerListener : GKLocalPlayerListener
-	{
+	class PlayerListener : GKLocalPlayerListener {
 		public Action<GKPlayer, GKChallenge> DidReceiveChallengeAction;
 
 		public override void DidReceiveChallenge (GKPlayer player, GKChallenge challenge)

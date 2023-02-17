@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 using UIKit;
@@ -6,10 +6,8 @@ using CloudKit;
 using Foundation;
 using CoreGraphics;
 
-namespace CloudCaptions
-{
-	public class Image : NSObject
-	{
+namespace CloudCaptions {
+	public class Image : NSObject {
 		public static readonly string RecordType = "Image";
 		public static readonly string ThumbnailKey = "Thumb";
 		public static readonly string FullsizeKey = "Full";
@@ -47,7 +45,7 @@ namespace CloudCaptions
 		}
 
 		// Creates an Image from a CKRecord that has been fetched
-		public Image(CKRecord record, bool onServer = true)
+		public Image (CKRecord record, bool onServer = true)
 		{
 			if (record == null)
 				throw new ArgumentNullException ("record");
@@ -68,7 +66,7 @@ namespace CloudCaptions
 
 		UIImage LoadImage (string key)
 		{
-			var asset = (CKAsset)Record [key];
+			var asset = (CKAsset) Record [key];
 			if (asset == null)
 				return null;
 
@@ -93,9 +91,9 @@ namespace CloudCaptions
 			}
 		}
 
-		static UIImage Resize(CGImage original, nfloat scale, UIImageOrientation orientation, CGSize newSize)
+		static UIImage Resize (CGImage original, nfloat scale, UIImageOrientation orientation, CGSize newSize)
 		{
-			UIGraphics.BeginImageContext(newSize);
+			UIGraphics.BeginImageContext (newSize);
 
 			var rect = new CGRect (CGPoint.Empty, newSize);
 			UIImage.FromImage (original, scale, orientation).Draw (rect);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,11 +8,9 @@ using UIKit;
 using Common;
 using ListerKit;
 
-namespace Lister
-{
+namespace Lister {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate, IUISplitViewControllerDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate, IUISplitViewControllerDelegate {
 		const string MainStoryboardName = "Main";
 		const string MainStoryboardEmptyViewControllerIdentifier = "emptyViewController";
 
@@ -20,13 +18,13 @@ namespace Lister
 
 		UISplitViewController SplitViewController {
 			get {
-				return (UISplitViewController)Window.RootViewController;
+				return (UISplitViewController) Window.RootViewController;
 			}
 		}
 
 		UINavigationController PrimaryViewController {
 			get {
-				return (UINavigationController)SplitViewController.ViewControllers [0];
+				return (UINavigationController) SplitViewController.ViewControllers [0];
 			}
 		}
 
@@ -35,11 +33,11 @@ namespace Lister
 			Console.WriteLine (IntPtr.Size);
 			Console.WriteLine ("FinishedLaunching");
 
-			AppConfig.SharedAppConfiguration.RunHandlerOnFirstLaunch(()=> {
-				ListCoordinator.SharedListCoordinator.CopyInitialDocuments();
+			AppConfig.SharedAppConfiguration.RunHandlerOnFirstLaunch (() => {
+				ListCoordinator.SharedListCoordinator.CopyInitialDocuments ();
 			});
 
-			var splitViewController = (UISplitViewController)Window.RootViewController;
+			var splitViewController = (UISplitViewController) Window.RootViewController;
 			splitViewController.PreferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
 			splitViewController.WeakDelegate = this;
 
@@ -76,10 +74,10 @@ namespace Lister
 		[Export ("splitViewController:separateSecondaryViewControllerFromPrimaryViewController:")]
 		public UIViewController SeparateSecondaryViewController (UISplitViewController splitViewController, UIViewController primaryViewController)
 		{
-			if (PrimaryViewController.TopViewController == PrimaryViewController.ViewControllers[0]) {
+			if (PrimaryViewController.TopViewController == PrimaryViewController.ViewControllers [0]) {
 				// If no list is on the stack, fill the detail area with an empty controller.
 				UIStoryboard storyboard = UIStoryboard.FromName (MainStoryboardName, null);
-				UIViewController emptyViewController = (UIViewController)storyboard.InstantiateViewController (MainStoryboardEmptyViewControllerIdentifier);
+				UIViewController emptyViewController = (UIViewController) storyboard.InstantiateViewController (MainStoryboardEmptyViewControllerIdentifier);
 
 				return emptyViewController;
 			}

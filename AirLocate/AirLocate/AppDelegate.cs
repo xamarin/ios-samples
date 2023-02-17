@@ -3,11 +3,9 @@ using CoreLocation;
 using Foundation;
 using UIKit;
 
-namespace AirLocate
-{
+namespace AirLocate {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		CLLocationManager locationManager;
 
 		public override UIWindow Window {
@@ -48,7 +46,7 @@ namespace AirLocate
 			new UIAlertView (notification.AlertBody, String.Empty, null, "OK", null).Show ();
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			// if you want to use a different Application Delegate class from "AppDelegate"
 			// you can specify it here.

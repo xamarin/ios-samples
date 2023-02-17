@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using AdSupport;
 
-namespace PrivacyPrompts
-{
-	public class AdvertisingPrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class AdvertisingPrivacyManager : IPrivacyManager {
 		public Task RequestAccess ()
 		{
 			return Task.FromResult<object> (null);

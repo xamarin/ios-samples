@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace Emporium
-{
+namespace Emporium {
 	[Register ("ConfirmationViewController")]
-	public class ConfirmationViewController : UIViewController
-	{
+	public class ConfirmationViewController : UIViewController {
 		public string TransactionIdentifier { get; set; }
 
 		[Outlet ("confirmationLabel")]

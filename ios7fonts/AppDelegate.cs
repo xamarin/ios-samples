@@ -7,11 +7,9 @@ using MonoTouch.Dialog;
 using CoreGraphics;
 using CoreText;
 
-namespace ios7fonts
-{
+namespace ios7fonts {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		const string lorem =
 			"\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ";
 
@@ -36,8 +34,8 @@ namespace ios7fonts
 		public UIFont ResizeProportionalAndAlternative (UIFont font)
 		{
 			var attributes = new UIFontAttributes (
-				                 new UIFontFeature (CTFontFeatureNumberSpacing.Selector.ProportionalNumbers),
-				                 new UIFontFeature ((CTFontFeatureCharacterAlternatives.Selector)1));
+								 new UIFontFeature (CTFontFeatureNumberSpacing.Selector.ProportionalNumbers),
+								 new UIFontFeature ((CTFontFeatureCharacterAlternatives.Selector) 1));
 
 			var newDesc = font.FontDescriptor.CreateWithAttributes (attributes);
 			return UIFont.FromDescriptor (newDesc, 40);
@@ -52,7 +50,7 @@ namespace ios7fonts
 
 		public UIFont ResizeAlternative (UIFont font)
 		{
-			var attributes = new UIFontAttributes (new UIFontFeature ((CTFontFeatureCharacterAlternatives.Selector)1));
+			var attributes = new UIFontAttributes (new UIFontFeature ((CTFontFeatureCharacterAlternatives.Selector) 1));
 			var newDesc = font.FontDescriptor.CreateWithAttributes (attributes);
 			return UIFont.FromDescriptor (newDesc, 40);
 		}
@@ -122,14 +120,15 @@ namespace ios7fonts
 			window.RootViewController = nav;
 			window.MakeKeyAndVisible ();
 
-			UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate {
+			UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate
+			{
 				dialog.Root = MakeFonts ();
 				nav.PopToRootViewController (false);
 			});
 			return true;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

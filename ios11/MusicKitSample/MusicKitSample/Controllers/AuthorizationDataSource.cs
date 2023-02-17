@@ -1,16 +1,13 @@
-﻿using System;
+using System;
 using StoreKit;
 using System.Collections.Generic;
 using Foundation;
 using MediaPlayer;
 using ObjCRuntime;
-namespace MusicKitSample.Controllers
-{
-	public class AuthorizationDataSource
-	{
+namespace MusicKitSample.Controllers {
+	public class AuthorizationDataSource {
 		[Native]
-		enum SectionTypes : long
-		{
+		enum SectionTypes : long {
 			MediaLibraryAuthorizationStatus = 0,
 			CloudServiceAuthorizationStatus,
 			RequestCapabilities
@@ -67,7 +64,7 @@ namespace MusicKitSample.Controllers
 
 		public int NumberOfItems (long section)
 		{
-			var sectionType = (SectionTypes)section;
+			var sectionType = (SectionTypes) section;
 
 			switch (sectionType) {
 			case SectionTypes.MediaLibraryAuthorizationStatus:
@@ -82,7 +79,7 @@ namespace MusicKitSample.Controllers
 
 		public string SectionTitle (long section)
 		{
-			var sectionType = (SectionTypes)section;
+			var sectionType = (SectionTypes) section;
 
 			switch (sectionType) {
 			case SectionTypes.MediaLibraryAuthorizationStatus:
@@ -98,7 +95,7 @@ namespace MusicKitSample.Controllers
 
 		public string StringForItem (NSIndexPath indexPath)
 		{
-			var sectionType = (SectionTypes)indexPath.Section;
+			var sectionType = (SectionTypes) indexPath.Section;
 
 			switch (sectionType) {
 			case SectionTypes.MediaLibraryAuthorizationStatus:

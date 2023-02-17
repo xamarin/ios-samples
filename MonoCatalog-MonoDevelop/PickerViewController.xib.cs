@@ -8,7 +8,7 @@ using System;
 
 namespace MonoCatalog {
 
-	public partial class PickerViewController : UIViewController  {
+	public partial class PickerViewController : UIViewController {
 		UIPickerView myPickerView, customPickerView;
 		UIDatePicker datePickerView;
 		UILabel label;
@@ -39,7 +39,7 @@ namespace MonoCatalog {
 			buttonBarSegmentedControl.TintColor = UIColor.DarkGray;
 			pickerStyleSegmentedControl.TintColor = UIColor.DarkGray;
 
-			label = new UILabel (new CGRect (20f, myPickerView.Frame.Y - 30f, View.Bounds.Width - 40f, 30f)){
+			label = new UILabel (new CGRect (20f, myPickerView.Frame.Y - 30f, View.Bounds.Width - 40f, 30f)) {
 				Font = UIFont.SystemFontOfSize (14),
 				TextAlignment = UITextAlignment.Center,
 				TextColor = labelTextColor,
@@ -74,7 +74,7 @@ namespace MonoCatalog {
 		UIView currentPicker;
 		void ShowPicker (UIView picker)
 		{
-			if (currentPicker != null){
+			if (currentPicker != null) {
 				currentPicker.Hidden = true;
 				label.Text = "";
 			}
@@ -87,7 +87,7 @@ namespace MonoCatalog {
 		[Export ("togglePickers:")]
 		public void TogglePickers (UISegmentedControl sender)
 		{
-			switch (sender.SelectedSegment){
+			switch (sender.SelectedSegment) {
 			case 0:
 				pickerStyleSegmentedControl.Hidden = true;
 				segmentLabel.Hidden = true;
@@ -113,7 +113,7 @@ namespace MonoCatalog {
 		[Export ("togglePickerStyle:")]
 		public void TogglePickerStyle (UISegmentedControl sender)
 		{
-			switch (sender.SelectedSegment){
+			switch (sender.SelectedSegment) {
 			case 0: // time
 				datePickerView.Mode = UIDatePickerMode.Time;
 				break;
@@ -175,7 +175,7 @@ namespace MonoCatalog {
 			// Empty is used, since UIPickerViews have auto-sizing,
 			// all that is required is the origin
 			//
-			myPickerView = new UIPickerView (CGRect.Empty){
+			myPickerView = new UIPickerView (CGRect.Empty) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				ShowSelectionIndicator = true,
 				Model = new PeopleModel (this),
@@ -199,7 +199,8 @@ namespace MonoCatalog {
 			};
 
 			PickerViewController pvc;
-			public PeopleModel (PickerViewController pvc) {
+			public PeopleModel (PickerViewController pvc)
+			{
 				this.pvc = pvc;
 			}
 
@@ -224,8 +225,8 @@ namespace MonoCatalog {
 			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
 				pvc.label.Text = String.Format ("{0} - {1}",
-							    names [picker.SelectedRowInComponent (0)],
-							    picker.SelectedRowInComponent (1));
+								names [picker.SelectedRowInComponent (0)],
+								picker.SelectedRowInComponent (1));
 			}
 
 			public override nfloat GetComponentWidth (UIPickerView picker, nint component)

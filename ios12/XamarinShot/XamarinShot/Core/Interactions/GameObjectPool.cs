@@ -1,152 +1,140 @@
-﻿
-namespace XamarinShot.Models
-{
-    using SceneKit;
-    using XamarinShot.Models.Enums;
-    using XamarinShot.Models.GameplayState;
-    using XamarinShot.Utils;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    public interface IGameObjectPoolDelegate
-    {
-        Dictionary<string, object> GameDefinitions { get; }
+namespace XamarinShot.Models {
+	using SceneKit;
+	using XamarinShot.Models.Enums;
+	using XamarinShot.Models.GameplayState;
+	using XamarinShot.Utils;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 
-        void OnSpawnedProjectile();
-    }
+	public interface IGameObjectPoolDelegate {
+		Dictionary<string, object> GameDefinitions { get; }
 
-    // Pool that makes it possible for clients to join the game after a ball has been shot
-    // In this case, the pool helps manage fixed projectile slots used for physics sync.
-    // The pool do not actually reuse the object (that functionality could be added if necessary).
-    public class GameObjectPool : IDisposable
-    {
-        private readonly SCNNode cannonball;
+		void OnSpawnedProjectile ();
+	}
 
-        private readonly SCNNode chicken;
+	// Pool that makes it possible for clients to join the game after a ball has been shot
+	// In this case, the pool helps manage fixed projectile slots used for physics sync.
+	// The pool do not actually reuse the object (that functionality could be added if necessary).
+	public class GameObjectPool : IDisposable {
+		private readonly SCNNode cannonball;
 
-        public GameObjectPool()
-        {
-            this.cannonball = SCNNodeExtensions.LoadSCNAsset("projectiles_ball");
-            this.chicken = SCNNodeExtensions.LoadSCNAsset("projectiles_chicken");
+		private readonly SCNNode chicken;
 
-            this.InitialPoolCount = 30;
-        }
+		public GameObjectPool ()
+		{
+			this.cannonball = SCNNodeExtensions.LoadSCNAsset ("projectiles_ball");
+			this.chicken = SCNNodeExtensions.LoadSCNAsset ("projectiles_chicken");
 
-        public IGameObjectPoolDelegate Delegate { get; set; }
+			this.InitialPoolCount = 30;
+		}
 
-        public IProjectileDelegate ProjectileDelegate { get; set; }
+		public IGameObjectPoolDelegate Delegate { get; set; }
 
-        public List<Projectile> ProjectilePool { get; } = new List<Projectile>();
+		public IProjectileDelegate ProjectileDelegate { get; set; }
 
-        public int InitialPoolCount { get; private set; } = 0;
+		public List<Projectile> ProjectilePool { get; } = new List<Projectile> ();
 
-        public Projectile SpawnProjectile() 
-        {
-            var count = 0;
-            foreach(var projectile in this.ProjectilePool.Where(projectile => !projectile.IsAlive))
-            {
-                count += 1;
-            }
+		public int InitialPoolCount { get; private set; } = 0;
 
-            foreach (var projectile in this.ProjectilePool.Where(projectile => !projectile.IsAlive))
-            {
-                return this.SpawnProjectile(projectile.Index);
-            }
+		public Projectile SpawnProjectile ()
+		{
+			var count = 0;
+			foreach (var projectile in this.ProjectilePool.Where (projectile => !projectile.IsAlive)) {
+				count += 1;
+			}
 
-            throw new Exception("No more free projectile in the pool");
-        }
+			foreach (var projectile in this.ProjectilePool.Where (projectile => !projectile.IsAlive)) {
+				return this.SpawnProjectile (projectile.Index);
+			}
 
-        /// <summary>
-        /// Spawn projectile with specific object index
-        /// </summary>
-        public Projectile SpawnProjectile(int objectIndex)
-        {
-            if(this.Delegate == null)
-            {
-                throw new Exception("No Delegate");
-            }
+			throw new Exception ("No more free projectile in the pool");
+		}
 
-            this.Delegate.OnSpawnedProjectile();
+		/// <summary>
+		/// Spawn projectile with specific object index
+		/// </summary>
+		public Projectile SpawnProjectile (int objectIndex)
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No Delegate");
+			}
 
-            var projectile = this.ProjectilePool.FirstOrDefault(tile => tile.Index == objectIndex);
-            if(projectile != null)
-            {
-                var newProjectile = this.CreateProjectile(ProjectileType.Cannonball, projectile.Index);
-                newProjectile.IsAlive = true;
-                this.ProjectilePool[this.ProjectilePool.IndexOf(projectile)] = newProjectile;
-                newProjectile.Delegate = this.ProjectileDelegate;
-                newProjectile.OnSpawn();
-                return newProjectile;
-            }
+			this.Delegate.OnSpawnedProjectile ();
 
-            throw new Exception($"Could not find projectile with index: {objectIndex}");
-        }
+			var projectile = this.ProjectilePool.FirstOrDefault (tile => tile.Index == objectIndex);
+			if (projectile != null) {
+				var newProjectile = this.CreateProjectile (ProjectileType.Cannonball, projectile.Index);
+				newProjectile.IsAlive = true;
+				this.ProjectilePool [this.ProjectilePool.IndexOf (projectile)] = newProjectile;
+				newProjectile.Delegate = this.ProjectileDelegate;
+				newProjectile.OnSpawn ();
+				return newProjectile;
+			}
 
-        public void DespawnProjectile(Projectile projectile)
-        {
-            projectile.Disable();
-        }
+			throw new Exception ($"Could not find projectile with index: {objectIndex}");
+		}
 
-        public void CreatePoolObjects(IGameObjectPoolDelegate @delegate) 
-        {
-            this.Delegate = @delegate;
-            for (var i = 0; i < this.InitialPoolCount; i++)
-            {
-                var newProjectile = this.CreateProjectile(ProjectileType.Cannonball, null);
-                this.ProjectilePool.Add(newProjectile);
-            }
-        }
+		public void DespawnProjectile (Projectile projectile)
+		{
+			projectile.Disable ();
+		}
 
-        public Projectile CreateProjectile(ProjectileType projectileType, int? index)
-        {
-            if (this.Delegate == null)
-            {
-                throw new Exception("No Delegate");
-            }
+		public void CreatePoolObjects (IGameObjectPoolDelegate @delegate)
+		{
+			this.Delegate = @delegate;
+			for (var i = 0; i < this.InitialPoolCount; i++) {
+				var newProjectile = this.CreateProjectile (ProjectileType.Cannonball, null);
+				this.ProjectilePool.Add (newProjectile);
+			}
+		}
 
-            Projectile projectile = null;
-            switch (projectileType)
-            {
-                case ProjectileType.Cannonball:
-                    projectile = TrailBallProjectile.Create(this.cannonball, index, this.Delegate.GameDefinitions);
-                    break;
-                    // Add other projectile types here as needed
-                case ProjectileType.Chicken:
-                    projectile = ChickenProjectile.Create(this.chicken, index, this.Delegate.GameDefinitions);
-                    break;
-                default:
-                    throw new Exception("Trying to get .none projectile");
-            }
+		public Projectile CreateProjectile (ProjectileType projectileType, int? index)
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No Delegate");
+			}
 
-            projectile.AddComponent(new RemoveWhenFallenComponent());
-            return projectile;
-        }
+			Projectile projectile = null;
+			switch (projectileType) {
+			case ProjectileType.Cannonball:
+				projectile = TrailBallProjectile.Create (this.cannonball, index, this.Delegate.GameDefinitions);
+				break;
+			// Add other projectile types here as needed
+			case ProjectileType.Chicken:
+				projectile = ChickenProjectile.Create (this.chicken, index, this.Delegate.GameDefinitions);
+				break;
+			default:
+				throw new Exception ("Trying to get .none projectile");
+			}
 
-        #region IDisposable 
+			projectile.AddComponent (new RemoveWhenFallenComponent ());
+			return projectile;
+		}
 
-        private bool isDisposed; // To detect redundant calls
+		#region IDisposable 
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.isDisposed)
-            {
-                if (disposing)
-                {
-                    this.chicken.Dispose();
-                    this.cannonball.Dispose();
-                }
+		private bool isDisposed; // To detect redundant calls
 
-                this.isDisposed = true;
-            }
-        }
+		protected virtual void Dispose (bool disposing)
+		{
+			if (!this.isDisposed) {
+				if (disposing) {
+					this.chicken.Dispose ();
+					this.cannonball.Dispose ();
+				}
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(true);
-        }
+				this.isDisposed = true;
+			}
+		}
 
-        #endregion
-    }
+		public void Dispose ()
+		{
+			this.Dispose (true);
+			GC.SuppressFinalize (true);
+		}
+
+		#endregion
+	}
 }

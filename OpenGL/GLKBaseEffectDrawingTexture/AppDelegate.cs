@@ -1,14 +1,12 @@
 using Foundation;
 using UIKit;
 
-namespace GLKBaseEffectDrawingTexture
-{
+namespace GLKBaseEffectDrawingTexture {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		MCViewController controller;
 
 		public override UIWindow Window { get; set; }

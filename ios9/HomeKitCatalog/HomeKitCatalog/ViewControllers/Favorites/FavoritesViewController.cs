@@ -4,19 +4,17 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Lists favorite characteristics (grouped by accessory) and allows users to manipulate their values.
-	partial class FavoritesViewController : UITableViewController, IUITabBarControllerDelegate, IHMAccessoryDelegate, IHMHomeManagerDelegate
-	{
-		static readonly NSString characteristicCell = (NSString)"CharacteristicCell";
-		static readonly NSString segmentedControlCharacteristicCell = (NSString)"SegmentedControlCharacteristicCell";
-		static readonly NSString switchCharacteristicCell = (NSString)"SwitchCharacteristicCell";
-		static readonly NSString sliderCharacteristicCell = (NSString)"SliderCharacteristicCell";
-		static readonly NSString textCharacteristicCell = (NSString)"TextCharacteristicCell";
-		static readonly NSString serviceTypeCell = (NSString)"ServiceTypeCell";
+	partial class FavoritesViewController : UITableViewController, IUITabBarControllerDelegate, IHMAccessoryDelegate, IHMHomeManagerDelegate {
+		static readonly NSString characteristicCell = (NSString) "CharacteristicCell";
+		static readonly NSString segmentedControlCharacteristicCell = (NSString) "SegmentedControlCharacteristicCell";
+		static readonly NSString switchCharacteristicCell = (NSString) "SwitchCharacteristicCell";
+		static readonly NSString sliderCharacteristicCell = (NSString) "SliderCharacteristicCell";
+		static readonly NSString textCharacteristicCell = (NSString) "TextCharacteristicCell";
+		static readonly NSString serviceTypeCell = (NSString) "ServiceTypeCell";
 
-		HMAccessory[] favoriteAccessories = FavoritesManager.SharedManager.FavoriteAccessories ();
+		HMAccessory [] favoriteAccessories = FavoritesManager.SharedManager.FavoriteAccessories ();
 		AccessoryUpdateController cellDelegate = new AccessoryUpdateController ();
 
 		// If `true`, the characteristic cells should show stars.
@@ -98,7 +96,7 @@ namespace HomeKitCatalog
 			var textNib = UINib.FromName (textCharacteristicCell, null);
 			TableView.RegisterNibForCellReuse (textNib, textCharacteristicCell);
 
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), serviceTypeCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), serviceTypeCell);
 		}
 
 
@@ -135,7 +133,7 @@ namespace HomeKitCatalog
 			else if (characteristic.IsTextWritable ())
 				reuseIdentifier = textCharacteristicCell;
 
-			var cell = (CharacteristicCell)tableView.DequeueReusableCell (reuseIdentifier, indexPath);
+			var cell = (CharacteristicCell) tableView.DequeueReusableCell (reuseIdentifier, indexPath);
 			cell.ShowsFavorites = ShowsFavorites;
 			cell.Delegate = cellDelegate;
 			cell.Characteristic = characteristic;
@@ -145,7 +143,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return favoriteAccessories [(int)section].Name;
+			return favoriteAccessories [(int) section].Name;
 		}
 
 		#endregion
@@ -169,7 +167,7 @@ namespace HomeKitCatalog
 		// Enables or disables notifications for all favorite characteristics which support event notifications.
 		static void SetNotificationsEnabled (bool notificationsEnabled)
 		{
-			foreach (var characteristic in FavoritesManager.SharedManager.FavoriteCharacteristics()) {
+			foreach (var characteristic in FavoritesManager.SharedManager.FavoriteCharacteristics ()) {
 				if (characteristic.SupportsEventNotification) {
 					characteristic.EnableNotification (notificationsEnabled, error => {
 						if (error != null)
@@ -220,7 +218,7 @@ namespace HomeKitCatalog
 				return;
 
 			var indexPath = NSIndexPath.FromRowSection (indexOfCharacteristic, indexOfAccessory);
-			var cell = (CharacteristicCell)TableView.CellAt (indexPath);
+			var cell = (CharacteristicCell) TableView.CellAt (indexPath);
 			cell.SetValue (characteristic.Value, false);
 		}
 

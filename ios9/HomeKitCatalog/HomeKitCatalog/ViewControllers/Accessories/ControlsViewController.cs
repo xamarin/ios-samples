@@ -4,11 +4,9 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller which displays a list of `HMServices`, separated by Service Type.
-	public partial class ControlsViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
+	public partial class ControlsViewController : HMCatalogViewController, IHMAccessoryDelegate {
 		const string ShowServiceSegue = "Show Service";
 
 		readonly AccessoryUpdateController cellController = new AccessoryUpdateController ();
@@ -37,9 +35,9 @@ namespace HomeKitCatalog
 		{
 			base.PrepareForSegue (segue, sender);
 			if (segue.Identifier == ShowServiceSegue) {
-				var indexPath = TableView.IndexPathForCell ((UITableViewCell)sender);
+				var indexPath = TableView.IndexPathForCell ((UITableViewCell) sender);
 				if (indexPath != null) {
-					var characteristicsViewController = (CharacteristicsViewController)segue.IntendedDestinationViewController ();
+					var characteristicsViewController = (CharacteristicsViewController) segue.IntendedDestinationViewController ();
 					var selectedService = tableViewDataSource.ServiceForIndexPath (indexPath);
 					if (selectedService != null)
 						characteristicsViewController.Service = selectedService;

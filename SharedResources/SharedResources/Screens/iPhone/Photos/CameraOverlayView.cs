@@ -2,16 +2,14 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_SharedResources.Screens.iPhone.Photos
-{
-	public class CameraOverlayView : UIView
-	{
+namespace Example_SharedResources.Screens.iPhone.Photos {
+	public class CameraOverlayView : UIView {
 		#region -= constructors =-
 
-		public CameraOverlayView() : base() { Initialize(); }
-		public CameraOverlayView (CGRect frame) : base(frame) { Initialize(); }
+		public CameraOverlayView () : base () { Initialize (); }
+		public CameraOverlayView (CGRect frame) : base (frame) { Initialize (); }
 
-		protected void Initialize()
+		protected void Initialize ()
 		{
 			this.BackgroundColor = UIColor.Clear;
 		}
@@ -67,7 +65,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		{
 			// declare vars
 			// 144º
-			float theta = 2 * (float)Math.PI * (2f / 5f);
+			float theta = 2 * (float) Math.PI * (2f / 5f);
 			float radius = starDiameter / 2;
 
 			// move up and over
@@ -75,7 +73,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 
 			context.MoveTo (0, radius);
 			for (int i = 1; i < 5; i++) {
-				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
+				context.AddLineToPoint (radius * (float) Math.Sin (i * theta), radius * (float) Math.Cos (i * theta));
 			}
 			//context.SetRGBFillColor (1, 1, 1, 1);
 			context.ClosePath ();

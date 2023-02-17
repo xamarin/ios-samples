@@ -1,11 +1,9 @@
-﻿using CoreAnimation;
+using CoreAnimation;
 using CoreGraphics;
 using UIKit;
 
-namespace AnimationSamples
-{
-	public class ImplicitLayerAnimation : UIViewController
-	{
+namespace AnimationSamples {
+	public class ImplicitLayerAnimation : UIViewController {
 		static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		CALayer layer;
@@ -28,9 +26,9 @@ namespace AnimationSamples
 			View.Layer.AddSublayer (layer);
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-				var initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
+				var initalViewController = (ViewController) MainStoryboard.InstantiateViewController ("InitalViewController");
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
-				PresentViewController(initalViewController, true, null);
+				PresentViewController (initalViewController, true, null);
 			}));
 		}
 
@@ -38,7 +36,7 @@ namespace AnimationSamples
 		{
 			base.ViewDidAppear (animated);
 
-			CATransaction.Begin();
+			CATransaction.Begin ();
 			CATransaction.AnimationDuration = 10;
 			layer.Position = new CGPoint (150, 550);
 			layer.BorderWidth = 5.0f;

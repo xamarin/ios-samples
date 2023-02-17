@@ -4,11 +4,9 @@ using UIKit;
 using Foundation;
 using Example_Notifications.Screens;
 
-namespace Example_Notifications
-{
-	[Register("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+namespace Example_Notifications {
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
 		#region -= declarations and properties =-
 
 		protected UIWindow window;
@@ -25,30 +23,30 @@ namespace Example_Notifications
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
 
-			home = new Screens.iPhone.Home.Home_iPhone();
+			home = new Screens.iPhone.Home.Home_iPhone ();
 			home.View.Frame = new CoreGraphics.CGRect (0, UIApplication.SharedApplication.StatusBarFrame.Height, UIScreen.MainScreen.ApplicationFrame.Width, UIScreen.MainScreen.ApplicationFrame.Height);
 			window.RootViewController = home;
 
 			// check for a notification
-			if(options != null) {
+			if (options != null) {
 
 				// check for a local notification
-				if(options.ContainsKey(UIApplication.LaunchOptionsLocalNotificationKey)) {
+				if (options.ContainsKey (UIApplication.LaunchOptionsLocalNotificationKey)) {
 
-					UILocalNotification localNotification = options[UIApplication.LaunchOptionsLocalNotificationKey] as UILocalNotification;
-					if(localNotification != null) {
+					UILocalNotification localNotification = options [UIApplication.LaunchOptionsLocalNotificationKey] as UILocalNotification;
+					if (localNotification != null) {
 
-						new UIAlertView(localNotification.AlertAction, localNotification.AlertBody, null, "OK", null).Show();
+						new UIAlertView (localNotification.AlertAction, localNotification.AlertBody, null, "OK", null).Show ();
 						// reset our badge
 						UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 					}
 				}
 
 				// check for a remote notification
-				if(options.ContainsKey(UIApplication.LaunchOptionsRemoteNotificationKey)) {
+				if (options.ContainsKey (UIApplication.LaunchOptionsRemoteNotificationKey)) {
 
-					NSDictionary remoteNotification = options[UIApplication.LaunchOptionsRemoteNotificationKey] as NSDictionary;
-					if(remoteNotification != null) {
+					NSDictionary remoteNotification = options [UIApplication.LaunchOptionsRemoteNotificationKey] as NSDictionary;
+					if (remoteNotification != null) {
 						//new UIAlertView(remoteNotification.AlertAction, remoteNotification.AlertBody, null, "OK", null).Show();
 					}
 				}
@@ -56,8 +54,8 @@ namespace Example_Notifications
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
 				var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (
-					                           UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
-				                           );
+											   UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+										   );
 
 				app.RegisterUserNotificationSettings (notificationSettings);
 				app.RegisterForRemoteNotifications ();
@@ -66,7 +64,7 @@ namespace Example_Notifications
 				// set what kind of notification types we want
 				UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
 				// register for remote notifications
-				UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
+				UIApplication.SharedApplication.RegisterForRemoteNotificationTypes (notificationTypes);
 			}
 
 			return true;
@@ -78,7 +76,7 @@ namespace Example_Notifications
 		public override void ReceivedLocalNotification (UIApplication application, UILocalNotification notification)
 		{
 			// show an alert
-			new UIAlertView(notification.AlertAction, notification.AlertBody, null, "OK", null).Show();
+			new UIAlertView (notification.AlertAction, notification.AlertBody, null, "OK", null).Show ();
 
 			// reset our badge
 			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
@@ -113,7 +111,7 @@ namespace Example_Notifications
 		/// </summary>
 		public override void FailedToRegisterForRemoteNotifications (UIApplication application, NSError error)
 		{
-			new UIAlertView ("Error registering push notifications", error.LocalizedDescription, null, "OK", null).Show();
+			new UIAlertView ("Error registering push notifications", error.LocalizedDescription, null, "OK", null).Show ();
 		}
 	}
 }

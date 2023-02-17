@@ -3,17 +3,14 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace PokerNightVoting
-{
+namespace PokerNightVoting {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		public override UIWindow Window { get; set; }
 	}
 
-	public class Application
-	{
-		static void Main (string[] args)
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

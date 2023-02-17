@@ -1,12 +1,10 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class FetchAllRecordZonesSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class FetchAllRecordZonesSample : CodeSample {
 		public FetchAllRecordZonesSample ()
 			: base (title: "FetchAllRecordZones",
 					className: "CKDatabase",

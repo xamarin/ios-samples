@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 
 using UIKit;
 
-namespace MultiTask
-{
-	public partial class DetailViewController : UIViewController
-	{
+namespace MultiTask {
+	public partial class DetailViewController : UIViewController {
 		public object DetailItem { get; set; }
 
 		public DetailViewController (IntPtr handle) : base (handle)
@@ -16,7 +14,7 @@ namespace MultiTask
 		{
 			if (DetailItem != newDetailItem) {
 				DetailItem = newDetailItem;
-				
+
 				// Update the view
 				ConfigureView ();
 			}

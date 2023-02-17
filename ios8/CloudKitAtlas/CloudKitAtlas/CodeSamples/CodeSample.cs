@@ -1,21 +1,18 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
 using CoreLocation;
 using System.Threading.Tasks;
 
-namespace CloudKitAtlas
-{
-	public enum Change
-	{
+namespace CloudKitAtlas {
+	public enum Change {
 		Modified,
 		Deleted,
 		Added
 	}
 
-	public class Attribute
-	{
+	public class Attribute {
 		public string Key { get; set; }
 		public string Value { get; set; }
 		public bool IsNested { get; set; } = false;
@@ -46,8 +43,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class AttributeGroup
-	{
+	public class AttributeGroup {
 		public string Title { get; }
 
 		public List<Attribute> Attributes { get; set; } = new List<Attribute> ();
@@ -64,8 +60,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class Input
-	{
+	public class Input {
 		public string Label { get; }
 
 		public virtual bool IsValid {
@@ -98,8 +93,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class SelectionInput : Input
-	{
+	public class SelectionInput : Input {
 		public List<Input> Items { get; set; } = new List<Input> ();
 
 		public override bool IsValid {
@@ -120,14 +114,12 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public enum TextInputType
-	{
+	public enum TextInputType {
 		Text,
 		Email
 	}
 
-	public class LocationInput : Input
-	{
+	public class LocationInput : Input {
 		public int? Longitude { get; set; }
 		public int? Latitude { get; set; }
 
@@ -151,8 +143,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class ImageInput : Input
-	{
+	public class ImageInput : Input {
 		public NSUrl Value { get; set; }
 
 		public override bool IsValid {
@@ -167,8 +158,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class BooleanInput : Input
-	{
+	public class BooleanInput : Input {
 		public bool Value { get; set; }
 
 		public override bool IsValid {
@@ -190,8 +180,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class TextInput : Input
-	{
+	public class TextInput : Input {
 		public TextInputType Type { get; private set; } = TextInputType.Text;
 
 		public string Value { get; set; } = string.Empty;
@@ -222,14 +211,12 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public interface IResult
-	{
+	public interface IResult {
 		string SummaryField { get; }
 		List<AttributeGroup> AttributeList { get; }
 	}
 
-	public class NoResults : IResult
-	{
+	public class NoResults : IResult {
 		public string SummaryField {
 			get {
 				return null;
@@ -244,8 +231,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class Results
-	{
+	public class Results {
 		public List<IResult> Items { get; } = new List<IResult> ();
 
 		public bool AlwaysShowAsList { get; }
@@ -281,8 +267,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public abstract class CodeSample
-	{
+	public abstract class CodeSample {
 		public string Title { get; }
 		public string ClassName { get; }
 		public string MethodName { get; }
@@ -358,7 +343,7 @@ namespace CloudKitAtlas
 		{
 			object obj;
 			var contains = Data.TryGetValue (key, out obj);
-			value = contains ? (T)obj : default (T);
+			value = contains ? (T) obj : default (T);
 			return contains;
 		}
 

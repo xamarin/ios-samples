@@ -3,11 +3,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace ExclusionPathDemo
-{
-	public class ExclusionPathView : UITextView
-	{
-	    CGPath exclusionPath;
+namespace ExclusionPathDemo {
+	public class ExclusionPathView : UITextView {
+		CGPath exclusionPath;
 		CGPoint initialPoint;
 		CGPoint latestPoint;
 		UIBezierPath bezierPath;
@@ -51,7 +49,7 @@ namespace ExclusionPathDemo
 			base.TouchesEnded (touches, evt);
 
 			bezierPath.CGPath = exclusionPath;
-			TextContainer.ExclusionPaths = new UIBezierPath[] { bezierPath };
+			TextContainer.ExclusionPaths = new UIBezierPath [] { bezierPath };
 		}
 
 		public override void Draw (CGRect rect)
@@ -66,7 +64,7 @@ namespace ExclusionPathDemo
 					UIColor.Blue.SetStroke ();
 
 					if (exclusionPath.IsEmpty) {
-						exclusionPath.AddLines (new CGPoint[] { initialPoint, latestPoint });
+						exclusionPath.AddLines (new CGPoint [] { initialPoint, latestPoint });
 					} else {
 						exclusionPath.AddLineToPoint (latestPoint);
 					}

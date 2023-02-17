@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using System.Collections.Generic;
 using CoreMotion;
@@ -7,10 +7,8 @@ using UIKit;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace MotionActivityDemo
-{
-	public enum ActivityType
-	{
+namespace MotionActivityDemo {
+	public enum ActivityType {
 		Walking,
 		Running,
 		Driving,
@@ -19,8 +17,7 @@ namespace MotionActivityDemo
 		None
 	}
 
-	public class ActivityDataManager : NSObject
-	{
+	public class ActivityDataManager : NSObject {
 		public double WalkingDuration;
 		public double RunningDuration;
 		public double VehicularDuration;
@@ -31,7 +28,7 @@ namespace MotionActivityDemo
 
 		public List<SignificantActivity> SignificantActivities {
 			get {
-				SignificantActivity[] copy = new SignificantActivity[significantActivities.Count];
+				SignificantActivity [] copy = new SignificantActivity [significantActivities.Count];
 				significantActivities.CopyTo (copy);
 				return copy.ToList ();
 			}
@@ -69,13 +66,13 @@ namespace MotionActivityDemo
 			await queryHistoricalDataAsync (query.StartDate, query.EndDate);
 		}
 
-		async Task additionalProcessingOnAsync (CMMotionActivity[] activities)
+		async Task additionalProcessingOnAsync (CMMotionActivity [] activities)
 		{
 			computeTotalDurations (activities);
 			SignificantActivities = (await aggregateSignificantActivitiesAsync (activities)).ToList ();
 		}
 
-		void computeTotalDurations (CMMotionActivity[] activities)
+		void computeTotalDurations (CMMotionActivity [] activities)
 		{
 			WalkingDuration = 0;
 			RunningDuration = 0;
@@ -101,7 +98,7 @@ namespace MotionActivityDemo
 			}
 		}
 
-		async Task<List<SignificantActivity>> aggregateSignificantActivitiesAsync (CMMotionActivity[] activities)
+		async Task<List<SignificantActivity>> aggregateSignificantActivitiesAsync (CMMotionActivity [] activities)
 		{
 			List<CMMotionActivity> filteredActivities = new List<CMMotionActivity> ();
 
@@ -153,8 +150,8 @@ namespace MotionActivityDemo
 				CMMotionActivity activity = filteredActivities [i];
 
 				if ((prevActivity.Walking && activity.Walking) ||
-				    (prevActivity.Running && activity.Running) ||
-				    (prevActivity.Automotive && activity.Automotive)) {
+					(prevActivity.Running && activity.Running) ||
+					(prevActivity.Automotive && activity.Automotive)) {
 					filteredActivities.RemoveAt (i);
 				} else {
 					++i;
@@ -171,7 +168,7 @@ namespace MotionActivityDemo
 				if (!activity.Walking && !activity.Running && !activity.Automotive)
 					continue;
 
-				var significantActivity = new SignificantActivity (ActivityDataManager.ActivityToType (activity), (DateTime)activity.StartDate, (DateTime)nextActivity.StartDate);
+				var significantActivity = new SignificantActivity (ActivityDataManager.ActivityToType (activity), (DateTime) activity.StartDate, (DateTime) nextActivity.StartDate);
 
 				try {
 					var pedometerData = await pedometer.QueryPedometerDataAsync (significantActivity.StartDate, significantActivity.EndDate);
@@ -232,7 +229,7 @@ namespace MotionActivityDemo
 		public static bool CheckAvailability ()
 		{
 			if (available != null)
-				return (bool)available;
+				return (bool) available;
 
 			available = true;
 			if (CMMotionActivityManager.IsActivityAvailable == false) {
@@ -245,7 +242,7 @@ namespace MotionActivityDemo
 				available = false;
 			}
 
-			return (bool)available;
+			return (bool) available;
 		}
 
 		void initMotionActivity ()
@@ -310,8 +307,7 @@ namespace MotionActivityDemo
 		#endregion
 	}
 
-	public class SignificantActivity : NSObject
-	{
+	public class SignificantActivity : NSObject {
 		public NSDate StartDate;
 		public NSDate EndDate;
 		public int StepCounts;
@@ -320,8 +316,8 @@ namespace MotionActivityDemo
 		public SignificantActivity (ActivityType type, DateTime startDate, DateTime endDate)
 		{
 			ActivityType = type;
-			StartDate = (NSDate)startDate;
-			EndDate = (NSDate)endDate;
+			StartDate = (NSDate) startDate;
+			EndDate = (NSDate) endDate;
 			StepCounts = 0;
 		}
 	}

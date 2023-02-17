@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace MySingleView
-{
-	public partial class ViewController : UIViewController
-	{
+namespace MySingleView {
+	public partial class ViewController : UIViewController {
 		#region Computed Properties
 		public nint PageNumber { get; set; } = 0;
 		#endregion
@@ -34,27 +32,30 @@ namespace MySingleView
 		#endregion
 
 		#region Custom Actions
-		partial void NextCat (Foundation.NSObject sender) {
+		partial void NextCat (Foundation.NSObject sender)
+		{
 
 			// Display next Cat
 			if (++PageNumber > 5) {
 				PageNumber = 5;
 			}
-			ShowCat();
+			ShowCat ();
 
 		}
 
-		partial void PreviousCat (Foundation.NSObject sender) {
+		partial void PreviousCat (Foundation.NSObject sender)
+		{
 			// Display previous cat
 			if (--PageNumber < 0) {
 				PageNumber = 0;
 			}
-			ShowCat();
+			ShowCat ();
 		}
 		#endregion
 
 		#region Private Methods
-		private void ShowCat() {
+		private void ShowCat ()
+		{
 
 			// Adjust UI
 			PreviousButton.Enabled = (PageNumber > 0);
@@ -62,7 +63,7 @@ namespace MySingleView
 			PageView.CurrentPage = PageNumber;
 
 			// Display new cat
-			CatView.Image = UIImage.FromFile(string.Format("Cat{0:00}.jpg",PageNumber+1));
+			CatView.Image = UIImage.FromFile (string.Format ("Cat{0:00}.jpg", PageNumber + 1));
 		}
 		#endregion
 	}

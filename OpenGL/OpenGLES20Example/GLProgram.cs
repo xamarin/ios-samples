@@ -5,10 +5,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OpenGLES20Example
-{
-	public class GLProgram
-	{
+namespace OpenGLES20Example {
+	public class GLProgram {
 		int program,
 			vertShader,
 			fragShader;
@@ -37,8 +35,8 @@ namespace OpenGLES20Example
 			int status;
 			string source;
 
-			using (StreamReader sr = new StreamReader(file))
-				source = sr.ReadToEnd();
+			using (StreamReader sr = new StreamReader (file))
+				source = sr.ReadToEnd ();
 
 			shader = GL.CreateShader (type);
 			GL.ShaderSource (shader, source);
@@ -89,7 +87,8 @@ namespace OpenGLES20Example
 			GL.UseProgram (program);
 		}
 
-		string GetLog (int obj) {
+		string GetLog (int obj)
+		{
 			string log;
 			if (GL.IsShader (obj)) {
 				log = GL.GetShaderInfoLog (obj);

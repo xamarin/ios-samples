@@ -4,16 +4,14 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
+namespace HomeKitIntro {
 	/// <summary>
 	/// Accessory table source.
 	/// </summary>
-	public class AvailableTableSource : UITableViewSource
-	{
+	public class AvailableTableSource : UITableViewSource {
 		#region Private Variables
 		private AvailableTableViewController _controller;
-		#endregion 
+		#endregion
 
 		#region Computed Properties
 		/// <summary>
@@ -21,7 +19,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -147,9 +145,9 @@ namespace HomeKitIntro
 			// Add the requested accessory to the home
 			ThisApp.HomeManager.PrimaryHome.AddAccessory (_controller.AccessoryBrowser.DiscoveredAccessories [indexPath.Row], (err) => {
 				// Did an error occur
-				if (err !=null) {
+				if (err != null) {
 					// Inform user of error 
-					AlertView.PresentOKAlert("Add Accessory Error",err.LocalizedDescription,_controller);
+					AlertView.PresentOKAlert ("Add Accessory Error", err.LocalizedDescription, _controller);
 				}
 			});
 		}

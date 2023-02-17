@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using AssetsLibrary;
 
-namespace Example_SharedResources.Screens.iPhone.AVAssets
-{
-	public class PhotoLibraryController : UITableViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.AVAssets {
+	public class PhotoLibraryController : UITableViewController {
 
 		public PhotoLibraryController ()
 		{

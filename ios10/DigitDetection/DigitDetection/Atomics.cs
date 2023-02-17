@@ -1,9 +1,7 @@
-﻿using System.Threading;
+using System.Threading;
 
-namespace DigitDetection
-{
-	public static class Atomics
-	{
+namespace DigitDetection {
+	public static class Atomics {
 		static int cnt;
 
 		public static void Increment ()

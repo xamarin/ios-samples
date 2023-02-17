@@ -6,7 +6,7 @@ namespace CollectionViewTransition {
 
 	public class APLTransitionLayout : UICollectionViewTransitionLayout {
 
-		public APLTransitionLayout(UICollectionViewLayout currentLayout, UICollectionViewLayout newLayout) :
+		public APLTransitionLayout (UICollectionViewLayout currentLayout, UICollectionViewLayout newLayout) :
 			base (currentLayout, newLayout)
 		{
 		}
@@ -16,8 +16,8 @@ namespace CollectionViewTransition {
 		public void SetTransitionProgress (float transitionProgress)
 		{
 			base.TransitionProgress = transitionProgress;
-			float offsetH = (float)GetValueForAnimatedKey ("offsetH");
-			float offsetV = (float)GetValueForAnimatedKey ("offsetV");
+			float offsetH = (float) GetValueForAnimatedKey ("offsetH");
+			float offsetV = (float) GetValueForAnimatedKey ("offsetV");
 			Offset = new UIOffset (offsetH, offsetV);
 		}
 
@@ -28,9 +28,9 @@ namespace CollectionViewTransition {
 			Offset = offset;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
-			UICollectionViewLayoutAttributes[] attributes = base.LayoutAttributesForElementsInRect (rect);
+			UICollectionViewLayoutAttributes [] attributes = base.LayoutAttributesForElementsInRect (rect);
 			foreach (var attribute in attributes) {
 				CGPoint center = attribute.Center;
 				attribute.Center = new CGPoint (center.X + Offset.Horizontal, center.Y + Offset.Vertical);

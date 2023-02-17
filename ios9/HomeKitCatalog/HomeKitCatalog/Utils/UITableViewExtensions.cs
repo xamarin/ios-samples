@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace HomeKitCatalog
-{
-	public static class UITableViewExtensions
-	{
+namespace HomeKitCatalog {
+	public static class UITableViewExtensions {
 		public static void SetBackgroundMessage (this UITableView tableView, string msg)
 		{
 			if (string.IsNullOrWhiteSpace (msg)) {

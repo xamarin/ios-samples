@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace SegueCatalog
-{
-	public partial class NestedViewController : UIViewController
-	{
+namespace SegueCatalog {
+	public partial class NestedViewController : UIViewController {
 		public NestedViewController (IntPtr handle)
 			: base (handle)
 		{

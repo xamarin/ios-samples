@@ -5,40 +5,35 @@ using System;
 using Foundation;
 using WatchKit;
 
-namespace Watchkit2Extension
-{
-	public partial class MovieDetailController : WKInterfaceController
-	{
+namespace Watchkit2Extension {
+	public partial class MovieDetailController : WKInterfaceController {
 		public MovieDetailController (IntPtr handle) : base (handle)
 		{
 		}
 
 		bool playingInlineMovie = false;
 
-		public override void Awake(NSObject context)
+		public override void Awake (NSObject context)
 		{
-			base.Awake(context);
+			base.Awake (context);
 
-			var movieUrl = NSBundle.MainBundle.GetUrlForResource("Ski1", "m4v", "Media");
-	
-			Movie.SetMovieUrl(movieUrl);
-			Movie.SetPosterImage(WKImage.CreateFromName("Ski1"));
+			var movieUrl = NSBundle.MainBundle.GetUrlForResource ("Ski1", "m4v", "Media");
 
-			InlineMovie.SetMovieUrl(movieUrl);
-			InlineMovie.SetPosterImage(WKImage.CreateFromName("Ski1"));
+			Movie.SetMovieUrl (movieUrl);
+			Movie.SetPosterImage (WKImage.CreateFromName ("Ski1"));
+
+			InlineMovie.SetMovieUrl (movieUrl);
+			InlineMovie.SetPosterImage (WKImage.CreateFromName ("Ski1"));
 
 			playingInlineMovie = false;
 		}
 
-		partial void InlineMovieTapped(Foundation.NSObject sender)
+		partial void InlineMovieTapped (Foundation.NSObject sender)
 		{
-			if (playingInlineMovie)
-			{
-				InlineMovie.Pause();
-			}
-			else
-			{
-				InlineMovie.Play();
+			if (playingInlineMovie) {
+				InlineMovie.Pause ();
+			} else {
+				InlineMovie.Play ();
 			}
 
 			playingInlineMovie = !playingInlineMovie;

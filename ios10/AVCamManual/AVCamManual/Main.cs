@@ -1,10 +1,8 @@
 using UIKit;
 
-namespace AVCamManual
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace AVCamManual {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

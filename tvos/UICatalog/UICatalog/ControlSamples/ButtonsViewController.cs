@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
@@ -7,7 +7,7 @@ namespace UICatalog {
 	public partial class ButtonsViewController : UIViewController {
 
 		[Export ("initWithCoder:")]
-		public ButtonsViewController (NSCoder coder): base (coder)
+		public ButtonsViewController (NSCoder coder) : base (coder)
 		{
 		}
 

@@ -6,11 +6,9 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace DigitDetection
-{
+namespace DigitDetection {
 	// 2 points can give a line and this class is just for that purpose, it keeps a record of a lin
-	public class Line
-	{
+	public class Line {
 		public CGPoint Start { get; }
 		public CGPoint End { get; }
 
@@ -22,8 +20,7 @@ namespace DigitDetection
 	}
 
 	[Register ("DrawView")]
-	public class DrawView : UIView
-	{
+	public class DrawView : UIView {
 		// some parameters of how thick a line to draw 15 seems to work 
 		// and we have white drawings on black background just like MNIST needs its input
 		float lineWidth = 15f;
@@ -59,12 +56,12 @@ namespace DigitDetection
 
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
-			lastPoint = ((UITouch)touches.First ()).LocationInView (this);
+			lastPoint = ((UITouch) touches.First ()).LocationInView (this);
 		}
 
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
-			var newPoint = ((UITouch)touches.First ()).LocationInView (this);
+			var newPoint = ((UITouch) touches.First ()).LocationInView (this);
 			// keep all lines drawn by user as touch in record so we can draw them in view
 			Lines.Add (new Line (lastPoint, newPoint));
 

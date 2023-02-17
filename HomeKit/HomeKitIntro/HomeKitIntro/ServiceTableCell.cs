@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class ServiceTableCell : UITableViewCell
-	{
+namespace HomeKitIntro {
+	public partial class ServiceTableCell : UITableViewCell {
 		#region Static Properties
 		public static readonly NSString Key = new NSString ("ServiceTableCell");
 		#endregion
@@ -28,7 +26,8 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <param name="title">Title.</param>
 		/// <param name="subtitle">Subtitle.</param>
-		public void DisplayInformation(string title, string subtitle) {
+		public void DisplayInformation (string title, string subtitle)
+		{
 
 			// Update GUI
 			Title.Text = title;
@@ -41,7 +40,8 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <param name="name">Name.</param>
 		/// <param name="type">Type.</param>
-		public void DisplayService(string name, HMServiceType type) {
+		public void DisplayService (string name, HMServiceType type)
+		{
 
 			// Update GUI
 			Title.Text = name;

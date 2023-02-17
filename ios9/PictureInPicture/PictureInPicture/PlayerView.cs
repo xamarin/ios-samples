@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using AVFoundation;
 using CoreGraphics;
@@ -6,15 +6,13 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace PictureInPicture
-{
-	[Register("PlayerView")]
-	public class PlayerView : UIView
-	{
+namespace PictureInPicture {
+	[Register ("PlayerView")]
+	public class PlayerView : UIView {
 		static Class LayerClass {
-			[Export("layerClass")]
+			[Export ("layerClass")]
 			get {
-				return new Class (typeof(AVPlayerLayer));
+				return new Class (typeof (AVPlayerLayer));
 			}
 		}
 
@@ -29,7 +27,7 @@ namespace PictureInPicture
 
 		public AVPlayerLayer PlayerLayer {
 			get {
-				return (AVPlayerLayer)Layer;
+				return (AVPlayerLayer) Layer;
 			}
 		}
 

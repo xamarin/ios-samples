@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace NSZombieApocalypse
-{
-	public sealed class ZombieMeter : UIView
-	{
+namespace NSZombieApocalypse {
+	public sealed class ZombieMeter : UIView {
 		float zombieLevel;
 		public float ZombieLevel {
 			get {
@@ -61,7 +59,7 @@ namespace NSZombieApocalypse
 			const float pad = 20;
 			const float numberOfMeters = 10;
 			const float meterSpacing = 5;
-			float yOrigin = (float)label.Frame.GetMaxY () + 10;
+			float yOrigin = (float) label.Frame.GetMaxY () + 10;
 
 			UIBezierPath background = UIBezierPath.FromRoundedRect (rect, 8);
 			UIColor.White.SetFill ();
@@ -76,7 +74,7 @@ namespace NSZombieApocalypse
 				(rect.Size.Height - yOrigin - (numberOfMeters * meterSpacing)) / numberOfMeters
 			);
 
-			for (int k =0; k < numberOfMeters; k++) {
+			for (int k = 0; k < numberOfMeters; k++) {
 				meter.Y = yOrigin + (meter.Height + meterSpacing) * (numberOfMeters - 1 - k);
 				var path = UIBezierPath.FromRoundedRect (meter, 2);
 				path.LineWidth = 1;

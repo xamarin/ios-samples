@@ -6,10 +6,8 @@ using GLKit;
 using OpenTK.Graphics.ES20;
 using CoreGraphics;
 
-namespace GLKBaseEffectDrawing
-{
-	public class MCViewController : GLKViewController, IGLKViewDelegate
-	{
+namespace GLKBaseEffectDrawing {
+	public class MCViewController : GLKViewController, IGLKViewDelegate {
 		float rotation;
 		uint vertexArray;
 		uint vertexBuffer;
@@ -25,7 +23,7 @@ namespace GLKBaseEffectDrawing
 			if (context == null)
 				Console.WriteLine ("Failed to create ES context");
 
-			var view = (GLKView)View;
+			var view = (GLKView) View;
 			view.Context = context;
 			view.DrawableDepthFormat = GLKViewDrawableDepthFormat.Format24;
 			view.Delegate = this;
@@ -63,27 +61,27 @@ namespace GLKBaseEffectDrawing
 
 			GL.GenBuffers (1, out vertexBuffer);
 			GL.BindBuffer (BufferTarget.ArrayBuffer, vertexBuffer);
-			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(Monkey.MeshVertexData.Length * sizeof(float)),
-			               Monkey.MeshVertexData, BufferUsage.StaticDraw);
+			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) (Monkey.MeshVertexData.Length * sizeof (float)),
+						   Monkey.MeshVertexData, BufferUsage.StaticDraw);
 
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Position);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Position, 3, VertexAttribPointerType.Float,
-			                        false, 6 * sizeof(float), 0);
+									false, 6 * sizeof (float), 0);
 
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Normal);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Normal, 3, VertexAttribPointerType.Float,
-			                        false, 6 * sizeof(float), 12);
+									false, 6 * sizeof (float), 12);
 
 			GL.Oes.BindVertexArray (0);
 		}
 
 		public override void Update ()
 		{
-			float aspect = (float)Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
+			float aspect = (float) Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
 
 			Matrix4 projectionMatrix =
 				Matrix4.CreatePerspectiveFieldOfView ((float) (Math.PI * 65f / 180.0f),
-			                                       aspect, 0.1f, 100.0f);
+												   aspect, 0.1f, 100.0f);
 
 			effect.Transform.ProjectionMatrix = projectionMatrix;
 
@@ -92,7 +90,7 @@ namespace GLKBaseEffectDrawing
 
 			effect.Transform.ModelViewMatrix = modelViewMatrix;
 
-			rotation += (float)TimeSinceLastUpdate * 0.5f;
+			rotation += (float) TimeSinceLastUpdate * 0.5f;
 		}
 
 		public void DrawInRect (GLKView view, CGRect rect)

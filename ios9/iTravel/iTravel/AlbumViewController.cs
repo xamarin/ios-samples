@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Foundation;
@@ -14,7 +14,7 @@ namespace iTravel {
 		NSBundleResourceRequest request;
 		List<PreviewDetail> previewDetails = new List<PreviewDetail> ();
 
-		protected AlbumViewController(IntPtr handle) : base (handle)
+		protected AlbumViewController (IntPtr handle) : base (handle)
 		{
 		}
 
@@ -48,9 +48,9 @@ namespace iTravel {
 		{
 			if (context == progressObserverContext && keyPath == "fractionCompleted") {
 				NSOperationQueue.MainQueue.AddOperation (() => {
-					var progress = (NSProgress)ofObject;
+					var progress = (NSProgress) ofObject;
 
-					ProgressView.Progress = (float)progress.FractionCompleted;
+					ProgressView.Progress = (float) progress.FractionCompleted;
 					DetailsLabel.Text = progress.LocalizedDescription;
 				});
 			} else {
@@ -88,8 +88,8 @@ namespace iTravel {
 				return;
 
 			var selectedRowIndex = CustomTableView.IndexPathForSelectedRow.Row;
-			albumViewController.PictureName = previewDetails[selectedRowIndex].Picture;
-			albumViewController.Title = previewDetails[selectedRowIndex].Caption;
+			albumViewController.PictureName = previewDetails [selectedRowIndex].Picture;
+			albumViewController.Title = previewDetails [selectedRowIndex].Caption;
 		}
 
 		[Export ("numberOfSectionsInTableView:")]

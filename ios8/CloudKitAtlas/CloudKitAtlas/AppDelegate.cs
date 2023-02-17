@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 using CloudKit;
 
-namespace CloudKitAtlas
-{
+namespace CloudKitAtlas {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		public override UIWindow Window {
 			get;
 			set;

@@ -4,10 +4,8 @@ using UIKit;
 using Foundation;
 using CoreLocation;
 
-namespace CloudKitAtlas
-{
-	public partial class LocationFieldTableViewCell : FormFieldTableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class LocationFieldTableViewCell : FormFieldTableViewCell {
 		[Outlet]
 		public UIButton LookUpButton { get; set; }
 
@@ -41,8 +39,8 @@ namespace CloudKitAtlas
 			var latitude = coordinate.Latitude;
 			var longitude = coordinate.Longitude;
 
-			LocationInput.Latitude = (int)latitude;
-			LocationInput.Longitude = (int)longitude;
+			LocationInput.Latitude = (int) latitude;
+			LocationInput.Longitude = (int) longitude;
 
 			LatitudeField.Text = LocationInput.Latitude.ToString ();
 			LongitudeField.Text = LocationInput.Longitude.ToString ();

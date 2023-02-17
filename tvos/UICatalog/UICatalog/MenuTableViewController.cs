@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
@@ -32,7 +32,7 @@ namespace UICatalog {
 			var menuSplitViewController = SplitViewController as MenuSplitViewController;
 			if (menuSplitViewController == null)
 				return;
-			
+
 			menuSplitViewController.UpdateFocusToDetailViewController ();
 		}
 
@@ -43,7 +43,7 @@ namespace UICatalog {
 			if (!nextFocusedView.IsDescendantOfView (TableView))
 				return;
 
-			NSIndexPath indexPath = ((UITableViewFocusUpdateContext)context).NextFocusedIndexPath;
+			NSIndexPath indexPath = ((UITableViewFocusUpdateContext) context).NextFocusedIndexPath;
 			if (indexPath == null)
 				return;
 
@@ -52,7 +52,7 @@ namespace UICatalog {
 
 			// Create an `NSBlockOperation` to perform the detail segue after a delay.
 			var performSegueOperation = new NSBlockOperation ();
-			var segueIdentifier = SegueIdentifierMap[indexPath.Section][indexPath.Row];
+			var segueIdentifier = SegueIdentifierMap [indexPath.Section] [indexPath.Row];
 
 			performSegueOperation.AddExecutionBlock (() => {
 				NSThread.SleepFor (performSegueDelay);

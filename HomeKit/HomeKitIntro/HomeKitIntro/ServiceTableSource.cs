@@ -4,13 +4,11 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public class ServiceTableSource : UITableViewSource
-	{
+namespace HomeKitIntro {
+	public class ServiceTableSource : UITableViewSource {
 		#region Private Variables
 		private ServiceTableViewController _controller;
-		#endregion 
+		#endregion
 
 		#region Computed Properties
 		/// <summary>
@@ -18,7 +16,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -154,7 +152,7 @@ namespace HomeKitIntro
 			switch (indexPath.Section) {
 			case 0:
 				// Display Accessory Details
-				accessoryCell.DisplayInformation (string.Format ("{0} Reachable", _controller.Accessory.Name), _controller.Accessory.Reachable.ToString());
+				accessoryCell.DisplayInformation (string.Format ("{0} Reachable", _controller.Accessory.Name), _controller.Accessory.Reachable.ToString ());
 				accessoryCell.Accessory = UITableViewCellAccessory.None;
 				break;
 			case 1:

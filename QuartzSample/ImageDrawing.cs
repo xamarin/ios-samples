@@ -5,8 +5,7 @@ using CoreGraphics;
 using System.IO;
 using QuartzSample;
 
-public class ImageDrawingView : QuartzView
-{
+public class ImageDrawingView : QuartzView {
 	UIImage uiimage;
 	CGImage image;
 
@@ -55,8 +54,7 @@ public class ImageDrawingView : QuartzView
 	}
 }
 
-public class PDFDrawingView : QuartzView
-{
+public class PDFDrawingView : QuartzView {
 	CGPDFDocument doc;
 
 	public PDFDrawingView () : base ()

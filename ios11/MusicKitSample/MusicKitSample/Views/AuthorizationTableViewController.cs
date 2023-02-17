@@ -10,10 +10,8 @@ using StoreKit;
 using MediaPlayer;
 using System.Threading.Tasks;
 
-namespace MusicKitSample
-{
-	public partial class AuthorizationTableViewController : UITableViewController, ISKCloudServiceSetupViewControllerDelegate
-	{
+namespace MusicKitSample {
+	public partial class AuthorizationTableViewController : UITableViewController, ISKCloudServiceSetupViewControllerDelegate {
 		#region Fields
 
 		NSObject cloudServiceDidUpdateNotificationToken;
@@ -59,14 +57,14 @@ namespace MusicKitSample
 			// from the `AuthorizationManager` and `UIApplication`.
 			var notificationCenter = NSNotificationCenter.DefaultCenter;
 			cloudServiceDidUpdateNotificationToken = notificationCenter.AddObserver (AuthorizationManager.CloudServiceDidUpdateNotification,
-			                                                                         HandleAuthorizationManagerDidUpdateNotification, 
-			                                                                         null);
+																					 HandleAuthorizationManagerDidUpdateNotification,
+																					 null);
 			authorizationDidUpdateNotificationToken = notificationCenter.AddObserver (AuthorizationManager.AuthorizationDidUpdateNotification,
-			                                                                          HandleAuthorizationManagerDidUpdateNotification,
-			                                                                          null);
+																					  HandleAuthorizationManagerDidUpdateNotification,
+																					  null);
 			willEnterForegroundNotificationToken = notificationCenter.AddObserver (UIApplication.WillEnterForegroundNotification,
-			                                                                       HandleAuthorizationManagerDidUpdateNotification,
-			                                                                       null);
+																				   HandleAuthorizationManagerDidUpdateNotification,
+																				   null);
 
 			SetAuthorizationRequestButtonState ();
 		}
@@ -98,7 +96,7 @@ namespace MusicKitSample
 		void SetAuthorizationRequestButtonState ()
 		{
 			if (SKCloudServiceController.AuthorizationStatus == SKCloudServiceAuthorizationStatus.NotDetermined ||
-			    MPMediaLibrary.AuthorizationStatus == MPMediaLibraryAuthorizationStatus.NotDetermined)
+				MPMediaLibrary.AuthorizationStatus == MPMediaLibraryAuthorizationStatus.NotDetermined)
 				NavigationItem.RightBarButtonItem.Enabled = true;
 			else
 				NavigationItem.RightBarButtonItem.Enabled = false;
@@ -174,13 +172,13 @@ namespace MusicKitSample
 		void HandleAuthorizationManagerDidUpdateNotification (NSNotification notification)
 		{
 			if (SKCloudServiceController.AuthorizationStatus == SKCloudServiceAuthorizationStatus.NotDetermined ||
-			    MPMediaLibrary.AuthorizationStatus == MPMediaLibraryAuthorizationStatus.NotDetermined) {
+				MPMediaLibrary.AuthorizationStatus == MPMediaLibraryAuthorizationStatus.NotDetermined) {
 				NavigationItem.RightBarButtonItem.Enabled = true;
 			} else {
 				NavigationItem.RightBarButtonItem.Enabled = false;
 
 				if (AuthorizationManager.CloudServiceCapabilities.HasFlag (SKCloudServiceCapability.MusicCatalogSubscriptionEligible) &&
-				    AuthorizationManager.CloudServiceCapabilities.HasFlag (SKCloudServiceCapability.MusicCatalogPlayback)) {
+					AuthorizationManager.CloudServiceCapabilities.HasFlag (SKCloudServiceCapability.MusicCatalogPlayback)) {
 					PresentCloudServiceSetupAsync ();
 				}
 			}

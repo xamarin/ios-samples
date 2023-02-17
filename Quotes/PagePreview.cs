@@ -6,10 +6,8 @@ using CoreFoundation;
 using Foundation;
 using CoreText;
 
-namespace Quotes
-{
-	public partial class PagePreview : UICollectionViewCell
-	{
+namespace Quotes {
+	public partial class PagePreview : UICollectionViewCell {
 		Page cellPage;
 
 		[Export ("initWithCoder:")]

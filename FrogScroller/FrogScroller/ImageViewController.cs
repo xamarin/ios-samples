@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace FrogScroller
-{
-	public partial class ImageViewController : UIViewController
-	{
+namespace FrogScroller {
+	public partial class ImageViewController : UIViewController {
 		public ImageViewController (int pageIndex)
 		{
 			PageIndex = pageIndex;

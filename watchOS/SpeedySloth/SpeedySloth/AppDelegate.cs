@@ -1,51 +1,46 @@
-﻿
-namespace SpeedySloth
-{
-    using CoreLocation;
-    using Foundation;
-    using HealthKit;
-    using System;
-    using UIKit;
 
-    [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
-    {
-        private readonly CLLocationManager locationManager = new CLLocationManager();
+namespace SpeedySloth {
+	using CoreLocation;
+	using Foundation;
+	using HealthKit;
+	using System;
+	using UIKit;
 
-        public override UIWindow Window { get; set; }
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
+		private readonly CLLocationManager locationManager = new CLLocationManager ();
 
-        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
-        {
-            this.RequestAccessToHealthKit();
-            this.RequestLocationServices();
+		public override UIWindow Window { get; set; }
 
-            return true;
-        }
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
+		{
+			this.RequestAccessToHealthKit ();
+			this.RequestLocationServices ();
 
-        private void RequestAccessToHealthKit()
-        {
-            var healthStore = new HKHealthStore();
+			return true;
+		}
 
-            var types = new NSSet(HKObjectType.GetWorkoutType(),
-                                  HKSeriesType.WorkoutRouteType,
-                                  HKQuantityType.Create(HKQuantityTypeIdentifier.ActiveEnergyBurned),
-                                  HKQuantityType.Create(HKQuantityTypeIdentifier.DistanceWalkingRunning));
+		private void RequestAccessToHealthKit ()
+		{
+			var healthStore = new HKHealthStore ();
 
-            healthStore.RequestAuthorizationToShare(types, types, (isSuccess, error) =>
-            {
-                if (!isSuccess)
-                {
-                    Console.WriteLine(error?.LocalizedDescription ?? "");
-                }
-            });
-        }
+			var types = new NSSet (HKObjectType.GetWorkoutType (),
+								  HKSeriesType.WorkoutRouteType,
+								  HKQuantityType.Create (HKQuantityTypeIdentifier.ActiveEnergyBurned),
+								  HKQuantityType.Create (HKQuantityTypeIdentifier.DistanceWalkingRunning));
 
-        private void RequestLocationServices()
-        {
-            if (CLLocationManager.Status == CLAuthorizationStatus.NotDetermined)
-            {
-                this.locationManager.RequestAlwaysAuthorization();
-            }
-        }
-    }
+			healthStore.RequestAuthorizationToShare (types, types, (isSuccess, error) => {
+				if (!isSuccess) {
+					Console.WriteLine (error?.LocalizedDescription ?? "");
+				}
+			});
+		}
+
+		private void RequestLocationServices ()
+		{
+			if (CLLocationManager.Status == CLAuthorizationStatus.NotDetermined) {
+				this.locationManager.RequestAlwaysAuthorization ();
+			}
+		}
+	}
 }

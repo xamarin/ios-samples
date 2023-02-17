@@ -5,10 +5,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace SimpleBackgroundFetch
-{
-	public partial class RootViewController : UITableViewController
-	{
+namespace SimpleBackgroundFetch {
+	public partial class RootViewController : UITableViewController {
 		DataSource dataSource;
 
 		public RootViewController (IntPtr handle) : base (handle)
@@ -28,7 +26,7 @@ namespace SimpleBackgroundFetch
 			dataSource.Objects.Insert (0, DateTime.Now);
 
 			using (var indexPath = NSIndexPath.FromRowSection (0, 0))
-				TableView.InsertRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
+				TableView.InsertRows (new NSIndexPath [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -50,8 +48,7 @@ namespace SimpleBackgroundFetch
 			NavigationItem.RightBarButtonItem = addButton;
 		}
 
-		class DataSource : UITableViewSource
-		{
+		class DataSource : UITableViewSource {
 			static readonly NSString CellIdentifier = new NSString ("DataSourceCell");
 			List<object> objects = new List<object> ();
 			RootViewController controller;
@@ -97,7 +94,7 @@ namespace SimpleBackgroundFetch
 				if (editingStyle == UITableViewCellEditingStyle.Delete) {
 					// Delete the row from the data source.
 					objects.RemoveAt (indexPath.Row);
-					controller.TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
+					controller.TableView.DeleteRows (new NSIndexPath [] { indexPath }, UITableViewRowAnimation.Fade);
 				}
 			}
 		}
@@ -108,7 +105,7 @@ namespace SimpleBackgroundFetch
 				var indexPath = TableView.IndexPathForSelectedRow;
 				var item = dataSource.Objects [indexPath.Row];
 
-				((DetailViewController)segue.DestinationViewController).SetDetailItem (item);
+				((DetailViewController) segue.DestinationViewController).SetDetailItem (item);
 			}
 		}
 	}

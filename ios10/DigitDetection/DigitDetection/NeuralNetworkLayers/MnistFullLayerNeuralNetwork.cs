@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Accelerate;
@@ -6,19 +6,17 @@ using Metal;
 using MetalPerformanceShaders;
 using ObjCRuntime;
 
-namespace DigitDetection
-{
+namespace DigitDetection {
 	// This class has our entire network with all layers to getting the final label
 	// Resources
 	// https://www.tensorflow.org/versions/r0.8/tutorials/mnist/beginners/index.html#mnist-for-ml-beginners to run this network on TensorFlow.
-	public class MnistFullLayerNeuralNetwork
-	{
+	public class MnistFullLayerNeuralNetwork {
 		// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=45009
 		[DllImport (Constants.AccelerateImageLibrary)]
 		extern static nint vImageConvert_Planar16FtoPlanarF (ref vImageBuffer src, ref vImageBuffer dest, vImageFlags flags);
 		unsafe public static vImageError Planar16FtoPlanarF (ref vImageBuffer src, ref vImageBuffer dest, vImageFlags flags)
 		{
-			return (vImageError)(long)vImageConvert_Planar16FtoPlanarF (ref src, ref dest, flags);
+			return (vImageError) (long) vImageConvert_Planar16FtoPlanarF (ref src, ref dest, flags);
 		}
 
 		// MPSImageDescriptors for different layers outputs to be put in
@@ -103,7 +101,7 @@ namespace DigitDetection
 		public uint GetLabel (MPSImage finalLayer)
 		{
 			// even though we have 10 labels outputed the MTLTexture format used is RGBAFloat16 thus 3 slices will have 3*4 = 12 outputs
-			var resultHalfArray = Enumerable.Repeat ((ushort)6, 12).ToArray ();
+			var resultHalfArray = Enumerable.Repeat ((ushort) 6, 12).ToArray ();
 			var resultHalfArrayHandle = GCHandle.Alloc (resultHalfArray, GCHandleType.Pinned);
 			var resultHalfArrayPtr = resultHalfArrayHandle.AddrOfPinnedObject ();
 
@@ -112,7 +110,7 @@ namespace DigitDetection
 			var resultFloatArrayPtr = resultFloatArrayHandle.AddrOfPinnedObject ();
 
 			for (uint i = 0; i <= 2; i++) {
-				finalLayer.Texture.GetBytes (resultHalfArrayPtr + 4 * (int)i * sizeof (ushort),
+				finalLayer.Texture.GetBytes (resultHalfArrayPtr + 4 * (int) i * sizeof (ushort),
 											sizeof (ushort) * 1 * 4, sizeof (ushort) * 1 * 1 * 4,
 											new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize (1, 1, 1)),
 											0, i);

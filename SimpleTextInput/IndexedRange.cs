@@ -8,8 +8,7 @@ using UIKit;
 using ObjCRuntime;
 using CoreText;
 
-namespace SimpleTextInput
-{
+namespace SimpleTextInput {
 	// A UITextRange object represents a range of characters in a text container; in other words,
 	// it identifies a starting index and an ending index in string backing a text-entry object.
 	//
@@ -17,8 +16,7 @@ namespace SimpleTextInput
 	// representing ranges within the text managed by the class. The starting and ending indexes
 	// of the range are represented by UITextPosition objects. The text system uses both UITextRange
 	// and UITextPosition objects for communicating text-layout information.
-	class IndexedRange : UITextRange
-	{
+	class IndexedRange : UITextRange {
 		public NSRange Range { get; private set; }
 
 		private IndexedRange ()
@@ -28,13 +26,13 @@ namespace SimpleTextInput
 
 		public override UITextPosition Start {
 			get {
-				return IndexedPosition.GetPosition ((int)Range.Location);
+				return IndexedPosition.GetPosition ((int) Range.Location);
 			}
 		}
 
 		public override UITextPosition End {
 			get {
-				return IndexedPosition.GetPosition ((int)Range.Location + (int)Range.Length);
+				return IndexedPosition.GetPosition ((int) Range.Location + (int) Range.Length);
 			}
 		}
 
@@ -62,8 +60,7 @@ namespace SimpleTextInput
 			return result;
 		}
 
-		class NSRangeEqualityComparer : IEqualityComparer<NSRange>
-		{
+		class NSRangeEqualityComparer : IEqualityComparer<NSRange> {
 			#region IEqualityComparer[NSRange] implementation
 			public bool Equals (NSRange x, NSRange y)
 			{

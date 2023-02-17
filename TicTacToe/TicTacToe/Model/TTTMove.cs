@@ -1,32 +1,27 @@
 using System;
 using Foundation;
 
-namespace TicTacToe
-{
-	public enum TTTMovePlayer
-	{
+namespace TicTacToe {
+	public enum TTTMovePlayer {
 		Me,
 		Enemy,
 		None
 	}
 
-	public enum TTTMoveXPosition
-	{
+	public enum TTTMoveXPosition {
 		Left = -1,
 		Center = 0,
 		Right = 1
 	}
 
-	public enum TTTMoveYPosition
-	{
+	public enum TTTMoveYPosition {
 		Top = -1,
 		Center = 0,
 		Bottom = 1
 	}
 
 	[Serializable]
-	public class TTTMove
-	{
+	public class TTTMove {
 		public const int SidePositionsCount = 3;
 		public TTTMovePlayer Player;
 		public TTTMoveXPosition XPosition;
@@ -36,12 +31,12 @@ namespace TicTacToe
 		const string EncodingKeyYPosition = "yPosition";
 
 		public TTTMove () : this (TTTMovePlayer.Me, TTTMoveXPosition.Center,
-		                          TTTMoveYPosition.Center)
+								  TTTMoveYPosition.Center)
 		{
 		}
 
 		public TTTMove (TTTMovePlayer player, TTTMoveXPosition xPosition,
-		                TTTMoveYPosition yPosition)
+						TTTMoveYPosition yPosition)
 		{
 			Player = player;
 			XPosition = xPosition;
@@ -51,9 +46,9 @@ namespace TicTacToe
 		public override int GetHashCode ()
 		{
 			int hash = 1;
-			hash = 31 * hash + (int)Player;
-			hash = 31 * hash + (int)XPosition + 1;
-			hash = 31 * hash + (int)YPosition + 1;
+			hash = 31 * hash + (int) Player;
+			hash = 31 * hash + (int) XPosition + 1;
+			hash = 31 * hash + (int) YPosition + 1;
 			return hash;
 		}
 
@@ -62,7 +57,7 @@ namespace TicTacToe
 			if (obj is TTTMove)
 				return false;
 
-			TTTMove move = (TTTMove)obj;
+			TTTMove move = (TTTMove) obj;
 			return (Player == move.Player && XPosition == move.XPosition &&
 				YPosition == move.YPosition);
 		}

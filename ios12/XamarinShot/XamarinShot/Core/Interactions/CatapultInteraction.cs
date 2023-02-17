@@ -1,368 +1,322 @@
-﻿
-namespace XamarinShot.Models
-{
-    using Foundation;
-    using SceneKit;
-    using XamarinShot.Models.Enums;
-    using XamarinShot.Models.Interactions;
-    using XamarinShot.Utils;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    /// <summary>
-    /// Abstract:
-    /// User interaction for the slingshot.
-    /// </summary>
-    public class CatapultInteraction : IInteraction, IGrabInteractionDelegate, IVortexActivationDelegate
-    {
-        private readonly Dictionary<int, Catapult> catapults = new Dictionary<int, Catapult>();
+namespace XamarinShot.Models {
+	using Foundation;
+	using SceneKit;
+	using XamarinShot.Models.Enums;
+	using XamarinShot.Models.Interactions;
+	using XamarinShot.Utils;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 
-        // this is a ball that doesn't have physics
-        private readonly SCNNode dummyBall;
+	/// <summary>
+	/// Abstract:
+	/// User interaction for the slingshot.
+	/// </summary>
+	public class CatapultInteraction : IInteraction, IGrabInteractionDelegate, IVortexActivationDelegate {
+		private readonly Dictionary<int, Catapult> catapults = new Dictionary<int, Catapult> ();
 
-        private GrabInteraction grabInteraction;
-       
-        public CatapultInteraction(IInteractionDelegate @delegate)
-        {
-            this.Delegate = @delegate;
-            this.dummyBall = SCNNodeExtensions.LoadSCNAsset("projectiles_ball_8k");
+		// this is a ball that doesn't have physics
+		private readonly SCNNode dummyBall;
 
-            // stri the geometry out of a low-lod model, assume it doesn't have an lod
-            if (this.dummyBall.Geometry != null)
-            {
-                var lod = SCNNodeExtensions.LoadSCNAsset("projectiles_ball");
-                if (lod.Geometry != null)
-                {
-                    lod.Geometry.Materials = this.dummyBall.Geometry.Materials;
+		private GrabInteraction grabInteraction;
 
-                    // this radius will be replaced by fixLevelsOfDetail
-                    // when the level is placed
-                    this.dummyBall.Geometry.LevelsOfDetail = new SCNLevelOfDetail[] { SCNLevelOfDetail.CreateWithScreenSpaceRadius(lod.Geometry, 100f) };
-                }
-            }
-        }
+		public CatapultInteraction (IInteractionDelegate @delegate)
+		{
+			this.Delegate = @delegate;
+			this.dummyBall = SCNNodeExtensions.LoadSCNAsset ("projectiles_ball_8k");
 
-        public IInteractionDelegate Delegate { get; private set; }
+			// stri the geometry out of a low-lod model, assume it doesn't have an lod
+			if (this.dummyBall.Geometry != null) {
+				var lod = SCNNodeExtensions.LoadSCNAsset ("projectiles_ball");
+				if (lod.Geometry != null) {
+					lod.Geometry.Materials = this.dummyBall.Geometry.Materials;
 
-        public GrabInteraction GrabInteraction
-        {
-            get
-            {
-                return this.grabInteraction;
-            }
+					// this radius will be replaced by fixLevelsOfDetail
+					// when the level is placed
+					this.dummyBall.Geometry.LevelsOfDetail = new SCNLevelOfDetail [] { SCNLevelOfDetail.CreateWithScreenSpaceRadius (lod.Geometry, 100f) };
+				}
+			}
+		}
 
-            set
-            {
-                this.grabInteraction = value;
-                // Add hook up to grabInteraction delegate automatically
-                if (this.grabInteraction != null)
-                {
-                    this.grabInteraction.GrabDelegate = this;
-                }
-            }
-        }
+		public IInteractionDelegate Delegate { get; private set; }
 
-        public void AddCatapult(Catapult catapult)
-        {
-            if (this.grabInteraction == null)
-            {
-                throw new Exception("GrabInteraction not set");
-            }
+		public GrabInteraction GrabInteraction {
+			get {
+				return this.grabInteraction;
+			}
 
-            this.grabInteraction.AddGrabbable(catapult);
-            this.catapults[catapult.CatapultId] = catapult;
-            this.SetProjectileOnCatapult(catapult, ProjectileType.Cannonball);
-        }
+			set {
+				this.grabInteraction = value;
+				// Add hook up to grabInteraction delegate automatically
+				if (this.grabInteraction != null) {
+					this.grabInteraction.GrabDelegate = this;
+				}
+			}
+		}
 
-        private void SetProjectileOnCatapult(Catapult catapult, ProjectileType projectileType)
-        {
-            if (this.Delegate == null)
-            {
-                throw new Exception("No delegate");
-            }
+		public void AddCatapult (Catapult catapult)
+		{
+			if (this.grabInteraction == null) {
+				throw new Exception ("GrabInteraction not set");
+			}
 
-            var projectile = TrailBallProjectile.Create(this.dummyBall.Clone());
-            projectile.IsAlive = true;
-            projectile.Team = catapult.Team;
+			this.grabInteraction.AddGrabbable (catapult);
+			this.catapults [catapult.CatapultId] = catapult;
+			this.SetProjectileOnCatapult (catapult, ProjectileType.Cannonball);
+		}
 
-            if (projectile.PhysicsNode == null)
-            {
-                throw new Exception("Projectile has no physicsNode");
-            }
+		private void SetProjectileOnCatapult (Catapult catapult, ProjectileType projectileType)
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No delegate");
+			}
 
-            projectile.PhysicsNode.PhysicsBody = null;
-            this.Delegate.AddNodeToLevel(projectile.PhysicsNode);
+			var projectile = TrailBallProjectile.Create (this.dummyBall.Clone ());
+			projectile.IsAlive = true;
+			projectile.Team = catapult.Team;
 
-            catapult.SetProjectileType(projectileType, projectile.ObjectRootNode);
-        }
+			if (projectile.PhysicsNode == null) {
+				throw new Exception ("Projectile has no physicsNode");
+			}
 
-        public bool CanGrabAnyCatapult(Ray cameraRay)
-        {
-            return this.catapults.Any(keyValuePair => keyValuePair.Value.CanGrab(cameraRay));
-        }
+			projectile.PhysicsNode.PhysicsBody = null;
+			this.Delegate.AddNodeToLevel (projectile.PhysicsNode);
 
-        #region Interactions
+			catapult.SetProjectileType (projectileType, projectile.ObjectRootNode);
+		}
 
-        public void Update(CameraInfo cameraInfo)
-        {
-            foreach (var catapult in this.catapults.Values)
-            {
-                catapult.Update();
-            }
-        }
+		public bool CanGrabAnyCatapult (Ray cameraRay)
+		{
+			return this.catapults.Any (keyValuePair => keyValuePair.Value.CanGrab (cameraRay));
+		}
 
-        #endregion
+		#region Interactions
 
-        #region Game Action Handling
+		public void Update (CameraInfo cameraInfo)
+		{
+			foreach (var catapult in this.catapults.Values) {
+				catapult.Update ();
+			}
+		}
 
-        public void Handle(GameActionType gameAction, Player player)
-        {
-            if (gameAction.Type == GameActionType.GActionType.CatapultRelease)
-            {
-                if (this.Delegate == null)
-                {
-                    throw new Exception("No Delegate");
-                }
+		#endregion
 
-                this.HandleCatapultReleaseAction(gameAction.CatapultRelease, player, this.Delegate);
-            }
-        }
+		#region Game Action Handling
 
-        private void ReleaseCatapultGrab(int catapultId)
-        {
-            if (!this.catapults.TryGetValue(catapultId, out Catapult catapult))
-            {
-                throw new Exception($"No catapult {catapultId}");
-            }
+		public void Handle (GameActionType gameAction, Player player)
+		{
+			if (gameAction.Type == GameActionType.GActionType.CatapultRelease) {
+				if (this.Delegate == null) {
+					throw new Exception ("No Delegate");
+				}
 
-            if (this.grabInteraction == null)
-            {
-                throw new Exception("GrabInteraction not set");
-            }
+				this.HandleCatapultReleaseAction (gameAction.CatapultRelease, player, this.Delegate);
+			}
+		}
 
-            catapult.IsGrabbed = false;
+		private void ReleaseCatapultGrab (int catapultId)
+		{
+			if (!this.catapults.TryGetValue (catapultId, out Catapult catapult)) {
+				throw new Exception ($"No catapult {catapultId}");
+			}
 
-            // Empty grabbedCatapult if this catapult was grabbed by player
-            if (this.grabInteraction.GrabbedGrabbable is Catapult grabbedCatapult && grabbedCatapult.CatapultId == catapultId)
-            {
-                this.grabInteraction.GrabbedGrabbable = null;
-            }
-        }
+			if (this.grabInteraction == null) {
+				throw new Exception ("GrabInteraction not set");
+			}
 
-        private void HandleCatapultReleaseAction(SlingData data, Player player, IInteractionDelegate @delegate)
-        {
-            if (this.catapults.TryGetValue(data.CatapultId, out Catapult catapult))
-            {
-                catapult.OnLaunch(GameVelocity.Zero);
-                this.ReleaseCatapultGrab(data.CatapultId);
-            }
-        }
+			catapult.IsGrabbed = false;
 
-        #endregion
+			// Empty grabbedCatapult if this catapult was grabbed by player
+			if (this.grabInteraction.GrabbedGrabbable is Catapult grabbedCatapult && grabbedCatapult.CatapultId == catapultId) {
+				this.grabInteraction.GrabbedGrabbable = null;
+			}
+		}
 
-        #region Grab Interaction Delegate
+		private void HandleCatapultReleaseAction (SlingData data, Player player, IInteractionDelegate @delegate)
+		{
+			if (this.catapults.TryGetValue (data.CatapultId, out Catapult catapult)) {
+				catapult.OnLaunch (GameVelocity.Zero);
+				this.ReleaseCatapultGrab (data.CatapultId);
+			}
+		}
 
-        public bool ShouldForceRelease(IGrabbable grabbable)
-        {
-            if (grabbable is Catapult catapult)
-            {
-                return catapult.IsPulledTooFar || this.IsCatapultFloating(catapult);
-            }
-            else
-            {
-                throw new Exception("Grabbable is not catapult");
-            }
-        }
+		#endregion
 
-        private bool IsCatapultFloating(Catapult catapult)
-        {
-            if (this.Delegate == null)
-            {
-                throw new Exception("No Delegate");
-            }
+		#region Grab Interaction Delegate
 
-            if (catapult.Base.PhysicsBody != null)
-            {
-                var contacts = this.Delegate.PhysicsWorld.ContactTest(catapult.Base.PhysicsBody, (SCNPhysicsTest)null);
-                return !contacts.Any();
-            }
-            else
-            {
-                return false;
-            }
-        }
+		public bool ShouldForceRelease (IGrabbable grabbable)
+		{
+			if (grabbable is Catapult catapult) {
+				return catapult.IsPulledTooFar || this.IsCatapultFloating (catapult);
+			} else {
+				throw new Exception ("Grabbable is not catapult");
+			}
+		}
 
-        public void OnGrabStart(IGrabbable grabbable, CameraInfo cameraInfo, Player player)
-        {
-            if (grabbable is Catapult catapult)
-            {
-                catapult.OnGrabStart();
-            }
-        }
+		private bool IsCatapultFloating (Catapult catapult)
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No Delegate");
+			}
 
-        public void OnServerRelease(IGrabbable grabbable, CameraInfo cameraInfo, Player player)
-        {
-            if (this.Delegate == null)
-            {
-                throw new Exception("No Delegate");
-            }
+			if (catapult.Base.PhysicsBody != null) {
+				var contacts = this.Delegate.PhysicsWorld.ContactTest (catapult.Base.PhysicsBody, (SCNPhysicsTest) null);
+				return !contacts.Any ();
+			} else {
+				return false;
+			}
+		}
 
-            if (grabbable is Catapult catapult)
-            {
-                // Launch the ball
-                var velocity = catapult.TryGetLaunchVelocity(cameraInfo);
-                if (velocity != null)
-                {
-                    catapult.OnLaunch(velocity);
-                    this.SlingBall(catapult, velocity);
-                    catapult.ReleaseSlingGrab();
+		public void OnGrabStart (IGrabbable grabbable, CameraInfo cameraInfo, Player player)
+		{
+			if (grabbable is Catapult catapult) {
+				catapult.OnGrabStart ();
+			}
+		}
 
-                    this.ReleaseCatapultGrab(catapult.CatapultId);
+		public void OnServerRelease (IGrabbable grabbable, CameraInfo cameraInfo, Player player)
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No Delegate");
+			}
 
-                    var slingData = new SlingData(catapult.CatapultId, catapult.ProjectileType, velocity);
+			if (grabbable is Catapult catapult) {
+				// Launch the ball
+				var velocity = catapult.TryGetLaunchVelocity (cameraInfo);
+				if (velocity != null) {
+					catapult.OnLaunch (velocity);
+					this.SlingBall (catapult, velocity);
+					catapult.ReleaseSlingGrab ();
 
-                    // succeed in launching catapult, notify all clients of the update
-                    this.Delegate.ServerDispatchActionToAll(new GameActionType { CatapultRelease = slingData, Type = GameActionType.GActionType.CatapultRelease });
-                }
-            }
-        }
+					this.ReleaseCatapultGrab (catapult.CatapultId);
 
-        public void OnServerGrab(IGrabbable grabbable, CameraInfo cameraInfo, Player player)
-        {
-            if (grabbable is Catapult catapult)
-            {
-                catapult.ServerGrab(cameraInfo.Ray);
-            }
-        }
+					var slingData = new SlingData (catapult.CatapultId, catapult.ProjectileType, velocity);
 
-        public void OnUpdateGrabStatus(IGrabbable grabbable, CameraInfo cameraInfo)
-        {
-            if (grabbable is Catapult catapult)
-            {
-                catapult.BallVisible = BallVisible.Visible;
-                catapult.OnGrab(cameraInfo);
-            }
-        }
+					// succeed in launching catapult, notify all clients of the update
+					this.Delegate.ServerDispatchActionToAll (new GameActionType { CatapultRelease = slingData, Type = GameActionType.GActionType.CatapultRelease });
+				}
+			}
+		}
 
-        #endregion
+		public void OnServerGrab (IGrabbable grabbable, CameraInfo cameraInfo, Player player)
+		{
+			if (grabbable is Catapult catapult) {
+				catapult.ServerGrab (cameraInfo.Ray);
+			}
+		}
 
-        #region Collision
+		public void OnUpdateGrabStatus (IGrabbable grabbable, CameraInfo cameraInfo)
+		{
+			if (grabbable is Catapult catapult) {
+				catapult.BallVisible = BallVisible.Visible;
+				catapult.OnGrab (cameraInfo);
+			}
+		}
 
-        private const float MinImpuseToReleaseCatapult = 1.5f;
+		#endregion
 
-        public void DidCollision(SCNNode node, SCNNode otherNode, SCNVector3 pos, float impulse)
-        {
-            var gameObject = node.NearestParentGameObject();
-            if (gameObject != null && gameObject is Catapult catapult)
-            {
-                var otherGameObject = otherNode.NearestParentGameObject();
-                if (otherGameObject != null)
-                {
-                    // Projectile case
-                    if (otherGameObject is Projectile projectile)
-                    {
-                        var catapultNode = catapult.Base;
-                        if (catapultNode.PhysicsBody == null)
-                        {
-                            throw new Exception("Catapult has no physicsBody");
-                        }
+		#region Collision
 
-                        // Do not let projectile from the same team kill the catapult
-                        if (catapult.Team == projectile.Team)
-                        {
-                            catapultNode.PhysicsBody.Velocity = SCNVector3.Zero;
-                            catapultNode.PhysicsBody.AngularVelocity = SCNVector4.UnitY;
-                        }
-                    }
+		private const float MinImpuseToReleaseCatapult = 1.5f;
 
-                    // Server tries to release the catapult if it got impulse from block or projectile
-                    if (impulse > MinImpuseToReleaseCatapult)
-                    {
-                        if (this.Delegate == null)
-                        {
-                            throw new Exception("No delegate");
-                        }
+		public void DidCollision (SCNNode node, SCNNode otherNode, SCNVector3 pos, float impulse)
+		{
+			var gameObject = node.NearestParentGameObject ();
+			if (gameObject != null && gameObject is Catapult catapult) {
+				var otherGameObject = otherNode.NearestParentGameObject ();
+				if (otherGameObject != null) {
+					// Projectile case
+					if (otherGameObject is Projectile projectile) {
+						var catapultNode = catapult.Base;
+						if (catapultNode.PhysicsBody == null) {
+							throw new Exception ("Catapult has no physicsBody");
+						}
 
-                        if (this.Delegate.IsServer)
-                        {
-                            // Any game objects (blocks or projectiles) case
-                            var data = new GrabInfo(catapult.CatapultId, catapult.LastCameraInfo);
-                            this.Delegate.DispatchActionToServer(new GameActionType { TryRelease = data, Type = GameActionType.GActionType.TryRelease });
-                        }
-                    }
-                }
-            }
-        }
+						// Do not let projectile from the same team kill the catapult
+						if (catapult.Team == projectile.Team) {
+							catapultNode.PhysicsBody.Velocity = SCNVector3.Zero;
+							catapultNode.PhysicsBody.AngularVelocity = SCNVector4.UnitY;
+						}
+					}
 
-        #endregion
+					// Server tries to release the catapult if it got impulse from block or projectile
+					if (impulse > MinImpuseToReleaseCatapult) {
+						if (this.Delegate == null) {
+							throw new Exception ("No delegate");
+						}
 
-        #region Sling Ball
+						if (this.Delegate.IsServer) {
+							// Any game objects (blocks or projectiles) case
+							var data = new GrabInfo (catapult.CatapultId, catapult.LastCameraInfo);
+							this.Delegate.DispatchActionToServer (new GameActionType { TryRelease = data, Type = GameActionType.GActionType.TryRelease });
+						}
+					}
+				}
+			}
+		}
 
-        public void SlingBall(Catapult catapult, GameVelocity velocity)
-        {
-            if (this.Delegate == null)
-            {
-                throw new Exception("No delegate");
-            }
+		#endregion
 
-            var newProjectile = this.Delegate.SpawnProjectile();
-            newProjectile.Team = catapult.Team;
+		#region Sling Ball
 
-            this.Delegate.AddNodeToLevel(newProjectile.ObjectRootNode);
+		public void SlingBall (Catapult catapult, GameVelocity velocity)
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No delegate");
+			}
 
-            // The lifeTime of projectile needed to sustain the pool is defined by:
-            // (Catapult Count) * (1 + (lifeTime) / (cooldownTime)) = (Pool Count)
-            var poolCount = this.Delegate.GameObjectPoolCount();
-            var lifeTime = (double)(poolCount / this.catapults.Count - 1) * catapult.CoolDownTime;
+			var newProjectile = this.Delegate.SpawnProjectile ();
+			newProjectile.Team = catapult.Team;
 
-            newProjectile.Launch(velocity, lifeTime, this.Delegate.ProjectileDelegate);
+			this.Delegate.AddNodeToLevel (newProjectile.ObjectRootNode);
 
-            // assign the catapult source to this ball
-            if (newProjectile.PhysicsNode?.PhysicsBody != null)
-            {
-                newProjectile.PhysicsNode.SetValueForKey(NSObject.FromObject(catapult.CatapultId), new NSString("Source"));
-                newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask = (int)(CollisionMask.RigidBody | CollisionMask.GlitterObject);
-                if (catapult.Team == Team.TeamA)
-                {
-                    var collisionMask = (CollisionMask)(int)(newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask);
-                    newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask = (nuint)(int)(collisionMask | CollisionMask.CatapultTeamB);
+			// The lifeTime of projectile needed to sustain the pool is defined by:
+			// (Catapult Count) * (1 + (lifeTime) / (cooldownTime)) = (Pool Count)
+			var poolCount = this.Delegate.GameObjectPoolCount ();
+			var lifeTime = (double) (poolCount / this.catapults.Count - 1) * catapult.CoolDownTime;
 
-                    var categoryBitMask = (CollisionMask)(int)(newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask);
-                    newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask = (nuint)(int)(categoryBitMask | CollisionMask.CatapultTeamA);
-                }
-                else
-                {
-                    var collisionMask = (CollisionMask)(int)(newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask);
-                    newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask = (nuint)(int)(collisionMask | CollisionMask.CatapultTeamA);
+			newProjectile.Launch (velocity, lifeTime, this.Delegate.ProjectileDelegate);
 
-                    var categoryBitMask = (CollisionMask)(int)(newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask);
-                    newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask = (nuint)(int)(categoryBitMask | CollisionMask.CatapultTeamB);
-                }
-            }
-        }
+			// assign the catapult source to this ball
+			if (newProjectile.PhysicsNode?.PhysicsBody != null) {
+				newProjectile.PhysicsNode.SetValueForKey (NSObject.FromObject (catapult.CatapultId), new NSString ("Source"));
+				newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask = (int) (CollisionMask.RigidBody | CollisionMask.GlitterObject);
+				if (catapult.Team == Team.TeamA) {
+					var collisionMask = (CollisionMask) (int) (newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask);
+					newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask = (nuint) (int) (collisionMask | CollisionMask.CatapultTeamB);
 
-        public void HandleTouch(TouchType type, Ray camera) { }
+					var categoryBitMask = (CollisionMask) (int) (newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask);
+					newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask = (nuint) (int) (categoryBitMask | CollisionMask.CatapultTeamA);
+				} else {
+					var collisionMask = (CollisionMask) (int) (newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask);
+					newProjectile.PhysicsNode.PhysicsBody.CollisionBitMask = (nuint) (int) (collisionMask | CollisionMask.CatapultTeamA);
 
-        #endregion
+					var categoryBitMask = (CollisionMask) (int) (newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask);
+					newProjectile.PhysicsNode.PhysicsBody.CategoryBitMask = (nuint) (int) (categoryBitMask | CollisionMask.CatapultTeamB);
+				}
+			}
+		}
 
-        #region IVortexActivationDelegate
+		public void HandleTouch (TouchType type, Ray camera) { }
 
-        public void VortexDidActivate(VortexInteraction vortex)
-        {
-            // Kill all catapults when vortex activates
-            if(this.Delegate == null)
-            {
-                throw new Exception("No delegate");
-            }
+		#endregion
 
-            foreach(var catapult in this.catapults.Values)
-            {
-                var data = new HitCatapult(catapult.CatapultId, false, true);
-                this.Delegate.DispatchActionToAll(new GameActionType { CatapultKnockOut = data, Type = GameActionType.GActionType.HitCatapult });
-            }
-        }
+		#region IVortexActivationDelegate
 
-        #endregion
-    }
+		public void VortexDidActivate (VortexInteraction vortex)
+		{
+			// Kill all catapults when vortex activates
+			if (this.Delegate == null) {
+				throw new Exception ("No delegate");
+			}
+
+			foreach (var catapult in this.catapults.Values) {
+				var data = new HitCatapult (catapult.CatapultId, false, true);
+				this.Delegate.DispatchActionToAll (new GameActionType { CatapultKnockOut = data, Type = GameActionType.GActionType.HitCatapult });
+			}
+		}
+
+		#endregion
+	}
 }

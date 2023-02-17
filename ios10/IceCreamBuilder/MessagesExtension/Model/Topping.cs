@@ -1,4 +1,4 @@
-﻿namespace MessagesExtension {
+namespace MessagesExtension {
 	public enum ToppingType {
 		topping01,
 		topping02,
@@ -14,9 +14,8 @@
 		topping12
 	}
 
-	public class Topping : IceCreamPart
-	{
-		public static Topping[] All { get; } = {
+	public class Topping : IceCreamPart {
+		public static Topping [] All { get; } = {
 			new Topping (ToppingType.topping01),
 			new Topping (ToppingType.topping02),
 			new Topping (ToppingType.topping03),

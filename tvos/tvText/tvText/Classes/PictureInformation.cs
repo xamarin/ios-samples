@@ -1,33 +1,31 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace tvText
-{
+namespace tvText {
 	/// <summary>
 	/// Holds all information about a picture that will be displayed in the Search
 	/// Results Collection View.
 	/// </summary>
-	public class PictureInformation : NSObject
-	{
+	public class PictureInformation : NSObject {
 		#region Computed Properties
 		/// <summary>
 		/// Gets or sets the title.
 		/// </summary>
 		/// <value>The title.</value>
-		public string Title { get; set;}
+		public string Title { get; set; }
 
 		/// <summary>
 		/// Gets or sets the name of the image.
 		/// </summary>
 		/// <value>The name of the image.</value>
 		/// <remarks>Images are stored in the <c>Assets.xcassets</c> collection.</remarks>
-		public string ImageName { get; set;}
+		public string ImageName { get; set; }
 
 		/// <summary>
 		/// Gets or sets the keywords.
 		/// </summary>
 		/// <value>The keywords.</value>
-		public string Keywords { get; set;}
+		public string Keywords { get; set; }
 		#endregion
 
 		#region Constructors

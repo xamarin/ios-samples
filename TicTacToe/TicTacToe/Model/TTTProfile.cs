@@ -6,17 +6,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Linq;
 
-namespace TicTacToe
-{
-	public enum TTTProfileIcon
-	{
+namespace TicTacToe {
+	public enum TTTProfileIcon {
 		X,
 		O
 	}
 
 	[Serializable]
-	public class TTTProfile
-	{
+	public class TTTProfile {
 		const string EncodingKeyIcon = "icon";
 		const string EncodingKeyCurrentGame = "currentGame";
 		const string EncodingKeygames = "games";
@@ -47,8 +44,8 @@ namespace TicTacToe
 		public static TTTProfile FromPath (string path)
 		{
 			if (File.Exists (path)) {
-				byte[] bytes = File.ReadAllBytes (path);
-				return (TTTProfile)ByteArrayToObject (bytes);
+				byte [] bytes = File.ReadAllBytes (path);
+				return (TTTProfile) ByteArrayToObject (bytes);
 			}
 
 			return null;
@@ -56,7 +53,7 @@ namespace TicTacToe
 
 		public bool WriteToPath (string path)
 		{
-			byte[] bytes = ObjectToByteArray (this);
+			byte [] bytes = ObjectToByteArray (this);
 			File.WriteAllBytes (path, bytes);
 
 			return true;
@@ -134,7 +131,7 @@ namespace TicTacToe
 
 		#region Serialization
 		// Convert an object to a byte array
-		public static byte[] ObjectToByteArray (Object obj)
+		public static byte [] ObjectToByteArray (Object obj)
 		{
 			if (obj == null)
 				return null;
@@ -145,7 +142,7 @@ namespace TicTacToe
 		}
 
 		// Convert a byte array to an Object
-		public static Object ByteArrayToObject (byte[] arrBytes)
+		public static Object ByteArrayToObject (byte [] arrBytes)
 		{
 			MemoryStream memStream = new MemoryStream ();
 			BinaryFormatter binForm = new BinaryFormatter ();
