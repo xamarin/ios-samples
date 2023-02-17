@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace KannadaKeyboard
-{
-	public partial class KeyboardViewController : UIInputViewController
-	{
+namespace KannadaKeyboard {
+	public partial class KeyboardViewController : UIInputViewController {
 		public KeyboardViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -16,17 +14,17 @@ namespace KannadaKeyboard
 		{
 			base.ViewDidLoad ();
 
-			var nib = UINib.FromName ("KeyboardView", null); 
+			var nib = UINib.FromName ("KeyboardView", null);
 			var objects = nib.Instantiate (this, null);
 			View = objects [0] as UIView;
 
-			Shift.TouchUpInside += ( sender, e) => {
+			Shift.TouchUpInside += (sender, e) => {
 				UpdateShiftText (!isShiftPressed);
 				UpdateKeyboardLayout ();
 			};
 		}
 
-		void SetKeyTitle (UIView row, string[] titles)
+		void SetKeyTitle (UIView row, string [] titles)
 		{
 			int i = 0;
 			foreach (UIButton item in row) {
@@ -81,9 +79,9 @@ namespace KannadaKeyboard
 
 		static void Anumate (UIButton button)
 		{
-			UIView.Animate (0.2, () =>  {
+			UIView.Animate (0.2, () => {
 				button.Transform = CGAffineTransform.Scale (CGAffineTransform.MakeIdentity (), 2f, 2f);
-			}, () =>  {
+			}, () => {
 				button.Transform = CGAffineTransform.Scale (CGAffineTransform.MakeIdentity (), 1f, 1f);
 			});
 		}
@@ -115,15 +113,15 @@ namespace KannadaKeyboard
 
 		bool isShiftPressed;
 
-		string[] shiftRow1 = { "#", "್ರ", "ರ್", "ಜ್ಞ", "ತ್ರ", "ಕ್ಷ", "ಶ್ರ", "(", ")", "ಃ", "ಋ" };
-		string[] shiftRow2 = { "ಔ", "ಐ", "ಆ", "ಈ", "ಊ", "ಭ", "ಙ", "ಘ", "ಧ", "ಝ", "ಢ" };
-		string[] shiftRow3 = { "ಓ", "ಏ", "ಅ", "ಇ", "ಉ", "ಫ", "ಱ", "ಖ", "ಥ", "ಛ", "ಠ" };
-		string[] shiftRow4 = { "", "ಎ", "ಣ", "ಞ", "ೢ", "ಳ", "ಶ", "ಷ", "ಒ", "ೣ", "" };
+		string [] shiftRow1 = { "#", "್ರ", "ರ್", "ಜ್ಞ", "ತ್ರ", "ಕ್ಷ", "ಶ್ರ", "(", ")", "ಃ", "ಋ" };
+		string [] shiftRow2 = { "ಔ", "ಐ", "ಆ", "ಈ", "ಊ", "ಭ", "ಙ", "ಘ", "ಧ", "ಝ", "ಢ" };
+		string [] shiftRow3 = { "ಓ", "ಏ", "ಅ", "ಇ", "ಉ", "ಫ", "ಱ", "ಖ", "ಥ", "ಛ", "ಠ" };
+		string [] shiftRow4 = { "", "ಎ", "ಣ", "ಞ", "ೢ", "ಳ", "ಶ", "ಷ", "ಒ", "ೣ", "" };
 
-		string[] normalRow1 = { "೧", "೨", "೩", "೪", "೫", "೬", "೭", "೮", "೯", "೦", "-" };
-		string[] normalRow2 =	{ "ೌ", "ೈ", "ಾ", "ೀ", "ೂ", "ಬ", "ಹ", "ಗ", "ದ", "ಜ", "ಡ" };
-		string[] normalRow3 = { "ೋ", "ೇ", "್", "ಿ", "ು", "ಪ", "ರ", "ಕ", "ತ", "ಚ", "ಟ" };
-		string[] normalRow4 = { "s", "ೆ", "ಂ", "ಮ", "ನ", "ವ", "ಲ", "ಸ", "ಯ", "ೃ", "b" };
+		string [] normalRow1 = { "೧", "೨", "೩", "೪", "೫", "೬", "೭", "೮", "೯", "೦", "-" };
+		string [] normalRow2 = { "ೌ", "ೈ", "ಾ", "ೀ", "ೂ", "ಬ", "ಹ", "ಗ", "ದ", "ಜ", "ಡ" };
+		string [] normalRow3 = { "ೋ", "ೇ", "್", "ಿ", "ು", "ಪ", "ರ", "ಕ", "ತ", "ಚ", "ಟ" };
+		string [] normalRow4 = { "s", "ೆ", "ಂ", "ಮ", "ನ", "ವ", "ಲ", "ಸ", "ಯ", "ೃ", "b" };
 
 	}
 

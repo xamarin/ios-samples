@@ -4,11 +4,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `UITableViewCell` subclass with a `UISegmentedControl`, used for selecting the time type.
-	public partial class SegmentedTimeCell : UITableViewCell
-	{
+	public partial class SegmentedTimeCell : UITableViewCell {
 		[Outlet ("segmentedControl")]
 		public UISegmentedControl SegmentedControl { get; set; }
 

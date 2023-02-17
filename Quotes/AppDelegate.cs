@@ -3,11 +3,9 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace Quotes
-{
+namespace Quotes {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		UINavigationController viewController = new UINavigationController ();
 
@@ -24,7 +22,7 @@ namespace Quotes
 			return true;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

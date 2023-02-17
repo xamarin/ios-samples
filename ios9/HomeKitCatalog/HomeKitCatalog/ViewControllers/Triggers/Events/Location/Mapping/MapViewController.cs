@@ -9,17 +9,14 @@ using Foundation;
 using MapKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
-	public interface IMapViewControllerDelegate
-	{
+namespace HomeKitCatalog {
+	public interface IMapViewControllerDelegate {
 		// Notifies the delegate that the `MapViewController`'s region has been updated.
 		void MapViewDidUpdateRegion (CLCircularRegion region);
 	}
 
 	// A view controller which allows the selection of a circular region on a map.
-	public partial class MapViewController : UIViewController, IUISearchBarDelegate, ICLLocationManagerDelegate, IMKMapViewDelegate
-	{
+	public partial class MapViewController : UIViewController, IUISearchBarDelegate, ICLLocationManagerDelegate, IMKMapViewDelegate {
 		const string CircularRegion = "MapViewController.Region";
 
 		// When the view loads, we'll zoom to this longitude/latitude span delta.
@@ -160,7 +157,7 @@ namespace HomeKitCatalog
 		#region Location Manager Methods
 
 		[Export ("locationManager:didUpdateLocations:")]
-		public void LocationsUpdated (CLLocationManager manager, CLLocation[] locations)
+		public void LocationsUpdated (CLLocationManager manager, CLLocation [] locations)
 		{
 			CLLocation lastLocation = locations == null ? null : locations.LastOrDefault ();
 			if (lastLocation == null)
@@ -211,9 +208,9 @@ namespace HomeKitCatalog
 			var matchingItems = new List<MKMapItem> ();
 
 			search.Start ((response, error) => {
-				MKMapItem[] mapItems = null;
+				MKMapItem [] mapItems = null;
 				if (response != null)
-					mapItems = response.MapItems ?? new MKMapItem[0];
+					mapItems = response.MapItems ?? new MKMapItem [0];
 
 				foreach (var item in mapItems) {
 					matchingItems.Add (item);

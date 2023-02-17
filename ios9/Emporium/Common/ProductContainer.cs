@@ -1,12 +1,10 @@
-﻿using Foundation;
+using Foundation;
 
-namespace Emporium
-{
-	public class ProductContainer : DictionaryContainer
-	{
-		static readonly NSString NameKey = (NSString)"name";
-		static readonly NSString DescriptionKey = (NSString)"description";
-		static readonly NSString PriceKey = (NSString)"price";
+namespace Emporium {
+	public class ProductContainer : DictionaryContainer {
+		static readonly NSString NameKey = (NSString) "name";
+		static readonly NSString DescriptionKey = (NSString) "description";
+		static readonly NSString PriceKey = (NSString) "price";
 
 		public string Name {
 			get {

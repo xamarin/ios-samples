@@ -3,10 +3,8 @@ using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace TicTacToe
-{
-	public class TTTNewMessageViewController : UIViewController
-	{
+namespace TicTacToe {
+	public class TTTNewMessageViewController : UIViewController {
 		public TTTProfile Profile;
 		UITextView messageTextView;
 		UIWindow currentMessageWindow;
@@ -51,18 +49,18 @@ namespace TicTacToe
 			view.AddSubview (messageTextView);
 
 			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-8-[messageTextView]-8-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"messageTextView", messageTextView));
 			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-8-[cancelButton]->=20-[postButton]-8-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"cancelButton", cancelButton,
 				"postButton", postButton));
 			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-8-[messageTextView]-[cancelButton]-8-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"messageTextView", messageTextView,
 				"cancelButton", cancelButton));
 			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-8-[messageTextView]-[postButton]-8-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"messageTextView", messageTextView,
 				"postButton", postButton));
 
@@ -82,7 +80,8 @@ namespace TicTacToe
 			messageTextView.BecomeFirstResponder ();
 			View.Alpha = 0f;
 
-			UIView.Animate (0.3f, delegate {
+			UIView.Animate (0.3f, delegate
+			{
 				View.Alpha = 1f;
 				currentMessageSourceWindow.TintAdjustmentMode = UIViewTintAdjustmentMode.Dimmed;
 			});
@@ -91,19 +90,21 @@ namespace TicTacToe
 		void close (object sender, EventArgs e)
 		{
 			messageTextView.ResignFirstResponder ();
-			UIView.Animate (0.3f, delegate {
+			UIView.Animate (0.3f, delegate
+			{
 				View.Alpha = 0f;
 				currentMessageSourceWindow.TintAdjustmentMode = UIViewTintAdjustmentMode.Automatic;
 			},
-			                delegate {
-				currentMessageWindow = null;
-				currentMessageSourceWindow.MakeKeyAndVisible ();
-			});
+							delegate
+							{
+								currentMessageWindow = null;
+								currentMessageSourceWindow.MakeKeyAndVisible ();
+							});
 		}
 
 		void post (object sender, EventArgs e)
 		{
-			TTTMessage message = new TTTMessage (){
+			TTTMessage message = new TTTMessage () {
 				Icon = Profile.Icon,
 				Text = messageTextView.Text
 			};

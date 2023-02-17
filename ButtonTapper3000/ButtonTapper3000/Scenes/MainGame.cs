@@ -34,13 +34,14 @@ namespace ButtonTapper3000 {
 			GameInfo.CurrentTaps = 0;
 
 			gameTimer = NSTimer.CreateScheduledTimer (GameInfo.GameTimeInSeconds, async (t) => {
-				gameTimer.Dispose();
+				gameTimer.Dispose ();
 				gameTimer = null;
 				await TimerDone ();
 			});
 
-			tickTimer = NSTimer.CreateRepeatingScheduledTimer (1.0, async delegate {
-				GameInfo.CurrentTicks --;
+			tickTimer = NSTimer.CreateRepeatingScheduledTimer (1.0, async delegate
+			{
+				GameInfo.CurrentTicks--;
 				if (GameInfo.CurrentTicks < 0) {
 					GameInfo.CurrentTicks = 0;
 					await TimerDone ();
@@ -77,7 +78,7 @@ namespace ButtonTapper3000 {
 				var location = (touch as UITouch).LocationInNode (this);
 
 				if (button.ContainsPoint (location)) {
-					GameInfo.CurrentTaps ++;
+					GameInfo.CurrentTaps++;
 
 					if (GameInfo.GameMode == GameMode.Hard) {
 						int x = rand.Next (100) - 50;
@@ -162,7 +163,7 @@ namespace ButtonTapper3000 {
 
 				int playedGameTypesBitField;
 				using (NSUserDefaults defaults = NSUserDefaults.StandardUserDefaults) {
-					playedGameTypesBitField = (int)defaults.IntForKey ("playedGameTypes") | (int) gameType;
+					playedGameTypesBitField = (int) defaults.IntForKey ("playedGameTypes") | (int) gameType;
 					defaults.SetInt (playedGameTypesBitField, "playedGameTypes");
 					defaults.Synchronize ();
 				}
@@ -195,17 +196,17 @@ namespace ButtonTapper3000 {
 
 			if (scores != null && scores.Length > 1) {
 				currentScore = scores [0];
-				int oldTaps = (int)currentScore.Context;
-				int oldTime = (int)currentScore.Value * oldTaps;
+				int oldTaps = (int) currentScore.Context;
+				int oldTime = (int) currentScore.Value * oldTaps;
 
 				int newTime = oldTime + GameInfo.GameTimeInSeconds * 100;
 				int newTaps = oldTaps + GameInfo.CurrentTaps;
 
 				newScore.Value = newTime / newTaps;
-				newScore.Context = (ulong)newTaps;
+				newScore.Context = (ulong) newTaps;
 			} else {
 				newScore.Value = GameInfo.GameTimeInSeconds / Math.Max (GameInfo.CurrentTaps, 1) * 100;
-				newScore.Context = (ulong)GameInfo.CurrentTaps;
+				newScore.Context = (ulong) GameInfo.CurrentTaps;
 			}
 
 			GKAchievement playAHundred = new GKAchievement (Tap100Id, GKLocalPlayer.LocalPlayer.PlayerID) {

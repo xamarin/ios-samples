@@ -6,10 +6,8 @@ using AddressBookUI;
 using Foundation;
 using UIKit;
 
-namespace MonoCatalog
-{
-	public partial class AddressBookController : UIViewController
-	{
+namespace MonoCatalog {
+	public partial class AddressBookController : UIViewController {
 
 		ABPeoplePickerNavigationController p;
 
@@ -39,22 +37,22 @@ namespace MonoCatalog
 
 			p = new ABPeoplePickerNavigationController ();
 			p.SelectPerson += (o, e) => {
-				HandlePersonSelection(e.Person);
+				HandlePersonSelection (e.Person);
 				e.Continue = selectProperty.On;
 				if (!e.Continue)
 					DismissModalViewController (true);
 			};
 			p.SelectPerson2 += (sender, e) => {
-				HandlePersonSelection(e.Person);
+				HandlePersonSelection (e.Person);
 			};
 
 			p.PerformAction += (o, e) => {
-				HandlePersonPropertySelection(e.Person, e.Property, e.Identifier);
+				HandlePersonPropertySelection (e.Person, e.Property, e.Identifier);
 				if (!e.Continue)
 					DismissModalViewController (true);
 			};
 			p.PerformAction2 += (sender, e) => {
-				HandlePersonPropertySelection(e.Person, e.Property, e.Identifier);
+				HandlePersonPropertySelection (e.Person, e.Property, e.Identifier);
 			};
 
 			p.Cancelled += (o, e) => {
@@ -75,7 +73,7 @@ namespace MonoCatalog
 			PresentModalViewController (GetPicker (), true);
 		}
 
-		void HandlePersonSelection(AddressBook.ABPerson person)
+		void HandlePersonSelection (AddressBook.ABPerson person)
 		{
 			Console.Error.WriteLine ("# select Person: {0}", person);
 			toString.Text = person.ToString ();
@@ -85,7 +83,7 @@ namespace MonoCatalog
 			identifier.Text = "";
 		}
 
-		void HandlePersonPropertySelection(AddressBook.ABPerson person, AddressBook.ABPersonProperty property, int? id)
+		void HandlePersonPropertySelection (AddressBook.ABPerson person, AddressBook.ABPersonProperty property, int? id)
 		{
 			Console.Error.WriteLine ("# perform action; person={0}", person);
 			toString.Text = person.ToString ();

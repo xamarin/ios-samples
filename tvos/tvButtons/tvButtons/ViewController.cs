@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace MySingleView
-{
-	public partial class ViewController : UIViewController
-	{
+namespace MySingleView {
+	public partial class ViewController : UIViewController {
 		#region Constructors
 		public ViewController (IntPtr handle) : base (handle)
 		{
@@ -20,14 +18,14 @@ namespace MySingleView
 
 
 			// Add a button via code
-			var button = new UIButton(UIButtonType.System);
-			button.Frame = new CGRect (ClickMeButton.Frame.Left, ClickMeButton.Frame.Top+ClickMeButton.Frame.Height+25, ClickMeButton.Frame.Width, ClickMeButton.Frame.Height);
+			var button = new UIButton (UIButtonType.System);
+			button.Frame = new CGRect (ClickMeButton.Frame.Left, ClickMeButton.Frame.Top + ClickMeButton.Frame.Height + 25, ClickMeButton.Frame.Width, ClickMeButton.Frame.Height);
 			button.SetTitle ("Hello", UIControlState.Normal);
 			button.AllEvents += (sender, e) => {
-				Console.WriteLine("Hello button clicked!");
+				Console.WriteLine ("Hello button clicked!");
 			};
 			button.SetTitleColor (UIColor.Red, UIControlState.Normal);
-			button.SetTitleShadowColor(UIColor.Black, UIControlState.Normal);
+			button.SetTitleShadowColor (UIColor.Black, UIControlState.Normal);
 			button.ReverseTitleShadowWhenHighlighted = true;
 			View.AddSubview (button);
 		}
@@ -40,8 +38,9 @@ namespace MySingleView
 		#endregion
 
 		#region Custom Actions
-		partial void ButtonPressed (Foundation.NSObject sender) {
-			Console.WriteLine("The button was clicked.");
+		partial void ButtonPressed (Foundation.NSObject sender)
+		{
+			Console.WriteLine ("The button was clicked.");
 		}
 		#endregion
 	}

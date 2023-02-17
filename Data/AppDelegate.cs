@@ -4,11 +4,9 @@ using CoreGraphics;
 using UIKit;
 using Foundation;
 
-namespace Xamarin
-{
-	[Register("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+namespace Xamarin {
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
 		protected UIWindow window;
 		protected UINavigationController navController;
 		protected Screens.NavTable.HomeNavController navTable;

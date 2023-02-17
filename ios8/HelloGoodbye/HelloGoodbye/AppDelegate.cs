@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
 using UIKit;
 
-namespace HelloGoodbye
-{
+namespace HelloGoodbye {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		StartViewController startViewController;
 		UINavigationController navigationController;

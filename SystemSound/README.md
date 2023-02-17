@@ -1,20 +1,26 @@
-System Sound
-============
+---
+name: Xamarin.iOS - System Sound
+description: 'This sample demonstrates playing sound via AudioToolkit. Note: not all devices support vibration'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: systemsound
+---
+# System Sound
 
 This sample demonstrates playing sound via AudioToolkit.  
 Note: not all devices support vibration.
 
-Build Requirements
-------------------
+## Build Requirements
 
 Building this sample requires Xcode 5.0 and iOS 7.0 SDK
 
-Related Links
--------
+## Related Links
 
 - [System Sound Services](https://developer.apple.com/documentation/audiotoolbox/system_sound_services#//apple_ref/c/func/AudioServicesPlayAlertSound)
 
-License
--------
+## License
 
 Xamarin port changes are released under the MIT license.

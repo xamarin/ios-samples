@@ -1,14 +1,12 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 using CloudKit;
 using CoreLocation;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public class PerformQuerySample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class PerformQuerySample : CodeSample {
 		CLLocation Location {
 			get {
 				object locationObj;
@@ -47,7 +45,7 @@ namespace CloudKitAtlas
 			var results = new Results (alwaysShowAsList: true);
 
 			var len = recordArray.Length;
-			if(len == 0)
+			if (len == 0)
 				ListHeading = "No matching items";
 			else if (len == 1)
 				ListHeading = "Found 1 matching item:";

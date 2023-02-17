@@ -2,10 +2,8 @@ using System;
 using CoreGraphics;
 using UIKit;
 
-namespace NSZombieApocalypse
-{
-	public enum ButtonType
-	{
+namespace NSZombieApocalypse {
+	public enum ButtonType {
 		Free,
 		DeAlloc,
 		Release,
@@ -15,15 +13,14 @@ namespace NSZombieApocalypse
 		Count
 	}
 
-	public sealed class ButtonCollectionView : UIView
-	{
+	public sealed class ButtonCollectionView : UIView {
 		UIImageView trackingImageView;
 
 		public event ButtonSelectedHandler ButtonSelectedEvent;
-		public event ButtonDraggedHandler  ButtonDraggedEvent;
+		public event ButtonDraggedHandler ButtonDraggedEvent;
 		public event ButtonFinishedHandler ButtonFinishedEvent;
 
-		public ButtonCollectionView (CGRect frame) : base(frame)
+		public ButtonCollectionView (CGRect frame) : base (frame)
 		{
 			Layer.BorderColor = UIColor.Black.CGColor;
 			Layer.BorderWidth = 1;
@@ -37,7 +34,7 @@ namespace NSZombieApocalypse
 				button.TrackingContinuedEvent += TrackingContinued;
 				button.TrackingEndedEvent += TrackingEnded;
 				button.Tag = k;
-				button.SetLabel (ButtonLabelForType ((ButtonType)k));
+				button.SetLabel (ButtonLabelForType ((ButtonType) k));
 			}
 		}
 
@@ -65,9 +62,9 @@ namespace NSZombieApocalypse
 			return null;
 		}
 
-		public  void TrackingStarted (object sender, TrackingEventArgs e)
+		public void TrackingStarted (object sender, TrackingEventArgs e)
 		{
-			var button = (ButtonView)sender;
+			var button = (ButtonView) sender;
 
 			UIGraphics.BeginImageContext (button.Bounds.Size);
 			button.Layer.RenderInContext (UIGraphics.GetCurrentContext ());
@@ -91,7 +88,7 @@ namespace NSZombieApocalypse
 
 		public void TrackingContinued (object sender, TrackingEventArgs e)
 		{
-			var button = (ButtonView)sender;
+			var button = (ButtonView) sender;
 			UITouch location = e.Touch;
 
 			CGPoint point = location.LocationInView (Superview);
@@ -103,32 +100,32 @@ namespace NSZombieApocalypse
 				ButtonDraggedEvent (button, location);
 		}
 
-		public void  TrackingEnded (object sender, TrackingEventArgs e)
+		public void TrackingEnded (object sender, TrackingEventArgs e)
 		{
-			var button = (ButtonView)sender;
+			var button = (ButtonView) sender;
 			ButtonFinishedEvent?.Invoke (button, trackingImageView, e.Touch);
 			trackingImageView = null;
 		}
 
 		public override void LayoutSubviews ()
 		{
-			UIView[] subviews = Subviews;
+			UIView [] subviews = Subviews;
 			int count = 0;
 			CGRect bounds = Bounds;
 			CGSize buttonSize = ButtonView.ButtonSize;
-			float xPad = (float)(bounds.Size.Width - (buttonSize.Width * 3)) / 4;
-			float yPad = (float)(bounds.Size.Height - (buttonSize.Height * 2)) / 3;
+			float xPad = (float) (bounds.Size.Width - (buttonSize.Width * 3)) / 4;
+			float yPad = (float) (bounds.Size.Height - (buttonSize.Height * 2)) / 3;
 			float x = xPad, y = 5;
 			foreach (var subview in subviews) {
 				if (count > 0 && count % 3 == 0) {
 					x = xPad;
-					y += (float)buttonSize.Height + yPad;
+					y += (float) buttonSize.Height + yPad;
 				}
 				count++;
 
 				var frame = new CGRect (x, y, buttonSize.Width, buttonSize.Height);
 				subview.Frame = frame.Integral ();
-				x += (float)buttonSize.Width + xPad;
+				x += (float) buttonSize.Width + xPad;
 			}
 		}
 	}

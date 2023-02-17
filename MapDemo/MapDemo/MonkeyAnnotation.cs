@@ -1,23 +1,21 @@
-﻿
-namespace MapDemo
-{
-    using CoreLocation;
-    using MapKit;
 
-    public class MonkeyAnnotation : MKAnnotation
-    {
-        private CLLocationCoordinate2D coordinate;
+namespace MapDemo {
+	using CoreLocation;
+	using MapKit;
 
-        private readonly string title;
+	public class MonkeyAnnotation : MKAnnotation {
+		private CLLocationCoordinate2D coordinate;
 
-        public MonkeyAnnotation(string title, CLLocationCoordinate2D coordinate)
-        {
-            this.title = title;
-            this.coordinate = coordinate;
-        }
+		private readonly string title;
 
-        public override string Title => title;
+		public MonkeyAnnotation (string title, CLLocationCoordinate2D coordinate)
+		{
+			this.title = title;
+			this.coordinate = coordinate;
+		}
 
-        public override CLLocationCoordinate2D Coordinate => coordinate;
-    }
+		public override string Title => title;
+
+		public override CLLocationCoordinate2D Coordinate => coordinate;
+	}
 }

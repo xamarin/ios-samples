@@ -5,13 +5,11 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace MediaNotes
-{
-	public partial class YYCommentViewController : UIViewController
-	{
+namespace MediaNotes {
+	public partial class YYCommentViewController : UIViewController {
 		bool toolBarIsvisible;
-	    UIPopoverController shareController;
-		public PhotoViewController associatedObject { get; set;}
+		UIPopoverController shareController;
+		public PhotoViewController associatedObject { get; set; }
 
 		public YYCommentViewController ()
 		{
@@ -27,7 +25,7 @@ namespace MediaNotes
 			// Perform any additional setup after loading the view, typically from a nib.
 			base.ViewDidLoad ();
 			//check
-			textView.BackgroundColor  = UIColor.FromWhiteAlpha (.25f, .75f);
+			textView.BackgroundColor = UIColor.FromWhiteAlpha (.25f, .75f);
 			textView.TextColor = UIColor.White;
 			textView.Editable = false;
 			View.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin;
@@ -57,7 +55,7 @@ namespace MediaNotes
 		public override void ViewWillAppear (bool animated)
 		{
 			//Console.WriteLine("{0}:{1}",this, char cmd);
-		    textView.Text = Comment();
+			textView.Text = Comment ();
 		}
 
 		public override void ViewWillDisappear (bool animated)
@@ -80,10 +78,10 @@ namespace MediaNotes
 
 		public void TextViewDidEndEditing (UITextView textView)
 		{
-			if (!Comment ().Equals(textView.Text)){
-				SetComment(textView.Text);
+			if (!Comment ().Equals (textView.Text)) {
+				SetComment (textView.Text);
 			}
-			setEditing(true);
+			setEditing (true);
 		}
 
 		//YYCommentViewController API
@@ -93,7 +91,7 @@ namespace MediaNotes
 			UIView.Animate (.5, () => {
 				toolbar.Alpha = show ? 1.0f : 0.0f;
 				toolBarIsvisible = true;
-			}, () =>{
+			}, () => {
 				if (show) {
 					View.AddSubview (toolbar);
 					toolBarIsvisible = true;
@@ -109,56 +107,53 @@ namespace MediaNotes
 			if (obj != associatedObject) {
 				associatedObject = obj;
 			}
-			textView.Text = obj.AssociatedComment();
+			textView.Text = obj.AssociatedComment ();
 			Console.WriteLine (textView.Text);
 		}
 
 		partial void enableTextEditing (UIKit.UIBarButtonItem sender)
 		{
 			if (textView.Editable) {
-				setEditing(false);
-				textView.ResignFirstResponder();
-			}
-			else {
-				setEditing(true);
-				textView.BecomeFirstResponder();
+				setEditing (false);
+				textView.ResignFirstResponder ();
+			} else {
+				setEditing (true);
+				textView.BecomeFirstResponder ();
 			}
 		}
 
 		partial void share (UIKit.UIBarButtonItem sender)
 		{
-			if(shareController == null){
-				List<UIImage> items = associatedObject.ItemsForSharing();
-				NSObject [] itemsForSharing = new NSObject [(items == null? 0 : items.Count) + 1];
-            	int i = 0;
-				if (items!= null) {
+			if (shareController == null) {
+				List<UIImage> items = associatedObject.ItemsForSharing ();
+				NSObject [] itemsForSharing = new NSObject [(items == null ? 0 : items.Count) + 1];
+				int i = 0;
+				if (items != null) {
 					for (i = 0; i < items.Count; i++)
 						itemsForSharing [i] = items [i];
 				}
 				itemsForSharing [i] = new NSString (Comment ());
 
-			UIActivityViewController activityController = new UIActivityViewController(itemsForSharing, null);
-			shareController = new UIPopoverController(activityController);
-			shareController.Delegate = new MyDelegate(this);
-			shareController.PresentFromBarButtonItem(shareButton, UIPopoverArrowDirection.Any, true);
-			}
-			else{
-				shareController.Dismiss(true);
+				UIActivityViewController activityController = new UIActivityViewController (itemsForSharing, null);
+				shareController = new UIPopoverController (activityController);
+				shareController.Delegate = new MyDelegate (this);
+				shareController.PresentFromBarButtonItem (shareButton, UIPopoverArrowDirection.Any, true);
+			} else {
+				shareController.Dismiss (true);
 				shareController = null;
-				}
+			}
 		}
 
 		partial void shootPicture (UIKit.UIBarButtonItem sender)
 		{
-			UIImagePickerController picker = new UIImagePickerController();
+			UIImagePickerController picker = new UIImagePickerController ();
 
 			picker.SourceType = UIImagePickerControllerSourceType.Camera;
 			picker.ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
-			PresentViewController(picker, true, null);
+			PresentViewController (picker, true, null);
 		}
 
-		class MyDelegate : UIPopoverControllerDelegate
-		{
+		class MyDelegate : UIPopoverControllerDelegate {
 			YYCommentViewController _parent;
 
 			public MyDelegate (YYCommentViewController parent)
@@ -166,7 +161,7 @@ namespace MediaNotes
 				_parent = parent;
 			}
 
-		    public override void DidDismiss (UIPopoverController popoverController)
+			public override void DidDismiss (UIPopoverController popoverController)
 			{
 				_parent.shareController = null;
 			}

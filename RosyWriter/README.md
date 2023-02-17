@@ -1,5 +1,14 @@
-RosyWriter
-==========
+---
+name: Xamarin.iOS - RosyWriter
+description: "This is a port of Apple's RosyWriter sample to C and Xamarin.iOS"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: rosywriter
+---
+# RosyWriter
 
 This is a port of Apple's RosyWriter sample to C# and MonoTouch.
 
@@ -13,22 +22,17 @@ storage.
 
 This sample shows multiple parts of iOS in action:
 
-	* GLKit to easily setup a GL context, load shaders and render frames.
+* GLKit to easily setup a GL context, load shaders and render frames.
 
-	* AVFoundation to connect to the video camera
+* AVFoundation to connect to the video camera
 
-	* CoreVide's OpenGLTextureCache to directly bind camera frames
-          to OpenGL textures
+* CoreVide's OpenGLTextureCache to directly bind camera frames
+  to OpenGL textures
 
-	* ALAssets for creating assets.
+* ALAssets for creating assets.
 
-	* Grand Central Dispatch, showing how the main thread uses two
-          separate dispatch queues with their own threads to perform
-          the CPU intensive "pinkening" and the saving of the data.
+* Grand Central Dispatch, showing how the main thread uses two
+  separate dispatch queues with their own threads to perform
+  the CPU intensive "pinkening" and the saving of the data.
 
-Port
-====
-
-This port was written by Eric Beisecker of Xamarin.
-
-
+![Screenshot of camera applying a red filter](Screenshots/screenshot-1.png)

@@ -8,34 +8,31 @@ using SceneKit;
 using ARKit;
 using CoreFoundation;
 
-namespace PlacingObjects
-{
-	public partial class SettingsViewController : UITableViewController
-	{
-		public SettingsViewController(IntPtr handle) : base(handle)
+namespace PlacingObjects {
+	public partial class SettingsViewController : UITableViewController {
+		public SettingsViewController (IntPtr handle) : base (handle)
 		{
 		}
 
-		public override void ViewDidLoad()
+		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad();
+			base.ViewDidLoad ();
 
-			PopulateSettings();
+			PopulateSettings ();
 		}
 
-		private void PopulateSettings() {
+		private void PopulateSettings ()
+		{
 			DragOnInfinitePlanesSwitch.On = AppSettings.DragOnInfinitePlanes;
 			ScaleWithPinchGestureSwitch.On = AppSettings.ScaleWithPinchGesture;
 		}
-		[Action("didChangeSetting:")]
-		public void SettingChanged(UISwitch sender)
+		[Action ("didChangeSetting:")]
+		public void SettingChanged (UISwitch sender)
 		{
-			if (sender == DragOnInfinitePlanesSwitch)
-			{
+			if (sender == DragOnInfinitePlanesSwitch) {
 				AppSettings.DragOnInfinitePlanes = DragOnInfinitePlanesSwitch.On;
 			}
-			if (sender == ScaleWithPinchGestureSwitch)
-			{
+			if (sender == ScaleWithPinchGestureSwitch) {
 				AppSettings.ScaleWithPinchGesture = ScaleWithPinchGestureSwitch.On;
 			}
 		}

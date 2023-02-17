@@ -7,11 +7,11 @@ using UIKit;
 namespace UICatalog {
 	public partial class CollectionViewController : UICollectionViewController {
 
-		readonly DataItem[] items = DataItem.SampleItems;
+		readonly DataItem [] items = DataItem.SampleItems;
 		readonly DataItemCellComposer cellComposer = new DataItemCellComposer ();
 
 		[Export ("initWithCoder:")]
-		public CollectionViewController (NSCoder coder): base (coder)
+		public CollectionViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -19,7 +19,7 @@ namespace UICatalog {
 		{
 			if (CollectionView == null)
 				return;
-			
+
 			CollectionView.MaskView = new GradientMaskView (new CGRect (CGPoint.Empty, CollectionView.Bounds.Size));
 		}
 
@@ -54,7 +54,7 @@ namespace UICatalog {
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			return (UICollectionViewCell)CollectionView.DequeueReusableCell (DataItemCollectionViewCell.ReuseIdentifier, indexPath);
+			return (UICollectionViewCell) CollectionView.DequeueReusableCell (DataItemCollectionViewCell.ReuseIdentifier, indexPath);
 		}
 
 		public override void WillDisplayCell (UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath)

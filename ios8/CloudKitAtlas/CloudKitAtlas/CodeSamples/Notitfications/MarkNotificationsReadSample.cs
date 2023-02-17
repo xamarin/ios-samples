@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using UIKit;
 using Foundation;
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class NotificationsCache
-	{
+namespace CloudKitAtlas {
+	public class NotificationsCache {
 		public Results Results { get; private set; } = new Results (null, alwaysShowAsList: true);
 
 		public void AddNotification (CKNotification notification)
@@ -57,8 +55,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class MarkNotificationsReadSample : CodeSample
-	{
+	public class MarkNotificationsReadSample : CodeSample {
 		public NotificationsCache Cache { get; private set; } = new NotificationsCache ();
 
 		public MarkNotificationsReadSample ()

@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents the all different types of HomeKit objects.
-	public enum HomeKitObjectSection
-	{
+	public enum HomeKitObjectSection {
 		Accessory,
 		Room,
 		Zone,
@@ -22,8 +20,7 @@ namespace HomeKitCatalog
 	/// The `HomeKitObjectCollection` is a model object for the `HomeViewController`. It manages arrays of HomeKit objects.
 	/// Manages internal lists of HomeKit objects to allow for save insertion into a table view.
 	/// </summary>
-	public class HomeKitObjectCollection
-	{
+	public class HomeKitObjectCollection {
 		readonly List<HMAccessory> accessories;
 		public List<HMAccessory> Accessories {
 			get {
@@ -208,7 +205,7 @@ namespace HomeKitCatalog
 
 		static NSIndexPath BuildIndexPath (int row, HomeKitObjectSection section)
 		{
-			return NSIndexPath.FromRowSection (row, (int)section);
+			return NSIndexPath.FromRowSection (row, (int) section);
 		}
 
 		#endregion
@@ -220,12 +217,12 @@ namespace HomeKitCatalog
 			Accessories.SortByLocalizedName (a => a.Name);
 
 			Rooms.Clear ();
-			Rooms.AddRange (home.GetAllRooms());
+			Rooms.AddRange (home.GetAllRooms ());
 			Rooms.SortByLocalizedName (r => r.Name);
 
 			Zones.Clear ();
 			Zones.AddRange (home.Zones);
-			Zones.SortByLocalizedName(z => z.Name);
+			Zones.SortByLocalizedName (z => z.Name);
 
 			ActionSets.Clear ();
 			ActionSets.AddRange (home.ActionSets);

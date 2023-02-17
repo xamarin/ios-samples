@@ -1,28 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
 using UIKit;
 
-namespace PhotoHandoff
-{
+namespace PhotoHandoff {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		DataSource dataSource;
 
 		public override UIWindow Window { get; set; }
 
 		UINavigationController NavigationController {
 			get {
-				return (UINavigationController)Window.RootViewController;
+				return (UINavigationController) Window.RootViewController;
 			}
 		}
 
 		CollectionViewController PrimaryViewController {
 			get {
-				return (CollectionViewController)NavigationController.ViewControllers[0];
+				return (CollectionViewController) NavigationController.ViewControllers [0];
 			}
 		}
 
@@ -62,7 +60,7 @@ namespace PhotoHandoff
 			var vc = PrimaryViewController;
 
 			vc.HandleUserActivity (userActivity);
-			completionHandler(new NSObject[]{ NavigationController, vc});
+			completionHandler (new NSObject [] { NavigationController, vc });
 
 			return true;
 		}

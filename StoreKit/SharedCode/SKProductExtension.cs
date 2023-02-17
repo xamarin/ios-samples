@@ -3,10 +3,8 @@ using StoreKit;
 using Foundation;
 using UIKit;
 
-namespace SharedCode
-{
-	public static class SKProductExtension
-	{
+namespace SharedCode {
+	public static class SKProductExtension {
 		public static string LocalizedPrice (this SKProduct product)
 		{
 			var formatter = new NSNumberFormatter {

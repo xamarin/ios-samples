@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class CKRecordIdWrapper : IResult
-	{
+namespace CloudKitAtlas {
+	public class CKRecordIdWrapper : IResult {
 		readonly CKRecordID record;
 
 		public CKRecordIdWrapper (CKRecordID record)

@@ -4,14 +4,13 @@ using Foundation;
 using CoreGraphics;
 using QuartzSample;
 
-public class GradientDrawingView : QuartzView
-{
+public class GradientDrawingView : QuartzView {
 	CGGradient gradient;
 
 	public GradientDrawingView () : base ()
 	{
 		using (var rgb = CGColorSpace.CreateDeviceRGB ()) {
-			nfloat[] colors = {
+			nfloat [] colors = {
 					204f / 255f, 224f / 255f, 244f / 255f, 10f,
 					29f / 255f, 156f / 255f, 215f / 255f, 10f,
 					0f / 255f,  50f / 255f, 126f / 255f, 10f,
@@ -166,8 +165,7 @@ public class GradientDrawingView : QuartzView
 }
 
 [Register]
-public class PatternDrawingView : QuartzView
-{
+public class PatternDrawingView : QuartzView {
 	CGColor coloredPatternColor;
 	CGPattern uncoloredPattern;
 	CGColorSpace uncoloredPatternColorSpace;
@@ -198,12 +196,12 @@ public class PatternDrawingView : QuartzView
 		// First we need to create a CGPattern that specifies the qualities of our pattern.
 
 		using (var coloredPattern = new CGPattern (
-			                            new CGRect (0, 0, 16, 16), // the pattern coordinate space, drawing is clipped to this rectangle
-			                            CGAffineTransform.MakeIdentity (), // a transform on the pattern coordinate space used before it is drawn.
-			                            16, 16, // the spacing (horizontal, vertical) of the pattern - how far to move after drawing each cell
-			                            CGPatternTiling.NoDistortion,
-			                            true, // this is a colored pattern, which means that you only specify an alpha value when drawing it
-			                            DrawColored)) {
+										new CGRect (0, 0, 16, 16), // the pattern coordinate space, drawing is clipped to this rectangle
+										CGAffineTransform.MakeIdentity (), // a transform on the pattern coordinate space used before it is drawn.
+										16, 16, // the spacing (horizontal, vertical) of the pattern - how far to move after drawing each cell
+										CGPatternTiling.NoDistortion,
+										true, // this is a colored pattern, which means that you only specify an alpha value when drawing it
+										DrawColored)) {
 
 			// To draw a pattern, you need a pattern colorspace.
 			// Since this is an colored pattern, the parent colorspace is NULL, indicating that it only has an alpha value.

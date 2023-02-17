@@ -7,18 +7,16 @@ using UIKit;
 using HealthKit;
 
 
-namespace HKWork
-{
+namespace HKWork {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		private HKHealthStore healthKitStore = new HKHealthStore ();
 
 		public override UIWindow Window {
 			get;
 			set;
 		}
-		
+
 		public override void OnActivated (UIApplication application)
 		{
 			ValidateAuthorization ();
@@ -33,8 +31,8 @@ namespace HKWork
 			//We aren't reading any data for this sample
 			var typesToRead = new NSSet ();
 			healthKitStore.RequestAuthorizationToShare (
-				typesToWrite, 
-				typesToRead, 
+				typesToWrite,
+				typesToRead,
 				ReactToHealthCarePermissions);
 		}
 

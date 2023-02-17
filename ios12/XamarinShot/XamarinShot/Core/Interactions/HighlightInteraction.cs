@@ -1,75 +1,64 @@
-﻿
-namespace XamarinShot.Models
-{
-    using SceneKit;
-    using XamarinShot.Models.Enums;
-    using XamarinShot.Utils;
-    using System;
-    using System.Linq;
 
-    public class HighlightInteraction : IInteraction
-    {
-        public HighlightInteraction(IInteractionDelegate @delegate)
-        {
-            this.Delegate = @delegate;
-        }
+namespace XamarinShot.Models {
+	using SceneKit;
+	using XamarinShot.Models.Enums;
+	using XamarinShot.Utils;
+	using System;
+	using System.Linq;
 
-        public IInteractionDelegate Delegate { get; private set; }
+	public class HighlightInteraction : IInteraction {
+		public HighlightInteraction (IInteractionDelegate @delegate)
+		{
+			this.Delegate = @delegate;
+		}
 
-        public GrabInteraction GrabInteraction { get; set; }
+		public IInteractionDelegate Delegate { get; private set; }
 
-        public SFXCoordinator SfxCoordinator { get; set; }
+		public GrabInteraction GrabInteraction { get; set; }
 
-        public void Update(CameraInfo cameraInfo)
-        {
-            if(!UserDefaults.Spectator)
-            {
-                if(this.GrabInteraction == null)
-                {
-                    throw new Exception("GrabInteraction not set");
-                }
+		public SFXCoordinator SfxCoordinator { get; set; }
 
-                // Get the current nearest grabbable
-                var nearestGrabbable = this.GrabInteraction.GrabbableToGrab(cameraInfo.Ray);
-                var grabbables = this.GrabInteraction.Grabbables.Values;
+		public void Update (CameraInfo cameraInfo)
+		{
+			if (!UserDefaults.Spectator) {
+				if (this.GrabInteraction == null) {
+					throw new Exception ("GrabInteraction not set");
+				}
 
-                // If player already grab something, we should turn off all highlight silently
-                if (this.GrabInteraction.GrabbedGrabbable != null)
-                {
-                    foreach(var grabbable in grabbables.Where(item => item.IsHighlighted))
-                    {
-                        grabbable.DoHighlight(false, null);
-                    }
+				// Get the current nearest grabbable
+				var nearestGrabbable = this.GrabInteraction.GrabbableToGrab (cameraInfo.Ray);
+				var grabbables = this.GrabInteraction.Grabbables.Values;
 
-                    return;
-                }
+				// If player already grab something, we should turn off all highlight silently
+				if (this.GrabInteraction.GrabbedGrabbable != null) {
+					foreach (var grabbable in grabbables.Where (item => item.IsHighlighted)) {
+						grabbable.DoHighlight (false, null);
+					}
 
-                // Turn on/off highlight with sound
-                foreach(var grabbable in grabbables)
-                {
-                    var isNearestGrabbable = false;
-                    if (nearestGrabbable != null && 
-                        grabbable.GrabbableId == nearestGrabbable.GrabbableId)
-                    {
-                        isNearestGrabbable = true;
-                    }
+					return;
+				}
 
-                    if (isNearestGrabbable && !grabbable.IsHighlighted)
-                    {
-                        grabbable.DoHighlight(true, this.SfxCoordinator);
-                    }
-                    else if (!isNearestGrabbable && grabbable.IsHighlighted)
-                    {
-                        grabbable.DoHighlight(false, this.SfxCoordinator);
-                    }
-                }
-            }
-        }
+				// Turn on/off highlight with sound
+				foreach (var grabbable in grabbables) {
+					var isNearestGrabbable = false;
+					if (nearestGrabbable != null &&
+						grabbable.GrabbableId == nearestGrabbable.GrabbableId) {
+						isNearestGrabbable = true;
+					}
 
-        public void DidCollision(SCNNode node, SCNNode otherNode, SCNVector3 position, float impulse) { }
+					if (isNearestGrabbable && !grabbable.IsHighlighted) {
+						grabbable.DoHighlight (true, this.SfxCoordinator);
+					} else if (!isNearestGrabbable && grabbable.IsHighlighted) {
+						grabbable.DoHighlight (false, this.SfxCoordinator);
+					}
+				}
+			}
+		}
 
-        public void Handle(GameActionType gameAction, Player player) { }
+		public void DidCollision (SCNNode node, SCNNode otherNode, SCNVector3 position, float impulse) { }
 
-        public void HandleTouch(TouchType type, Ray camera) { }
-    }
+		public void Handle (GameActionType gameAction, Player player) { }
+
+		public void HandleTouch (TouchType type, Ray camera) { }
+	}
 }

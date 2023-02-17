@@ -6,15 +6,13 @@ using System;
 using CoreImage;
 using CoreGraphics;
 
-namespace QRchestra
-{
-	public partial class SendViewController : UIViewController
-	{
+namespace QRchestra {
+	public partial class SendViewController : UIViewController {
 		public Action<SendViewController> Finished;
 
-		string[] mainBank = new [] { "67", "71", "74", "80" };
-		string[] altBank = new [] { "60", "64", "67", "72" };
-		int[] currentBank = new [] { 0, 0, 0, 0 };
+		string [] mainBank = new [] { "67", "71", "74", "80" };
+		string [] altBank = new [] { "60", "64", "67", "72" };
+		int [] currentBank = new [] { 0, 0, 0, 0 };
 		const int maxNumberOfBanks = 3;
 
 		List<UIImageView> keyImageViews;
@@ -67,9 +65,9 @@ namespace QRchestra
 		{
 			var mrcFilter = CIFilter.FromName ("CIQRCodeGenerator");
 			NSData messageData = NSData.FromString (new NSString (message), NSStringEncoding.UTF8);
-			mrcFilter.SetValueForKey (messageData, (NSString)"inputMessage");
+			mrcFilter.SetValueForKey (messageData, (NSString) "inputMessage");
 
-			var barcodeCIImage = (CIImage)mrcFilter.ValueForKey ((NSString)"outputImage");
+			var barcodeCIImage = (CIImage) mrcFilter.ValueForKey ((NSString) "outputImage");
 			CGRect extent = barcodeCIImage.Extent;
 
 			CGImage barcodeCGImage = CIContext.CreateCGImage (barcodeCIImage, extent);
@@ -96,7 +94,7 @@ namespace QRchestra
 			if (!(tapGestureRecognizer.View is UIImageView))
 				return;
 
-			var keyImageView = (UIImageView)tapGestureRecognizer.View;
+			var keyImageView = (UIImageView) tapGestureRecognizer.View;
 			int keyIndex = keyImageViews.IndexOf (keyImageView);
 
 			if (keyIndex < 0)

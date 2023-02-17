@@ -5,28 +5,24 @@ using Foundation;
 using CoreMotion;
 using UIKit;
 
-namespace MotionGraphs
-{
-	public enum MotionDataType
-	{
+namespace MotionGraphs {
+	public enum MotionDataType {
 		AccelerometerData,
 		GyroData,
 		DeviceMotion
 	}
 
-	public enum DeviceMotionGraphType
-	{
+	public enum DeviceMotionGraphType {
 		Attitude,
 		RotationRate,
 		Gravity,
 		UserAcceleration
 	}
 
-	public partial class GraphViewController : UIViewController
-	{
+	public partial class GraphViewController : UIViewController {
 		MotionDataType graphDataSource;
 		List<string> graphTitles;
-		List<GraphView>graphs;
+		List<GraphView> graphs;
 		CMMotionManager mManager;
 		const double accelerometrMin = 0.01;
 		const double gyroMin = 0.01;
@@ -50,7 +46,7 @@ namespace MotionGraphs
 			base.ViewDidLoad ();
 			// Perform any additional setup after loading the view, typically from a nib.
 			//Delegate has to be called
-			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+			AppDelegate appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 			mManager = appDelegate.SharedManager;
 			UpdateIntervalSlider.Value = 0.0f;
 			if (graphDataSource != MotionDataType.DeviceMotion) {
@@ -69,7 +65,7 @@ namespace MotionGraphs
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			StartUpdatesWithMotionDataType (graphDataSource, (int)(UpdateIntervalSlider.Value * 100));
+			StartUpdatesWithMotionDataType (graphDataSource, (int) (UpdateIntervalSlider.Value * 100));
 		}
 
 		public override void ViewDidDisappear (bool animated)
@@ -80,16 +76,16 @@ namespace MotionGraphs
 
 		partial void OnSliderValueChanged (UISlider sender)
 		{
-			StartUpdatesWithMotionDataType (graphDataSource, (int)(sender.Value * 100));
+			StartUpdatesWithMotionDataType (graphDataSource, (int) (sender.Value * 100));
 		}
 
 		partial void SegmentedControlDidChanged (UISegmentedControl sender)
 		{
-			GraphView newView = graphs [(int)sender.SelectedSegment];
+			GraphView newView = graphs [(int) sender.SelectedSegment];
 			primaryGraph.RemoveFromSuperview ();
 			View.AddSubview (newView);
 			primaryGraph = newView;
-			primaryGraphLabel.Text = graphTitles [(int)sender.SelectedSegment];
+			primaryGraphLabel.Text = graphTitles [(int) sender.SelectedSegment];
 		}
 
 		public void SetLabelValueX (double x, double y, double z)
@@ -115,7 +111,7 @@ namespace MotionGraphs
 				updateInterval = GraphViewController.accelerometrMin + delta * sliderValue;
 				if (mManager.AccelerometerAvailable) {
 					mManager.AccelerometerUpdateInterval = updateInterval;
-					mManager.StartAccelerometerUpdates (NSOperationQueue.CurrentQueue, ( data,  error) => {
+					mManager.StartAccelerometerUpdates (NSOperationQueue.CurrentQueue, (data, error) => {
 						if (primaryGraph == null)
 							return;
 
@@ -145,12 +141,12 @@ namespace MotionGraphs
 					mManager.DeviceMotionUpdateInterval = updateInterval;
 					mManager.StartDeviceMotionUpdates (NSOperationQueue.CurrentQueue, (motion, error) => {
 
-						graphs [(int)DeviceMotionGraphType.Attitude].AddX (motion.Attitude.Roll, motion.Attitude.Pitch, motion.Attitude.Yaw);
-						graphs [(int)DeviceMotionGraphType.RotationRate].AddX (motion.RotationRate.x, motion.RotationRate.y, motion.RotationRate.z);
-						graphs [(int)DeviceMotionGraphType.Gravity].AddX (motion.Gravity.X, motion.Gravity.Y, motion.Gravity.Z);
-						graphs [(int)DeviceMotionGraphType.UserAcceleration].AddX (motion.UserAcceleration.X, motion.UserAcceleration.Y, motion.UserAcceleration.Z);
+						graphs [(int) DeviceMotionGraphType.Attitude].AddX (motion.Attitude.Roll, motion.Attitude.Pitch, motion.Attitude.Yaw);
+						graphs [(int) DeviceMotionGraphType.RotationRate].AddX (motion.RotationRate.x, motion.RotationRate.y, motion.RotationRate.z);
+						graphs [(int) DeviceMotionGraphType.Gravity].AddX (motion.Gravity.X, motion.Gravity.Y, motion.Gravity.Z);
+						graphs [(int) DeviceMotionGraphType.UserAcceleration].AddX (motion.UserAcceleration.X, motion.UserAcceleration.Y, motion.UserAcceleration.Z);
 
-						switch ((DeviceMotionGraphType) (int)SegmentedControl.SelectedSegment) {
+						switch ((DeviceMotionGraphType) (int) SegmentedControl.SelectedSegment) {
 						case DeviceMotionGraphType.Attitude:
 							SetLabelValueRoll (motion.Attitude.Roll, motion.Attitude.Pitch, motion.Attitude.Yaw);
 							break;
@@ -166,7 +162,7 @@ namespace MotionGraphs
 						}
 					});
 				}
-				primaryGraphLabel.Text = graphTitles [(int)SegmentedControl.SelectedSegment];
+				primaryGraphLabel.Text = graphTitles [(int) SegmentedControl.SelectedSegment];
 				break;
 			}
 			UpdateIntervalLabel.Text = updateInterval.ToString ();

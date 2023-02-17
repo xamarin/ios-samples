@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace tvCollection
-{
-	public class CityViewDelegate : UICollectionViewDelegateFlowLayout
-	{
+namespace tvCollection {
+	public class CityViewDelegate : UICollectionViewDelegateFlowLayout {
 		#region Application Access
 		public static AppDelegate App {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -32,7 +30,7 @@ namespace tvCollection
 				return false;
 			} else {
 				var controller = collectionView as CityCollectionView;
-				return controller.Source.Cities[indexPath.Row].CanSelect;
+				return controller.Source.Cities [indexPath.Row].CanSelect;
 			}
 		}
 
@@ -42,7 +40,7 @@ namespace tvCollection
 			App.SelectedCity = controller.Source.Cities [indexPath.Row];
 
 			// Close Collection
-			controller.ParentController.DismissViewController(true,null);
+			controller.ParentController.DismissViewController (true, null);
 		}
 		#endregion
 	}

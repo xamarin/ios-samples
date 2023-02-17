@@ -4,10 +4,8 @@ using SpriteKit;
 using Foundation;
 using CoreGraphics;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public class ExhaustNode : ArchiveBasedNode
-	{
+namespace SpriteKitPhysicsCollisions {
+	public class ExhaustNode : ArchiveBasedNode {
 		public const float IdleAlpha = 0.05f;
 
 		static SKEmitterNode template;

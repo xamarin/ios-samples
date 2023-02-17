@@ -6,14 +6,12 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace LayoutWithNavController
-{
+namespace LayoutWithNavController {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		ImagesCollectionViewController viewController;
 		UICollectionViewFlowLayout layout;
@@ -27,8 +25,8 @@ namespace LayoutWithNavController
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			// create and initialize a UICollectionViewFlowLayout
-			layout = new UICollectionViewFlowLayout (){
-				SectionInset = new UIEdgeInsets (10,5,10,5),
+			layout = new UICollectionViewFlowLayout () {
+				SectionInset = new UIEdgeInsets (10, 5, 10, 5),
 				MinimumInteritemSpacing = 5,
 				MinimumLineSpacing = 5,
 				ItemSize = new CGSize (100, 100)
@@ -41,7 +39,7 @@ namespace LayoutWithNavController
 
 			window.RootViewController = navController;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

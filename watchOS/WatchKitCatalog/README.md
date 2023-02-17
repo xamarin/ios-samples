@@ -1,21 +1,33 @@
-WatchKit Catalog (watchOS 3)
-==================================================
+---
+name: Xamarin.iOS - WatchKit Catalog
+description: "This sample is for use with the Xamarin watchOS 3 preview that was release along with our iOS 10 support (watchOS)"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+extensions:
+    tags:
+    - watchos
+urlFragment: watchos-watchkitcatalog
+---
+# WatchKit Catalog (watchOS 3)
 
-Xamarin watchOS 3 Preview
--------------------------
+## Xamarin watchOS 3 Preview
 
-This sample is for use with the Xamarin watchOS 3 preview that was release along with our [iOS 10 support](https://blog.xamarin.com/let-the-ios10-ing-begin/).
+This sample is for use with the Xamarin watchOS 3 preview that was release along with our [iOS 10 support](https://devblogs.microsoft.com/xamarin/let-the-ios10-ing-begin/).
 
 1. Right-click the **WatchApp3** project and select **Set as startup project**.
 2. The simulator list should change to display 38mm and 42mm watch options.
 3. With a *watch simulator* selected, start debugging.
 
-![](Screenshots/watchOS3-sml.png) ![](Screenshots/watchCatalog3-sml.png)
+![Apple Watch screen](Screenshots/watchOS3-sml.png) ![Apple Watch screen](Screenshots/watchCatalog3-sml.png)
 
 ^ Screenshots are shown with the iOS Simulator running inside [Bezel].
 
-Using WatchKit Interface Elements
----------------------------------
+![WatchKit Catalog (watchOS 3) application screenshot](Screenshots/0.png "WatchKit Catalog (watchOS 3) application screenshot")
+
+## Using WatchKit Interface Elements
 
 WatchKit Catalog is an exploration of the UI elements available in the WatchKit framework.
 Throughout the sample, you'll find tips and configurations that will help guide the development of your watchOS app.
@@ -24,22 +36,21 @@ Throughout the sample, you'll find tips and configurations that will help guide 
 
 WatchKit Catalog demonstrates how to configure and customize the following controls:
 
-* WKInterfaceController
-* WKInterfaceDevice
-* WKInterfaceGroup
-* WKInterfaceImage
-* WKInterfaceLabel
-* WKInterfaceMap
-* WKInterfaceMovie and WKInterfaceInlineMovie
-* WKInterfaceSeparator
-* WKInterfaceSlider
-* WKInterfaceSwitch
-* WKInterfaceTable
-* WKInterfaceTimer
-* WKUserNotificationInterfaceController
-* IWKCrownDelegate and CrownSequencer
-* Gesture Recognizers
-
+- WKInterfaceController
+- WKInterfaceDevice
+- WKInterfaceGroup
+- WKInterfaceImage
+- WKInterfaceLabel
+- WKInterfaceMap
+- WKInterfaceMovie and WKInterfaceInlineMovie
+- WKInterfaceSeparator
+- WKInterfaceSlider
+- WKInterfaceSwitch
+- WKInterfaceTable
+- WKInterfaceTimer
+- WKUserNotificationInterfaceController
+- IWKCrownDelegate and CrownSequencer
+- Gesture Recognizers
 
 ### Tips
 
@@ -57,25 +68,15 @@ WatchKit Catalog demonstrates how to configure and customize the following contr
 
 - TextInputController presents the text input controller with a set of suggestions. The result is sent to the parent iOS application and a confirmation message is sent back to the WatchKit app extension.
 
-Build/Runtime Requirements
---------------------------
+## Build/Runtime Requirements
 
-* Xcode 8.0 (or newer)
-* Xamarin Studio 6.10 or newer
-* Xamarin.iOS 10
+- Xcode 8.0 (or newer)
+- Xamarin Studio 6.10 or newer
+- Xamarin.iOS 10
 
-
-### Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-
-### Author
-
-Ported to Xamarin.iOS by Vincent Dondain.
-
-
-### Other Credits
 
 *Watch screenshots use [Bezel] courtesy of [infinitapps] :)*
 

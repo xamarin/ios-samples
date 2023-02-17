@@ -1,314 +1,286 @@
-﻿
-namespace ARMultiuser
-{
-    using ARKit;
-    using Foundation;
-    using MultipeerConnectivity;
-    using SceneKit;
-    using System;
-    using System.Linq;
-    using UIKit;
 
-    public partial class ViewController : UIViewController, IARSCNViewDelegate, IARSessionDelegate
-    {
-        private MultipeerSession multipeerSession;
+namespace ARMultiuser {
+	using ARKit;
+	using Foundation;
+	using MultipeerConnectivity;
+	using SceneKit;
+	using System;
+	using System.Linq;
+	using UIKit;
 
-        protected ViewController(IntPtr handle) : base(handle) { }
+	public partial class ViewController : UIViewController, IARSCNViewDelegate, IARSessionDelegate {
+		private MultipeerSession multipeerSession;
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            this.sceneView.Delegate = this;
-            this.multipeerSession = new MultipeerSession(this.ReceivedData);
-        }
+		protected ViewController (IntPtr handle) : base (handle) { }
 
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			this.sceneView.Delegate = this;
+			this.multipeerSession = new MultipeerSession (this.ReceivedData);
+		}
 
-            if (!ARConfiguration.IsSupported)
-            {
-                throw new Exception("ARKit is not available on this device. For apps that require ARKit" +
-                                    "for core functionality, use the `arkit` key in the key in the" +
-                                    "`UIRequiredDeviceCapabilities` section of the Info.plist to prevent" +
-                                    "the app from installing. (If the app can't be installed, this error" +
-                                    "can't be triggered in a production scenario.)" +
-                                    "In apps where AR is an additive feature, use `isSupported` to" +
-                                    "determine whether to show UI for launching AR experiences.");
-                // For details, see https://developer.apple.com/documentation/arkit
-            }
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
 
-            // Start the view's AR session.
-            var configuration = new ARWorldTrackingConfiguration { PlaneDetection = ARPlaneDetection.Horizontal };
-            this.sceneView.Session.Run(configuration);
+			if (!ARConfiguration.IsSupported) {
+				throw new Exception ("ARKit is not available on this device. For apps that require ARKit" +
+									"for core functionality, use the `arkit` key in the key in the" +
+									"`UIRequiredDeviceCapabilities` section of the Info.plist to prevent" +
+									"the app from installing. (If the app can't be installed, this error" +
+									"can't be triggered in a production scenario.)" +
+									"In apps where AR is an additive feature, use `isSupported` to" +
+									"determine whether to show UI for launching AR experiences.");
+				// For details, see https://developer.apple.com/documentation/arkit
+			}
 
-            // Set a delegate to track the number of plane anchors for providing UI feedback.
-            this.sceneView.Session.Delegate = this;
-            this.sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints;
+			// Start the view's AR session.
+			var configuration = new ARWorldTrackingConfiguration { PlaneDetection = ARPlaneDetection.Horizontal };
+			this.sceneView.Session.Run (configuration);
 
-            // Prevent the screen from being dimmed after a while as users will likely
-            // have long periods of interaction without touching the screen or buttons.
-            UIApplication.SharedApplication.IdleTimerDisabled = true;
-        }
+			// Set a delegate to track the number of plane anchors for providing UI feedback.
+			this.sceneView.Session.Delegate = this;
+			this.sceneView.DebugOptions = ARSCNDebugOptions.ShowFeaturePoints;
 
-        public override void ViewDidDisappear(bool animated)
-        {
-            base.ViewDidDisappear(animated);
+			// Prevent the screen from being dimmed after a while as users will likely
+			// have long periods of interaction without touching the screen or buttons.
+			UIApplication.SharedApplication.IdleTimerDisabled = true;
+		}
 
-            // Pause the view's AR session.
-            this.sceneView.Session.Pause();
-        }
+		public override void ViewDidDisappear (bool animated)
+		{
+			base.ViewDidDisappear (animated);
 
-        #region IARSCNViewDelegate
+			// Pause the view's AR session.
+			this.sceneView.Session.Pause ();
+		}
 
-        [Export("renderer:didAddNode:forAnchor:")]
-        public void DidAddNode(ISCNSceneRenderer renderer, SCNNode node, ARAnchor anchor)
-        {
-            if (!string.IsNullOrEmpty(anchor.Name) && 
-                anchor.Name.StartsWith("panda", StringComparison.InvariantCulture))
-            {
-                node.AddChildNode(this.LoadRedPandaModel());
-            }
-        }
+		#region IARSCNViewDelegate
 
-        #endregion
+		[Export ("renderer:didAddNode:forAnchor:")]
+		public void DidAddNode (ISCNSceneRenderer renderer, SCNNode node, ARAnchor anchor)
+		{
+			if (!string.IsNullOrEmpty (anchor.Name) &&
+				anchor.Name.StartsWith ("panda", StringComparison.InvariantCulture)) {
+				node.AddChildNode (this.LoadRedPandaModel ());
+			}
+		}
 
-        #region IARSessionDelegate
+		#endregion
 
-        [Export("session:cameraDidChangeTrackingState:")]
-        public void CameraDidChangeTrackingState(ARSession session, ARCamera camera)
-        {
-            this.UpdateSessionInfoLabel(session.CurrentFrame, camera.TrackingState, camera.TrackingStateReason);
-        }
+		#region IARSessionDelegate
 
-        [Export("session:didUpdateFrame:")]
-        public void DidUpdateFrame(ARSession session, ARFrame frame)
-        {
-            switch (frame.WorldMappingStatus)
-            {
-                case ARWorldMappingStatus.NotAvailable:
-                case ARWorldMappingStatus.Limited:
-                    this.sendMapButton.Enabled = false;
-                    break;
+		[Export ("session:cameraDidChangeTrackingState:")]
+		public void CameraDidChangeTrackingState (ARSession session, ARCamera camera)
+		{
+			this.UpdateSessionInfoLabel (session.CurrentFrame, camera.TrackingState, camera.TrackingStateReason);
+		}
 
-                case ARWorldMappingStatus.Extending:
-                    this.sendMapButton.Enabled = this.multipeerSession.ConnectedPeers.Any();
-                    break;
+		[Export ("session:didUpdateFrame:")]
+		public void DidUpdateFrame (ARSession session, ARFrame frame)
+		{
+			switch (frame.WorldMappingStatus) {
+			case ARWorldMappingStatus.NotAvailable:
+			case ARWorldMappingStatus.Limited:
+				this.sendMapButton.Enabled = false;
+				break;
 
-                case ARWorldMappingStatus.Mapped:
-                    this.sendMapButton.Enabled = this.multipeerSession.ConnectedPeers.Any();
-                    break;
-            }
+			case ARWorldMappingStatus.Extending:
+				this.sendMapButton.Enabled = this.multipeerSession.ConnectedPeers.Any ();
+				break;
 
-            this.mappingStatusLabel.Text = frame.WorldMappingStatus.GetDescription();
-            this.UpdateSessionInfoLabel(frame, frame.Camera.TrackingState, frame.Camera.TrackingStateReason);
+			case ARWorldMappingStatus.Mapped:
+				this.sendMapButton.Enabled = this.multipeerSession.ConnectedPeers.Any ();
+				break;
+			}
 
-            frame?.Dispose();
-        }
+			this.mappingStatusLabel.Text = frame.WorldMappingStatus.GetDescription ();
+			this.UpdateSessionInfoLabel (frame, frame.Camera.TrackingState, frame.Camera.TrackingStateReason);
 
-        #endregion
+			frame?.Dispose ();
+		}
 
-        #region ARSessionObserver
+		#endregion
 
-        [Export("sessionWasInterrupted:")]
-        public void WasInterrupted(ARSession session)
-        {
-            // Inform the user that the session has been interrupted, for example, by presenting an overlay.
-            this.sessionInfoLabel.Text = "Session was interrupted";
-        }
+		#region ARSessionObserver
 
-        [Export("sessionInterruptionEnded:")]
-        public void InterruptionEnded(ARSession session)
-        {
-            // Reset tracking and/or remove existing anchors if consistent tracking is required.
-            this.sessionInfoLabel.Text = "Session interruption ended";
-        }
+		[Export ("sessionWasInterrupted:")]
+		public void WasInterrupted (ARSession session)
+		{
+			// Inform the user that the session has been interrupted, for example, by presenting an overlay.
+			this.sessionInfoLabel.Text = "Session was interrupted";
+		}
 
-        [Export("session:didFailWithError:")]
-        public void DidFail(ARSession session, NSError error)
-        {
-            // Present an error message to the user.
-            this.sessionInfoLabel.Text = $"Session failed: {error.LocalizedDescription}";
-            this.resetTracking(null);
-        }
+		[Export ("sessionInterruptionEnded:")]
+		public void InterruptionEnded (ARSession session)
+		{
+			// Reset tracking and/or remove existing anchors if consistent tracking is required.
+			this.sessionInfoLabel.Text = "Session interruption ended";
+		}
 
-        [Export("sessionShouldAttemptRelocalization:")]
-        public bool ShouldAttemptRelocalization(ARSession session)
-        {
-            return true;
-        }
+		[Export ("session:didFailWithError:")]
+		public void DidFail (ARSession session, NSError error)
+		{
+			// Present an error message to the user.
+			this.sessionInfoLabel.Text = $"Session failed: {error.LocalizedDescription}";
+			this.resetTracking (null);
+		}
 
-        #endregion
+		[Export ("sessionShouldAttemptRelocalization:")]
+		public bool ShouldAttemptRelocalization (ARSession session)
+		{
+			return true;
+		}
 
-        #region Multiuser shared session
+		#endregion
 
-        partial void handleSceneTap(UITapGestureRecognizer sender)
-        {
-            // Hit test to find a place for a virtual object.
-            var types = ARHitTestResultType.ExistingPlaneUsingGeometry | ARHitTestResultType.EstimatedHorizontalPlane;
-            var hitTestResult = this.sceneView.HitTest(sender.LocationInView(this.sceneView), types).FirstOrDefault();
-            if (hitTestResult != null)
-            {
-                // Place an anchor for a virtual character. The model appears in renderer(_:didAdd:for:).
-                var anchor = new ARAnchor("panda", hitTestResult.WorldTransform);
-                this.sceneView.Session.AddAnchor(anchor);
+		#region Multiuser shared session
 
-                // Send the anchor info to peers, so they can place the same content.
-                var data = NSKeyedArchiver.ArchivedDataWithRootObject(anchor, true, out NSError error);
-                if (error != null)
-                {
-                    throw new Exception("can't encode anchor");
-                }
+		partial void handleSceneTap (UITapGestureRecognizer sender)
+		{
+			// Hit test to find a place for a virtual object.
+			var types = ARHitTestResultType.ExistingPlaneUsingGeometry | ARHitTestResultType.EstimatedHorizontalPlane;
+			var hitTestResult = this.sceneView.HitTest (sender.LocationInView (this.sceneView), types).FirstOrDefault ();
+			if (hitTestResult != null) {
+				// Place an anchor for a virtual character. The model appears in renderer(_:didAdd:for:).
+				var anchor = new ARAnchor ("panda", hitTestResult.WorldTransform);
+				this.sceneView.Session.AddAnchor (anchor);
 
-                this.multipeerSession.SendToAllPeers(data);
-            }
-        }
+				// Send the anchor info to peers, so they can place the same content.
+				var data = NSKeyedArchiver.ArchivedDataWithRootObject (anchor, true, out NSError error);
+				if (error != null) {
+					throw new Exception ("can't encode anchor");
+				}
 
-        // GetWorldMap
-        partial void shareSession(RoundedButton sender)
-        {
-            this.sceneView.Session.GetCurrentWorldMap((worldMap, error) =>
-            {
-                if (worldMap != null)
-                {
-                    var data = NSKeyedArchiver.ArchivedDataWithRootObject(worldMap, true, out NSError archivError);
-                    if (archivError != null)
-                    {
-                        throw new Exception("can't encode map");
-                    }
+				this.multipeerSession.SendToAllPeers (data);
+			}
+		}
 
-                    this.multipeerSession.SendToAllPeers(data);
-                }
-                else if(error != null)
-                {
-                    Console.WriteLine($"Error: {error.LocalizedDescription}");
-                }
-            });
-        }
+		// GetWorldMap
+		partial void shareSession (RoundedButton sender)
+		{
+			this.sceneView.Session.GetCurrentWorldMap ((worldMap, error) => {
+				if (worldMap != null) {
+					var data = NSKeyedArchiver.ArchivedDataWithRootObject (worldMap, true, out NSError archivError);
+					if (archivError != null) {
+						throw new Exception ("can't encode map");
+					}
 
-        private MCPeerID mapProvider;
+					this.multipeerSession.SendToAllPeers (data);
+				} else if (error != null) {
+					Console.WriteLine ($"Error: {error.LocalizedDescription}");
+				}
+			});
+		}
 
-        private void ReceivedData(NSData data, MCPeerID peer)
-        {
-            if (NSKeyedUnarchiver.GetUnarchivedObject(typeof(ARWorldMap), data, out NSError error) is ARWorldMap worldMap)
-            {
-                // Run the session with the received world map.
-                var configuration = new ARWorldTrackingConfiguration();
-                configuration.PlaneDetection = ARPlaneDetection.Horizontal;
-                configuration.InitialWorldMap = worldMap;
-                this.sceneView.Session.Run(configuration, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
+		private MCPeerID mapProvider;
 
-                // Remember who provided the map for showing UI feedback.
-                this.mapProvider = peer;
-            }
-            else if (NSKeyedUnarchiver.GetUnarchivedObject(typeof(ARAnchor), data, out NSError anchorError) is ARAnchor anchor)
-            {
-                // Add anchor to the session, ARSCNView delegate adds visible content.
-                this.sceneView.Session.AddAnchor(anchor);
-            }
-            else
-            {
-                Console.WriteLine($"Unknown data was recieved from {peer}");
-            }
-        }
+		private void ReceivedData (NSData data, MCPeerID peer)
+		{
+			if (NSKeyedUnarchiver.GetUnarchivedObject (typeof (ARWorldMap), data, out NSError error) is ARWorldMap worldMap) {
+				// Run the session with the received world map.
+				var configuration = new ARWorldTrackingConfiguration ();
+				configuration.PlaneDetection = ARPlaneDetection.Horizontal;
+				configuration.InitialWorldMap = worldMap;
+				this.sceneView.Session.Run (configuration, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
 
-        #endregion
+				// Remember who provided the map for showing UI feedback.
+				this.mapProvider = peer;
+			} else if (NSKeyedUnarchiver.GetUnarchivedObject (typeof (ARAnchor), data, out NSError anchorError) is ARAnchor anchor) {
+				// Add anchor to the session, ARSCNView delegate adds visible content.
+				this.sceneView.Session.AddAnchor (anchor);
+			} else {
+				Console.WriteLine ($"Unknown data was recieved from {peer}");
+			}
+		}
 
-        #region AR session management
+		#endregion
 
-        private void UpdateSessionInfoLabel(ARFrame frame, ARTrackingState trackingState, ARTrackingStateReason trackingStateReason)
-        {
-            // Update the UI to provide feedback on the state of the AR experience.
-            string message = null;
+		#region AR session management
 
-            switch (trackingState)
-            {
-                case ARTrackingState.Normal:
-                    if (!frame.Anchors.Any() && !this.multipeerSession.ConnectedPeers.Any())
-                    {
-                        // No planes detected; provide instructions for this app's AR interactions.
-                        message = "Move around to map the environment, or wait to join a shared session.";
-                    }
-                    else if (this.multipeerSession.ConnectedPeers.Any() && this.mapProvider == null)
-                    {
-                        var peerNames = this.multipeerSession.ConnectedPeers.Select(peer => peer.DisplayName);
-                        message = $"Connected with {string.Join(", ", peerNames)}.";
-                    }
-                    break;
+		private void UpdateSessionInfoLabel (ARFrame frame, ARTrackingState trackingState, ARTrackingStateReason trackingStateReason)
+		{
+			// Update the UI to provide feedback on the state of the AR experience.
+			string message = null;
 
-                case ARTrackingState.NotAvailable:
-                    message = "Tracking unavailable.";
-                    break;
+			switch (trackingState) {
+			case ARTrackingState.Normal:
+				if (!frame.Anchors.Any () && !this.multipeerSession.ConnectedPeers.Any ()) {
+					// No planes detected; provide instructions for this app's AR interactions.
+					message = "Move around to map the environment, or wait to join a shared session.";
+				} else if (this.multipeerSession.ConnectedPeers.Any () && this.mapProvider == null) {
+					var peerNames = this.multipeerSession.ConnectedPeers.Select (peer => peer.DisplayName);
+					message = $"Connected with {string.Join (", ", peerNames)}.";
+				}
+				break;
 
-                case ARTrackingState.Limited:
-                    switch (trackingStateReason)
-                    {
-                        case ARTrackingStateReason.ExcessiveMotion:
-                            message = "Tracking limited - Move the device more slowly.";
-                            break;
-                        case ARTrackingStateReason.InsufficientFeatures:
-                            message = "Tracking limited - Point the device at an area with visible surface detail, or improve lighting conditions.";
-                            break;
+			case ARTrackingState.NotAvailable:
+				message = "Tracking unavailable.";
+				break;
 
-                        case ARTrackingStateReason.Initializing:
-                            if (this.mapProvider != null)
-                            {
-                                message = $"Received map from {this.mapProvider.DisplayName}.";
-                            }
-                            else
-                            {
-                                message = "Initializing AR session.";
-                            }
-                            break;
+			case ARTrackingState.Limited:
+				switch (trackingStateReason) {
+				case ARTrackingStateReason.ExcessiveMotion:
+					message = "Tracking limited - Move the device more slowly.";
+					break;
+				case ARTrackingStateReason.InsufficientFeatures:
+					message = "Tracking limited - Point the device at an area with visible surface detail, or improve lighting conditions.";
+					break;
 
-                        case ARTrackingStateReason.Relocalizing:
+				case ARTrackingStateReason.Initializing:
+					if (this.mapProvider != null) {
+						message = $"Received map from {this.mapProvider.DisplayName}.";
+					} else {
+						message = "Initializing AR session.";
+					}
+					break;
 
-                            if (this.mapProvider != null)
-                            {
-                                message = $"Received map from {this.mapProvider.DisplayName}.";
-                            }
-                            else
-                            {
-                                message = "Resuming session — move to where you were when the session was interrupted.";
-                            }
-                            break;
+				case ARTrackingStateReason.Relocalizing:
 
-                        default:
-                            break;
-                    }
+					if (this.mapProvider != null) {
+						message = $"Received map from {this.mapProvider.DisplayName}.";
+					} else {
+						message = "Resuming session — move to where you were when the session was interrupted.";
+					}
+					break;
 
-                    break;
+				default:
+					break;
+				}
 
-                default:
-                    // No feedback needed when tracking is normal and planes are visible.
-                    // (Nor when in unreachable limited-tracking states.)
-                    message = "";
-                    break;
-            }
+				break;
 
-            this.sessionInfoLabel.Text = message;
-            this.sessionInfoView.Hidden = string.IsNullOrEmpty(message);
-        }
+			default:
+				// No feedback needed when tracking is normal and planes are visible.
+				// (Nor when in unreachable limited-tracking states.)
+				message = "";
+				break;
+			}
 
-        partial void resetTracking(UIButton sender)
-        {
-            var configuration = new ARWorldTrackingConfiguration { PlaneDetection = ARPlaneDetection.Horizontal };
-            this.sceneView.Session.Run(configuration, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
-        }
+			this.sessionInfoLabel.Text = message;
+			this.sessionInfoView.Hidden = string.IsNullOrEmpty (message);
+		}
 
-        #endregion
+		partial void resetTracking (UIButton sender)
+		{
+			var configuration = new ARWorldTrackingConfiguration { PlaneDetection = ARPlaneDetection.Horizontal };
+			this.sceneView.Session.Run (configuration, ARSessionRunOptions.ResetTracking | ARSessionRunOptions.RemoveExistingAnchors);
+		}
 
-        #region AR session management
+		#endregion
 
-        private SCNNode LoadRedPandaModel()
-        {
-            var sceneURL = NSBundle.MainBundle.GetUrlForResource("max", "scn", "art.scnassets");
-            var referenceNode = SCNReferenceNode.CreateFromUrl(sceneURL);
-            referenceNode.Load();
+		#region AR session management
 
-            return referenceNode;
-        }
+		private SCNNode LoadRedPandaModel ()
+		{
+			var sceneURL = NSBundle.MainBundle.GetUrlForResource ("max", "scn", "art.scnassets");
+			var referenceNode = SCNReferenceNode.CreateFromUrl (sceneURL);
+			referenceNode.Load ();
 
-        #endregion
-    }
+			return referenceNode;
+		}
+
+		#endregion
+	}
 }

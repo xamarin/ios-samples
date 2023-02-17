@@ -8,7 +8,7 @@ using UIKit;
 
 namespace MusicMotion {
 	public partial class SongViewController : UIViewController, IUITableViewDelegate, IUITableViewDataSource, INSCoding {
-		
+
 		readonly string textCellIdentifier = "SongCell";
 
 		MotionManager motionManager;
@@ -100,14 +100,14 @@ namespace MusicMotion {
 
 			if (currentSong == null)
 				return;
-			
+
 			AlbumView.Image = currentSong.AlbumImage;
 		}
 
 		void DidUpdateSongQueue (object sender, EventArgs e)
 		{
 			var indexSet = new NSIndexSet (0);
-			cachedSongQueue = ((SongManager)sender).SongQueue;
+			cachedSongQueue = ((SongManager) sender).SongQueue;
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				SongTableView.ReloadSections (indexSet, UITableViewRowAnimation.Fade);
 				UpdateAlbumViewWithSong (null);

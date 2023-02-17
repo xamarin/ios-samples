@@ -6,10 +6,8 @@ using CoreMedia;
 using AVFoundation;
 using CoreGraphics;
 
-namespace AVCompositionDebugVieweriOS
-{
-	public class SimpleEditor : NSObject
-	{
+namespace AVCompositionDebugVieweriOS {
+	public class SimpleEditor : NSObject {
 		public List<AVAsset> Clips { get; set; }
 		public List<NSValue> ClipTimeRanges { get; set; }
 
@@ -29,22 +27,21 @@ namespace AVCompositionDebugVieweriOS
 		public AVMutableVideoComposition VideoComposition { get; set; }
 		public AVMutableAudioMix AudioMix { get; set; }
 
-		public AVPlayerItem PlayerItem
-		{
+		public AVPlayerItem PlayerItem {
 			get {
 				AVPlayerItem playerItem = AVPlayerItem.FromAsset (Composition);
- 				playerItem.VideoComposition = VideoComposition;
+				playerItem.VideoComposition = VideoComposition;
 				playerItem.AudioMix = AudioMix;
 
 				return playerItem;
 			}
 		}
 
-		public SimpleEditor () : base()
+		public SimpleEditor () : base ()
 		{
 		}
 
-		private void BuildTransitionComposition(AVMutableComposition composition, AVMutableVideoComposition videoComposition, AVMutableAudioMix audioMix)
+		private void BuildTransitionComposition (AVMutableComposition composition, AVMutableVideoComposition videoComposition, AVMutableAudioMix audioMix)
 		{
 			CMTime nextClipStartTime = CMTime.Zero;
 			int clipsCount = Clips.Count;
@@ -56,10 +53,10 @@ namespace AVCompositionDebugVieweriOS
 
 			for (int i = 0; i < clipsCount; i++) {
 				NSValue clipTimeRange = ClipTimeRanges [i];
-				if(clipTimeRange != null) {
+				if (clipTimeRange != null) {
 					CMTime halfClipDuration = clipTimeRange.CMTimeRangeValue.Duration;
 					halfClipDuration.TimeScale *= 2;
-					transitionDuration = CMTime.GetMinimum(transitionDuration,halfClipDuration);
+					transitionDuration = CMTime.GetMinimum (transitionDuration, halfClipDuration);
 				}
 			}
 
@@ -73,11 +70,11 @@ namespace AVCompositionDebugVieweriOS
 				composition.AddMutableTrack (AVMediaType.Audio, 0)
 			};
 
-			var passThroughTimeRanges = new CMTimeRange[clipsCount];
-			var transitionTimeRanges = new CMTimeRange[clipsCount];
+			var passThroughTimeRanges = new CMTimeRange [clipsCount];
+			var transitionTimeRanges = new CMTimeRange [clipsCount];
 
 			// Place clips into alternating video & audio tracks in composition, overlapped by transitionDuration.
-			for(int i = 0; i < clipsCount; i++) {
+			for (int i = 0; i < clipsCount; i++) {
 				int alternatingIndex = i % 2;
 				AVAsset asset = Clips [i];
 				NSValue clipTimeRange = ClipTimeRanges [i];
@@ -91,29 +88,27 @@ namespace AVCompositionDebugVieweriOS
 				}
 				NSError error;
 				AVAssetTrack clipVideoTrack = asset.TracksWithMediaType (AVMediaType.Video) [0];
-				compositionVideoTracks [alternatingIndex].InsertTimeRange (timeRangeInAsset, clipVideoTrack, nextClipStartTime,out error);
+				compositionVideoTracks [alternatingIndex].InsertTimeRange (timeRangeInAsset, clipVideoTrack, nextClipStartTime, out error);
 
 				AVAssetTrack clipAudioTrack = asset.TracksWithMediaType (AVMediaType.Audio) [0];
-				compositionAudioTracks [alternatingIndex].InsertTimeRange (timeRangeInAsset, clipAudioTrack, nextClipStartTime,out error);
+				compositionAudioTracks [alternatingIndex].InsertTimeRange (timeRangeInAsset, clipAudioTrack, nextClipStartTime, out error);
 
 				// Remember the time range in which this clip should pass through.
 				// First clip ends with a transition.
 				// Second clip begins with a transition.
 				// Exclude that transition from the pass through time ranges
-				CMTimeRange timeRange = new CMTimeRange();
+				CMTimeRange timeRange = new CMTimeRange ();
 				timeRange.Start = nextClipStartTime;
 				timeRange.Duration = timeRangeInAsset.Duration;
 				passThroughTimeRanges [i] = timeRange;
 
-				if (i > 0)
-				{
-					passThroughTimeRanges[i].Start = CMTime.Add(passThroughTimeRanges[i].Start,transitionDuration);
-					passThroughTimeRanges[i].Duration = CMTime.Subtract(passThroughTimeRanges[i].Duration,transitionDuration);
+				if (i > 0) {
+					passThroughTimeRanges [i].Start = CMTime.Add (passThroughTimeRanges [i].Start, transitionDuration);
+					passThroughTimeRanges [i].Duration = CMTime.Subtract (passThroughTimeRanges [i].Duration, transitionDuration);
 				}
 
-				if(i + 1 < clipsCount)
-				{
-					passThroughTimeRanges[i].Duration = CMTime.Subtract(passThroughTimeRanges[i].Duration,transitionDuration);
+				if (i + 1 < clipsCount) {
+					passThroughTimeRanges [i].Duration = CMTime.Subtract (passThroughTimeRanges [i].Duration, transitionDuration);
 				}
 
 				// The end of this clip will overlap the start of the next by transitionDuration.
@@ -122,11 +117,9 @@ namespace AVCompositionDebugVieweriOS
 				nextClipStartTime = CMTime.Subtract (nextClipStartTime, transitionDuration);
 
 				// Remember the time range for the transition to the next item
-				if(i + 1 < clipsCount)
-				{
-					transitionTimeRanges [i] = new CMTimeRange ()
-					{
-						Start  = nextClipStartTime,
+				if (i + 1 < clipsCount) {
+					transitionTimeRanges [i] = new CMTimeRange () {
+						Start = nextClipStartTime,
 						Duration = transitionDuration
 					};
 
@@ -137,19 +130,17 @@ namespace AVCompositionDebugVieweriOS
 			List<AVMutableAudioMixInputParameters> trackMixArray = new List<AVMutableAudioMixInputParameters> ();
 
 			// Set up the video composition if we are to perform crossfade transitions between clips.
-			for (int i = 0; i < clipsCount; i++)
-			{
+			for (int i = 0; i < clipsCount; i++) {
 				int alternatingIndex = i % 2;
 				AVMutableVideoCompositionInstruction passThroughInstructions = AVMutableVideoCompositionInstruction.Create () as AVMutableVideoCompositionInstruction;
 				passThroughInstructions.TimeRange = passThroughTimeRanges [i];
 
 				AVMutableVideoCompositionLayerInstruction passThroughLayerInstructions = AVMutableVideoCompositionLayerInstruction.FromAssetTrack (compositionVideoTracks [alternatingIndex]);
 
-				passThroughInstructions.LayerInstructions = new AVVideoCompositionLayerInstruction[] { passThroughLayerInstructions };
+				passThroughInstructions.LayerInstructions = new AVVideoCompositionLayerInstruction [] { passThroughLayerInstructions };
 				instructions.Add (passThroughInstructions);
 
-				if (i + 1 < clipsCount)
-				{
+				if (i + 1 < clipsCount) {
 					var transitionInstruction = AVMutableVideoCompositionInstruction.Create () as AVMutableVideoCompositionInstruction;
 					transitionInstruction.TimeRange = transitionTimeRanges [i];
 					var fromLayer = AVMutableVideoCompositionLayerInstruction.FromAssetTrack (compositionVideoTracks [alternatingIndex]);
@@ -157,33 +148,32 @@ namespace AVCompositionDebugVieweriOS
 
 					// Fade in the toLayer by setting a ramp from 0.0 to 1.0.
 					toLayer.SetOpacityRamp (0.0f, 1.0f, transitionTimeRanges [i]);
-					transitionInstruction.LayerInstructions = new AVVideoCompositionLayerInstruction[]
+					transitionInstruction.LayerInstructions = new AVVideoCompositionLayerInstruction []
 					{
 						toLayer,
 						fromLayer,
 					};
-					instructions.Add(transitionInstruction);
+					instructions.Add (transitionInstruction);
 
 					// Add AudioMix to fade in the volume ramps
-					var trackMix = AVMutableAudioMixInputParameters.FromTrack(compositionAudioTracks[0]);
-					trackMix.SetVolumeRamp (1f, 0f, transitionTimeRanges[0]);
+					var trackMix = AVMutableAudioMixInputParameters.FromTrack (compositionAudioTracks [0]);
+					trackMix.SetVolumeRamp (1f, 0f, transitionTimeRanges [0]);
 					trackMixArray.Add (trackMix);
 
-					trackMix = AVMutableAudioMixInputParameters.FromTrack (compositionAudioTracks[1]);
-					trackMix.SetVolumeRamp (0f, 1f, transitionTimeRanges[0]);
-					trackMix.SetVolumeRamp (1f, 1f, passThroughTimeRanges[1]);
+					trackMix = AVMutableAudioMixInputParameters.FromTrack (compositionAudioTracks [1]);
+					trackMix.SetVolumeRamp (0f, 1f, transitionTimeRanges [0]);
+					trackMix.SetVolumeRamp (1f, 1f, passThroughTimeRanges [1]);
 					trackMixArray.Add (trackMix);
 				}
 			}
 
 			videoComposition.Instructions = instructions.ToArray ();
-			audioMix.InputParameters = trackMixArray.ToArray();
+			audioMix.InputParameters = trackMixArray.ToArray ();
 		}
 
-		public void BuildCompositionObjects(Boolean playBack)
+		public void BuildCompositionObjects (Boolean playBack)
 		{
-			if (Clips == null || Clips.Count == 0)
-			{
+			if (Clips == null || Clips.Count == 0) {
 				Composition = null;
 				VideoComposition = null;
 				AudioMix = null;
@@ -198,8 +188,7 @@ namespace AVCompositionDebugVieweriOS
 			composition1.NaturalSize = videoSize;
 
 			BuildTransitionComposition (composition1, videoComposition1, audioMix);
-			if (videoComposition1 != null)
-			{
+			if (videoComposition1 != null) {
 				videoComposition1.FrameDuration = new CMTime (1, 30);
 				videoComposition1.RenderSize = videoSize;
 			}

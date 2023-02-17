@@ -8,8 +8,8 @@ using ObjCRuntime;
 
 namespace FilterDemoFramework {
 	public partial class FilterDemoViewController : AUViewController, IFilterViewDelegate, IAUAudioUnitFactory {
-		static readonly NSString cutoffKey = (NSString)"cutoff";
-		static readonly NSString resonanceKey = (NSString)"resonance";
+		static readonly NSString cutoffKey = (NSString) "cutoff";
+		static readonly NSString resonanceKey = (NSString) "resonance";
 
 		AUParameter cutoffParameter;
 		AUParameter resonanceParameter;
@@ -29,8 +29,8 @@ namespace FilterDemoFramework {
 			}
 		}
 
-		[Export("initWithCoder:")]
-		public FilterDemoViewController (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public FilterDemoViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -88,7 +88,7 @@ namespace FilterDemoFramework {
 			return AudioUnit;
 		}
 
-		[Export("beginRequestWithExtensionContext:")]
+		[Export ("beginRequestWithExtensionContext:")]
 		public void BeginRequestWithExtensionContext (NSExtensionContext context)
 		{
 		}
@@ -98,14 +98,14 @@ namespace FilterDemoFramework {
 			var au = AudioUnit;
 			if (au == null)
 				return;
-			
+
 			var paramTree = au.ParameterTree;
 			if (paramTree == null)
 				return;
 
-			cutoffParameter = (AUParameter)paramTree.ValueForKey (cutoffKey);
-			resonanceParameter = (AUParameter)paramTree.ValueForKey (resonanceKey);
-		
+			cutoffParameter = (AUParameter) paramTree.ValueForKey (cutoffKey);
+			resonanceParameter = (AUParameter) paramTree.ValueForKey (resonanceKey);
+
 			parameterObserverToken = paramTree.CreateTokenByAddingParameterObserver ((address, value) =>
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					if (address == cutoffParameter.Address) {

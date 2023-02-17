@@ -5,22 +5,19 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace QuartzSample
-{
-	public abstract class QuartzView : UIView
-	{
+namespace QuartzSample {
+	public abstract class QuartzView : UIView {
 		public abstract void DrawInContext (CGContext context);
 
 		public override void Draw (CGRect rect)
 		{
 			using (var ctxt = UIGraphics.GetCurrentContext ()) {
-				DrawInContext ( ctxt );
+				DrawInContext (ctxt);
 			}
 		}
 	}
 
-	public partial class QuartzViewController : UIViewController
-	{
+	public partial class QuartzViewController : UIViewController {
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for items that need

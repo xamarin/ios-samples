@@ -1,5 +1,4 @@
-CustomInputStream
-=================
+# Custom Input Stream
 
 This sample illustrates how to derive from NSInputStream and create subclass that is toll-free
 bridged to CFReadStream that can be used with NSMutableUrlRequest.
@@ -10,7 +9,8 @@ from the AppStore.
 
 This sample requires at least MonoTouch 5.3.4.
 
-Authors
--------
+![CustomInputStream application screenshot](Screenshots/InputStreamTest01.png "CustomInputStream application screenshot")
+
+## Authors
 
 Rolf Bjarne Kvinge

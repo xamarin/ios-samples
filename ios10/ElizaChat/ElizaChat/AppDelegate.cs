@@ -1,17 +1,15 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 using Intents;
 using System;
 using ElizaCore;
 using UserNotifications;
 
-namespace ElizaChat
-{
+namespace ElizaChat {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		#region Computed Properties
 		public override UIWindow Window { get; set; }
 		public ViewController Controller { get; set; }
@@ -62,7 +60,7 @@ namespace ElizaChat
 			switch (userActivity.ActivityType) {
 			case "com.appracatappra.askquestion":
 				// Pass question to Eliza to answer
-				Controller.AskQuestion (userActivity.UserInfo.ValueForKey (new NSString ("question")).ToString(), true);
+				Controller.AskQuestion (userActivity.UserInfo.ValueForKey (new NSString ("question")).ToString (), true);
 				break;
 			}
 

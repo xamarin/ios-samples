@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using AVFoundation;
 
-namespace PrivacyPrompts
-{
-	public class VideoCapturePrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class VideoCapturePrivacyManager : IPrivacyManager {
 		public Task RequestAccess ()
 		{
 			return AVCaptureDevice.RequestAccessForMediaTypeAsync (AVMediaType.Video);

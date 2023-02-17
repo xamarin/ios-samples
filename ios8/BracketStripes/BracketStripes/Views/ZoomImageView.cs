@@ -6,10 +6,8 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 
-namespace BracketStripes
-{
-	public class ZoomImageView : UIView, IUIScrollViewDelegate
-	{
+namespace BracketStripes {
+	public class ZoomImageView : UIView, IUIScrollViewDelegate {
 		private UIScrollView scrollView;
 		private UIImageView imageView;
 
@@ -93,12 +91,12 @@ namespace BracketStripes
 			CGRect frameToCenter = imageView.Frame;
 
 			if (frameToCenter.Size.Width < boundsSize.Width)
-				frameToCenter.X = ((int)boundsSize.Width - frameToCenter.Size.Width) / 2;
+				frameToCenter.X = ((int) boundsSize.Width - frameToCenter.Size.Width) / 2;
 			else
 				frameToCenter.X = 0;
 
 			if (frameToCenter.Size.Height < boundsSize.Height)
-				frameToCenter.Y = ((int)boundsSize.Height - frameToCenter.Size.Height) / 2;
+				frameToCenter.Y = ((int) boundsSize.Height - frameToCenter.Size.Height) / 2;
 			else
 				frameToCenter.Y = 0;
 

@@ -1,10 +1,8 @@
-﻿using UIKit;
+using UIKit;
 using CoreGraphics;
 
-namespace AnimationSamples
-{
-	public class ViewPropertyAnimation : UIViewController
-	{
+namespace AnimationSamples {
+	public class ViewPropertyAnimation : UIViewController {
 		readonly UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		CGPoint pt;
@@ -44,9 +42,9 @@ namespace AnimationSamples
 			});
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-				var initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
+				var initalViewController = (ViewController) MainStoryboard.InstantiateViewController ("InitalViewController");
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
-				PresentViewController(initalViewController, true, null);
+				PresentViewController (initalViewController, true, null);
 			}));
 		}
 	}

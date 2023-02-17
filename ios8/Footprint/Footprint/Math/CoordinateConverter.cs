@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using MapKit;
 using CoreGraphics;
 using CoreLocation;
 
-namespace Footprint
-{
-	public class CoordinateConverter
-	{
+namespace Footprint {
+	public class CoordinateConverter {
 		// We pick one of the anchors on the floorplan as an origin point that we will compute distance relative to.
 		MKMapPoint fromAnchorMKPoint;
 		CGPoint fromAnchorFloorplanPoint;
@@ -47,7 +45,7 @@ namespace Footprint
 
 			// So that we can use MapKit's helper function to compute distance.
 			// this helper function takes into account the curvature of the earth.
-			var distanceBetweenPointsMeters = (nfloat)MKGeometry.MetersBetweenMapPoints (fromAnchorMKPoint, toAnchorMKPoint);
+			var distanceBetweenPointsMeters = (nfloat) MKGeometry.MetersBetweenMapPoints (fromAnchorMKPoint, toAnchorMKPoint);
 
 			var dx = anchors.Item1.Pixel.X - anchors.Item2.Pixel.X;
 			var dy = anchors.Item1.Pixel.Y - anchors.Item2.Pixel.Y;
@@ -101,11 +99,11 @@ namespace Footprint
 		static EastSouthDistance FetchRect (MKMapPoint fromAnchorMKPoint, MKMapPoint toPoint)
 		{
 			double latitude = MKMapPoint.ToCoordinate (fromAnchorMKPoint).Latitude;
-			nfloat metersPerMapPoint = (nfloat)MKGeometry.MetersPerMapPointAtLatitude (latitude);
+			nfloat metersPerMapPoint = (nfloat) MKGeometry.MetersPerMapPointAtLatitude (latitude);
 
 			var eastSouthDistance = new EastSouthDistance {
-				East = (nfloat)(toPoint.X - fromAnchorMKPoint.X) * metersPerMapPoint,
-				South = (nfloat)(toPoint.Y - fromAnchorMKPoint.Y) * metersPerMapPoint
+				East = (nfloat) (toPoint.X - fromAnchorMKPoint.X) * metersPerMapPoint,
+				South = (nfloat) (toPoint.Y - fromAnchorMKPoint.Y) * metersPerMapPoint
 			};
 			return eastSouthDistance;
 		}

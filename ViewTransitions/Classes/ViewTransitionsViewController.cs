@@ -29,10 +29,8 @@ using System;
 using Foundation;
 using CoreAnimation;
 
-namespace ViewTransitions
-{
-	public partial class ViewTransitionsViewController : UIViewController
-	{
+namespace ViewTransitions {
+	public partial class ViewTransitionsViewController : UIViewController {
 		UIImageView view1, view2, view3;
 		bool transitioning;
 
@@ -65,8 +63,8 @@ namespace ViewTransitions
 			nextTransitionButton.Clicked += PerformTransition;
 		}
 
-		NSString[] types    = new NSString[] { CATransition.TransitionMoveIn, CATransition.TransitionPush, CATransition.TransitionReveal, CATransition.TransitionFade };
-		NSString[] supTypes = new NSString[] { CATransition.TransitionFromLeft, CATransition.TransitionFromRight, CATransition.TransitionFromTop, CATransition.TransitionFromBottom };
+		NSString [] types = new NSString [] { CATransition.TransitionMoveIn, CATransition.TransitionPush, CATransition.TransitionReveal, CATransition.TransitionFade };
+		NSString [] supTypes = new NSString [] { CATransition.TransitionFromLeft, CATransition.TransitionFromRight, CATransition.TransitionFromTop, CATransition.TransitionFromBottom };
 
 		Random random = new Random ();
 
@@ -86,9 +84,9 @@ namespace ViewTransitions
 
 			// Now to set the type of transition
 			int rnd = random.Next (types.Length);
-			transition.Type = types[rnd].ToString ();
+			transition.Type = types [rnd].ToString ();
 			if (rnd < 3) // no fade transition -> randomly choose a subtype
-				transition.Subtype = supTypes[random.Next (supTypes.Length)].ToString ();
+				transition.Subtype = supTypes [random.Next (supTypes.Length)].ToString ();
 
 			// Assign a delegate that sets transitioning to false, after the animation stopped.
 			this.transitioning = true;
@@ -106,8 +104,7 @@ namespace ViewTransitions
 			Swap (ref view2, ref view3);
 		}
 
-		class AnimationDelegate : CAAnimationDelegate
-		{
+		class AnimationDelegate : CAAnimationDelegate {
 			ViewTransitionsViewController ctrl;
 
 			public AnimationDelegate (ViewTransitionsViewController ctrl)

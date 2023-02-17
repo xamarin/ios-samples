@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableEditMode", "TableEditMode.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD333}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableEditMode", "TableEditMode.csproj", "{14525D2F-E5E1-491D-9FA8-876017D8105D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.Build.0 = Debug|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.ActiveCfg = Release|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.Build.0 = Release|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Release|iPhone.Build.0 = Release|iPhone
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{14525D2F-E5E1-491D-9FA8-876017D8105D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TableEditMode.csproj

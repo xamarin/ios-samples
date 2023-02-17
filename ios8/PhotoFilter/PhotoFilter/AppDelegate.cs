@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace PhotoFilter
-{
+namespace PhotoFilter {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)

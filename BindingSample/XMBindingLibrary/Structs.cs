@@ -1,7 +1,5 @@
-﻿namespace XMBindingLibrary
-{
-	public enum XMGreeting
-	{
+namespace XMBindingLibrary {
+	public enum XMGreeting {
 		Hello,
 		Goodbye,
 	}

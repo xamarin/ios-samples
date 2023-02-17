@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using HomeKit;
 using Foundation;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents condition type in HomeKit with associated values.
-	public enum HomeKitConditionType
-	{
+	public enum HomeKitConditionType {
 		Unknown,
 		// The predicate is not a HomeKit condition.
 		Characteristic,
@@ -15,8 +13,7 @@ namespace HomeKitCatalog
 		ExactTime,
 	}
 
-	public class HomeKitCondition
-	{
+	public class HomeKitCondition {
 		// Represents a characteristic condition.
 		// The tuple represents the `HMCharacteristic` and its condition value.
 		// For example, "Current gargage door is set to 'Open'".
@@ -72,8 +69,7 @@ namespace HomeKitCatalog
 		}
 	}
 
-	public static class NSPredicateExtensions
-	{
+	public static class NSPredicateExtensions {
 		// returns:  The 'type' of HomeKit condition, with associated value, if applicable.
 		public static HomeKitCondition HomeKitConditionType (this NSPredicate self)
 		{
@@ -233,8 +229,7 @@ namespace HomeKitCatalog
 			}
 		}
 
-		internal static class HMSignificantEventInternal
-		{
+		internal static class HMSignificantEventInternal {
 			public static readonly IntPtr Handle = ObjCRuntime.Dlfcn.dlopen ("/System/Library/Frameworks/HomeKit.framework/HomeKit", 0);
 			static NSString _Sunrise;
 			static NSString _Sunset;

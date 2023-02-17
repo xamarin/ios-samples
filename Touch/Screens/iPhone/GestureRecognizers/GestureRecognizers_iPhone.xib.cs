@@ -5,10 +5,8 @@ using Foundation;
 using UIKit;
 using ObjCRuntime;
 
-namespace Example_Touch.Screens.iPhone.GestureRecognizers
-{
-	public partial class GestureRecognizers_iPhone : UIViewController
-	{
+namespace Example_Touch.Screens.iPhone.GestureRecognizers {
+	public partial class GestureRecognizers_iPhone : UIViewController {
 		CoreGraphics.CGRect originalImageFrame = System.Drawing.RectangleF.Empty;
 
 		#region Constructors
@@ -16,18 +14,18 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public GestureRecognizers_iPhone (IntPtr handle) : base(handle)
+		public GestureRecognizers_iPhone (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public GestureRecognizers_iPhone (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public GestureRecognizers_iPhone (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public GestureRecognizers_iPhone () : base("GestureRecognizers_iPhone", null)
+		public GestureRecognizers_iPhone () : base ("GestureRecognizers_iPhone", null)
 		{
 			Initialize ();
 		}
@@ -81,7 +79,7 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
 			// create a new tap gesture
 			UIPanGestureRecognizer gesture = new UIPanGestureRecognizer ();
 			// wire up the event handler (have to use a selector)
-			gesture.AddTarget ( () => { HandleDrag (gesture); });
+			gesture.AddTarget (() => { HandleDrag (gesture); });
 			// add the gesture recognizer to the view
 			imgDragMe.AddGestureRecognizer (gesture);
 		}

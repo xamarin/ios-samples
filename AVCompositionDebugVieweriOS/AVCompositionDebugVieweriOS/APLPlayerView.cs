@@ -6,14 +6,12 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace AVCompositionDebugVieweriOS
-{
-	public partial class APLPlayerView : UIView
-	{
+namespace AVCompositionDebugVieweriOS {
+	public partial class APLPlayerView : UIView {
 		[Export ("layerClass")]
 		public static Class LayerClass ()
 		{
-			return new Class (typeof(AVPlayerLayer));
+			return new Class (typeof (AVPlayerLayer));
 		}
 
 		public AVPlayer Player {

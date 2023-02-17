@@ -5,16 +5,14 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace UIKitEnhancements
-{
+namespace UIKitEnhancements {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		#region Computed Properties
-		public override UIWindow Window { get; set;}
+		public override UIWindow Window { get; set; }
 		public DetailsViewController iPadViewController { get; set; }
 		#endregion
 
@@ -22,7 +20,7 @@ namespace UIKitEnhancements
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			// Create a Accept action
-			UIMutableUserNotificationAction acceptAction = new UIMutableUserNotificationAction (){
+			UIMutableUserNotificationAction acceptAction = new UIMutableUserNotificationAction () {
 				Identifier = "ACCEPT_ID",
 				Title = "Accept",
 				ActivationMode = UIUserNotificationActivationMode.Background,
@@ -40,7 +38,7 @@ namespace UIKitEnhancements
 			};
 
 			// Create a Trash action
-			UIMutableUserNotificationAction trashAction = new UIMutableUserNotificationAction (){
+			UIMutableUserNotificationAction trashAction = new UIMutableUserNotificationAction () {
 				Identifier = "TRASH_ID",
 				Title = "Trash",
 				ActivationMode = UIUserNotificationActivationMode.Background,
@@ -51,17 +49,17 @@ namespace UIKitEnhancements
 			// Create MonkeyMessage Category
 			UIMutableUserNotificationCategory monkeyMessageCategory = new UIMutableUserNotificationCategory ();
 			monkeyMessageCategory.Identifier = "MONKEYMESSAGE_ID";
-			monkeyMessageCategory.SetActions (new UIUserNotificationAction[]{ acceptAction, replyAction, trashAction }, UIUserNotificationActionContext.Default);
-			monkeyMessageCategory.SetActions (new UIUserNotificationAction[]{ acceptAction, trashAction }, UIUserNotificationActionContext.Minimal);
+			monkeyMessageCategory.SetActions (new UIUserNotificationAction [] { acceptAction, replyAction, trashAction }, UIUserNotificationActionContext.Default);
+			monkeyMessageCategory.SetActions (new UIUserNotificationAction [] { acceptAction, trashAction }, UIUserNotificationActionContext.Minimal);
 
 			// Create a category group
-			NSSet categories = new NSSet(monkeyMessageCategory);
+			NSSet categories = new NSSet (monkeyMessageCategory);
 
 			// Set the requested notification types
 			UIUserNotificationType type = UIUserNotificationType.Alert | UIUserNotificationType.Badge;
 
 			// Create the setting for the given types
-			UIUserNotificationSettings settings = UIUserNotificationSettings.GetSettingsForTypes(type, categories);
+			UIUserNotificationSettings settings = UIUserNotificationSettings.GetSettingsForTypes (type, categories);
 
 			// Register the settings
 			UIApplication.SharedApplication.RegisterUserNotificationSettings (settings);
@@ -79,7 +77,7 @@ namespace UIKitEnhancements
 		public override void HandleAction (UIApplication application, string actionIdentifier, UILocalNotification localNotification, Action completionHandler)
 		{
 			// Take action based on the notification and the action selected
-			Console.WriteLine ("User selected Action '{0}' for Notification: {1}",actionIdentifier,localNotification.AlertBody);
+			Console.WriteLine ("User selected Action '{0}' for Notification: {1}", actionIdentifier, localNotification.AlertBody);
 
 		}
 
@@ -88,19 +86,19 @@ namespace UIKitEnhancements
 		public override void OnResignActivation (UIApplication application)
 		{
 		}
-		
+
 		// This method should be used to release shared resources and it should store the application state.
 		// If your application supports background exection this method is called instead of WillTerminate
 		// when the user quits.
 		public override void DidEnterBackground (UIApplication application)
 		{
 		}
-		
+
 		// This method is called as part of the transiton from background to active state.
 		public override void WillEnterForeground (UIApplication application)
 		{
 		}
-		
+
 		// This method is called when the application is about to terminate. Save data, if needed.
 		public override void WillTerminate (UIApplication application)
 		{

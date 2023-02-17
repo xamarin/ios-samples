@@ -13,7 +13,7 @@ namespace PhotoProgress {
 			get {
 				return photo;
 			}
-			set {	
+			set {
 				Unsubscribe ();
 				photo = value;
 				Subscribe ();
@@ -50,7 +50,7 @@ namespace PhotoProgress {
 			NSOperationQueue.MainQueue.AddOperation (() => {
 				var photoImport = Photo?.PhotoImport;
 				if (photoImport != null) {
-					ProgressView.Progress = (float)photoImport.Progress.FractionCompleted;
+					ProgressView.Progress = (float) photoImport.Progress.FractionCompleted;
 					ProgressView.Hidden = false;
 				} else {
 					ProgressView.Hidden = true;
@@ -79,7 +79,7 @@ namespace PhotoProgress {
 			}
 
 			disposed = true;
-			base.Dispose(disposing);
+			base.Dispose (disposing);
 		}
 	}
 }

@@ -23,8 +23,8 @@ namespace SpriteTour {
 
 			// no point in recomputing constant values each time
 			var half_range = range / 2.0f;
-			basex = (float)Scene.Frame.GetMidX () - half_range;
-			basey = (float)Scene.Frame.GetMidY () - half_range;
+			basex = (float) Scene.Frame.GetMidX () - half_range;
+			basey = (float) Scene.Frame.GetMidY () - half_range;
 
 			Scene.AddDescription ("These textured sprite nodes are combined using an additive blend",
 				new CGPoint (Scene.Frame.GetMidX (), 100));

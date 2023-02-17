@@ -1,5 +1,14 @@
-Reachability Sample
-===================
+---
+name: Xamarin.iOS - Reachability Sample
+description: "Demonstrates how to use the System Configuration framework to monitor the network state of an iOS device"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: reachability
+---
+# Reachability Sample
 
 The Reachability sample application demonstrates how to use the System Configuration framework to monitor the network state of an iOS device. In particular, it demonstrates how to know when IP can be routed and when traffic will be routed through a Wireless Wide Area Network (WWAN) interface such as EDGE or 3G.
 
@@ -9,19 +18,11 @@ Note: Reachability cannot tell your application if you can connect to a particul
 
 ![iPhone running Reachability sample](Screenshots/screenshot-1.png)
 
-
-Related Links
--------
+## Related Links
 
 - [Original sample](https://developer.apple.com/library/archive/samplecode/Reachability/Introduction/Intro.html).
 - [Documentation](http://developer.apple.com/library/ios/#documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/)
 
-License
--------
+## License
 
 Xamarin port changes are released under the MIT license.
-
-Author
--------
-
-Miguel de Icaza

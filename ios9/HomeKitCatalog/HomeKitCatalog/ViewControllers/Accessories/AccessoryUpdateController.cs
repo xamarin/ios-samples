@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using CoreFoundation;
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// An object that responds to `CharacteristicCell` updates and notifies HomeKit of changes.
 	// TODO: do we need NSObject here?
-	public class AccessoryUpdateController : NSObject, ICharacteristicCellDelegate
-	{
+	public class AccessoryUpdateController : NSObject, ICharacteristicCellDelegate {
 		readonly DispatchQueue updateQueue = new DispatchQueue ("CharacteristicUpdateQueue");
 		readonly Dictionary<HMCharacteristic, NSObject> pendingWrites = new Dictionary<HMCharacteristic, NSObject> ();
 		readonly Dictionary<HMCharacteristic, NSObject> sentWrites = new Dictionary<HMCharacteristic, NSObject> ();
@@ -87,7 +85,7 @@ namespace HomeKitCatalog
 		}
 
 		// Synchronously adds the characteristic-value pair into the `sentWrites` map.
-		void DidSendWrite (HMCharacteristic characteristic, NSObject  value)
+		void DidSendWrite (HMCharacteristic characteristic, NSObject value)
 		{
 			updateQueue.DispatchSync (() => {
 				sentWrites [characteristic] = value;

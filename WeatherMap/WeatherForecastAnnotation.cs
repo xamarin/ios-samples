@@ -29,10 +29,8 @@ using System;
 using CoreLocation;
 using MapKit;
 
-namespace WeatherMap
-{
-	public class WeatherForecastAnnotation : MKAnnotation
-	{
+namespace WeatherMap {
+	public class WeatherForecastAnnotation : MKAnnotation {
 		public WeatherForecastAnnotation (WeatherForecast forecast)
 		{
 			Forecast = forecast;

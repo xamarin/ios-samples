@@ -1,229 +1,206 @@
-﻿
-namespace XamarinShot.Models
-{
-    using AVFoundation;
-    using CoreFoundation;
-    using Foundation;
-    using XamarinShot.Utils;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    public class MusicCoordinator : NSObject
-    {
-        private readonly Dictionary<string, MusicPlayer> musicPlayers = new Dictionary<string, MusicPlayer>();
+namespace XamarinShot.Models {
+	using AVFoundation;
+	using CoreFoundation;
+	using Foundation;
+	using XamarinShot.Utils;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 
-        private readonly Dictionary<string, MusicConfig> musicConfigurations;
+	public class MusicCoordinator : NSObject {
+		private readonly Dictionary<string, MusicPlayer> musicPlayers = new Dictionary<string, MusicPlayer> ();
 
-        private const double DefaultFadeOut = 0.2d;
+		private readonly Dictionary<string, MusicConfig> musicConfigurations;
 
-        private float musicGain = 1f;
+		private const double DefaultFadeOut = 0.2d;
 
-        public MusicCoordinator() : base()
-        {
-            this.UpdateMusicVolume();
+		private float musicGain = 1f;
 
-            var url = NSBundle.MainBundle.GetUrlForResource("Sounds/music", "json");
-            if (url == null)
-            {
-                throw new Exception("Failed to load music config from Sounds/music.json");
-            }
+		public MusicCoordinator () : base ()
+		{
+			this.UpdateMusicVolume ();
 
-            // parse 
-            var json = NSString.FromData(NSData.FromUrl(url), NSStringEncoding.UTF8).ToString();
-            this.musicConfigurations = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, MusicConfig>>(json);
+			var url = NSBundle.MainBundle.GetUrlForResource ("Sounds/music", "json");
+			if (url == null) {
+				throw new Exception ("Failed to load music config from Sounds/music.json");
+			}
 
-            NSNotificationCenter.DefaultCenter.AddObserver(NSUserDefaults.DidChangeNotification, this.HandleDefaultsDidChange);
-        }
+			// parse 
+			var json = NSString.FromData (NSData.FromUrl (url), NSStringEncoding.UTF8).ToString ();
+			this.musicConfigurations = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, MusicConfig>> (json);
 
-        public MusicPlayer CurrentMusicPlayer { get; private set; }
+			NSNotificationCenter.DefaultCenter.AddObserver (NSUserDefaults.DidChangeNotification, this.HandleDefaultsDidChange);
+		}
 
-        private void HandleDefaultsDidChange(NSNotification notification)
-        {
-            this.UpdateMusicVolume();
-        }
+		public MusicPlayer CurrentMusicPlayer { get; private set; }
 
-        private void UpdateMusicVolume()
-        {
-            var volume = UserDefaults.MusicVolume;
-            // Map the slider value from 0...1 to a more natural curve:
-            this.musicGain = volume * volume;
+		private void HandleDefaultsDidChange (NSNotification notification)
+		{
+			this.UpdateMusicVolume ();
+		}
 
-            foreach(var (_, player) in this.musicPlayers.Where(player => player.Value.State == MusicState.Playing))
-            {
-                var audioVolume = DigitExtensions.Clamp(this.musicGain * (float)Math.Pow(10f, player.Config.VolumeDB / 20f), 0f, 1f);
-                player.AudioPlayer.SetVolume(audioVolume, 0.1d);
-            }
-        }
+		private void UpdateMusicVolume ()
+		{
+			var volume = UserDefaults.MusicVolume;
+			// Map the slider value from 0...1 to a more natural curve:
+			this.musicGain = volume * volume;
 
-        /// <summary>
-        /// Get the current play position for the currently playing music
-        /// </summary>
-        /// <returns>Time in seconds, or -1 if nothing is playing.</returns>
-        public double CurrentMusicTime()
-        {
-            if (this.CurrentMusicPlayer != null)
-            {
-                return this.CurrentMusicPlayer.AudioPlayer.CurrentTime;
-            }
-            else 
-            {
-                return -1d;
-            }
-        }
+			foreach (var (_, player) in this.musicPlayers.Where (player => player.Value.State == MusicState.Playing)) {
+				var audioVolume = DigitExtensions.Clamp (this.musicGain * (float) Math.Pow (10f, player.Config.VolumeDB / 20f), 0f, 1f);
+				player.AudioPlayer.SetVolume (audioVolume, 0.1d);
+			}
+		}
 
-        public MusicPlayer MusicPlayer(string name)
-        {
-            if (this.musicPlayers.TryGetValue(name, out MusicPlayer player))
-            {
-                return player;
-            }
+		/// <summary>
+		/// Get the current play position for the currently playing music
+		/// </summary>
+		/// <returns>Time in seconds, or -1 if nothing is playing.</returns>
+		public double CurrentMusicTime ()
+		{
+			if (this.CurrentMusicPlayer != null) {
+				return this.CurrentMusicPlayer.AudioPlayer.CurrentTime;
+			} else {
+				return -1d;
+			}
+		}
 
-            if (!this.musicConfigurations.TryGetValue(name, out MusicConfig config))
-            {
-                throw new Exception($"Missing music config for music event named '{name}'");
-            }
+		public MusicPlayer MusicPlayer (string name)
+		{
+			if (this.musicPlayers.TryGetValue (name, out MusicPlayer player)) {
+				return player;
+			}
 
-            player = new MusicPlayer(name, config);
-            this.musicPlayers[name] = player;
-            return player;
-        }
+			if (!this.musicConfigurations.TryGetValue (name, out MusicConfig config)) {
+				throw new Exception ($"Missing music config for music event named '{name}'");
+			}
 
-        public MusicPlayer PlayMusic(string name, double fadeIn  = 0d)
-        {
-            return this.PlayMusic(name, 0, fadeIn);
-        }
+			player = new MusicPlayer (name, config);
+			this.musicPlayers [name] = player;
+			return player;
+		}
 
-        public MusicPlayer PlayMusic(string name, double startTime, double fadeIn = 0d)
-        {
-            var player = this.MusicPlayer(name);
-            var audioPlayer = player.AudioPlayer;
+		public MusicPlayer PlayMusic (string name, double fadeIn = 0d)
+		{
+			return this.PlayMusic (name, 0, fadeIn);
+		}
 
-            if (this.CurrentMusicPlayer != null)
-            {
-                this.StopMusic(this.CurrentMusicPlayer);
-            }
+		public MusicPlayer PlayMusic (string name, double startTime, double fadeIn = 0d)
+		{
+			var player = this.MusicPlayer (name);
+			var audioPlayer = player.AudioPlayer;
 
-            switch (player.State)
-            {
-                case MusicState.Playing:
-                    // Nothing to do
-                    return player;
-                
-                case MusicState.Stopped:
-                    // Configure the audioPlayer, starting with volume at 0 and then fade in.
-                    audioPlayer.Volume = 0;
-                    audioPlayer.CurrentTime = 0;
-                    if (player.Config.Loops)
-                    {
-                        audioPlayer.NumberOfLoops = -1;
-                    }
-                    else
-                    {
-                        audioPlayer.NumberOfLoops = 0;
-                    }
+			if (this.CurrentMusicPlayer != null) {
+				this.StopMusic (this.CurrentMusicPlayer);
+			}
 
-                    audioPlayer.CurrentTime = startTime;
-                    audioPlayer.Play();
-                    break;
+			switch (player.State) {
+			case MusicState.Playing:
+				// Nothing to do
+				return player;
 
-                case MusicState.Stopping:
-                    // Leave it playing. Update the volume and play state below.
-                    break;
-            }
+			case MusicState.Stopped:
+				// Configure the audioPlayer, starting with volume at 0 and then fade in.
+				audioPlayer.Volume = 0;
+				audioPlayer.CurrentTime = 0;
+				if (player.Config.Loops) {
+					audioPlayer.NumberOfLoops = -1;
+				} else {
+					audioPlayer.NumberOfLoops = 0;
+				}
 
-            var volume = DigitExtensions.Clamp(this.musicGain * (float)Math.Pow(10f, player.Config.VolumeDB / 20f), 0f, 1f);
-            audioPlayer.SetVolume(volume, fadeIn);
+				audioPlayer.CurrentTime = startTime;
+				audioPlayer.Play ();
+				break;
 
-            player.State = MusicState.Playing;
-            this.CurrentMusicPlayer = player;
+			case MusicState.Stopping:
+				// Leave it playing. Update the volume and play state below.
+				break;
+			}
 
-            return player;
-        }
+			var volume = DigitExtensions.Clamp (this.musicGain * (float) Math.Pow (10f, player.Config.VolumeDB / 20f), 0f, 1f);
+			audioPlayer.SetVolume (volume, fadeIn);
 
-        public void StopMusic(string name, double fadeOut = MusicCoordinator.DefaultFadeOut)
-        {
-            var player = this.MusicPlayer(name);
-            this.StopMusic(player, fadeOut);
-        }
+			player.State = MusicState.Playing;
+			this.CurrentMusicPlayer = player;
 
-        public void StopCurrentMusic(double fadeOut = MusicCoordinator.DefaultFadeOut)
-        {
-            if (this.CurrentMusicPlayer != null)
-            {
-                this.StopMusic(this.CurrentMusicPlayer, fadeOut);
-            }
-        }
+			return player;
+		}
 
-        public void StopMusic(MusicPlayer player, double fadeOut = MusicCoordinator.DefaultFadeOut)
-        {
-            if (player.State == MusicState.Playing)
-            {
-                player.State = MusicState.Stopping;
-                var audioPlayer = player.AudioPlayer;
-                audioPlayer.SetVolume(0f, fadeOut);
-                // TODO;
-                //DispatchQueue.MainQueue.DispatchAsync(deadline: .now() + fadeOut) {
-                DispatchQueue.MainQueue.DispatchAsync(() =>
-                {
-                    if (player.State == MusicState.Stopping)
-                    {
-                        audioPlayer.Stop();
-                        player.State = MusicState.Stopped;
-                    }
-                });
-            }
-        }
+		public void StopMusic (string name, double fadeOut = MusicCoordinator.DefaultFadeOut)
+		{
+			var player = this.MusicPlayer (name);
+			this.StopMusic (player, fadeOut);
+		}
 
-        /*  helpers  */
+		public void StopCurrentMusic (double fadeOut = MusicCoordinator.DefaultFadeOut)
+		{
+			if (this.CurrentMusicPlayer != null) {
+				this.StopMusic (this.CurrentMusicPlayer, fadeOut);
+			}
+		}
 
-        public enum MusicState
-        {
-            Stopped,
-            Playing,
-            Stopping, // transition from play to stop, fading out.
-        }
+		public void StopMusic (MusicPlayer player, double fadeOut = MusicCoordinator.DefaultFadeOut)
+		{
+			if (player.State == MusicState.Playing) {
+				player.State = MusicState.Stopping;
+				var audioPlayer = player.AudioPlayer;
+				audioPlayer.SetVolume (0f, fadeOut);
+				// TODO;
+				//DispatchQueue.MainQueue.DispatchAsync(deadline: .now() + fadeOut) {
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					if (player.State == MusicState.Stopping) {
+						audioPlayer.Stop ();
+						player.State = MusicState.Stopped;
+					}
+				});
+			}
+		}
 
-        public class MusicConfig
-        {
-            public string FileName { get; set; }
+		/*  helpers  */
 
-            public float VolumeDB { get; set; }
+		public enum MusicState {
+			Stopped,
+			Playing,
+			Stopping, // transition from play to stop, fading out.
+		}
 
-            public bool Loops { get; set; }
-        }
-    }
+		public class MusicConfig {
+			public string FileName { get; set; }
 
-    public class MusicPlayer
-    {
-        public MusicPlayer(string name, MusicCoordinator.MusicConfig config)
-        {
-            this.Name = name;
-            this.Config = config;
-            this.State = MusicCoordinator.MusicState.Stopped;
+			public float VolumeDB { get; set; }
 
-            var splittedPath = config.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-            var url = NSBundle.MainBundle.GetUrlForResource(splittedPath[0], splittedPath[1]);
-            if (url == null)
-            {
-                throw new Exception($"Failed to load sound for: {name} expected at: {config.FileName}");
-            }
+			public bool Loops { get; set; }
+		}
+	}
 
-            this.AudioPlayer = AVAudioPlayer.FromUrl(url, out NSError error);
-            if (error != null)
-            {
-                throw new Exception($"Failed to load sound for: {name} expected at: {config.FileName}");
-            }
-        }
+	public class MusicPlayer {
+		public MusicPlayer (string name, MusicCoordinator.MusicConfig config)
+		{
+			this.Name = name;
+			this.Config = config;
+			this.State = MusicCoordinator.MusicState.Stopped;
 
-        public double Duration => this.AudioPlayer.Duration;
+			var splittedPath = config.FileName.Split (new char [] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+			var url = NSBundle.MainBundle.GetUrlForResource (splittedPath [0], splittedPath [1]);
+			if (url == null) {
+				throw new Exception ($"Failed to load sound for: {name} expected at: {config.FileName}");
+			}
 
-        public string Name { get; set; }
+			this.AudioPlayer = AVAudioPlayer.FromUrl (url, out NSError error);
+			if (error != null) {
+				throw new Exception ($"Failed to load sound for: {name} expected at: {config.FileName}");
+			}
+		}
 
-        public MusicCoordinator.MusicState State { get; set; }
+		public double Duration => this.AudioPlayer.Duration;
 
-        public AVAudioPlayer AudioPlayer { get; private set; }
+		public string Name { get; set; }
 
-        public MusicCoordinator.MusicConfig Config { get; private set; }
-    }
+		public MusicCoordinator.MusicState State { get; set; }
+
+		public AVAudioPlayer AudioPlayer { get; private set; }
+
+		public MusicCoordinator.MusicConfig Config { get; private set; }
+	}
 }

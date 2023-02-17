@@ -2,29 +2,27 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvCollection
-{
-	public partial class CityCollectionView : UICollectionView
-	{
+namespace tvCollection {
+	public partial class CityCollectionView : UICollectionView {
 		#region Application Access
 		public static AppDelegate App {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
 		#region Computed Properties
 		public CityViewDatasource Source {
-			get { return DataSource as CityViewDatasource;}
+			get { return DataSource as CityViewDatasource; }
 		}
 
-		public CityCollectionViewController ParentController { get; set;}
+		public CityCollectionViewController ParentController { get; set; }
 		#endregion
 
 		#region Constructors
 		public CityCollectionView (IntPtr handle) : base (handle)
 		{
 			// Initialize
-			RegisterClassForCell (typeof(CityCollectionViewCell), CityViewDatasource.CardCellId);
+			RegisterClassForCell (typeof (CityCollectionViewCell), CityViewDatasource.CardCellId);
 			DataSource = new CityViewDatasource (this);
 			Delegate = new CityViewDelegate ();
 		}

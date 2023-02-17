@@ -5,15 +5,13 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace TextKitDemo
-{
+namespace TextKitDemo {
 	/*
 	 * Implements the ExclusionPaths view, which shows how a bezier can be used
 	 * to alter the flow of the rendered text.
 	 */
-	public partial class ExclusionPathsViewController : TextViewController
-	{
-		UIBezierPath originalButterflyPath = (UIBezierPath)NSKeyedUnarchiver.UnarchiveFile ("butterflyPath.plist");
+	public partial class ExclusionPathsViewController : TextViewController {
+		UIBezierPath originalButterflyPath = (UIBezierPath) NSKeyedUnarchiver.UnarchiveFile ("butterflyPath.plist");
 		CGPoint gestureStartingPoint;
 		CGPoint gestureStartingCenter;
 
@@ -51,9 +49,8 @@ namespace TextKitDemo
 			if (gesture.State == UIGestureRecognizerState.Began) {
 				gestureStartingPoint = gesture.TranslationInView (textView);
 				gestureStartingCenter = imageView.Center;
-			}
-			else if (gesture.State == UIGestureRecognizerState.Changed) {
-				CGPoint currentPoint = gesture.TranslationInView(textView);
+			} else if (gesture.State == UIGestureRecognizerState.Changed) {
+				CGPoint currentPoint = gesture.TranslationInView (textView);
 				nfloat distanceX = currentPoint.X - gestureStartingPoint.X;
 				nfloat distanceY = currentPoint.Y - gestureStartingPoint.Y;
 
@@ -65,18 +62,17 @@ namespace TextKitDemo
 				imageView.Center = newCenter;
 
 				textView.TextContainer.ExclusionPaths = TranslatedBezierPath ();
-			}
-			else if (gesture.State == UIGestureRecognizerState.Ended) {
-				gestureStartingPoint  = new CGPoint (0, 0);
+			} else if (gesture.State == UIGestureRecognizerState.Ended) {
+				gestureStartingPoint = new CGPoint (0, 0);
 				gestureStartingCenter = new CGPoint (0, 0);
 			}
 		}
 
-		UIBezierPath[] TranslatedBezierPath ()
+		UIBezierPath [] TranslatedBezierPath ()
 		{
 			CGRect butterflyImageRect = textView.ConvertRectFromView (imageView.Frame, View);
-			UIBezierPath[] newButterflyPath = new UIBezierPath[1];
-			newButterflyPath [0] = (UIBezierPath)((NSObject)originalButterflyPath).Copy ();
+			UIBezierPath [] newButterflyPath = new UIBezierPath [1];
+			newButterflyPath [0] = (UIBezierPath) ((NSObject) originalButterflyPath).Copy ();
 			newButterflyPath [0].ApplyTransform (CGAffineTransform.MakeTranslation (butterflyImageRect.X, butterflyImageRect.Y));
 			return newButterflyPath;
 		}

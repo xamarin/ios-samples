@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreGraphics;
 
-namespace LookInside
-{
-	public class OverlayAnimatedTransitioning : UIViewControllerAnimatedTransitioning
-	{
+namespace LookInside {
+	public class OverlayAnimatedTransitioning : UIViewControllerAnimatedTransitioning {
 		public bool IsPresentation { get; set; }
 
 		public OverlayAnimatedTransitioning ()
@@ -41,7 +39,7 @@ namespace LookInside
 			animatingView.Frame = initialFrame;
 
 			UIViewAnimationOptions opt = UIViewAnimationOptions.AllowUserInteraction
-				                       | UIViewAnimationOptions.BeginFromCurrentState;
+									   | UIViewAnimationOptions.BeginFromCurrentState;
 			await UIView.AnimateNotifyAsync (TransitionDuration (transitionContext), 0, 300, 5, opt, () => {
 				animatingView.Frame = finalFrame;
 			});

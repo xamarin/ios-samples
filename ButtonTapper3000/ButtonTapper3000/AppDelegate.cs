@@ -41,7 +41,7 @@ namespace ButtonTapper3000 {
 			return true;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

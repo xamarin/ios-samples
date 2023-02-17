@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace AdaptivePhotos
-{
-	public class PhotoViewController : CustomViewController
-	{
+namespace AdaptivePhotos {
+	public class PhotoViewController : CustomViewController {
 		Photo photo;
 
 		public Photo Photo {
@@ -88,7 +86,7 @@ namespace AdaptivePhotos
 				"overlayButton", overlayButton));
 
 			foreach (var constraint in constraints)
-				constraint.Priority = (int)UILayoutPriority.Required - 1;
+				constraint.Priority = (int) UILayoutPriority.Required - 1;
 
 			View.AddConstraints (constraints.ToArray ());
 		}
@@ -100,7 +98,7 @@ namespace AdaptivePhotos
 
 		void RatingChanges (object sender, EventArgs e)
 		{
-			photo.Rating = ((RatingControl)sender).Rating;
+			photo.Rating = ((RatingControl) sender).Rating;
 		}
 
 		void UpdatePhoto ()

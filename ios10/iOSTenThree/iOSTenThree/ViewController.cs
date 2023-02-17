@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using UIKit;
 using CoreGraphics;
 
-namespace iOSTenThree
-{
-	public partial class ViewController : UIViewController
-	{
+namespace iOSTenThree {
+	public partial class ViewController : UIViewController {
 		#region Constructors
 		protected ViewController (IntPtr handle) : base (handle)
 		{

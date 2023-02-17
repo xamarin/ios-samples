@@ -8,10 +8,8 @@ using UIKit;
 using ObjCRuntime;
 using CoreText;
 
-namespace SimpleTextInput
-{
-	public class SimpleCoreTextView : UIView
-	{
+namespace SimpleTextInput {
+	public class SimpleCoreTextView : UIView {
 		string text;
 		UIFont font;
 		bool is_editing;
@@ -110,7 +108,7 @@ namespace SimpleTextInput
 			// Find the overlap intersection range between first and second
 			if (second.Location < first.Location + first.Length) {
 				result.Location = second.Location;
-				int end = Math.Min ((int)(first.Location + first.Length), (int)(second.Location + second.Length));
+				int end = Math.Min ((int) (first.Location + first.Length), (int) (second.Location + second.Length));
 				result.Length = end - result.Location;
 			}
 
@@ -142,12 +140,12 @@ namespace SimpleTextInput
 				NSRange range = new NSRange (lineRange.Location, lineRange.Length);
 				NSRange intersection = RangeIntersection (range, selectionRange);
 				if (intersection.Location != NSRange.NotFound && intersection.Length > 0) {
-				// The text range for this line intersects our selection range
+					// The text range for this line intersects our selection range
 					nfloat xStart = line.GetOffsetForStringIndex (intersection.Location);
 					nfloat xEnd = line.GetOffsetForStringIndex (intersection.Location + intersection.Length);
 					var origin = new CGPoint [lines.Length];
 					// Get coordinate and bounds information for the intersection text range
-					frame.GetLineOrigins (new NSRange (i, 0), origin );
+					frame.GetLineOrigins (new NSRange (i, 0), origin);
 					nfloat ascent, descent, leading;
 					line.GetTypographicBounds (out ascent, out descent, out leading);
 					// Create a rect for the intersection and draw it with selection color
@@ -180,7 +178,7 @@ namespace SimpleTextInput
 				if (point.Y > origins [i].Y) {
 					// This line origin is closest to the y-coordinate of our point,
 					// now look for the closest string index in this line.
-					return (int)lines [i].GetStringIndexForPosition (point);
+					return (int) lines [i].GetStringIndexForPosition (point);
 				}
 			}
 
@@ -197,7 +195,7 @@ namespace SimpleTextInput
 			if (text.Length == 0) {
 				CGPoint origin = new CGPoint (Bounds.GetMinX (), Bounds.GetMinY () - font.Leading);
 				// Note: using fabs() for typically negative descender from fonts
-				return new CGRect (origin.X, origin.Y - (nfloat)Math.Abs (font.Descender), 3, font.Ascender + (nfloat)Math.Abs (font.Descender));
+				return new CGRect (origin.X, origin.Y - (nfloat) Math.Abs (font.Descender), 3, font.Ascender + (nfloat) Math.Abs (font.Descender));
 			}
 
 			// Special case, insertion point at final position in text after newline
@@ -210,7 +208,7 @@ namespace SimpleTextInput
 				line.GetTypographicBounds (out ascent, out descent, out leading);
 				frame.GetLineOrigins (new NSRange (lines.Length - 1, 0), origins);
 				// Place point after last line, including any font leading spacing if applicable
-				origins[0].Y -= font.Leading;
+				origins [0].Y -= font.Leading;
 				return new CGRect (xPos, origins [0].Y - descent, 3, ascent + descent);
 			}
 
@@ -218,7 +216,7 @@ namespace SimpleTextInput
 			for (int i = 0; i < lines.Length; i++) {
 				CTLine line = lines [i];
 				NSRange range = line.StringRange;
-				int localIndex = index - (int)range.Location;
+				int localIndex = index - (int) range.Location;
 				if (localIndex >= 0 && localIndex <= range.Length) {
 					// index is in the range for this line
 					nfloat xPos = line.GetOffsetForStringIndex (index);
@@ -239,17 +237,17 @@ namespace SimpleTextInput
 		// UITextInput:firstRectForRange method
 		public CGRect FirstRect (NSRange range)
 		{
-			int index = (int)range.Location;
+			int index = (int) range.Location;
 
 			// Iterate over our CTLines, looking for the line that encompasses the given range
 			var lines = frame.GetLines ();
 			for (int i = 0; i < lines.Length; i++) {
 				CTLine line = lines [i];
 				NSRange lineRange = line.StringRange;
-				int localIndex = index - (int)lineRange.Location;
+				int localIndex = index - (int) lineRange.Location;
 				if (localIndex >= 0 && localIndex < lineRange.Length) {
 					// For this sample, we use just the first line that intersects range
-					int finalIndex = (int)Math.Min (lineRange.Location + lineRange.Length, range.Location + range.Length);
+					int finalIndex = (int) Math.Min (lineRange.Location + lineRange.Length, range.Location + range.Length);
 					// Create a rect for the given range within this line
 					nfloat xStart = line.GetOffsetForStringIndex (index);
 					nfloat xEnd = line.GetOffsetForStringIndex (finalIndex);
@@ -277,7 +275,7 @@ namespace SimpleTextInput
 			// If there is no selection range (always true for this sample), find the
 			// insert point rect and create a caretView to draw the caret at this position
 			if (SelectedTextRange.Length == 0) {
-				caretView.Frame = CaretRect ((int)SelectedTextRange.Location);
+				caretView.Frame = CaretRect ((int) SelectedTextRange.Location);
 				if (caretView.Superview == null) {
 					AddSubview (caretView);
 					SetNeedsDisplay ();
@@ -331,8 +329,7 @@ namespace SimpleTextInput
 		}
 	}
 
-	class SimpleCaretView : UIView
-	{
+	class SimpleCaretView : UIView {
 		NSTimer blink_timer;
 		const double InitialBlinkDelay = 0.7;
 		const double BlinkRate = 0.5;

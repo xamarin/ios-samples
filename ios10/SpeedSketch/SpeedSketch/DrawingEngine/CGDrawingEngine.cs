@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreGraphics;
@@ -6,23 +6,19 @@ using UIKit;
 
 using static SpeedSketch.CGMathExtensions;
 
-namespace SpeedSketch
-{
-	public enum StrokeViewDisplayOptions
-	{
+namespace SpeedSketch {
+	public enum StrokeViewDisplayOptions {
 		Debug,
 		Calligraphy,
 		Ink
 	}
 
-	class EstimatedSample
-	{
+	class EstimatedSample {
 		public int Index { get; set; }
 		public StrokeSample Sample { get; set; }
 	}
 
-	class StrokeCGView : UIView
-	{
+	class StrokeCGView : UIView {
 		StrokeViewDisplayOptions displayOptions;
 		public StrokeViewDisplayOptions DisplayOptions {
 			get {
@@ -81,7 +77,7 @@ namespace SpeedSketch
 		EstimatedSample lastEstimatedSample;
 
 		public StrokeCGView (CGRect frame)
-			: base(frame)
+			: base (frame)
 		{
 			Layer.DrawsAsynchronously = true;
 
@@ -319,7 +315,7 @@ namespace SpeedSketch
 
 						var toUnitVector = segment.ToSampleUnitNormal.Mult (forceAccessBlock (toSample));
 						var isForceEstimated = fromSample.EstimatedProperties.HasFlag (UITouchProperties.Force)
-						                                 || toSample.EstimatedProperties.HasFlag (UITouchProperties.Force);
+														 || toSample.EstimatedProperties.HasFlag (UITouchProperties.Force);
 
 						if (isForceEstimated) {
 							if (lastEstimatedSample == null)

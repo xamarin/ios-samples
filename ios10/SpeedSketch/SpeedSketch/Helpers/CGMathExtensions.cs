@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 
-namespace SpeedSketch
-{
-	public static class CGMathExtensions
-	{
+namespace SpeedSketch {
+	public static class CGMathExtensions {
 		public static CGPoint GetCenter (this CGRect rect)
 		{
 			return Add (rect.Location, new CGVector (rect.Width, rect.Height).Divide (2));
@@ -49,8 +47,7 @@ namespace SpeedSketch
 		}
 	}
 
-	public static class CGVectorExtensions
-	{
+	public static class CGVectorExtensions {
 		public static CGPoint CreatePoint (this CGVector self)
 		{
 			return new CGPoint (self.dx, self.dy);
@@ -66,13 +63,13 @@ namespace SpeedSketch
 		public static CGVector? Normalize (this CGVector self)
 		{
 			var quadrance = self.Quadrance ();
-			return (quadrance > 0) ? self.Divide (NMath.Sqrt(quadrance)) : (CGVector?)null;
+			return (quadrance > 0) ? self.Divide (NMath.Sqrt (quadrance)) : (CGVector?) null;
 		}
 
 		public static CGVector? Normal (this CGVector self)
 		{
 			bool isZero = (self.dx == 0 && self.dy == 0);
-			return isZero ? (CGVector?)null : new CGVector (-self.dy, self.dx);
+			return isZero ? (CGVector?) null : new CGVector (-self.dy, self.dx);
 		}
 
 		public static CGVector Divide (this CGVector left, nfloat right)
@@ -96,8 +93,7 @@ namespace SpeedSketch
 		}
 	}
 
-	public static class CGPointExtensions
-	{
+	public static class CGPointExtensions {
 		public static CGVector CreateVector (this CGPoint self)
 		{
 			return new CGVector (self.X, self.Y);
@@ -114,8 +110,7 @@ namespace SpeedSketch
 		}
 	}
 
-	public static class CGSizeExtensions
-	{
+	public static class CGSizeExtensions {
 		public static CGSize Add (this CGSize left, nfloat right)
 		{
 			return new CGSize (left.Width + right, left.Height + right);

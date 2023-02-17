@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 
@@ -25,7 +25,7 @@ namespace CustomTransitions {
 			float sizeHeigt = traitCollection.VerticalSizeClass == UIUserInterfaceSizeClass.Compact ? 270f : 420f;
 
 			PreferredContentSize = new CoreGraphics.CGSize (View.Bounds.Width, sizeHeigt);
-			slider.MaxValue = (float)PreferredContentSize.Height;
+			slider.MaxValue = (float) PreferredContentSize.Height;
 			slider.MinValue = 220f;
 			slider.Value = slider.MaxValue;
 		}

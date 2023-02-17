@@ -1,11 +1,9 @@
-﻿using UIKit;
+using UIKit;
 using Foundation;
 using AVFoundation;
 
-namespace AVCamManual
-{
-	public partial class AVCamManualCameraViewController
-	{
+namespace AVCamManual {
+	public partial class AVCamManualCameraViewController {
 		// Higher numbers will give the slider more sensitivity at shorter durations
 		const float ExposureDurationPower = 5;
 
@@ -133,20 +131,20 @@ namespace AVCamManual
 		UISegmentedControl RawControl { get; set; }
 
 		public AVCaptureSession Session {
-			[Export("session")]
+			[Export ("session")]
 			get;
-			[Export("setSession:")]
+			[Export ("setSession:")]
 			set;
 		}
 
 		AVCaptureDeviceInput videoDeviceInput;
 
 		public AVCaptureDeviceInput VideoDeviceInput {
-			[Export("videoDeviceInput")]
+			[Export ("videoDeviceInput")]
 			get {
 				return videoDeviceInput;
 			}
-			[Export("setVideoDeviceInput:")]
+			[Export ("setVideoDeviceInput:")]
 			set {
 				WillChangeValue ("videoDeviceInput");
 				videoDeviceInput = value;
@@ -170,7 +168,7 @@ namespace AVCamManual
 
 		AVCaptureVideoPreviewLayer PreviewLayer {
 			get {
-				return  (AVCaptureVideoPreviewLayer)PreviewView.Layer;
+				return (AVCaptureVideoPreviewLayer) PreviewView.Layer;
 			}
 		}
 	}

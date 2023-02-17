@@ -1,12 +1,10 @@
 using System;
 using UIKit;
-namespace Example_SharedResources.Screens.iPhone.Photos
-{
-	public class TestCameraOverlayController : UIViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Photos {
+	public class TestCameraOverlayController : UIViewController {
 		#region -= constructors =-
 
-		public TestCameraOverlayController () : base()
+		public TestCameraOverlayController () : base ()
 		{
 		}
 

@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace ToastModern
-{
-	public class Spring : NSObject
-	{
+namespace ToastModern {
+	public class Spring : NSObject {
 		public double Position { get; set; }
 
 		public double Damping { get; set; }

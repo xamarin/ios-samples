@@ -1,17 +1,15 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace PhotoHandoff
-{
-	public class ModifyFilter : ImageFilter
-	{
+namespace PhotoHandoff {
+	public class ModifyFilter : ImageFilter {
 		const string IntensityKey = "kImageFilterIntensityKey";
 		internal const string Key = "ModifyFilter";
 
 		public float Intensity { get; set; }
 
 		public ModifyFilter (bool active)
-			: base(active)
+			: base (active)
 		{
 		}
 

@@ -23,13 +23,15 @@ namespace NonConsumables {
 		/// effectively bypassing the payment mechanism (assuming a little bit
 		/// of technical knowledge).
 		/// </remarks>
-		public static void Purchase (string productId) {
-			var key = new NSString(productId);
-			NSUserDefaults.StandardUserDefaults.SetBool(true, key);
+		public static void Purchase (string productId)
+		{
+			var key = new NSString (productId);
+			NSUserDefaults.StandardUserDefaults.SetBool (true, key);
 			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
-		public static bool HasPurchased (string productId) {
-			var key = new NSString(productId);
+		public static bool HasPurchased (string productId)
+		{
+			var key = new NSString (productId);
 			return NSUserDefaults.StandardUserDefaults.BoolForKey (key);
 		}
 
@@ -51,10 +53,10 @@ namespace NonConsumables {
 			// ... other hosted products that can be added later
 
 			var textFile = System.IO.Path.Combine (targetfolder, "Chapter.txt");
-			view.Text = System.IO.File.ReadAllText(textFile);
+			view.Text = System.IO.File.ReadAllText (textFile);
 
 			var iconFile = System.IO.Path.Combine (targetfolder, "icon.png");
-			icon.Image = UIImage.FromFile(iconFile);
+			icon.Image = UIImage.FromFile (iconFile);
 		}
 	}
 }

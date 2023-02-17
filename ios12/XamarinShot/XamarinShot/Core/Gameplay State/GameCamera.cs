@@ -1,70 +1,62 @@
-﻿
-namespace XamarinShot.Models
-{
-    using SceneKit;
-    using XamarinShot.Utils;
-    using System;
 
-    public class GameCamera
-    {
-        private readonly GameCameraProps properties = new GameCameraProps();
+namespace XamarinShot.Models {
+	using SceneKit;
+	using XamarinShot.Utils;
+	using System;
 
-        private readonly SCNNode node;
+	public class GameCamera {
+		private readonly GameCameraProps properties = new GameCameraProps ();
 
-        public GameCamera(SCNNode node)
-        {
-            this.node = node;
-        }
+		private readonly SCNNode node;
 
-        public void UpdateProperties()
-        {
-            var gameObject = this.node.GetGameObject();
-            if (gameObject != null)
-            {
-                // use the props data, or else use the defaults in the struct above
-                var hdr = gameObject.PropBool("hdr");
-                if (hdr) 
-                {
-                    properties.Hdr = hdr;
-                }
+		public GameCamera (SCNNode node)
+		{
+			this.node = node;
+		}
 
-                var motionBlur = gameObject.PropDouble("motionBlur");
-                if (motionBlur.HasValue) 
-                {
-                    properties.MotionBlur = motionBlur.Value;
-                }
+		public void UpdateProperties ()
+		{
+			var gameObject = this.node.GetGameObject ();
+			if (gameObject != null) {
+				// use the props data, or else use the defaults in the struct above
+				var hdr = gameObject.PropBool ("hdr");
+				if (hdr) {
+					properties.Hdr = hdr;
+				}
 
-                var ambientOcclusion = gameObject.PropDouble("ambientOcclusion");
-                if (ambientOcclusion.HasValue)
-                {
-                    properties.AmbientOcclusion = ambientOcclusion.Value;
-                }
-            }
-        }
+				var motionBlur = gameObject.PropDouble ("motionBlur");
+				if (motionBlur.HasValue) {
+					properties.MotionBlur = motionBlur.Value;
+				}
 
-        public void TransferProperties()
-        {
-            if (this.node.Camera != null)
-            {
-                // Wide-gamut rendering is enabled by default on supported devices;
-                // to opt out, set the SCNDisableWideGamut key in your app's Info.plist file.
-                this.node.Camera.WantsHdr = this.properties.Hdr;
+				var ambientOcclusion = gameObject.PropDouble ("ambientOcclusion");
+				if (ambientOcclusion.HasValue) {
+					properties.AmbientOcclusion = ambientOcclusion.Value;
+				}
+			}
+		}
 
-                // Ambient occlusion doesn't work with defaults
-                this.node.Camera.ScreenSpaceAmbientOcclusionIntensity = (nfloat)this.properties.AmbientOcclusion;
+		public void TransferProperties ()
+		{
+			if (this.node.Camera != null) {
+				// Wide-gamut rendering is enabled by default on supported devices;
+				// to opt out, set the SCNDisableWideGamut key in your app's Info.plist file.
+				this.node.Camera.WantsHdr = this.properties.Hdr;
 
-                // Motion blur is not supported when wide-gamut color rendering is enabled.
-                this.node.Camera.MotionBlurIntensity = (nfloat)this.properties.MotionBlur;
-            }
-        }
+				// Ambient occlusion doesn't work with defaults
+				this.node.Camera.ScreenSpaceAmbientOcclusionIntensity = (nfloat) this.properties.AmbientOcclusion;
 
-        class GameCameraProps
-        {
-            public bool Hdr { get; set; }
+				// Motion blur is not supported when wide-gamut color rendering is enabled.
+				this.node.Camera.MotionBlurIntensity = (nfloat) this.properties.MotionBlur;
+			}
+		}
 
-            public double AmbientOcclusion { get; set; } = 0d;
+		class GameCameraProps {
+			public bool Hdr { get; set; }
 
-            public double MotionBlur { get; set; } = 0d;
-        }
-    }
+			public double AmbientOcclusion { get; set; } = 0d;
+
+			public double MotionBlur { get; set; } = 0d;
+		}
+	}
 }

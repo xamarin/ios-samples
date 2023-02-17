@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
@@ -18,7 +18,7 @@ namespace WalkingGame {
 		Animation standLeft;
 		Animation standRight;
 
-		Animation currentAnimation; 
+		Animation currentAnimation;
 
 		public float X { get; set; }
 
@@ -80,7 +80,7 @@ namespace WalkingGame {
 				desiredVelocity.X = touchCollection [0].Position.X - X;
 				desiredVelocity.Y = touchCollection [0].Position.Y - Y;
 
-				if (Math.Abs(desiredVelocity.X) > float.Epsilon || Math.Abs (desiredVelocity.Y) > float.Epsilon) {
+				if (Math.Abs (desiredVelocity.X) > float.Epsilon || Math.Abs (desiredVelocity.Y) > float.Epsilon) {
 					desiredVelocity.Normalize ();
 					const float desiredSpeed = 200;
 					desiredVelocity *= desiredSpeed;
@@ -94,8 +94,8 @@ namespace WalkingGame {
 		{
 			var velocity = GetDesiredVelocityFromInput ();
 
-			X += velocity.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
-			Y += velocity.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			X += velocity.X * (float) gameTime.ElapsedGameTime.TotalSeconds;
+			Y += velocity.Y * (float) gameTime.ElapsedGameTime.TotalSeconds;
 
 			// We can use the velocity variable to determine if the 
 			// character is moving or standing still

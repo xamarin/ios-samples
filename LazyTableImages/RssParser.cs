@@ -38,9 +38,9 @@ namespace LazyTableImages {
 		static readonly XName EntryElement = XName.Get ("entry", "http://www.w3.org/2005/Atom");
 		static readonly XName AppUrlElement = XName.Get ("id", "http://www.w3.org/2005/Atom");
 
-		static readonly XName AppNameElement = XName.Get ("name", "http://itunes.apple.com/rss");
-		static readonly XName ArtistElement = XName.Get ("artist", "http://itunes.apple.com/rss");
-		static readonly XName ImageUrlElement = XName.Get ("image", "http://itunes.apple.com/rss");
+		static readonly XName AppNameElement = XName.Get ("name", "https://rss.itunes.apple.com");
+		static readonly XName ArtistElement = XName.Get ("artist", "https://rss.itunes.apple.com");
+		static readonly XName ImageUrlElement = XName.Get ("image", "https://rss.itunes.apple.com");
 
 		static readonly XName HeightAttribute = XName.Get ("height", "");
 
@@ -60,12 +60,8 @@ namespace LazyTableImages {
 
 		static App XmlElementToApp (XElement entry)
 		{
-			// The document may contain many image nodes. Select the one with
-			// the largest resolution.
-			var imageUrlNode = entry.Elements (ImageUrlElement)
-				.Where (n => n.Attribute (HeightAttribute) != null)
-				.OrderBy (node => int.Parse (node.Attribute (HeightAttribute).Value))
-				.LastOrDefault ();
+			// Select an image node
+			var imageUrlNode = entry.Elements (ImageUrlElement).FirstOrDefault ();
 
 			// Parse the rest of the apps information from the XElement and
 			// return the App instance.

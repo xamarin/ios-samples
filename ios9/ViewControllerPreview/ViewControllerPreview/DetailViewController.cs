@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
@@ -7,13 +7,13 @@ namespace ViewControllerPreview {
 	public partial class DetailViewController : UIViewController {
 		public string DetailItemTitle { get; set; }
 
-		public override IUIPreviewActionItem[] PreviewActionItems {
+		public override IUIPreviewActionItem [] PreviewActionItems {
 			get {
 				return PreviewActions;
 			}
 		}
 
-		IUIPreviewActionItem[] PreviewActions {
+		IUIPreviewActionItem [] PreviewActions {
 			get {
 				var action1 = PreviewActionForTitle ("Default Action");
 				var action2 = PreviewActionForTitle ("Destructive Action", UIPreviewActionStyle.Destructive);
@@ -44,7 +44,7 @@ namespace ViewControllerPreview {
 		static UIPreviewAction PreviewActionForTitle (string title, UIPreviewActionStyle style = UIPreviewActionStyle.Default)
 		{
 			return UIPreviewAction.Create (title, style, (action, previewViewController) => {
-				var detailViewController  = (DetailViewController)previewViewController;
+				var detailViewController = (DetailViewController) previewViewController;
 				var item = detailViewController?.DetailItemTitle;
 
 				Console.WriteLine ("{0} triggered from `DetailViewController` for item: {1}", action.Title, item);

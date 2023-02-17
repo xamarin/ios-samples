@@ -4,10 +4,8 @@ using UIKit;
 using Foundation;
 using CoreFoundation;
 
-namespace CloudKitAtlas
-{
-	public partial class NavigationController : UINavigationController
-	{
+namespace CloudKitAtlas {
+	public partial class NavigationController : UINavigationController {
 		public NavigationController (IntPtr handle)
 			: base (handle)
 		{

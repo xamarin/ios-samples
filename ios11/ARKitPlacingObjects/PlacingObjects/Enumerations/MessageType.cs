@@ -1,8 +1,6 @@
-﻿using System;
-namespace PlacingObjects
-{
-	public enum MessageType
-	{
+using System;
+namespace PlacingObjects {
+	public enum MessageType {
 		ContentPlacement,
 		FocusSquare,
 		PlaneEstimation,

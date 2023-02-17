@@ -1,8 +1,8 @@
-﻿using UIKit;
+using UIKit;
 
 namespace MusicMotion {
 	public class Song {
-		
+
 		public string Artist { get; set; }
 
 		public string Title { get; set; }

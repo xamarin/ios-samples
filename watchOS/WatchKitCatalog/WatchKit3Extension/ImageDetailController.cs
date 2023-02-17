@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays images, static and animated. It demonstrates using the image cache 
  * to send images from the WatchKit app extension bundle to be stored and used in the WatchKit app bundle. 
  * It also demonstrates how to use screenBounds to use the most appropriate sized image for the device at runtime. 
@@ -11,10 +11,8 @@ using UIKit;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class ImageDetailController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class ImageDetailController : WKInterfaceController {
 		public ImageDetailController ()
 		{
 		}
@@ -25,9 +23,8 @@ namespace WatchkitExtension
 			Console.WriteLine ("Passed in context: {0}", context);
 
 			// Uses image inside WatchKit Extension bundle.
-			using (var image = UIImage.FromBundle("Walkway"))
-			{
-				staticImage.SetImage(image);
+			using (var image = UIImage.FromBundle ("Walkway")) {
+				staticImage.SetImage (image);
 			}
 		}
 
@@ -45,16 +42,16 @@ namespace WatchkitExtension
 
 		partial void PlayAnimation (NSObject obj)
 		{
-			 animatedImage.SetImage ("Bus");
-			 animatedImage.StartAnimating ();
+			animatedImage.SetImage ("Bus");
+			animatedImage.StartAnimating ();
 
-			 // Animate with a specific range, duration, and repeat count.
-			 //animatedImage.StartAnimating (new NSRange (0, 4), 2.0, 3);
+			// Animate with a specific range, duration, and repeat count.
+			//animatedImage.StartAnimating (new NSRange (0, 4), 2.0, 3);
 		}
 
 		partial void StopAnimation (NSObject obj)
 		{
-			 animatedImage.StopAnimating ();
+			animatedImage.StopAnimating ();
 		}
 	}
 }

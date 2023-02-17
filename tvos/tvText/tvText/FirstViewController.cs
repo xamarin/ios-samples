@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace tvText
-{
+namespace tvText {
 	/// <summary>
 	/// This View Controller controls the Text tab that is used to enter a User ID
 	/// and password.
 	/// </summary>
-	public partial class FirstViewController : UIViewController
-	{
+	public partial class FirstViewController : UIViewController {
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:tvText.FirstViewController"/> class.

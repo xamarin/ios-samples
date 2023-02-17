@@ -6,10 +6,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace AVCam
-{
-	public partial class AVCamPreviewView : UIView
-	{
+namespace AVCam {
+	public partial class AVCamPreviewView : UIView {
 		public AVCamPreviewView (IntPtr handle) : base (handle)
 		{
 		}
@@ -31,7 +29,7 @@ namespace AVCam
 				var videoPreviewLayer = VideoPreviewLayer;
 				return videoPreviewLayer == null ? null : videoPreviewLayer.Session;
 			}
-			set{
+			set {
 				var videoPreviewLayer = VideoPreviewLayer;
 				if (videoPreviewLayer != null)
 					videoPreviewLayer.Session = value;

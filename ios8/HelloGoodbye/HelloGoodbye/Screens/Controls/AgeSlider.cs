@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using UIKit;
 using Foundation;
 
-namespace HelloGoodbye
-{
-	public class AgeSlider : UISlider
-	{
+namespace HelloGoodbye {
+	public class AgeSlider : UISlider {
 		public override string AccessibilityValue {
 			get {
 				NSNumber number = NSNumber.FromFloat (Value);
@@ -19,7 +17,7 @@ namespace HelloGoodbye
 			}
 		}
 
-		public AgeSlider()
+		public AgeSlider ()
 		{
 			TintColor = StyleUtilities.ForegroundColor;
 			MinValue = 18;

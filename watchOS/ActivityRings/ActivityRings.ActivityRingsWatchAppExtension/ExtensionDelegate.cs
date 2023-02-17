@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using Foundation;
 using WatchKit;
 
-namespace ActivityRings.ActivityRingsWatchAppExtension
-{
-	[Register("ExtensionDelegate")]
-	public class ExtensionDelegate : WKExtensionDelegate
-	{
+namespace ActivityRings.ActivityRingsWatchAppExtension {
+	[Register ("ExtensionDelegate")]
+	public class ExtensionDelegate : WKExtensionDelegate {
 
 	}
 }

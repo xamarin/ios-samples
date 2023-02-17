@@ -1,12 +1,10 @@
-﻿
-namespace AVCamBarcode
-{
-    public enum SessionSetupResult
-    {
-        Success,
 
-        NotAuthorized,
+namespace AVCamBarcode {
+	public enum SessionSetupResult {
+		Success,
 
-        ConfigurationFailed
-    }
+		NotAuthorized,
+
+		ConfigurationFailed
+	}
 }

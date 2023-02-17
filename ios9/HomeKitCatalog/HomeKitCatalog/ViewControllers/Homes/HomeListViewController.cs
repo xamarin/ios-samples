@@ -5,14 +5,12 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
-	partial class HomeListViewController : HMCatalogViewController, IHMHomeManagerDelegate
-	{
-		public static readonly NSString HomeCell = (NSString)"HomeCell";
-		public static readonly NSString ShowHomeSegue = (NSString)"Show Home";
+namespace HomeKitCatalog {
+	partial class HomeListViewController : HMCatalogViewController, IHMHomeManagerDelegate {
+		public static readonly NSString HomeCell = (NSString) "HomeCell";
+		public static readonly NSString ShowHomeSegue = (NSString) "Show Home";
 
-		readonly List<HMHome> homes = new List<HMHome>();
+		readonly List<HMHome> homes = new List<HMHome> ();
 		public List<HMHome> Homes {
 			get {
 				return homes;
@@ -68,7 +66,7 @@ namespace HomeKitCatalog
 			if (segue.Identifier == ShowHomeSegue) {
 				if (sender == this)
 					return;
-				var indexPath = TableView.IndexPathForCell ((UITableViewCell)sender);
+				var indexPath = TableView.IndexPathForCell ((UITableViewCell) sender);
 				HomeStore.Home = Homes [indexPath.Row];
 			}
 		}
@@ -78,14 +76,14 @@ namespace HomeKitCatalog
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
 			var rows = Homes.Count;
-			TableView.SetBackgroundMessage(rows == 0 ? "No Homes": null);
+			TableView.SetBackgroundMessage (rows == 0 ? "No Homes" : null);
 			return rows;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (HomeCell, indexPath);
-			var home = Homes [(int)indexPath.Row];
+			var home = Homes [(int) indexPath.Row];
 
 			cell.TextLabel.Text = home.Name;
 
@@ -133,7 +131,7 @@ namespace HomeKitCatalog
 
 			var newHomeIndex = Homes.IndexOf (home);
 			var indexPathOfNewHome = NSIndexPath.FromRowSection (newHomeIndex, 0);
-			TableView.InsertRows (new []{ indexPathOfNewHome }, UITableViewRowAnimation.Automatic);
+			TableView.InsertRows (new [] { indexPathOfNewHome }, UITableViewRowAnimation.Automatic);
 		}
 
 		protected virtual void DidRemoveHome (HMHome home)
@@ -144,7 +142,7 @@ namespace HomeKitCatalog
 
 			Homes.RemoveAt (removedHomeIndex);
 			var indexPath = NSIndexPath.FromRowSection (removedHomeIndex, 0);
-			TableView.DeleteRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			TableView.DeleteRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		protected static string SharedTextForHome (HMHome home)
@@ -157,12 +155,12 @@ namespace HomeKitCatalog
 		#region HMHomeDelegate Methods
 
 		[Export ("homeDidUpdateName:")]
-		protected virtual void HomeDidUpdateName(HMHome home)
+		protected virtual void HomeDidUpdateName (HMHome home)
 		{
 			var homeIndex = Homes.IndexOf (home);
 			if (homeIndex >= 0) {
 				var indexPath = NSIndexPath.FromRowSection (homeIndex, 0);
-				TableView.ReloadRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+				TableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 			}
 		}
 
@@ -179,7 +177,7 @@ namespace HomeKitCatalog
 			var home = HomeStore.Home;
 			if (home != null && Array.IndexOf (manager.Homes, home) < 0) {
 				// Close all modal and detail views.
-				DismissViewController(true, null);
+				DismissViewController (true, null);
 				if (NavigationController != null)
 					NavigationController.PopToRootViewController (true);
 			}
@@ -204,7 +202,7 @@ namespace HomeKitCatalog
 				HomeStore.Home = null;
 
 				// Close all modal and detail views.
-				DismissViewController(true, null);
+				DismissViewController (true, null);
 				if (NavigationController != null)
 					NavigationController.PopToRootViewController (true);
 			}

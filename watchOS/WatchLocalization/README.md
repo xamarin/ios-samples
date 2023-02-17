@@ -1,26 +1,33 @@
-WatchLocalization (watchOS 3) 
-============================
+---
+name: Xamarin.iOS - WatchLocalization
+description: "Sample code for the Xamarin watchOS Localization documentation. Contains English and Spanish (machine translated) strings... (watchOS)"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+extensions:
+    tags:
+    - watchos
+urlFragment: watchos-watchlocalization
+---
+# WatchLocalization (watchOS 3)
 
-Sample code for the Xamarin watchOS [Localization] documentation.
+Sample code for the Xamarin watchOS [Localization](https://docs.microsoft.com/xamarin/ios/watchos/app-fundamentals/localization) documentation.
 
 Contains English and Spanish (machine translated) strings.
 
-![](Screenshots/watch-english.png) ![](Screenshots/watch-spanish.png)
+![Apple Watch english](Screenshots/watch-english.png) ![Apple Watch spanish](Screenshots/watch-spanish.png)
 
-Known Issues
-------------
+## Known Issues
+
 * Must currently be tested on device. Cannot change watchOS 3 simulator language settings to properly test languages other than English. This may be fixed in a future version of the iOS Simulator.
 
-
-Author
-------
-
-Craig Dunn
+## License
 
 *Watch screenshots use [Bezel] courtesy of [infinitapps] :)*  
 *Watch bezel art courtesy of [Max Rudberg]*
 
-[Localization]:http://developer.xamarin.com/guides/ios/watch/working-with/localization
 [Bezel]:http://infinitapps.com/bezel/
 [infinitapps]:http://infinitapps.com/
 [Max Rudberg]:http://blog.maxrudberg.com/post/110056879433/apple-watch-bezels-for-bezel

@@ -7,10 +7,8 @@ using Foundation;
 using EventKit;
 using CoreFoundation;
 
-namespace PokerNightVoting
-{
-	public class PNVModel : NSObject
-	{
+namespace PokerNightVoting {
+	public class PNVModel : NSObject {
 		public EKEventStore EventStore { get; set; }
 
 		public EKCalendar SelectedCalendar { get; set; }
@@ -18,14 +16,15 @@ namespace PokerNightVoting
 		// updated by fetchPokerEvents: to store the matching events.
 		List<EKEvent> events = new List<EKEvent> ();
 		public List<DateTime> EventDates = new List<DateTime> ();
-		public Dictionary<DateTime,List<EKEvent>> eventDateToEventsDictionary = new Dictionary<DateTime,List<EKEvent>> ();
+		public Dictionary<DateTime, List<EKEvent>> eventDateToEventsDictionary = new Dictionary<DateTime, List<EKEvent>> ();
 		public NSString PNVModelChangedNotification = new NSString ("PNVModelChangedNotification");
 
 		public PNVModel ()
 		{
 			EventStore = new EKEventStore ();
 
-			EventStore.RequestAccess(EKEntityType.Event, delegate (bool arg1, NSError arg2) {
+			EventStore.RequestAccess (EKEntityType.Event, delegate (bool arg1, NSError arg2)
+			{
 				if (arg2 != null) {
 					Console.WriteLine (arg2.ToString ());
 				}
@@ -41,7 +40,8 @@ namespace PokerNightVoting
 			// We want to listen to the EKEventStoreChangedNotification on the EKEventStore,
 			// so that we update our list of events if anything changes in the EKEventStore.
 
-			NSNotificationCenter.DefaultCenter.AddObserver (EKEventStore.ChangedNotification, delegate {
+			NSNotificationCenter.DefaultCenter.AddObserver (EKEventStore.ChangedNotification, delegate
+			{
 				FetchPokerEvents ();
 			}, EventStore);
 		}
@@ -87,14 +87,13 @@ namespace PokerNightVoting
 		// updates data structures to only unclude events with the default title in our calendar.
 		public void FetchPokerEvents ()
 		{
-			ThreadPool.QueueUserWorkItem ((v) =>
-			{
+			ThreadPool.QueueUserWorkItem ((v) => {
 				// create NSDates to represent arbitrary fetch date range.
 				//approximately 2 days ago:
 				var yesterday = DateTime.Now - TimeSpan.FromDays (1);
 				var twoMonthsInFuture = DateTime.Now + TimeSpan.FromDays (60);
 
-				var predicate = EventStore.PredicateForEvents ((NSDate)yesterday, (NSDate)twoMonthsInFuture, null);
+				var predicate = EventStore.PredicateForEvents ((NSDate) yesterday, (NSDate) twoMonthsInFuture, null);
 				var allEvents = EventStore.EventsMatching (predicate);
 
 				if (allEvents == null)
@@ -106,7 +105,8 @@ namespace PokerNightVoting
 				UpdateDataStructuresWithMatchingEvents (result);
 
 				// notify the UI (on the main thread) that our model has changed
-				BeginInvokeOnMainThread (delegate {
+				BeginInvokeOnMainThread (delegate
+				{
 					NSNotificationCenter.DefaultCenter.PostNotificationName (PNVModelChangedNotification, this);
 				});
 			});
@@ -119,7 +119,7 @@ namespace PokerNightVoting
 			// Create a list of event start dates
 			// Create a dictionary mapping from event start date to events with that start date
 			var eventDates = new List<DateTime> ();
-			var eventDictionary = new Dictionary<DateTime,List<EKEvent>> ();
+			var eventDictionary = new Dictionary<DateTime, List<EKEvent>> ();
 
 			foreach (var e in events) {
 				var dt = (DateTime) e.StartDate;

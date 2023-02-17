@@ -2,16 +2,14 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// Controls the Split View that acts as the main interface for the tvOS app. A <c>AttractionTableView</c> is presented
 	/// in the left hand side of the Split View containing a collection of <c>CityInformation</c> and <c>AttractionInformation</c>
 	/// objects. If a Row is highlighted in the <c>AttractionTableView</c>, the details of the <c>AttractionInformation</c>
 	/// for that row will be presented in the <c>AttractionView</c> on the right hand side of the Split View.
 	/// </summary>
-	public partial class MasterSplitView : UISplitViewController
-	{
+	public partial class MasterSplitView : UISplitViewController {
 		#region Computed Properties
 		/// <summary>
 		/// A shortcut to the <c>AttractionViewController</c> used to present the Details of the highlighted

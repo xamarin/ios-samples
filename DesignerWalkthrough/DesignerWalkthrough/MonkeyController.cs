@@ -4,10 +4,8 @@ using System.CodeDom.Compiler;
 using Foundation;
 using UIKit;
 
-namespace DesignerWalkthrough
-{
-	partial class MonkeyController : UIViewController
-	{
+namespace DesignerWalkthrough {
+	partial class MonkeyController : UIViewController {
 		public MonkeyController (IntPtr handle) : base (handle)
 		{
 		}

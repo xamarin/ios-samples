@@ -1,11 +1,9 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 
 using static SpeedSketch.CGMathExtensions;
 
-namespace SpeedSketch
-{
-	public class StrokeSegment
-	{
+namespace SpeedSketch {
+	public class StrokeSegment {
 		public StrokeSample SampleBefore { get; private set; }
 		public StrokeSample FromSample { get; private set; }
 		public StrokeSample ToSample { get; private set; }
@@ -16,7 +14,7 @@ namespace SpeedSketch
 			get {
 				var start = SampleBefore?.Location;
 				var end = FromSample.Location;
-				return start.HasValue ? Vector(start.Value, end) : SegmentStrokeVector;
+				return start.HasValue ? Vector (start.Value, end) : SegmentStrokeVector;
 			}
 		}
 
@@ -24,7 +22,7 @@ namespace SpeedSketch
 			get {
 				var start = ToSample.Location;
 				var end = SampleAfter?.Location;
-				return end.HasValue ? Vector(start, end.Value) : SegmentStrokeVector;
+				return end.HasValue ? Vector (start, end.Value) : SegmentStrokeVector;
 			}
 		}
 

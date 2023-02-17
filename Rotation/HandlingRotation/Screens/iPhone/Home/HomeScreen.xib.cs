@@ -5,27 +5,25 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace HandlingRotation.Screens.iPhone.Home
-{
-	public partial class HomeScreen : UIViewController
-	{
+namespace HandlingRotation.Screens.iPhone.Home {
+	public partial class HomeScreen : UIViewController {
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
-		public HomeScreen (IntPtr handle) : base(handle)
+		public HomeScreen (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public HomeScreen (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public HomeScreen (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public HomeScreen () : base("HomeScreen", null)
+		public HomeScreen () : base ("HomeScreen", null)
 		{
 			Initialize ();
 		}
@@ -59,13 +57,16 @@ namespace HandlingRotation.Screens.iPhone.Home
 			base.ViewDidLoad ();
 
 			// wire up our button TouchUpInside handlers
-			btnMethod1.TouchUpInside += delegate {
+			btnMethod1.TouchUpInside += delegate
+			{
 				NavigationController.PushViewController (new Method1Autosize.AutosizeScreen (), true);
 			};
-			btnMethod2.TouchUpInside += delegate {
+			btnMethod2.TouchUpInside += delegate
+			{
 				NavigationController.PushViewController (new Method2MoveControls.Controller (), true);
 			};
-			btnMethod3.TouchUpInside += delegate {
+			btnMethod3.TouchUpInside += delegate
+			{
 				NavigationController.PushViewController (new Method3SwapViews.Controller (), true);
 			};
 		}
@@ -79,14 +80,13 @@ namespace HandlingRotation.Screens.iPhone.Home
 			// we're passed to orientation that it will rotate to. in our case, we could
 			// just return true, but this switch illustrates how you can test for the
 			// different cases
-			switch (toInterfaceOrientation)
-			{
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
-				default:
-					return true;
+			switch (toInterfaceOrientation) {
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+			default:
+				return true;
 			}
 		}
 	}

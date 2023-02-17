@@ -1,122 +1,114 @@
-﻿
-namespace XamarinShot
-{
-    using Foundation;
-    using XamarinShot.Models;
-    using XamarinShot.Models.Enums;
-    using XamarinShot.Utils;
-    using System;
-    using UIKit;
 
-    /// <summary>
-    /// View controller for user settings.
-    /// </summary>
-    public partial class UserSettingsTableViewController : UITableViewController,
-                                                           IUITextFieldDelegate,
-                                                           ILevelSelectorViewControllerDelegate
-    {
-        private ButtonBeep effectsLevelReleased;
+namespace XamarinShot {
+	using Foundation;
+	using XamarinShot.Models;
+	using XamarinShot.Models.Enums;
+	using XamarinShot.Utils;
+	using System;
+	using UIKit;
 
-        public UserSettingsTableViewController(IntPtr handle) : base(handle) { }
+	/// <summary>
+	/// View controller for user settings.
+	/// </summary>
+	public partial class UserSettingsTableViewController : UITableViewController,
+														   IUITextFieldDelegate,
+														   ILevelSelectorViewControllerDelegate {
+		private ButtonBeep effectsLevelReleased;
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            this.playerNameTextField.Delegate = this;
+		public UserSettingsTableViewController (IntPtr handle) : base (handle) { }
 
-            this.UpdateSelectedLevel();
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			this.playerNameTextField.Delegate = this;
 
-            this.playerNameTextField.Text = UserDefaults.Myself.Username;
-            this.spectatorSwitch.On = UserDefaults.Spectator;
-            this.musicVolume.Value = UserDefaults.MusicVolume;
-            this.effectsVolume.Value = UserDefaults.EffectsVolume;
-            this.effectsLevelReleased = ButtonBeep.Create("catapult_highlight_on_02.wav", UserDefaults.EffectsVolume);
-            this.appVersionLabel.Text = NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString") +
-                                        $" ({NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion")})";
-        }
+			this.UpdateSelectedLevel ();
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            var segueIdentifier = segue.Identifier;
-            if (!string.IsNullOrEmpty(segueIdentifier) &&
-                Enum.TryParse<GameSegue>(segueIdentifier, true, out GameSegue segueType))
-            {
-                switch (segueType)
-                {
-                    case GameSegue.LevelSelector:
-                        if (segue.DestinationViewController is LevelSelectorViewController levelSelector)
-                        {
-                            levelSelector.Delegate = this;
-                        }
+			this.playerNameTextField.Text = UserDefaults.Myself.Username;
+			this.spectatorSwitch.On = UserDefaults.Spectator;
+			this.musicVolume.Value = UserDefaults.MusicVolume;
+			this.effectsVolume.Value = UserDefaults.EffectsVolume;
+			this.effectsLevelReleased = ButtonBeep.Create ("catapult_highlight_on_02.wav", UserDefaults.EffectsVolume);
+			this.appVersionLabel.Text = NSBundle.MainBundle.ObjectForInfoDictionary ("CFBundleShortVersionString") +
+										$" ({NSBundle.MainBundle.ObjectForInfoDictionary ("CFBundleVersion")})";
+		}
 
-                        break;
-                }
-            }
-        }
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			var segueIdentifier = segue.Identifier;
+			if (!string.IsNullOrEmpty (segueIdentifier) &&
+				Enum.TryParse<GameSegue> (segueIdentifier, true, out GameSegue segueType)) {
+				switch (segueType) {
+				case GameSegue.LevelSelector:
+					if (segue.DestinationViewController is LevelSelectorViewController levelSelector) {
+						levelSelector.Delegate = this;
+					}
 
-        partial void spectatorChanged(UISwitch sender)
-        {
-            UserDefaults.Spectator = sender.On;
-        }
+					break;
+				}
+			}
+		}
 
-        partial void musicVolumeChanged(UISlider sender)
-        {
-            UserDefaults.MusicVolume = sender.Value;
-        }
+		partial void spectatorChanged (UISwitch sender)
+		{
+			UserDefaults.Spectator = sender.On;
+		}
 
-        partial void effectVolumeChanged(UISlider sender)
-        {
-            UserDefaults.EffectsVolume = sender.Value;
-        }
+		partial void musicVolumeChanged (UISlider sender)
+		{
+			UserDefaults.MusicVolume = sender.Value;
+		}
 
-        partial void effectVolumeReleased(UISlider sender)
-        {
-            this.effectsLevelReleased.Play();
-        }
+		partial void effectVolumeChanged (UISlider sender)
+		{
+			UserDefaults.EffectsVolume = sender.Value;
+		}
 
-        partial void doneTapped(UIBarButtonItem sender)
-        {
-            this.DismissViewController(true, null);
-        }
+		partial void effectVolumeReleased (UISlider sender)
+		{
+			this.effectsLevelReleased.Play ();
+		}
 
-        private void UpdateSelectedLevel()
-        {
-            var selectedLevel = UserDefaults.SelectedLevel;
-            this.selectedLevelLabel.Text = selectedLevel.Name;
-        }
+		partial void doneTapped (UIBarButtonItem sender)
+		{
+			this.DismissViewController (true, null);
+		}
 
-        #region IUITextFieldDelegate
+		private void UpdateSelectedLevel ()
+		{
+			var selectedLevel = UserDefaults.SelectedLevel;
+			this.selectedLevelLabel.Text = selectedLevel.Name;
+		}
 
-        [Export("textFieldShouldReturn:")]
-        public bool ShouldReturn(UITextField textField)
-        {
-            textField.ResignFirstResponder();
-            return true;
-        }
+		#region IUITextFieldDelegate
 
-        [Export("textFieldDidEndEditing:reason:")]
-        public void EditingEnded(UITextField textField, UITextFieldDidEndEditingReason reason)
-        {
-            if (reason == UITextFieldDidEndEditingReason.Committed &&
-                !string.IsNullOrEmpty(this.playerNameTextField.Text))
-            {
-                UserDefaults.Myself = new Player(this.playerNameTextField.Text);
-            }
-            else
-            {
-                this.playerNameTextField.Text = UserDefaults.Myself.Username;
-            }
-        }
+		[Export ("textFieldShouldReturn:")]
+		public bool ShouldReturn (UITextField textField)
+		{
+			textField.ResignFirstResponder ();
+			return true;
+		}
 
-        #endregion
+		[Export ("textFieldDidEndEditing:reason:")]
+		public void EditingEnded (UITextField textField, UITextFieldDidEndEditingReason reason)
+		{
+			if (reason == UITextFieldDidEndEditingReason.Committed &&
+				!string.IsNullOrEmpty (this.playerNameTextField.Text)) {
+				UserDefaults.Myself = new Player (this.playerNameTextField.Text);
+			} else {
+				this.playerNameTextField.Text = UserDefaults.Myself.Username;
+			}
+		}
 
-        #region ILevelSelectorViewControllerDelegate
+		#endregion
 
-        public void OnLevelSelected(LevelSelectorViewController levelSelectorViewController, GameLevel level)
-        {
-            this.UpdateSelectedLevel();
-        }
+		#region ILevelSelectorViewControllerDelegate
 
-        #endregion
-    }
+		public void OnLevelSelected (LevelSelectorViewController levelSelectorViewController, GameLevel level)
+		{
+			this.UpdateSelectedLevel ();
+		}
+
+		#endregion
+	}
 }

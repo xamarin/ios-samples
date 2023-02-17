@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using SpriteKit;
 using Foundation;
 using CoreGraphics;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public static class NodeFactory
-	{
+namespace SpriteKitPhysicsCollisions {
+	public static class NodeFactory {
 		static readonly nfloat shotSize = 4;
 
 		static SKEmitterNode UnarchiveEmitterNode (string name)
@@ -24,7 +22,7 @@ namespace SpriteKitPhysicsCollisions
 			emitter.TargetNode = target;
 
 			// Stop spawning particles after enough have been spawned.
-			emitter.NumParticlesToEmit =(nuint)(duration * emitter.ParticleBirthRate);
+			emitter.NumParticlesToEmit = (nuint) (duration * emitter.ParticleBirthRate);
 
 			// Calculate a time value that allows all the spawned particles to die. After this, the emitter node can be removed.
 
@@ -33,11 +31,11 @@ namespace SpriteKitPhysicsCollisions
 			return emitter;
 		}
 
-		public static SKNode CreateMissileNode(SKNode target)
+		public static SKNode CreateMissileNode (SKNode target)
 		{
 			// Creates and returns a new missile game object.
 			// This method loads a preconfigured emitter from an archive, and then configures it with a physics body.
-			SKEmitterNode missile = UnarchiveEmitterNode("missile");
+			SKEmitterNode missile = UnarchiveEmitterNode ("missile");
 
 			// The missile particles should be spawned in the scene, not on the missile object.
 			missile.TargetNode = target;

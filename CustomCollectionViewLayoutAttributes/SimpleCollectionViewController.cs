@@ -5,43 +5,41 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace SimpleCollectionView
-{
-    public class SimpleCollectionViewController : UICollectionViewController
-    {
-        static NSString animalCellId = new NSString ("AnimalCell");
-        List<IAnimal> animals;
-        UIGestureRecognizer tapRecognizer;
+namespace SimpleCollectionView {
+	public class SimpleCollectionViewController : UICollectionViewController {
+		static NSString animalCellId = new NSString ("AnimalCell");
+		List<IAnimal> animals;
+		UIGestureRecognizer tapRecognizer;
 
-        public SimpleCollectionViewController (UICollectionViewLayout layout) : base (layout)
-        {
-            animals = new List<IAnimal> ();
-            for (int i = 0; i < 20; i++) {
+		public SimpleCollectionViewController (UICollectionViewLayout layout) : base (layout)
+		{
+			animals = new List<IAnimal> ();
+			for (int i = 0; i < 20; i++) {
 				animals.Add (i % 2 == 0 ? (IAnimal) new Monkey () : (IAnimal) new Tamarin ());
-            }
-        }
+			}
+		}
 
-        public override void ViewDidLoad ()
-        {
-            base.ViewDidLoad ();
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-            tapRecognizer = new UITapGestureRecognizer (Tapped);
-            CollectionView.AddGestureRecognizer (tapRecognizer);
-            CollectionView.RegisterClassForCell (typeof (AnimalCell), animalCellId);
+			tapRecognizer = new UITapGestureRecognizer (Tapped);
+			CollectionView.AddGestureRecognizer (tapRecognizer);
+			CollectionView.RegisterClassForCell (typeof (AnimalCell), animalCellId);
 			CollectionView.BackgroundColor = UIColor.LightGray;
-        }
+		}
 
-        void Tapped ()
-        {
-            if (tapRecognizer.State == UIGestureRecognizerState.Ended) {
-                var pinchPoint = tapRecognizer.LocationInView (CollectionView);
+		void Tapped ()
+		{
+			if (tapRecognizer.State == UIGestureRecognizerState.Ended) {
+				var pinchPoint = tapRecognizer.LocationInView (CollectionView);
 				var tappedCellPath = GetIndexPathsForVisibleItems (pinchPoint);
-                if (tappedCellPath != null) {
+				if (tappedCellPath != null) {
 					animals.RemoveAt (tappedCellPath.Row);
-					CollectionView.DeleteItems (new NSIndexPath[] { tappedCellPath });
-                }
-            }
-        }
+					CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
+				}
+			}
+		}
 
 		public NSIndexPath GetIndexPathsForVisibleItems (CGPoint touchPoint)
 		{
@@ -53,50 +51,49 @@ namespace SimpleCollectionView
 			return null;
 		}
 
-        public override nint GetItemsCount (UICollectionView collectionView, nint section)
-        {
-            return animals.Count;
-        }
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
+		{
+			return animals.Count;
+		}
 
-        public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
-        {
-            var animalCell = (AnimalCell) collectionView.DequeueReusableCell (animalCellId, indexPath);
+		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
+		{
+			var animalCell = (AnimalCell) collectionView.DequeueReusableCell (animalCellId, indexPath);
 
-            var animal = animals [indexPath.Row];
-            animalCell.Image = animal.Image;
+			var animal = animals [indexPath.Row];
+			animalCell.Image = animal.Image;
 
-            return animalCell;
-        }
-    }
+			return animalCell;
+		}
+	}
 
-    public class AnimalCell : UICollectionViewCell
-    {
-        UIImageView imageView;
+	public class AnimalCell : UICollectionViewCell {
+		UIImageView imageView;
 
-        [Export ("initWithFrame:")]
-        public AnimalCell (CGRect frame) : base (frame)
-        {
-            BackgroundView = new UIView { BackgroundColor = UIColor.Orange };
+		[Export ("initWithFrame:")]
+		public AnimalCell (CGRect frame) : base (frame)
+		{
+			BackgroundView = new UIView { BackgroundColor = UIColor.Orange };
 
-            SelectedBackgroundView = new UIView { BackgroundColor = UIColor.Green };
+			SelectedBackgroundView = new UIView { BackgroundColor = UIColor.Green };
 
-            ContentView.Layer.BorderColor = UIColor.LightGray.CGColor;
-            ContentView.Layer.BorderWidth = 2.0f;
-            ContentView.BackgroundColor = UIColor.White;
-            ContentView.Transform = CGAffineTransform.MakeScale (0.8f, 0.8f);
+			ContentView.Layer.BorderColor = UIColor.LightGray.CGColor;
+			ContentView.Layer.BorderWidth = 2.0f;
+			ContentView.BackgroundColor = UIColor.White;
+			ContentView.Transform = CGAffineTransform.MakeScale (0.8f, 0.8f);
 
-            imageView = new UIImageView (UIImage.FromBundle ("placeholder.png"));
-            imageView.Center = ContentView.Center;
-            imageView.Transform = CGAffineTransform.MakeScale (0.7f, 0.7f);
+			imageView = new UIImageView (UIImage.FromBundle ("placeholder.png"));
+			imageView.Center = ContentView.Center;
+			imageView.Transform = CGAffineTransform.MakeScale (0.7f, 0.7f);
 
-            ContentView.AddSubview (imageView);
-        }
+			ContentView.AddSubview (imageView);
+		}
 
-        public UIImage Image {
-            set {
-                imageView.Image = value;
-            }
-        }
+		public UIImage Image {
+			set {
+				imageView.Image = value;
+			}
+		}
 
 		public override void ApplyLayoutAttributes (UICollectionViewLayoutAttributes layoutAttributes)
 		{
@@ -104,15 +101,15 @@ namespace SimpleCollectionView
 			if (attributes != null) {
 				var data = attributes.Data;
 				attributes.Center = new CGPoint (data.Center.X + data.Radius * attributes.Distance * (float) Math.Cos (2 * attributes.Row * Math.PI / data.CellCount),
-				                                data.Center.Y + data.Radius * attributes.Distance * (float) Math.Sin (2 * attributes.Row * Math.PI / data.CellCount));
+												data.Center.Y + data.Radius * attributes.Distance * (float) Math.Sin (2 * attributes.Row * Math.PI / data.CellCount));
 
-				if (!float.IsNaN ((float)attributes.Center.X) && !float.IsNaN ((float)attributes.Center.Y) &&
-					UIDevice.CurrentDevice.CheckSystemVersion(7, 0))
+				if (!float.IsNaN ((float) attributes.Center.X) && !float.IsNaN ((float) attributes.Center.Y) &&
+					UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
 					Center = attributes.Center;
 			}
 
 			base.ApplyLayoutAttributes (layoutAttributes);
 		}
-    }
+	}
 }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using AVFoundation;
 using CoreFoundation;
@@ -7,13 +7,11 @@ using CoreVideo;
 using Foundation;
 using UIKit;
 
-namespace ObjectTracker
-{
+namespace ObjectTracker {
 	/// <summary>
 	/// Handles the capturing of video from the device's rear camera
 	/// </summary>
-	public class VideoCapture : NSObject
-	{
+	public class VideoCapture : NSObject {
 		/// <summary>
 		/// The camera
 		/// </summary>
@@ -23,7 +21,7 @@ namespace ObjectTracker
 		/// Perform the capture and image-processing pipeline on a background queue (note that 
 		/// this is different than the Vision request
 		/// </summary>
-		DispatchQueue queue = new DispatchQueue("videoQueue");
+		DispatchQueue queue = new DispatchQueue ("videoQueue");
 
 		/// <summary>
 		/// Used by `AVCaptureVideoPreviewLayer` in `ViewController`
@@ -32,61 +30,55 @@ namespace ObjectTracker
 		public AVCaptureSession Session { get; }
 
 
-		AVCaptureVideoDataOutput videoOutput = new AVCaptureVideoDataOutput();
+		AVCaptureVideoDataOutput videoOutput = new AVCaptureVideoDataOutput ();
 
-		public IAVCaptureVideoDataOutputSampleBufferDelegate Delegate { get;  }
+		public IAVCaptureVideoDataOutputSampleBufferDelegate Delegate { get; }
 
-		public VideoCapture(IAVCaptureVideoDataOutputSampleBufferDelegate delegateObject)
+		public VideoCapture (IAVCaptureVideoDataOutputSampleBufferDelegate delegateObject)
 		{
 			Delegate = delegateObject;
-			Session = new AVCaptureSession();
-			SetupCamera();
+			Session = new AVCaptureSession ();
+			SetupCamera ();
 		}
 
 		/// <summary>
 		/// Typical video-processing code. More advanced would allow user selection of camera, resolution, etc.
 		/// </summary>
-		private void SetupCamera()
+		private void SetupCamera ()
 		{
-			var deviceDiscovery = AVCaptureDeviceDiscoverySession.Create(
-				new AVCaptureDeviceType[] { AVCaptureDeviceType.BuiltInWideAngleCamera }, AVMediaType.Video, AVCaptureDevicePosition.Back);
+			var deviceDiscovery = AVCaptureDeviceDiscoverySession.Create (
+				new AVCaptureDeviceType [] { AVCaptureDeviceType.BuiltInWideAngleCamera }, AVMediaType.Video, AVCaptureDevicePosition.Back);
 
-			var device = deviceDiscovery.Devices.Last();
-			if (device != null)
-			{
+			var device = deviceDiscovery.Devices.Last ();
+			if (device != null) {
 				captureDevice = device;
-				BeginSession();
+				BeginSession ();
 			}
 		}
 
-		private void BeginSession()
+		private void BeginSession ()
 		{
-			try
-			{
-				var settings = new CVPixelBufferAttributes
-				{
+			try {
+				var settings = new CVPixelBufferAttributes {
 					PixelFormatType = CVPixelFormatType.CV32BGRA
 				};
 				videoOutput.WeakVideoSettings = settings.Dictionary;
 				videoOutput.AlwaysDiscardsLateVideoFrames = true;
-				videoOutput.SetSampleBufferDelegateQueue(Delegate, queue);
+				videoOutput.SetSampleBufferDelegateQueue (Delegate, queue);
 
 				Session.SessionPreset = AVCaptureSession.Preset1920x1080;
-				Session.AddOutput(videoOutput);
+				Session.AddOutput (videoOutput);
 
-				var input = new AVCaptureDeviceInput(captureDevice, out var err);
-				if (err != null)
-				{
-					Console.Error.WriteLine("AVCapture error: " + err);
+				var input = new AVCaptureDeviceInput (captureDevice, out var err);
+				if (err != null) {
+					Console.Error.WriteLine ("AVCapture error: " + err);
 				}
-				Session.AddInput(input);
+				Session.AddInput (input);
 
-				Session.StartRunning();
-				Console.WriteLine("started AV capture session");
-			}
-			catch
-			{
-				Console.Error.WriteLine("error connecting to the capture device");
+				Session.StartRunning ();
+				Console.WriteLine ("started AV capture session");
+			} catch {
+				Console.Error.WriteLine ("error connecting to the capture device");
 			}
 		}
 
@@ -95,9 +87,9 @@ namespace ObjectTracker
 		/// </summary>
 		/// <returns>The (processed) video frame, as a UIImage.</returns>
 		/// <param name="imageBuffer">The (processed) video frame.</param>
-		public static UIImage ImageBufferToUIImage(CVPixelBuffer imageBuffer)
+		public static UIImage ImageBufferToUIImage (CVPixelBuffer imageBuffer)
 		{
-			imageBuffer.Lock(CVPixelBufferLock.None);
+			imageBuffer.Lock (CVPixelBufferLock.None);
 
 			var baseAddress = imageBuffer.BaseAddress;
 			var bytesPerRow = imageBuffer.BytesPerRow;
@@ -105,15 +97,14 @@ namespace ObjectTracker
 			var width = imageBuffer.Width;
 			var height = imageBuffer.Height;
 
-			var colorSpace = CGColorSpace.CreateDeviceRGB();
-			var bitmapInfo = (uint)CGImageAlphaInfo.NoneSkipFirst | (uint)CGBitmapFlags.ByteOrder32Little;
+			var colorSpace = CGColorSpace.CreateDeviceRGB ();
+			var bitmapInfo = (uint) CGImageAlphaInfo.NoneSkipFirst | (uint) CGBitmapFlags.ByteOrder32Little;
 
-			using (var context = new CGBitmapContext(baseAddress, width, height, 8, bytesPerRow, colorSpace, (CGImageAlphaInfo)bitmapInfo))
-			{
-				var quartzImage = context?.ToImage();
-				imageBuffer.Unlock(CVPixelBufferLock.None);
+			using (var context = new CGBitmapContext (baseAddress, width, height, 8, bytesPerRow, colorSpace, (CGImageAlphaInfo) bitmapInfo)) {
+				var quartzImage = context?.ToImage ();
+				imageBuffer.Unlock (CVPixelBufferLock.None);
 
-				var image = new UIImage(quartzImage, 1.0f, UIImageOrientation.Up);
+				var image = new UIImage (quartzImage, 1.0f, UIImageOrientation.Up);
 
 				return image;
 			}

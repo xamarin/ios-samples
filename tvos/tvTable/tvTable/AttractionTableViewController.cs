@@ -2,14 +2,12 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// Controls the <c>AttractionTableView</c> used to display a collection of <c>CityInformation</c> and
 	/// <c>AttractionInformation</c> objects.
 	/// </summary>
-	public partial class AttractionTableViewController : UITableViewController
-	{
+	public partial class AttractionTableViewController : UITableViewController {
 		#region Computed Properties
 		/// <summary>
 		/// Gets a shortcut to the <c>AttractionTableDatasource</c> that is providing the data for the 

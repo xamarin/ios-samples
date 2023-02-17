@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using AVFoundation;
 using CoreFoundation;
@@ -7,14 +7,12 @@ using CoreVideo;
 using Foundation;
 using UIKit;
 
-namespace ManualCameraControls
-{
+namespace ManualCameraControls {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		#region Private Variables
 
 		NSError Error;
@@ -127,7 +125,7 @@ namespace ManualCameraControls
 			// Configure and attach a still image output for bracketed capture
 			StillImageOutput = new AVCaptureStillImageOutput ();
 			var dict = new NSMutableDictionary ();
-			dict [AVVideo.CodecKey] = new NSNumber ((int)AVVideoCodec.JPEG);
+			dict [AVVideo.CodecKey] = new NSNumber ((int) AVVideoCodec.JPEG);
 			Session.AddOutput (StillImageOutput);
 
 			// Let tabs know that a camera is available

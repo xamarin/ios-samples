@@ -2,10 +2,8 @@ using System;
 using MonoTouch.UIKit;
 using System.Drawing;
 
-namespace TicTacToe
-{
-	public class TTTRatingControl : UIControl
-	{
+namespace TicTacToe {
+	public class TTTRatingControl : UIControl {
 		const int MinimumRating = 0;
 		const int MaximumRating = 0;
 		int rating;

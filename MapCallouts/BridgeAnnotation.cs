@@ -6,10 +6,8 @@ using Foundation;
 using MapKit;
 using UIKit;
 
-namespace MapCallouts
-{
-	public class BridgeAnnotation : MKAnnotation
-	{
+namespace MapCallouts {
+	public class BridgeAnnotation : MKAnnotation {
 		public override string Title { get { return "Golden Gate Bridge"; } }
 
 		public override string Subtitle { get { return "Opened: May 27, 1937"; } }

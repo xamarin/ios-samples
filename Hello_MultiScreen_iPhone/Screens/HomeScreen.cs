@@ -4,10 +4,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Hello_MultiScreen_iPhone
-{
-	public partial class HomeScreen : UIViewController
-	{
+namespace Hello_MultiScreen_iPhone {
+	public partial class HomeScreen : UIViewController {
 		HelloWorldScreen helloWorldScreen;
 		HelloUniverseScreen helloUniverseScreen;
 
@@ -24,15 +22,15 @@ namespace Hello_MultiScreen_iPhone
 			this.btnHelloWorld.TouchUpInside += (sender, e) => {
 				//---- instantiate a new hello world screen, if it's null (it may not be null if they've navigated
 				// backwards from it
-				if(this.helloWorldScreen == null) { this.helloWorldScreen = new HelloWorldScreen(); }
+				if (this.helloWorldScreen == null) { this.helloWorldScreen = new HelloWorldScreen (); }
 				//---- push our hello world screen onto the navigation controller and pass a true so it navigates
-				this.NavigationController.PushViewController(this.helloWorldScreen, true);
+				this.NavigationController.PushViewController (this.helloWorldScreen, true);
 			};
 
 			//---- same thing, but for the hello universe screen
 			this.btnHelloUniverse.TouchUpInside += (sender, e) => {
-				if(this.helloUniverseScreen == null) { this.helloUniverseScreen = new HelloUniverseScreen(); }
-				this.NavigationController.PushViewController(this.helloUniverseScreen, true);
+				if (this.helloUniverseScreen == null) { this.helloUniverseScreen = new HelloUniverseScreen (); }
+				this.NavigationController.PushViewController (this.helloUniverseScreen, true);
 			};
 		}
 

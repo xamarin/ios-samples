@@ -6,12 +6,10 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller that allows the user to add services to a service group.
-	public partial class ServiceGroupViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
-		static readonly NSString ServiceCell = (NSString)"ServiceCell";
+	public partial class ServiceGroupViewController : HMCatalogViewController, IHMAccessoryDelegate {
+		static readonly NSString ServiceCell = (NSString) "ServiceCell";
 		const string AddServicesSegue = "Add Services Plus";
 
 		[Outlet ("plusButton")]
@@ -64,14 +62,14 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			var accessory = accessories [(int)section];
+			var accessory = accessories [(int) section];
 			List<HMService> services;
 			return servicesForAccessory.TryGetValue (accessory, out services) ? services.Count : 0;
 		}
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return accessories [(int)section].Name;
+			return accessories [(int) section].Name;
 		}
 
 		public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
@@ -81,7 +79,7 @@ namespace HomeKitCatalog
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (ServiceCell)tableView.DequeueReusableCell (ServiceCell, indexPath);
+			var cell = (ServiceCell) tableView.DequeueReusableCell (ServiceCell, indexPath);
 			var service = ServiceAtIndexPath (indexPath);
 			cell.IncludeAccessoryText = false;
 			cell.Service = service;
@@ -121,7 +119,7 @@ namespace HomeKitCatalog
 		{
 			base.PrepareForSegue (segue, sender);
 			if (segue.Identifier == AddServicesSegue) {
-				var addServicesVC = (AddServicesViewController)segue.IntendedDestinationViewController ();
+				var addServicesVC = (AddServicesViewController) segue.IntendedDestinationViewController ();
 				addServicesVC.ServiceGroup = ServiceGroup;
 			}
 		}

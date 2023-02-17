@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using static System.Console;
@@ -17,7 +17,7 @@ namespace MusicMotion {
 	}
 
 	public class MotionManager {
-		
+
 		const int MaxActivitySamples = 2;
 		const int MaxAltitudeSamples = 10;
 		const int MaxPedometerSamples = 1;
@@ -46,7 +46,7 @@ namespace MusicMotion {
 		NSOperationQueue motionQueue;
 		NSOperationQueue MotionQueue {
 			get {
-				motionQueue = motionQueue ?? new NSOperationQueue  { Name = "musicMotionQueue" };
+				motionQueue = motionQueue ?? new NSOperationQueue { Name = "musicMotionQueue" };
 				return motionQueue;
 			}
 		}
@@ -60,10 +60,10 @@ namespace MusicMotion {
 		bool IsInLowIntensityContext =>
 			IsUserStationary;
 
-		bool IsInDrivingContext => 
+		bool IsInDrivingContext =>
 			IsUserDriving;
 
-		bool IsUserPaceHigh => 
+		bool IsUserPaceHigh =>
 			(CurrentPace == 0) ? true : CurrentPace < MotionManager.HighPace;
 
 		bool IsUserPaceMedium =>
@@ -88,7 +88,7 @@ namespace MusicMotion {
 
 				if (firstAltitude == null || lastAltitude == null)
 					return false;
-				
+
 				return Math.Abs (firstAltitude.RelativeAltitude.DoubleValue - lastAltitude.RelativeAltitude.DoubleValue) > MotionManager.MetersForSignificantAltitudeChange;
 			}
 		}
@@ -193,7 +193,7 @@ namespace MusicMotion {
 			}
 		}
 
-		List<Activity> CreateActivityDataWithActivities (CMMotionActivity[] activities, Action completionHandler)
+		List<Activity> CreateActivityDataWithActivities (CMMotionActivity [] activities, Action completionHandler)
 		{
 			var results = new List<Activity> ();
 
@@ -201,20 +201,20 @@ namespace MusicMotion {
 			var queue = new DispatchQueue ("resultQueue");
 
 			var filteredActivities = activities.Where (activity => activity.HasActivitySignature ()
-                 && !activity.Stationary
-                 && activity.Confidence != CMMotionActivityConfidence.Low).ToArray<CMMotionActivity> ();
+				 && !activity.Stationary
+				 && activity.Confidence != CMMotionActivityConfidence.Low).ToArray<CMMotionActivity> ();
 
 			var activitySegments = FindActivitySegments (filteredActivities);
 
 			foreach (var segment in activitySegments) {
 				group.Enter ();
-				pedometer.QueryPedometerData (segment.Item1.StartDate, (NSDate)segment.Item2, (pedometerData, error) => {
+				pedometer.QueryPedometerData (segment.Item1.StartDate, (NSDate) segment.Item2, (pedometerData, error) => {
 					queue.DispatchAsync (() => {
 						var activity = new Activity (segment.Item1,
-			               ((DateTime)segment.Item1.StartDate).ToLocalTime (),
-			               segment.Item2.ToLocalTime (),
-			               pedometerData);
-						
+						   ((DateTime) segment.Item1.StartDate).ToLocalTime (),
+						   segment.Item2.ToLocalTime (),
+						   pedometerData);
+
 						results.Add (activity);
 					});
 
@@ -236,34 +236,34 @@ namespace MusicMotion {
 			return results;
 		}
 
-		List<Tuple<CMMotionActivity, DateTime>> FindActivitySegments (CMMotionActivity[] activities)
+		List<Tuple<CMMotionActivity, DateTime>> FindActivitySegments (CMMotionActivity [] activities)
 		{
 			var segments = new List<Tuple<CMMotionActivity, DateTime>> ();
 
 			for (int i = 0; i < activities.Length - 1; i++) {
 				var activity = activities [i];
-				var startDate = (DateTime)activity.StartDate;
+				var startDate = (DateTime) activity.StartDate;
 
 				var nextActivity = activities [++i];
-				var endDate = (DateTime)nextActivity.StartDate;
+				var endDate = (DateTime) nextActivity.StartDate;
 
 				while (i < activities.Length - 1) {
-					
+
 					if (!activity.IsSimilarToActivity (nextActivity))
 						break;
 
-					var previousActivityEnd = (DateTime)activities [i - 1].StartDate;
+					var previousActivityEnd = (DateTime) activities [i - 1].StartDate;
 					var secondsBetweenActivites = (endDate - previousActivityEnd).TotalSeconds;
 
 					if (secondsBetweenActivites >= 60 * 60)
 						break;
 
 					nextActivity = activities [++i];
-					endDate = (DateTime)nextActivity.StartDate;
+					endDate = (DateTime) nextActivity.StartDate;
 				}
 
 				nextActivity = (i != activities.Length - 1) ? activities [--i] : activities [i];
-				endDate = (DateTime)nextActivity.StartDate;
+				endDate = (DateTime) nextActivity.StartDate;
 
 				if ((endDate - startDate).TotalSeconds > 60)
 					segments.Add (new Tuple<CMMotionActivity, DateTime> (activity, endDate));
@@ -299,7 +299,7 @@ namespace MusicMotion {
 
 		void HandleError (NSError error)
 		{
-			if (error.Code == (int)CMError.MotionActivityNotAuthorized)
+			if (error.Code == (int) CMError.MotionActivityNotAuthorized)
 				DidEncounterAuthorizationError?.Invoke (this, null);
 			else
 				WriteLine (error.LocalizedDescription);

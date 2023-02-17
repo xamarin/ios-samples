@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touches_GestureRecognizers", "Touches_GestureRecognizers.csproj", "{2099AE48-7732-405F-99E3-26E021ABEBC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touches_GestureRecognizers", "Touches_GestureRecognizers.csproj", "{F538832A-EED9-4357-B402-F63617F35075}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Debug|iPhone.Build.0 = Debug|iPhone
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Release|iPhone.ActiveCfg = Release|iPhone
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Release|iPhone.Build.0 = Release|iPhone
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{2099AE48-7732-405F-99E3-26E021ABEBC2}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F538832A-EED9-4357-B402-F63617F35075}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F538832A-EED9-4357-B402-F63617F35075}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F538832A-EED9-4357-B402-F63617F35075}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F538832A-EED9-4357-B402-F63617F35075}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F538832A-EED9-4357-B402-F63617F35075}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F538832A-EED9-4357-B402-F63617F35075}.Release|iPhone.Build.0 = Release|iPhone
+		{F538832A-EED9-4357-B402-F63617F35075}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F538832A-EED9-4357-B402-F63617F35075}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Touches_GestureRecognizers\Touches_GestureRecognizers.csproj

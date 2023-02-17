@@ -3,16 +3,14 @@ using UIKit;
 using Example_SharedResources.Code;
 using System.Collections.Generic;
 
-namespace Example_SharedResources.Screens.iPhone.Home
-{
-	public class HomeNavController : UITableViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Home {
+	public class HomeNavController : UITableViewController {
 		// declare vars
-		List<NavItemGroup> navItems = new List<NavItemGroup>();
+		List<NavItemGroup> navItems = new List<NavItemGroup> ();
 		NavItemTableSource tableSource;
 		UITableView tableView;
 
-		public HomeNavController () : base(UITableViewStyle.Grouped)
+		public HomeNavController () : base (UITableViewStyle.Grouped)
 		{
 		}
 

@@ -5,10 +5,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace AutoWait
-{
-	public partial class PlayerView : UIView
-	{
+namespace AutoWait {
+	public partial class PlayerView : UIView {
 		static Class layerClass;
 
 		public static Class LayerClass {
@@ -20,10 +18,10 @@ namespace AutoWait
 
 		public AVPlayer Player {
 			set {
-				((AVPlayerLayer)Layer).Player = value;
+				((AVPlayerLayer) Layer).Player = value;
 			}
 			get {
-				return ((AVPlayerLayer)Layer).Player;
+				return ((AVPlayerLayer) Layer).Player;
 			}
 		}
 

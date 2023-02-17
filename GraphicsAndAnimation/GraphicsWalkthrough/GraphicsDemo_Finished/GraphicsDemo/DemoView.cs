@@ -4,10 +4,8 @@ using CoreGraphics;
 using CoreAnimation;
 using Foundation;
 
-namespace GraphicsDemo
-{
-	public class DemoView : UIView
-	{
+namespace GraphicsDemo {
+	public class DemoView : UIView {
 		CGPath path;
 		CGPoint initialPoint;
 		CGPoint latestPoint;
@@ -66,7 +64,7 @@ namespace GraphicsDemo
 
 			// create a keyframe animation for the position using the path
 			layer.Position = latestPoint;
-			CAKeyFrameAnimation animPosition = (CAKeyFrameAnimation)CAKeyFrameAnimation.FromKeyPath ("position");
+			CAKeyFrameAnimation animPosition = (CAKeyFrameAnimation) CAKeyFrameAnimation.FromKeyPath ("position");
 			animPosition.Path = path;
 			animPosition.Duration = 3;
 			layer.AddAnimation (animPosition, "position");
@@ -79,7 +77,7 @@ namespace GraphicsDemo
 			if (!initialPoint.IsEmpty) {
 
 				//get graphics context
-				using(CGContext g = UIGraphics.GetCurrentContext ()){
+				using (CGContext g = UIGraphics.GetCurrentContext ()) {
 
 					//set up drawing attributes
 					g.SetLineWidth (2);
@@ -87,19 +85,19 @@ namespace GraphicsDemo
 
 					//add lines to the touch points
 					if (path.IsEmpty) {
-						path.AddLines (new CGPoint[]{initialPoint, latestPoint});
+						path.AddLines (new CGPoint [] { initialPoint, latestPoint });
 					} else {
 						path.AddLineToPoint (latestPoint);
 					}
 
 					//use a dashed line
-					g.SetLineDash (0, new nfloat[] { 5, 2 * (nfloat)Math.PI });
+					g.SetLineDash (0, new nfloat [] { 5, 2 * (nfloat) Math.PI });
 
 					//add geometry to graphics context and draw it
-					g.AddPath (path);		
+					g.AddPath (path);
 					g.DrawPath (CGPathDrawingMode.Stroke);
 				}
 			}
-		}	           
+		}
 	}
 }

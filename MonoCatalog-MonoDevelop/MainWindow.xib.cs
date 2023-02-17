@@ -42,7 +42,7 @@ namespace MonoCatalog {
 		//
 		// Constructor invoked from the NIB loader
 		//
-		public MainViewController (IntPtr p) : base (p) {}
+		public MainViewController (IntPtr p) : base (p) { }
 
 		//
 		// The data source for our TableView
@@ -63,7 +63,7 @@ namespace MonoCatalog {
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				var cell = tableView.DequeueReusableCell (kCellIdentifier);
-				if (cell == null){
+				if (cell == null) {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kCellIdentifier);
 					cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 				}

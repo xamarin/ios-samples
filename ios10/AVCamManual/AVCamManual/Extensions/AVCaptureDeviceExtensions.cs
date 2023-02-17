@@ -1,9 +1,7 @@
 using AVFoundation;
 
-namespace AVCamManual
-{
-	public static class AVCaptureDeviceExtensions
-	{
+namespace AVCamManual {
+	public static class AVCaptureDeviceExtensions {
 		public static bool TrySetFocusMode (this AVCaptureDevice device, AVCaptureFocusMode mode)
 		{
 			bool isSupported = device.IsFocusModeSupported (mode);

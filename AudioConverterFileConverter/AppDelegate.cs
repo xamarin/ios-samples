@@ -34,9 +34,8 @@ using AVFoundation;
 using Foundation;
 using UIKit;
 
-namespace AudioConverterFileConverter
-{
-    /*
+namespace AudioConverterFileConverter {
+	/*
 	Since we perform conversion in a background thread, we must ensure that we handle interruptions appropriately.
 	In this sample we're using a mutex protected variable tracking thread states. The background conversion threads state transistions from Done to Running
 	to Done unless we've been interrupted in which case we are Paused blocking the conversion thread and preventing further calls
@@ -45,169 +44,154 @@ namespace AudioConverterFileConverter
 	Any errors returned from AudioConverterFillComplexBuffer must be handled appropriately. Additionally, if the Audio Converter cannot
 	resume conversion after an interruption, you should not call AudioConverterFillComplexBuffer again.
 	*/
-    public enum State
-    {
-        Running,
-        Paused,
-        Done
-    }
+	public enum State {
+		Running,
+		Paused,
+		Done
+	}
 
-    // The UIApplicationDelegate for the application. This class is responsible for launching the
-    // User Interface of the application, as well as listening (and optionally responding) to
-    // application events from iOS.
-    [Register("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
-    {
-        static State State = State.Done;
-        static AutoResetEvent StateChanged = new AutoResetEvent(false);
-        static readonly object StateLock = new object();
+	// The UIApplicationDelegate for the application. This class is responsible for launching the
+	// User Interface of the application, as well as listening (and optionally responding) to
+	// application events from iOS.
+	[Register ("AppDelegate")]
+	public partial class AppDelegate : UIApplicationDelegate {
+		static State State = State.Done;
+		static AutoResetEvent StateChanged = new AutoResetEvent (false);
+		static readonly object StateLock = new object ();
 
-        private AVAudioSession session;
+		private AVAudioSession session;
 
-        // class-level declarations
+		// class-level declarations
 
-        public override UIWindow Window
-        {
-            get;
-            set;
-        }
+		public override UIWindow Window {
+			get;
+			set;
+		}
 
-        //
-        // This method is invoked when the application has loaded and is ready to run. In this
-        // method you should instantiate the window, load the UI into it and then make the window
-        // visible.
-        //
-        // You have 17 seconds to return from this method, or iOS will terminate your application.
-        //
-        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
-        {
-            session = AVAudioSession.SharedInstance();
-            session.BeginInterruption += delegate
-            {
-                Debug.WriteLine("Session interrupted");
-                ThreadStateBeginInterruption();
-            };
-            session.EndInterruption += (object sender, EventArgs e) =>
-            {
-                Debug.WriteLine("Session resumed");
-                session.SetActive(true);
-                ThreadStateEndInterruption();
-            };
+		//
+		// This method is invoked when the application has loaded and is ready to run. In this
+		// method you should instantiate the window, load the UI into it and then make the window
+		// visible.
+		//
+		// You have 17 seconds to return from this method, or iOS will terminate your application.
+		//
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
+		{
+			session = AVAudioSession.SharedInstance ();
+			session.BeginInterruption += delegate
+			{
+				Debug.WriteLine ("Session interrupted");
+				ThreadStateBeginInterruption ();
+			};
+			session.EndInterruption += (object sender, EventArgs e) => {
+				Debug.WriteLine ("Session resumed");
+				session.SetActive (true);
+				ThreadStateEndInterruption ();
+			};
 
-			int routes = (int)session.InputNumberOfChannels;
+			int routes = (int) session.InputNumberOfChannels;
 
-            // our default category -- we change this for conversion and playback appropriately
-            try
-            {
-                session.SetCategory (AVAudioSessionCategory.SoloAmbient);
-            }
-            catch
-            {
-                Debug.Print("ERROR: Cannot change audio session category");
-            }
+			// our default category -- we change this for conversion and playback appropriately
+			try {
+				session.SetCategory (AVAudioSessionCategory.SoloAmbient);
+			} catch {
+				Debug.Print ("ERROR: Cannot change audio session category");
+			}
 
-            session.InputAvailabilityChanged += (object sender, AVStatusEventArgs e) =>
-            {
-                var sess = sender as AVAudioSession;
-                Debug.Print("Old route: {0}", routes);
-                Debug.Print("New route: {0}", sess.InputNumberOfChannels);
-				routes = (int)sess.InputNumberOfChannels;
-            };
+			session.InputAvailabilityChanged += (object sender, AVStatusEventArgs e) => {
+				var sess = sender as AVAudioSession;
+				Debug.Print ("Old route: {0}", routes);
+				Debug.Print ("New route: {0}", sess.InputNumberOfChannels);
+				routes = (int) sess.InputNumberOfChannels;
+			};
 
-            session.SetActive(true);
-            return true;
-        }
+			session.SetActive (true);
+			return true;
+		}
 
-        // This method is invoked when the application is about to move from active to inactive state.
-        // OpenGL applications should use this method to pause.
-        public override void OnResignActivation(UIApplication application)
-        {
-            ThreadStateBeginInterruption();
-            session.SetActive(false);
-            Debug.Write("Audio Session Deactivated");
-        }
+		// This method is invoked when the application is about to move from active to inactive state.
+		// OpenGL applications should use this method to pause.
+		public override void OnResignActivation (UIApplication application)
+		{
+			ThreadStateBeginInterruption ();
+			session.SetActive (false);
+			Debug.Write ("Audio Session Deactivated");
+		}
 
-        // This method should be used to release shared resources and it should store the application state.
-        // If your application supports background exection this method is called instead of WillTerminate
-        // when the user quits.
-        public override void DidEnterBackground(UIApplication application)
-        {
-        }
+		// This method should be used to release shared resources and it should store the application state.
+		// If your application supports background exection this method is called instead of WillTerminate
+		// when the user quits.
+		public override void DidEnterBackground (UIApplication application)
+		{
+		}
 
-        /// This method is called as part of the transiton from background to active state.
-        public override void WillEnterForeground(UIApplication application)
-        {
-        }
+		/// This method is called as part of the transiton from background to active state.
+		public override void WillEnterForeground (UIApplication application)
+		{
+		}
 
-        /// This method is called when the application is about to terminate. Save data, if needed.
-        public override void WillTerminate(UIApplication application)
-        {
-        }
+		/// This method is called when the application is about to terminate. Save data, if needed.
+		public override void WillTerminate (UIApplication application)
+		{
+		}
 
-        static void ThreadStateBeginInterruption()
-        {
-            Debug.Assert(NSThread.IsMain);
+		static void ThreadStateBeginInterruption ()
+		{
+			Debug.Assert (NSThread.IsMain);
 
-            lock (StateLock)
-            {
-                State = State.Paused;
-            }
-        }
+			lock (StateLock) {
+				State = State.Paused;
+			}
+		}
 
-        static void ThreadStateEndInterruption()
-        {
-            Debug.Assert(NSThread.IsMain);
+		static void ThreadStateEndInterruption ()
+		{
+			Debug.Assert (NSThread.IsMain);
 
-            lock (StateLock)
-            {
-                if (State == State.Paused)
-                {
-                    State = State.Running;
+			lock (StateLock) {
+				if (State == State.Paused) {
+					State = State.Running;
 
-                    StateChanged.Set();
-                }
-            }
-        }
+					StateChanged.Set ();
+				}
+			}
+		}
 
-        public static void ThreadStateSetRunning()
-        {
-            lock (StateLock)
-            {
-                Debug.Assert(State == State.Done);
-                State = State.Running;
-            }
-        }
+		public static void ThreadStateSetRunning ()
+		{
+			lock (StateLock) {
+				Debug.Assert (State == State.Done);
+				State = State.Running;
+			}
+		}
 
-        // block for state change to State.Running
-        public static bool ThreadStatePausedCheck()
-        {
-            var wasInterrupted = false;
+		// block for state change to State.Running
+		public static bool ThreadStatePausedCheck ()
+		{
+			var wasInterrupted = false;
 
-            lock (StateLock)
-            {
-                Debug.Assert(State != State.Done);
+			lock (StateLock) {
+				Debug.Assert (State != State.Done);
 
-                while (State == State.Paused)
-                {
-                    StateChanged.WaitOne();
-                    wasInterrupted = true;
-                }
+				while (State == State.Paused) {
+					StateChanged.WaitOne ();
+					wasInterrupted = true;
+				}
 
-                // we must be running or something bad has happened
-                Debug.Assert(State == State.Running);
-            }
+				// we must be running or something bad has happened
+				Debug.Assert (State == State.Running);
+			}
 
-            return wasInterrupted;
-        }
+			return wasInterrupted;
+		}
 
-        public static void ThreadStateSetDone()
-        {
-            lock (StateLock)
-            {
-                Debug.Assert(State != State.Done);
-                State = State.Done;
-            }
-        }
-    }
+		public static void ThreadStateSetDone ()
+		{
+			lock (StateLock) {
+				Debug.Assert (State != State.Done);
+				State = State.Done;
+			}
+		}
+	}
 }
 

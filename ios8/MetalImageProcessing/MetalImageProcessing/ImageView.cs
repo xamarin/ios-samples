@@ -9,14 +9,12 @@ using CoreAnimation;
 using Metal;
 using CoreGraphics;
 
-namespace MetalImageProcessing
-{
-	public partial class ImageView : UIView
-	{
+namespace MetalImageProcessing {
+	public partial class ImageView : UIView {
 		[Export ("layerClass")]
 		public static Class LayerClass ()
 		{
-			return new Class (typeof(CAMetalLayer));
+			return new Class (typeof (CAMetalLayer));
 		}
 
 		IMTLDevice device;
@@ -51,7 +49,7 @@ namespace MetalImageProcessing
 			Opaque = true;
 			BackgroundColor = UIColor.Clear;
 
-			metalLayer = (CAMetalLayer)Layer;
+			metalLayer = (CAMetalLayer) Layer;
 
 			device = MTLDevice.SystemDefault;
 
@@ -135,29 +133,29 @@ namespace MetalImageProcessing
 			}
 
 			if (DepthPixelFormat != MTLPixelFormat.Invalid && (depthTex == null || NeedUpdate (texture, depthTex))) {
-					var desc = MTLTextureDescriptor.CreateTexture2DDescriptor (DepthPixelFormat, texture.Width, texture.Height, false);
-					desc.TextureType = (SampleCount > 1) ? MTLTextureType.k2DMultisample : MTLTextureType.k2D;
-					desc.SampleCount = SampleCount;
-					depthTex = device.CreateTexture (desc);
+				var desc = MTLTextureDescriptor.CreateTexture2DDescriptor (DepthPixelFormat, texture.Width, texture.Height, false);
+				desc.TextureType = (SampleCount > 1) ? MTLTextureType.k2DMultisample : MTLTextureType.k2D;
+				desc.SampleCount = SampleCount;
+				depthTex = device.CreateTexture (desc);
 
-					MTLRenderPassDepthAttachmentDescriptor depthAttachment = renderPassDescriptor.DepthAttachment;
-					depthAttachment.Texture = depthTex;
-					depthAttachment.LoadAction = MTLLoadAction.Clear;
-					depthAttachment.StoreAction = MTLStoreAction.DontCare;
-					depthAttachment.ClearDepth = 1.0;
+				MTLRenderPassDepthAttachmentDescriptor depthAttachment = renderPassDescriptor.DepthAttachment;
+				depthAttachment.Texture = depthTex;
+				depthAttachment.LoadAction = MTLLoadAction.Clear;
+				depthAttachment.StoreAction = MTLStoreAction.DontCare;
+				depthAttachment.ClearDepth = 1.0;
 			}
 
 			if (StencilPixelFormat != MTLPixelFormat.Invalid && (stencilTex == null || NeedUpdate (texture, stencilTex))) {
-					var desc = MTLTextureDescriptor.CreateTexture2DDescriptor (StencilPixelFormat, texture.Width, texture.Height, false);
-					desc.TextureType = (SampleCount > 1) ? MTLTextureType.k2DMultisample : MTLTextureType.k2D;
-					desc.SampleCount = SampleCount;
-					stencilTex = device.CreateTexture (desc);
+				var desc = MTLTextureDescriptor.CreateTexture2DDescriptor (StencilPixelFormat, texture.Width, texture.Height, false);
+				desc.TextureType = (SampleCount > 1) ? MTLTextureType.k2DMultisample : MTLTextureType.k2D;
+				desc.SampleCount = SampleCount;
+				stencilTex = device.CreateTexture (desc);
 
-					MTLRenderPassStencilAttachmentDescriptor stencilAttachment = renderPassDescriptor.StencilAttachment;
-					stencilAttachment.Texture = stencilTex;
-					stencilAttachment.LoadAction = MTLLoadAction.Clear;
-					stencilAttachment.StoreAction = MTLStoreAction.DontCare;
-					stencilAttachment.ClearStencil = 0;
+				MTLRenderPassStencilAttachmentDescriptor stencilAttachment = renderPassDescriptor.StencilAttachment;
+				stencilAttachment.Texture = stencilTex;
+				stencilAttachment.LoadAction = MTLLoadAction.Clear;
+				stencilAttachment.StoreAction = MTLStoreAction.DontCare;
+				stencilAttachment.ClearStencil = 0;
 			}
 		}
 

@@ -6,11 +6,9 @@ using Foundation;
 using Photos;
 using UIKit;
 
-namespace RawExpose
-{
+namespace RawExpose {
 	// This UICollectionViewController displayes all albums from the Photos library.
-	public partial class AlbumCollectionViewController : UICollectionViewController
-	{
+	public partial class AlbumCollectionViewController : UICollectionViewController {
 		const string lightboxSegueName = "LightboxSegue";
 
 		// Array of albums displayed in this UICollectionView
@@ -65,7 +63,7 @@ namespace RawExpose
 			cell.ImageView.Image = null;
 			cell.Label.Text = collection.LocalizedTitle;
 
-			var firstAsset = (PHAsset)PHAsset.FetchAssets (collection, new PHFetchOptions ()).firstObject;
+			var firstAsset = (PHAsset) PHAsset.FetchAssets (collection, new PHFetchOptions ()).firstObject;
 			if (firstAsset != null) {
 				var options = new PHImageRequestOptions {
 					Synchronous = true

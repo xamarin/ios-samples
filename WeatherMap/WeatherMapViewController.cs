@@ -31,11 +31,9 @@ using MapKit;
 using Foundation;
 using CoreLocation;
 
-namespace WeatherMap
-{
-	public partial class WeatherMapViewController : UIViewController
-	{
-		WeatherForecastAnnotation[] annotations;
+namespace WeatherMap {
+	public partial class WeatherMapViewController : UIViewController {
+		WeatherForecastAnnotation [] annotations;
 		WeatherServer weatherServer;
 
 		public WeatherMapViewController (string nibName, NSBundle bundle) : base (nibName, bundle)
@@ -99,8 +97,8 @@ namespace WeatherMap
 			// e.g. myOutlet = null;
 			if (annotations != null) {
 				for (int i = 0; i < annotations.Length; i++) {
-					annotations[i].Dispose ();
-					annotations[i] = null;
+					annotations [i].Dispose ();
+					annotations [i] = null;
 				}
 
 				annotations = null;

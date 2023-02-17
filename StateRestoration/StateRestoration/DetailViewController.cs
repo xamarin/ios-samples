@@ -9,10 +9,8 @@ using CoreImage;
 using ObjCRuntime;
 using System.Linq;
 
-namespace StateRestoration
-{
-	public partial class DetailViewController : UIViewController, IUIObjectRestoration
-	{
+namespace StateRestoration {
+	public partial class DetailViewController : UIViewController, IUIObjectRestoration {
 		const string blurFilterKey = "kBlurFilterKey";
 		const string modifyFilterKey = "kModifyFilterKey";
 		const string imageIdentifierKey = "kImageIdentifierKey";
@@ -25,7 +23,7 @@ namespace StateRestoration
 		UIImage image;
 		nfloat lastScale;
 		bool statusBarHidden;
-		Dictionary<string,ImageFilter> filters;
+		Dictionary<string, ImageFilter> filters;
 
 		UITapGestureRecognizer tapGestureRecognizer;
 		UITapGestureRecognizer doubleTapGestureRecognizer;
@@ -132,19 +130,19 @@ namespace StateRestoration
 			if (filterKey == null)
 				return;
 
-			var filterViewController = (FilterViewController)segue.DestinationViewController;
+			var filterViewController = (FilterViewController) segue.DestinationViewController;
 			filterViewController.filter = GetImageFilter (filterKey);
 		}
 
 		string MapToFilterKey (string segueIdentifier)
 		{
 			switch (segueIdentifier) {
-				case "showBlurInfo":
-					return blurFilterKey;
-				case "showModifyInfo":
-					return modifyFilterKey;
-				default:
-					return null;
+			case "showBlurInfo":
+				return blurFilterKey;
+			case "showModifyInfo":
+				return modifyFilterKey;
+			default:
+				return null;
 			}
 		}
 
@@ -171,19 +169,19 @@ namespace StateRestoration
 		static ImageFilter CreateFilterFrom (string key, bool useDefault)
 		{
 			switch (key) {
-				case blurFilterKey:
-					return new BlurFilter (useDefault);
-				case modifyFilterKey:
-					return new ModifyFilter (useDefault);
-				default:
-					throw new NotImplementedException ();
+			case blurFilterKey:
+				return new BlurFilter (useDefault);
+			case modifyFilterKey:
+				return new ModifyFilter (useDefault);
+			default:
+				throw new NotImplementedException ();
 			}
 		}
 
 		static void Register (ImageFilter filter, string key)
 		{
 			UIApplication.RegisterObjectForStateRestoration (filter, key);
-			filter.RestorationType = typeof(DetailViewController);
+			filter.RestorationType = typeof (DetailViewController);
 		}
 
 		void OnDoubleTapGesture (UITapGestureRecognizer tapGesture)
@@ -268,10 +266,10 @@ namespace StateRestoration
 		{
 			ImageFilter f;
 			filters.TryGetValue (key, out f);
-			return (T)f;
+			return (T) f;
 		}
 
-		bool IsAnyDirty (params ImageFilter[] filters)
+		bool IsAnyDirty (params ImageFilter [] filters)
 		{
 			return filters.Where (f => f != null).Any (f => f.Dirty);
 		}
@@ -354,7 +352,7 @@ namespace StateRestoration
 		{
 			bool flip = orientation.IsLandscape ();
 			var bounds = UIScreen.MainScreen.Bounds;
-			NSLayoutConstraint[] constraints = imageView.Constraints;
+			NSLayoutConstraint [] constraints = imageView.Constraints;
 
 			foreach (var constraint in constraints) {
 				if (constraint.FirstAttribute == NSLayoutAttribute.Height)
@@ -377,7 +375,7 @@ namespace StateRestoration
 
 		// State Restoration
 		[Export ("objectWithRestorationIdentifierPath:coder:")]
-		public static UIStateRestoring GetStateRestorationObjectFromPath (string[] identifierComponents, NSCoder coder)
+		public static UIStateRestoring GetStateRestorationObjectFromPath (string [] identifierComponents, NSCoder coder)
 		{
 			var key = identifierComponents [identifierComponents.Length - 1];
 			return CreateFilter (key, false);
@@ -387,7 +385,7 @@ namespace StateRestoration
 		{
 			base.EncodeRestorableState (coder);
 
-			coder.Encode ((NSString)ImageIdentifier, imageIdentifierKey);
+			coder.Encode ((NSString) ImageIdentifier, imageIdentifierKey);
 			coder.Encode (DataSource, dataSourceKey);
 			TryEncodeFilters (coder);
 			TryEncodeBarsVisibility (coder);
@@ -415,8 +413,8 @@ namespace StateRestoration
 		{
 			base.DecodeRestorableState (coder);
 
-			ImageIdentifier = (NSString)coder.DecodeObject (imageIdentifierKey);
-			DataSource = (DataSource)coder.DecodeObject (dataSourceKey);
+			ImageIdentifier = (NSString) coder.DecodeObject (imageIdentifierKey);
+			DataSource = (DataSource) coder.DecodeObject (dataSourceKey);
 			TryDecodeFilters (coder);
 			TryDecodeBarsVisibility (coder);
 		}
@@ -426,17 +424,17 @@ namespace StateRestoration
 			if (!coder.ContainsKey (imageFiltersKey))
 				return;
 
-			var filtersNS = (NSMutableDictionary)coder.DecodeObject (imageFiltersKey);
+			var filtersNS = (NSMutableDictionary) coder.DecodeObject (imageFiltersKey);
 			if (filtersNS == null)
 				return;
 
 			filters = new Dictionary<string, ImageFilter> ();
 
-			var blurFilter = (ImageFilter)filtersNS [blurFilterKey];
+			var blurFilter = (ImageFilter) filtersNS [blurFilterKey];
 			if (blurFilter != null)
 				filters [blurFilterKey] = blurFilter;
 
-			var modifyFilter = (ImageFilter)filtersNS [modifyFilterKey];
+			var modifyFilter = (ImageFilter) filtersNS [modifyFilterKey];
 			if (modifyFilter != null)
 				filters [modifyFilterKey] = modifyFilter;
 		}

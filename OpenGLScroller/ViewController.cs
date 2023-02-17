@@ -10,10 +10,8 @@ using Foundation;
 using GLKit;
 using UIKit;
 
-namespace OpenGLScroller
-{
-	public class ViewController : GLKViewController
-	{
+namespace OpenGLScroller {
+	public class ViewController : GLKViewController {
 		CADisplayLink displayLink;
 		UIScrollView scrollView;
 
@@ -60,7 +58,7 @@ namespace OpenGLScroller
 			StartDisplayLinkIfNeeded ();
 		}
 
-		 void DraggingEnded (object sender, DraggingEventArgs ea)
+		void DraggingEnded (object sender, DraggingEventArgs ea)
 		{
 			if (!ea.Decelerate)
 				StopDisplayLink ();

@@ -27,15 +27,15 @@ namespace FilterDemoFramework {
 		CAShapeLayer curveLayer;
 		List<double> frequencies;
 
-		readonly List <CATextLayer> dbLabels = new List <CATextLayer> ();
-		readonly List <CATextLayer> frequencyLabels = new List<CATextLayer> ();
-		readonly List <CALayer> dbLines = new List <CALayer> ();
-		readonly List <CALayer> freqLines = new List<CALayer> ();
-		readonly List <CALayer> controls = new List<CALayer> ();
+		readonly List<CATextLayer> dbLabels = new List<CATextLayer> ();
+		readonly List<CATextLayer> frequencyLabels = new List<CATextLayer> ();
+		readonly List<CALayer> dbLines = new List<CALayer> ();
+		readonly List<CALayer> freqLines = new List<CALayer> ();
+		readonly List<CALayer> controls = new List<CALayer> ();
 		readonly CALayer containerLayer = new CALayer ();
 		readonly CALayer graphLayer = new CALayer ();
 
-		public IFilterViewDelegate Delegate { get; set;}
+		public IFilterViewDelegate Delegate { get; set; }
 
 		float resonance;
 		public float Resonance {
@@ -158,16 +158,16 @@ namespace FilterDemoFramework {
 			var width = graphLayer.Bounds.Width;
 			var rightEdge = width + leftMargin;
 
-			var pixelRatio = (int)Math.Ceiling (width / maxNumberOfResponseFrequencies);
+			var pixelRatio = (int) Math.Ceiling (width / maxNumberOfResponseFrequencies);
 			nfloat location = leftMargin;
 			var locationsCount = maxNumberOfResponseFrequencies;
 
 			if (pixelRatio <= 1) {
 				pixelRatio = 1;
-				locationsCount = (int)width;
+				locationsCount = (int) width;
 			}
 
-			frequencies = new List <double> ();
+			frequencies = new List<double> ();
 
 			for (int i = 0; i < locationsCount; i++) {
 				if (location > rightEdge)
@@ -178,7 +178,7 @@ namespace FilterDemoFramework {
 					if (frequencyTmp > DefaultMaxHertz)
 						frequencyTmp = DefaultMaxHertz;
 
-					location += (nfloat)pixelRatio;
+					location += (nfloat) pixelRatio;
 
 					frequencies.Add (frequencyTmp);
 				}
@@ -202,7 +202,7 @@ namespace FilterDemoFramework {
 			float lastDbPos = 0f;
 			float location = leftMargin;
 			var frequencyCount = frequencies?.Count ?? 0;
-			var pixelRatio = (int)(Math.Ceiling (width / frequencyCount));
+			var pixelRatio = (int) (Math.Ceiling (width / frequencyCount));
 
 			for (int i = 0; i < frequencyCount; i++) {
 				var dbValue = 20 * Math.Log10 (magnitudeData [i]);
@@ -213,7 +213,7 @@ namespace FilterDemoFramework {
 				else if (dbValue > defaultGain)
 					dbPos = GetLocationForDbValue (defaultGain);
 				else
-					dbPos = GetLocationForDbValue ((float)dbValue);
+					dbPos = GetLocationForDbValue ((float) dbValue);
 
 				if (Math.Abs (lastDbPos - dbPos) >= 0.1)
 					bezierPath.AddLineToPoint (location, dbPos);
@@ -222,7 +222,7 @@ namespace FilterDemoFramework {
 				location += pixelRatio;
 
 				if (location > width + graphLayer.Frame.X) {
-					location = (float)width + (float)graphLayer.Frame.X;
+					location = (float) width + (float) graphLayer.Frame.X;
 					break;
 				}
 			}
@@ -242,7 +242,7 @@ namespace FilterDemoFramework {
 		{
 			var step = graphLayer.Frame.Height / (defaultGain * 2);
 			var location = (value + defaultGain) * step;
-			return (float)(graphLayer.Frame.Height - location + bottomMargin);
+			return (float) (graphLayer.Frame.Height - location + bottomMargin);
 		}
 
 		float GetLocationForFrequencyValue (float value)
@@ -250,13 +250,13 @@ namespace FilterDemoFramework {
 			var pixelIncrement = graphLayer.Frame.Width / gridLineCount;
 			var number = value / DefaultMinHertz;
 			var location = GetLogValue (number, logBase) * pixelIncrement;
-			return (float)Math.Floor (location + graphLayer.Frame.X) + 0.5f;
+			return (float) Math.Floor (location + graphLayer.Frame.X) + 0.5f;
 		}
 
 		float GetDbValue (nfloat location)
 		{
 			var step = graphLayer.Frame.Height / (defaultGain * 2);
-			return (float)(-(((location - bottomMargin) / step) - defaultGain));
+			return (float) (-(((location - bottomMargin) / step) - defaultGain));
 		}
 
 		void CreateDbLabelsAndLines ()
@@ -300,7 +300,7 @@ namespace FilterDemoFramework {
 			var scale = Layer.ContentsScale;
 
 			for (int index = 0; index <= gridLineCount; index++) {
-				value = GetValue ((float)index);
+				value = GetValue ((float) index);
 
 				var labelLayer = new CATextLayer {
 					ForegroundColor = UIColor.FromWhiteAlpha (0.1f, 1f).CGColor,
@@ -438,9 +438,9 @@ namespace FilterDemoFramework {
 				containerLayer.Bounds = layer.Bounds;
 
 				graphLayer.Bounds = new CGRect (
-					leftMargin, 
-					bottomMargin, 
-					layer.Bounds.Width - leftMargin - rightMargin, 
+					leftMargin,
+					bottomMargin,
+					layer.Bounds.Width - leftMargin - rightMargin,
 					layer.Bounds.Height - bottomMargin - 10);
 
 				UpdateDbLayers ();
@@ -483,7 +483,7 @@ namespace FilterDemoFramework {
 			var lastResonance = GetDbValue (editPoint.Y);
 			if (Math.Abs (lastResonance - Resonance) > float.Epsilon) {
 				Resonance = lastResonance;
-				if(del != null)
+				if (del != null)
 					del.ResonanceChanged (this, Resonance);
 			}
 		}
@@ -492,7 +492,7 @@ namespace FilterDemoFramework {
 		{
 			base.TouchesBegan (touches, evt);
 
-			var pointOfTouch = ((UITouch)touches.FirstOrDefault ()).LocationInView (this);
+			var pointOfTouch = ((UITouch) touches.FirstOrDefault ()).LocationInView (this);
 			pointOfTouch.Y += bottomMargin;
 
 			if (graphLayer.Contains (pointOfTouch)) {
@@ -521,14 +521,14 @@ namespace FilterDemoFramework {
 			return GetValue (index);
 		}
 
-		static float GetValue (nfloat gridIndex) 
+		static float GetValue (nfloat gridIndex)
 		{
-			return (float)(DefaultMinHertz * Math.Pow (logBase, gridIndex));
+			return (float) (DefaultMinHertz * Math.Pow (logBase, gridIndex));
 		}
 
 		static float GetLogValue (float number, float baseNum)
 		{
-			return (float)(Math.Log (number) / Math.Log (baseNum));
+			return (float) (Math.Log (number) / Math.Log (baseNum));
 		}
 
 		static string GetString (float value)
@@ -538,9 +538,9 @@ namespace FilterDemoFramework {
 			if (value >= 1000)
 				temp /= 1000;
 
-			temp = (float)Math.Floor (temp * 100 / 100);
+			temp = (float) Math.Floor (temp * 100 / 100);
 
-			bool tooSmall = Math.Abs ((float)Math.Floor (temp) - temp) < float.Epsilon;
+			bool tooSmall = Math.Abs ((float) Math.Floor (temp) - temp) < float.Epsilon;
 			return tooSmall ? temp.ToString ("F1") : temp.ToString ("0.#");
 		}
 	}

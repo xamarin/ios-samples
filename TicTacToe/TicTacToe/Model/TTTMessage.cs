@@ -1,11 +1,9 @@
 using System;
 using Foundation;
 
-namespace TicTacToe
-{
+namespace TicTacToe {
 	[Serializable]
-	public class TTTMessage
-	{
+	public class TTTMessage {
 		const string EncodingKeyText = "text";
 		const string EncodingKeyIcon = "icon";
 		public string Text;

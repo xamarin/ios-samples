@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using AddressBook;
 using Foundation;
 
-namespace PrivacyPrompts
-{
-	public class AddressBookPrivacyManager : IPrivacyManager, IDisposable
-	{
+namespace PrivacyPrompts {
+	public class AddressBookPrivacyManager : IPrivacyManager, IDisposable {
 		ABAddressBook addressBook;
 
 		public AddressBookPrivacyManager ()
@@ -18,7 +16,7 @@ namespace PrivacyPrompts
 		public Task RequestAccess ()
 		{
 			if (addressBook == null)
-				return Task.FromResult<object>(null);
+				return Task.FromResult<object> (null);
 
 			var tcs = new TaskCompletionSource<object> ();
 			addressBook.RequestAccess ((granted, accessError) => tcs.SetResult (null));

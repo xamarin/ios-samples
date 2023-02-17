@@ -5,14 +5,12 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace UIKitEnhancements
-{
-	public class MainMenuTableSource :UITableViewSource
-	{
+namespace UIKitEnhancements {
+	public class MainMenuTableSource : UITableViewSource {
 		#region Private Variables
 		private MainMenuTableViewController _controller;
-		private List<MenuItem> _items = new List<MenuItem>();
-		#endregion 
+		private List<MenuItem> _items = new List<MenuItem> ();
+		#endregion
 
 		#region Computed Properties
 		/// <summary>
@@ -20,23 +18,20 @@ namespace UIKitEnhancements
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
 		/// Gets or sets the <see cref="UIKitEnhancements.MenuItem"/> at the specified index.
 		/// </summary>
 		/// <param name="index">Index.</param>
-		public MenuItem this[int index]
-		{
-			get
-			{
-				return _items[index];
+		public MenuItem this [int index] {
+			get {
+				return _items [index];
 			}
 
-			set
-			{
-				_items[index] = value;
+			set {
+				_items [index] = value;
 			}
 		}
 
@@ -66,19 +61,20 @@ namespace UIKitEnhancements
 		/// <summary>
 		/// Loads the data.
 		/// </summary>
-		public void LoadData() {
+		public void LoadData ()
+		{
 
 			// Clear existing items
 			_items.Clear ();
 
 			// Setup list of data items
 			_items.Add (new MenuItem ("Alert Controller", "Replaces Action Sheet & Alert View", "AlertSegue"));
-			_items.Add (new MenuItem ("Collection View Changes", "New Collection View Features","WebSegue","http://blog.xamarin.com/new-collection-view-features-in-ios-8/"));
-			_items.Add (new MenuItem ("Navigation Controller", "New Navigation Controller Options","NavBarSegue"));
-			_items.Add (new MenuItem ("Notifications", "Required Notification Settings","NotificationSegue"));
-			_items.Add (new MenuItem ("Popover Presentation Controller", "Handles Presentation in a Popover","PopoverSegue"));
-			_items.Add (new MenuItem ("Split View Controller", "Now Supported on iPhone","WebSegue","https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UISplitViewController_class/index.html#//apple_ref/occ/cl/UISplitViewController"));
-			_items.Add (new MenuItem ("Visual Effects", "Adding Visual Effects in iOS 8","WebSegue","http://blog.xamarin.com/adding-view-effects-in-ios-8/"));
+			_items.Add (new MenuItem ("Collection View Changes", "New Collection View Features", "WebSegue", "http://blog.xamarin.com/new-collection-view-features-in-ios-8/"));
+			_items.Add (new MenuItem ("Navigation Controller", "New Navigation Controller Options", "NavBarSegue"));
+			_items.Add (new MenuItem ("Notifications", "Required Notification Settings", "NotificationSegue"));
+			_items.Add (new MenuItem ("Popover Presentation Controller", "Handles Presentation in a Popover", "PopoverSegue"));
+			_items.Add (new MenuItem ("Split View Controller", "Now Supported on iPhone", "WebSegue", "https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UISplitViewController_class/index.html#//apple_ref/occ/cl/UISplitViewController"));
+			_items.Add (new MenuItem ("Visual Effects", "Adding Visual Effects in iOS 8", "WebSegue", "http://blog.xamarin.com/adding-view-effects-in-ios-8/"));
 
 		}
 		#endregion
@@ -192,7 +188,7 @@ namespace UIKitEnhancements
 		{
 			// Note item accessory being displayed and 
 			// open it's details and services view
-			_controller.MenuItem = _items[indexPath.Row];
+			_controller.MenuItem = _items [indexPath.Row];
 
 			// Performing a segue?
 			if (_controller.MenuItem.Segue != "") {
@@ -202,7 +198,7 @@ namespace UIKitEnhancements
 					_controller.PerformSegue (_controller.MenuItem.Segue, _controller);
 				} else {
 					// Yes, invoke segue against the iPad default view
-					ThisApp.iPadViewController.MenuItem = _items[indexPath.Row];
+					ThisApp.iPadViewController.MenuItem = _items [indexPath.Row];
 					ThisApp.iPadViewController.PerformSegue (_controller.MenuItem.Segue, ThisApp.iPadViewController);
 				}
 			}

@@ -1,178 +1,158 @@
-﻿
-namespace XamarinShot.Models
-{
-    using Foundation;
-    using SceneKit;
-    using XamarinShot.Models.Enums;
-    using XamarinShot.Utils;
-    using System;
-    using System.Collections.Generic;
 
-    public interface IProjectileDelegate
-    {
-        bool IsServer { get; }
-        void AddParticles(SCNNode particlesNode, SCNVector3 worldPosition);
-        void DespawnProjectile(Projectile projectile);
-        void AddNodeToLevel(SCNNode node);
-    }
+namespace XamarinShot.Models {
+	using Foundation;
+	using SceneKit;
+	using XamarinShot.Models.Enums;
+	using XamarinShot.Utils;
+	using System;
+	using System.Collections.Generic;
 
-    public class Projectile : GameObject
-    {
-        // Projectile life time should be set so that projectiles will not be depleted from the pool
-        private const double FadeTimeToLifeTimeRatio = 0.1d;
+	public interface IProjectileDelegate {
+		bool IsServer { get; }
+		void AddParticles (SCNNode particlesNode, SCNVector3 worldPosition);
+		void DespawnProjectile (Projectile projectile);
+		void AddNodeToLevel (SCNNode node);
+	}
 
-        private Team team = Team.None;
+	public class Projectile : GameObject {
+		// Projectile life time should be set so that projectiles will not be depleted from the pool
+		private const double FadeTimeToLifeTimeRatio = 0.1d;
 
-        private double startTime;
+		private Team team = Team.None;
 
-        private bool isLaunched;
+		private double startTime;
 
-        private double lifeTime;
+		private bool isLaunched;
 
-        public Projectile() { }
+		private double lifeTime;
 
-        public Projectile(SCNNode node, int? index, Dictionary<string, object> gamedefs, bool isAlive, bool isServer) : base(node, index, gamedefs, false, false) { }
+		public Projectile () { }
 
-        public Projectile(NSCoder coder) => throw new Exception("init(coder:) has not been implemented");
+		public Projectile (SCNNode node, int? index, Dictionary<string, object> gamedefs, bool isAlive, bool isServer) : base (node, index, gamedefs, false, false) { }
 
-        public double Age => this.isLaunched ? (GameTime.Time - this.startTime) : 0d;
+		public Projectile (NSCoder coder) => throw new Exception ("init(coder:) has not been implemented");
 
-        protected double FadeStartTime => this.lifeTime * (1d - FadeTimeToLifeTimeRatio);
+		public double Age => this.isLaunched ? (GameTime.Time - this.startTime) : 0d;
 
-        public IProjectileDelegate Delegate { get; set; }
+		protected double FadeStartTime => this.lifeTime * (1d - FadeTimeToLifeTimeRatio);
 
-        public SCNPhysicsBody PhysicsBody { get; set; }
+		public IProjectileDelegate Delegate { get; set; }
 
-        public Team Team 
-        {
-            get
-            {
-                return this.team;
-            }
+		public SCNPhysicsBody PhysicsBody { get; set; }
 
-            set 
-            {
-                this.team = value;
+		public Team Team {
+			get {
+				return this.team;
+			}
 
-                // we assume the geometry and lod are unique to geometry and lod here
-                if (this.GeometryNode?.Geometry?.FirstMaterial?.Diffuse != null)
-                {
-                    this.GeometryNode.Geometry.FirstMaterial.Diffuse.Contents = team.GetColor();
-                }
+			set {
+				this.team = value;
 
-                var levelsOfDetail = this.GeometryNode?.Geometry?.LevelsOfDetail;
-                if (levelsOfDetail != null)
-                {
-                    foreach(var lod in levelsOfDetail)
-                    {
-                        if (lod.Geometry?.FirstMaterial?.Diffuse.Contents != null)
-                        {
-                            lod.Geometry.FirstMaterial.Diffuse.Contents = team.GetColor();
-                        }
-                    }
-                }
-            }
-        }
-        public static T Create<T>(SCNNode prototypeNode, int? index, Dictionary<string, object> gamedefs) where T : Projectile, new()
-        {
-            var node = prototypeNode.Clone();
-            // geometry and materials are reference types, so here we
-            // do a deep copy. that way, each projectile gets its own color.
-            node.CopyGeometryAndMaterials();
+				// we assume the geometry and lod are unique to geometry and lod here
+				if (this.GeometryNode?.Geometry?.FirstMaterial?.Diffuse != null) {
+					this.GeometryNode.Geometry.FirstMaterial.Diffuse.Contents = team.GetColor ();
+				}
 
-            var physicsNode = node.FindNodeWithPhysicsBody();
-            if(physicsNode?.PhysicsBody == null)
-            {
-                throw new Exception("Projectile node has no physics");
-            }
+				var levelsOfDetail = this.GeometryNode?.Geometry?.LevelsOfDetail;
+				if (levelsOfDetail != null) {
+					foreach (var lod in levelsOfDetail) {
+						if (lod.Geometry?.FirstMaterial?.Diffuse.Contents != null) {
+							lod.Geometry.FirstMaterial.Diffuse.Contents = team.GetColor ();
+						}
+					}
+				}
+			}
+		}
+		public static T Create<T> (SCNNode prototypeNode, int? index, Dictionary<string, object> gamedefs) where T : Projectile, new()
+		{
+			var node = prototypeNode.Clone ();
+			// geometry and materials are reference types, so here we
+			// do a deep copy. that way, each projectile gets its own color.
+			node.CopyGeometryAndMaterials ();
 
-            physicsNode.PhysicsBody.ContactTestBitMask = (int)(CollisionMask.RigidBody | CollisionMask.GlitterObject | CollisionMask.TriggerVolume);
-            physicsNode.PhysicsBody.CategoryBitMask = (int)CollisionMask.Ball;
+			var physicsNode = node.FindNodeWithPhysicsBody ();
+			if (physicsNode?.PhysicsBody == null) {
+				throw new Exception ("Projectile node has no physics");
+			}
 
-            var result = GameObject.Create<T>(node, index, gamedefs, false, false);
-            result.PhysicsNode = physicsNode;
-            result.PhysicsBody = physicsNode.PhysicsBody;
+			physicsNode.PhysicsBody.ContactTestBitMask = (int) (CollisionMask.RigidBody | CollisionMask.GlitterObject | CollisionMask.TriggerVolume);
+			physicsNode.PhysicsBody.CategoryBitMask = (int) CollisionMask.Ball;
 
-            return result;
-        }
+			var result = GameObject.Create<T> (node, index, gamedefs, false, false);
+			result.PhysicsNode = physicsNode;
+			result.PhysicsBody = physicsNode.PhysicsBody;
 
-        public static T Create<T>(SCNNode prototypeNode) where T : Projectile, new()  { return Projectile.Create<T>(prototypeNode, null, new Dictionary<string, object>()); }
-            
-        public virtual void Launch(GameVelocity velocity, double lifeTime, IProjectileDelegate @delegate) 
-        {
-            this.startTime = GameTime.Time;
-            this.isLaunched = true;
-            this.lifeTime = lifeTime;
-            this.Delegate = @delegate;
-        
-            if (this.PhysicsNode != null && this.PhysicsBody != null)
-            {
-                this.PhysicsBody.VelocityFactor = SCNVector3.One;
-                this.PhysicsBody.AngularVelocityFactor = SCNVector3.One;
-                this.PhysicsBody.Velocity = velocity.Vector;
-                this.PhysicsNode.Name = "ball";
-                this.PhysicsNode.WorldPosition = velocity.Origin;
-                this.PhysicsBody.ResetTransform();
-            }
-            else
-            {
-                throw new System.Exception("Projectile not setup");
-            }
-        }
+			return result;
+		}
 
-        public virtual void OnDidApplyConstraints(ISCNSceneRenderer renderer) { }
+		public static T Create<T> (SCNNode prototypeNode) where T : Projectile, new() { return Projectile.Create<T> (prototypeNode, null, new Dictionary<string, object> ()); }
 
-        public void DidBeginContact(SCNPhysicsContact contact) { }
+		public virtual void Launch (GameVelocity velocity, double lifeTime, IProjectileDelegate @delegate)
+		{
+			this.startTime = GameTime.Time;
+			this.isLaunched = true;
+			this.lifeTime = lifeTime;
+			this.Delegate = @delegate;
 
-        public virtual void OnSpawn() { }
+			if (this.PhysicsNode != null && this.PhysicsBody != null) {
+				this.PhysicsBody.VelocityFactor = SCNVector3.One;
+				this.PhysicsBody.AngularVelocityFactor = SCNVector3.One;
+				this.PhysicsBody.Velocity = velocity.Vector;
+				this.PhysicsNode.Name = "ball";
+				this.PhysicsNode.WorldPosition = velocity.Origin;
+				this.PhysicsBody.ResetTransform ();
+			} else {
+				throw new System.Exception ("Projectile not setup");
+			}
+		}
 
-        public override void Update(double deltaTimeInSeconds)
-        {
-            base.Update(deltaTimeInSeconds);
-        
-            // Projectile should fade and disappear after a while
-            if (this.Age > this.lifeTime)
-            {
-                this.ObjectRootNode.Opacity = 1f;
-                this.Despawn();
-            }
-            else if (this.Age > this.FadeStartTime)
-            {
-                this.ObjectRootNode.Opacity = (float)(1f - (this.Age - this.FadeStartTime) / (this.lifeTime - this.FadeStartTime));
-            }
-        }
+		public virtual void OnDidApplyConstraints (ISCNSceneRenderer renderer) { }
 
-        public virtual void Despawn()
-        {
-            if(this.Delegate == null)
-            {
-                throw new Exception("No Delegate");
-            }
+		public void DidBeginContact (SCNPhysicsContact contact) { }
 
-            this.Delegate.DespawnProjectile(this);
-        }
+		public virtual void OnSpawn () { }
 
-        public override PhysicsNodeData GeneratePhysicsData()
-        {
-            var data = base.GeneratePhysicsData();
-            if (data != null)
-            {
-                data.Team = team;
-            }
+		public override void Update (double deltaTimeInSeconds)
+		{
+			base.Update (deltaTimeInSeconds);
 
-            return data;
-        }
-    }
+			// Projectile should fade and disappear after a while
+			if (this.Age > this.lifeTime) {
+				this.ObjectRootNode.Opacity = 1f;
+				this.Despawn ();
+			} else if (this.Age > this.FadeStartTime) {
+				this.ObjectRootNode.Opacity = (float) (1f - (this.Age - this.FadeStartTime) / (this.lifeTime - this.FadeStartTime));
+			}
+		}
 
-    /// <summary>
-    /// Chicken example of how we make a new projectile type
-    /// </summary>
-    public class ChickenProjectile : Projectile
-    {
-        public ChickenProjectile() { }
+		public virtual void Despawn ()
+		{
+			if (this.Delegate == null) {
+				throw new Exception ("No Delegate");
+			}
 
-        public static ChickenProjectile Create(SCNNode prototypeNode) { return Projectile.Create<ChickenProjectile>(prototypeNode); }
+			this.Delegate.DespawnProjectile (this);
+		}
 
-        public static ChickenProjectile Create(SCNNode prototypeNode, int? index, Dictionary<string, object> gamedefs) { return Projectile.Create<ChickenProjectile>(prototypeNode, index, gamedefs); }
-    }
+		public override PhysicsNodeData GeneratePhysicsData ()
+		{
+			var data = base.GeneratePhysicsData ();
+			if (data != null) {
+				data.Team = team;
+			}
+
+			return data;
+		}
+	}
+
+	/// <summary>
+	/// Chicken example of how we make a new projectile type
+	/// </summary>
+	public class ChickenProjectile : Projectile {
+		public ChickenProjectile () { }
+
+		public static ChickenProjectile Create (SCNNode prototypeNode) { return Projectile.Create<ChickenProjectile> (prototypeNode); }
+
+		public static ChickenProjectile Create (SCNNode prototypeNode, int? index, Dictionary<string, object> gamedefs) { return Projectile.Create<ChickenProjectile> (prototypeNode, index, gamedefs); }
+	}
 }

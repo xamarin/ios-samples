@@ -1,281 +1,251 @@
-﻿
-namespace SpeedySloth.WatchAppExtension
-{
-    using CoreFoundation;
-    using CoreLocation;
-    using Foundation;
-    using HealthKit;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using WatchKit;
 
-    public class HealthStoreManager : CLLocationManagerDelegate
-    {
-        private readonly List<HKWorkoutEvent> workoutEvents = new List<HKWorkoutEvent>();
+namespace SpeedySloth.WatchAppExtension {
+	using CoreFoundation;
+	using CoreLocation;
+	using Foundation;
+	using HealthKit;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using WatchKit;
 
-        private readonly List<HKQuery> activeDataQueries = new List<HKQuery>();
+	public class HealthStoreManager : CLLocationManagerDelegate {
+		private readonly List<HKWorkoutEvent> workoutEvents = new List<HKWorkoutEvent> ();
 
-        private readonly HKHealthStore healthStore = new HKHealthStore();
+		private readonly List<HKQuery> activeDataQueries = new List<HKQuery> ();
 
-        private HKWorkoutRouteBuilder workoutRouteBuilder;
+		private readonly HKHealthStore healthStore = new HKHealthStore ();
 
-        private CLLocationManager locationManager;
+		private HKWorkoutRouteBuilder workoutRouteBuilder;
 
-        public List<HKWorkoutEvent> WorkoutEvents => this.workoutEvents;
+		private CLLocationManager locationManager;
 
-        public double TotalEnergyBurned { get; private set; } = 0d;
+		public List<HKWorkoutEvent> WorkoutEvents => this.workoutEvents;
 
-        public double TotalDistance { get; private set; } = 0d;
+		public double TotalEnergyBurned { get; private set; } = 0d;
 
-        #region Health store wrappers
+		public double TotalDistance { get; private set; } = 0d;
 
-        public void Start(HKWorkoutSession workoutSession)
-        {
-            this.healthStore.StartWorkoutSession(workoutSession);
-        }
+		#region Health store wrappers
 
-        public void End(HKWorkoutSession workoutSession)
-        {
-            this.healthStore.EndWorkoutSession(workoutSession);
-        }
+		public void Start (HKWorkoutSession workoutSession)
+		{
+			this.healthStore.StartWorkoutSession (workoutSession);
+		}
 
-        public void Pause(HKWorkoutSession workoutSession)
-        {
-            this.healthStore.PauseWorkoutSession(workoutSession);
-        }
+		public void End (HKWorkoutSession workoutSession)
+		{
+			this.healthStore.EndWorkoutSession (workoutSession);
+		}
 
-        public void Resume(HKWorkoutSession workoutSession)
-        {
-            this.healthStore.ResumeWorkoutSession(workoutSession);
-        }
+		public void Pause (HKWorkoutSession workoutSession)
+		{
+			this.healthStore.PauseWorkoutSession (workoutSession);
+		}
 
-        #endregion
+		public void Resume (HKWorkoutSession workoutSession)
+		{
+			this.healthStore.ResumeWorkoutSession (workoutSession);
+		}
 
-        #region Data Accumulation
+		#endregion
 
-        public void StartWalkingRunningQuery(NSDate startDate, Action<List<HKQuantitySample>> handler)
-        {
-            this.StartQuery(HKQuantityTypeIdentifier.DistanceWalkingRunning,
-                            startDate,
-                            (query, addedObjects, deletedObjects, newAnchor, error) =>
-            {
-                if (addedObjects != null)
-                {
-                    var quantitySamples = addedObjects.OfType<HKQuantitySample>().ToList();
-                    handler(quantitySamples);
-                }
-                else
-                {
-                    Console.WriteLine($"Distance walking running query failed with error: ({error?.Description ?? "unknown"})");
-                }
-            });
-        }
+		#region Data Accumulation
 
-        public void StartActiveEnergyBurnedQuery(NSDate startDate, Action<List<HKQuantitySample>> handler)
-        {
-            this.StartQuery(HKQuantityTypeIdentifier.ActiveEnergyBurned,
-                            startDate,
-                            (query, addedObjects, deletedObjects, newAnchor, error) =>
-            {
-                if (addedObjects != null)
-                {
-                    var quantitySamples = addedObjects.OfType<HKQuantitySample>().ToList();
-                    handler(quantitySamples);
-                }
-                else
-                {
-                    Console.WriteLine($"Active energy burned query failed with error: ({error?.Description ?? "unknown"})");
-                }
-            });
-        }
+		public void StartWalkingRunningQuery (NSDate startDate, Action<List<HKQuantitySample>> handler)
+		{
+			this.StartQuery (HKQuantityTypeIdentifier.DistanceWalkingRunning,
+							startDate,
+							(query, addedObjects, deletedObjects, newAnchor, error) => {
+								if (addedObjects != null) {
+									var quantitySamples = addedObjects.OfType<HKQuantitySample> ().ToList ();
+									handler (quantitySamples);
+								} else {
+									Console.WriteLine ($"Distance walking running query failed with error: ({error?.Description ?? "unknown"})");
+								}
+							});
+		}
 
-        public void StartAccumulatingLocationData()
-        {
-            if (CLLocationManager.LocationServicesEnabled)
-            {
-                this.locationManager = new CLLocationManager
-                {
-                    Delegate = this,
-                    AllowsBackgroundLocationUpdates = true,
-                    DesiredAccuracy = CLLocation.AccuracyBest,
-                };
+		public void StartActiveEnergyBurnedQuery (NSDate startDate, Action<List<HKQuantitySample>> handler)
+		{
+			this.StartQuery (HKQuantityTypeIdentifier.ActiveEnergyBurned,
+							startDate,
+							(query, addedObjects, deletedObjects, newAnchor, error) => {
+								if (addedObjects != null) {
+									var quantitySamples = addedObjects.OfType<HKQuantitySample> ().ToList ();
+									handler (quantitySamples);
+								} else {
+									Console.WriteLine ($"Active energy burned query failed with error: ({error?.Description ?? "unknown"})");
+								}
+							});
+		}
 
-                this.locationManager.StartUpdatingLocation();
-                this.workoutRouteBuilder = new HKWorkoutRouteBuilder(this.healthStore, null);
-            }
-            else
-            {
-                Console.WriteLine("User does not have location service enabled");
-            }
-        }
+		public void StartAccumulatingLocationData ()
+		{
+			if (CLLocationManager.LocationServicesEnabled) {
+				this.locationManager = new CLLocationManager {
+					Delegate = this,
+					AllowsBackgroundLocationUpdates = true,
+					DesiredAccuracy = CLLocation.AccuracyBest,
+				};
 
-        public void StopAccumulatingData()
-        {
-            foreach (var query in this.activeDataQueries)
-            {
-                this.healthStore.StopQuery(query);
-            }
+				this.locationManager.StartUpdatingLocation ();
+				this.workoutRouteBuilder = new HKWorkoutRouteBuilder (this.healthStore, null);
+			} else {
+				Console.WriteLine ("User does not have location service enabled");
+			}
+		}
 
-            this.activeDataQueries.Clear();
-            this.locationManager?.StopUpdatingLocation();
-        }
+		public void StopAccumulatingData ()
+		{
+			foreach (var query in this.activeDataQueries) {
+				this.healthStore.StopQuery (query);
+			}
 
-        private void StartQuery(HKQuantityTypeIdentifier quantityTypeIdentifier, NSDate startDate, HKAnchoredObjectUpdateHandler handler)
-        {
-            var datePredicate = HKQuery.GetPredicateForSamples(startDate, null, HKQueryOptions.StrictStartDate);
-            var devicePredicate = HKQuery.GetPredicateForObjectsFromDevices(new NSSet<HKDevice>(HKDevice.LocalDevice));
-            var queryPredicate = NSCompoundPredicate.CreateAndPredicate(new NSPredicate[] { datePredicate, devicePredicate });
+			this.activeDataQueries.Clear ();
+			this.locationManager?.StopUpdatingLocation ();
+		}
 
-            var quantityType = HKQuantityType.Create(quantityTypeIdentifier);
-            var query = new HKAnchoredObjectQuery(quantityType, queryPredicate, null, HKSampleQuery.NoLimit, handler);
-            query.UpdateHandler = handler;
-            this.healthStore.ExecuteQuery(query);
+		private void StartQuery (HKQuantityTypeIdentifier quantityTypeIdentifier, NSDate startDate, HKAnchoredObjectUpdateHandler handler)
+		{
+			var datePredicate = HKQuery.GetPredicateForSamples (startDate, null, HKQueryOptions.StrictStartDate);
+			var devicePredicate = HKQuery.GetPredicateForObjectsFromDevices (new NSSet<HKDevice> (HKDevice.LocalDevice));
+			var queryPredicate = NSCompoundPredicate.CreateAndPredicate (new NSPredicate [] { datePredicate, devicePredicate });
 
-            this.activeDataQueries.Add(query);
-        }
+			var quantityType = HKQuantityType.Create (quantityTypeIdentifier);
+			var query = new HKAnchoredObjectQuery (quantityType, queryPredicate, null, HKSampleQuery.NoLimit, handler);
+			query.UpdateHandler = handler;
+			this.healthStore.ExecuteQuery (query);
 
-        #endregion
+			this.activeDataQueries.Add (query);
+		}
 
-        #region Saving Data
+		#endregion
 
-        public void SaveWorkout(HKWorkoutSession workoutSession, NSDate startDate, NSDate endDate)
-        {
-            // Create and save a workout sample
-            var configuration = workoutSession.WorkoutConfiguration;
-            var metadata = new HKMetadata
-            {
-                IndoorWorkout = configuration.LocationType == HKWorkoutSessionLocationType.Indoor,
-            };
+		#region Saving Data
 
-            var workout = HKWorkout.Create(configuration.ActivityType,
-                                           startDate,
-                                           endDate,
-                                           this.workoutEvents.ToArray(),
-                                           this.TotalBurningEnergyQuantity(),
-                                           this.TotalDistanceQuantity(),
-                                           metadata);
+		public void SaveWorkout (HKWorkoutSession workoutSession, NSDate startDate, NSDate endDate)
+		{
+			// Create and save a workout sample
+			var configuration = workoutSession.WorkoutConfiguration;
+			var metadata = new HKMetadata {
+				IndoorWorkout = configuration.LocationType == HKWorkoutSessionLocationType.Indoor,
+			};
 
-            this.healthStore.SaveObject(workout, (isSuccess, error) =>
-            {
-                if (isSuccess)
-                {
-                    this.AddSamples(workout, startDate, endDate);
-                }
-            });
-        }
+			var workout = HKWorkout.Create (configuration.ActivityType,
+										   startDate,
+										   endDate,
+										   this.workoutEvents.ToArray (),
+										   this.TotalBurningEnergyQuantity (),
+										   this.TotalDistanceQuantity (),
+										   metadata);
 
-        private void AddSamples(HKWorkout workout, NSDate startDate, NSDate endDate)
-        {
-            // Create energy and distance sample
-            var totalEnergyBurnedSample = HKQuantitySample.FromType(HKQuantityType.Create(HKQuantityTypeIdentifier.ActiveEnergyBurned),
-                                                                                          this.TotalBurningEnergyQuantity(),
-                                                                                          startDate,
-                                                                                          endDate);
+			this.healthStore.SaveObject (workout, (isSuccess, error) => {
+				if (isSuccess) {
+					this.AddSamples (workout, startDate, endDate);
+				}
+			});
+		}
 
-            var totalDistanceSample = HKQuantitySample.FromType(HKQuantityType.Create(HKQuantityTypeIdentifier.DistanceWalkingRunning),
-                                                                                      this.TotalDistanceQuantity(),
-                                                                                      startDate,
-                                                                                      endDate);
-            // add samples to workout
-            this.healthStore.AddSamples(new HKSample[] { totalEnergyBurnedSample, totalDistanceSample }, workout, (isSuccess, error) =>
-            {
-                if (isSuccess)
-                {
-                    DispatchQueue.MainQueue.DispatchAsync(() =>
-                    {
-                        WKInterfaceController.ReloadRootPageControllers(new string[] { nameof(SummaryInterfaceController) },
-                                                                        new NSObject[] { workout },
-                                                                        WKPageOrientation.Vertical,
-                                                                        0);
-                    });
-                }
-                else
-                {
-                    Console.WriteLine($"Adding workout subsamples failed with error: ({error?.Description ?? "unknown"})");
-                }
-            });
+		private void AddSamples (HKWorkout workout, NSDate startDate, NSDate endDate)
+		{
+			// Create energy and distance sample
+			var totalEnergyBurnedSample = HKQuantitySample.FromType (HKQuantityType.Create (HKQuantityTypeIdentifier.ActiveEnergyBurned),
+																						  this.TotalBurningEnergyQuantity (),
+																						  startDate,
+																						  endDate);
 
-            // finish the route with a syn identifier so we can easily update the route later
-            var objects = new NSObject[] { new NSString(new NSUuid().AsString()), NSNumber.FromInt32(1) };
-            var keys = new NSString[] { HKMetadataKey.SyncIdentifier, HKMetadataKey.SyncVersion };
+			var totalDistanceSample = HKQuantitySample.FromType (HKQuantityType.Create (HKQuantityTypeIdentifier.DistanceWalkingRunning),
+																					  this.TotalDistanceQuantity (),
+																					  startDate,
+																					  endDate);
+			// add samples to workout
+			this.healthStore.AddSamples (new HKSample [] { totalEnergyBurnedSample, totalDistanceSample }, workout, (isSuccess, error) => {
+				if (isSuccess) {
+					DispatchQueue.MainQueue.DispatchAsync (() => {
+						WKInterfaceController.ReloadRootPageControllers (new string [] { nameof (SummaryInterfaceController) },
+																		new NSObject [] { workout },
+																		WKPageOrientation.Vertical,
+																		0);
+					});
+				} else {
+					Console.WriteLine ($"Adding workout subsamples failed with error: ({error?.Description ?? "unknown"})");
+				}
+			});
 
-            var dictionary = NSDictionary.FromObjectsAndKeys(objects, keys);
-            var metadata = new HKMetadata(dictionary);
+			// finish the route with a syn identifier so we can easily update the route later
+			var objects = new NSObject [] { new NSString (new NSUuid ().AsString ()), NSNumber.FromInt32 (1) };
+			var keys = new NSString [] { HKMetadataKey.SyncIdentifier, HKMetadataKey.SyncVersion };
 
-            this.workoutRouteBuilder?.FinishRoute(workout, metadata, (workoutRoute, error) =>
-            {
-                if (workoutRoute == null)
-                {
-                    Console.WriteLine($"Finishing route failed with error: ({error?.Description ?? "unknown"})");
-                }
-            });
-        }
+			var dictionary = NSDictionary.FromObjectsAndKeys (objects, keys);
+			var metadata = new HKMetadata (dictionary);
 
-        #endregion
+			this.workoutRouteBuilder?.FinishRoute (workout, metadata, (workoutRoute, error) => {
+				if (workoutRoute == null) {
+					Console.WriteLine ($"Finishing route failed with error: ({error?.Description ?? "unknown"})");
+				}
+			});
+		}
 
-        #region CLLocationManagerDelegate
+		#endregion
 
-        public override void LocationsUpdated(CLLocationManager manager, CLLocation[] locations)
-        {
-            var filtredLocations = locations.Where(location => location.HorizontalAccuracy <= CLLocation.AccuracyNearestTenMeters).ToArray();
-            if (filtredLocations.Any())
-            {
-                this.workoutRouteBuilder?.InsertRouteData(filtredLocations, (isSuccess, error) =>
-                {
-                    if (!isSuccess)
-                    {
-                        Console.WriteLine($"Inserting route data failed with error: ({error?.Description ?? "unknown"})");
-                    }
-                });
-            }
-        }
+		#region CLLocationManagerDelegate
 
-        #endregion
+		public override void LocationsUpdated (CLLocationManager manager, CLLocation [] locations)
+		{
+			var filtredLocations = locations.Where (location => location.HorizontalAccuracy <= CLLocation.AccuracyNearestTenMeters).ToArray ();
+			if (filtredLocations.Any ()) {
+				this.workoutRouteBuilder?.InsertRouteData (filtredLocations, (isSuccess, error) => {
+					if (!isSuccess) {
+						Console.WriteLine ($"Inserting route data failed with error: ({error?.Description ?? "unknown"})");
+					}
+				});
+			}
+		}
 
-        #region Convenience
+		#endregion
 
-        public void ProcessWalkingRunningSamples(List<HKQuantitySample> samples)
-        {
-            this.TotalDistance += samples.Sum(sample => sample.Quantity.GetDoubleValue(HKUnit.Meter));
-        }
+		#region Convenience
 
-        public void ProcessActiveEnergySamples(List<HKQuantitySample> samples)
-        {
-            this.TotalEnergyBurned += samples.Sum(sample => sample.Quantity.GetDoubleValue(HKUnit.Kilocalorie));
-        }
+		public void ProcessWalkingRunningSamples (List<HKQuantitySample> samples)
+		{
+			this.TotalDistance += samples.Sum (sample => sample.Quantity.GetDoubleValue (HKUnit.Meter));
+		}
 
-        private HKQuantity TotalBurningEnergyQuantity()
-        {
-            return HKQuantity.FromQuantity(HKUnit.Kilocalorie, this.TotalEnergyBurned);
-        }
+		public void ProcessActiveEnergySamples (List<HKQuantitySample> samples)
+		{
+			this.TotalEnergyBurned += samples.Sum (sample => sample.Quantity.GetDoubleValue (HKUnit.Kilocalorie));
+		}
 
-        private HKQuantity TotalDistanceQuantity()
-        {
-            return HKQuantity.FromQuantity(HKUnit.Meter, this.TotalDistance);
-        }
+		private HKQuantity TotalBurningEnergyQuantity ()
+		{
+			return HKQuantity.FromQuantity (HKUnit.Kilocalorie, this.TotalEnergyBurned);
+		}
 
-        #endregion
+		private HKQuantity TotalDistanceQuantity ()
+		{
+			return HKQuantity.FromQuantity (HKUnit.Meter, this.TotalDistance);
+		}
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
+		#endregion
 
-            this.healthStore.Dispose();
-            this.workoutEvents.Clear();
-            this.activeDataQueries.Clear();
+		protected override void Dispose (bool disposing)
+		{
+			base.Dispose (disposing);
 
-            if (this.locationManager != null)
-            {
-                this.locationManager.Dispose();
-                this.locationManager = null;
-            }
+			this.healthStore.Dispose ();
+			this.workoutEvents.Clear ();
+			this.activeDataQueries.Clear ();
 
-            if (this.workoutRouteBuilder != null)
-            {
-                this.workoutRouteBuilder.Dispose();
-                this.workoutRouteBuilder = null;
-            }
-        }
-    }
+			if (this.locationManager != null) {
+				this.locationManager.Dispose ();
+				this.locationManager = null;
+			}
+
+			if (this.workoutRouteBuilder != null) {
+				this.workoutRouteBuilder.Dispose ();
+				this.workoutRouteBuilder = null;
+			}
+		}
+	}
 }

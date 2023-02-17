@@ -5,18 +5,16 @@ using UIKit;
 using CoreGraphics;
 using System.ComponentModel;
 
-namespace UIKitEnhancements
-{
+namespace UIKitEnhancements {
 	/// <summary>
 	/// Creates a "touchable" image view that can be used as a button.
 	/// </summary>
-	public class ImageButton : UIImageView
-	{
+	public class ImageButton : UIImageView {
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UIKitEnhancements.ImageButton"/> class.
 		/// </summary>
-		public ImageButton () : base()
+		public ImageButton () : base ()
 		{
 		}
 
@@ -24,7 +22,7 @@ namespace UIKitEnhancements
 		/// Initializes a new instance of the <see cref="UIKitEnhancements.ImageButton"/> class.
 		/// </summary>
 		/// <param name="coder">Coder.</param>
-		public ImageButton (NSCoder coder) : base(coder)
+		public ImageButton (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -32,7 +30,7 @@ namespace UIKitEnhancements
 		/// Initializes a new instance of the <see cref="UIKitEnhancements.ImageButton"/> class.
 		/// </summary>
 		/// <param name="flag">Flag.</param>
-		public ImageButton (NSObjectFlag flag) : base(flag)
+		public ImageButton (NSObjectFlag flag) : base (flag)
 		{
 		}
 
@@ -40,7 +38,7 @@ namespace UIKitEnhancements
 		/// Initializes a new instance of the <see cref="UIKitEnhancements.ImageButton"/> class.
 		/// </summary>
 		/// <param name="bounds">Bounds.</param>
-		public ImageButton (CGRect bounds) : base(bounds)
+		public ImageButton (CGRect bounds) : base (bounds)
 		{
 		}
 
@@ -48,7 +46,7 @@ namespace UIKitEnhancements
 		/// Initializes a new instance of the <see cref="UIKitEnhancements.ImageButton"/> class.
 		/// </summary>
 		/// <param name="ptr">Ptr.</param>
-		public ImageButton (IntPtr ptr) : base(ptr)
+		public ImageButton (IntPtr ptr) : base (ptr)
 		{
 		}
 
@@ -56,7 +54,8 @@ namespace UIKitEnhancements
 		/// Initializes a new instance of the <see cref="UIKitEnhancements.ImageButton"/> class.
 		/// </summary>
 		/// <param name="image">Image.</param>
-		public ImageButton(UIImage image): base(image){
+		public ImageButton (UIImage image) : base (image)
+		{
 		}
 		#endregion
 
@@ -75,7 +74,7 @@ namespace UIKitEnhancements
 			base.TouchesBegan (touches, evt);
 		}
 
-		#endregion 
+		#endregion
 
 		#region Events
 		/// <summary>
@@ -87,11 +86,12 @@ namespace UIKitEnhancements
 		/// <summary>
 		/// Raises the touched event
 		/// </summary>
-		private void RaiseTouched(){
+		private void RaiseTouched ()
+		{
 			if (this.Touched != null)
 				this.Touched (this);
 		}
-		#endregion 
+		#endregion
 	}
 }
 

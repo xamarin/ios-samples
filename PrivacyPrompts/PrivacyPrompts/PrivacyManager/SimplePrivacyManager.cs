@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
-namespace PrivacyPrompts
-{
-	public class SimplePrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class SimplePrivacyManager : IPrivacyManager {
 		public Task RequestAccess ()
 		{
 			return Task.FromResult<object> (true);

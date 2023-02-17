@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace PaintCode
-{
-	public class BlueButtonViewController : UIViewController
-	{
+namespace PaintCode {
+	public class BlueButtonViewController : UIViewController {
 		public BlueButtonViewController ()
 		{
 		}
@@ -19,7 +17,7 @@ namespace PaintCode
 
 			View.BackgroundColor = UIColor.White;
 
-			nfloat statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
+			nfloat statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7, 0) ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
 			button = new BlueButton (new CGRect (10, 10 + statusBarHeight, 120, 120 - statusBarHeight));
 

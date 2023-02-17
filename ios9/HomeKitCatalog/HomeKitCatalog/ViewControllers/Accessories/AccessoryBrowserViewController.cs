@@ -8,10 +8,8 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
-	public enum AccessoryType
-	{
+namespace HomeKitCatalog {
+	public enum AccessoryType {
 		// A HomeKit object
 		HomeKit,
 		// An external, `EAWiFiUnconfiguredAccessory` object
@@ -19,8 +17,7 @@ namespace HomeKitCatalog
 	}
 
 	// Represents an accessory type and encapsulated accessory.
-	public class Accessory : IEquatable<Accessory>
-	{
+	public class Accessory : IEquatable<Accessory> {
 		Func<string> nameGetter;
 
 		public string Name {
@@ -54,10 +51,10 @@ namespace HomeKitCatalog
 
 		public override bool Equals (object obj)
 		{
-			if (obj == null || obj.GetType () != typeof(Accessory))
+			if (obj == null || obj.GetType () != typeof (Accessory))
 				return false;
 
-			var other = (Accessory)obj;
+			var other = (Accessory) obj;
 			return Name == other.Name;
 		}
 
@@ -87,10 +84,9 @@ namespace HomeKitCatalog
 		}
 	}
 
-	public partial class AccessoryBrowserViewController : HMCatalogViewController, IModifyAccessoryDelegate, IEAWiFiUnconfiguredAccessoryBrowserDelegate, IHMAccessoryBrowserDelegate
-	{
-		static readonly NSString AccessoryCell = (NSString)"AccessoryCell";
-		static readonly NSString AddedAccessoryCell = (NSString)"AddedAccessoryCell";
+	public partial class AccessoryBrowserViewController : HMCatalogViewController, IModifyAccessoryDelegate, IEAWiFiUnconfiguredAccessoryBrowserDelegate, IHMAccessoryBrowserDelegate {
+		static readonly NSString AccessoryCell = (NSString) "AccessoryCell";
+		static readonly NSString AddedAccessoryCell = (NSString) "AddedAccessoryCell";
 		const string AddAccessorySegue = "Add Accessory";
 
 		readonly List<HMAccessory> addedAccessories = new List<HMAccessory> ();
@@ -149,7 +145,7 @@ namespace HomeKitCatalog
 
 			var accessorySender = sender as HMAccessory;
 			if (accessorySender != null && segue.Identifier == AddAccessorySegue) {
-				var modifyViewController = (ModifyAccessoryViewController)segue.IntendedDestinationViewController ();
+				var modifyViewController = (ModifyAccessoryViewController) segue.IntendedDestinationViewController ();
 				modifyViewController.Accessory = accessorySender;
 				modifyViewController.Delegate = this;
 			}
@@ -337,7 +333,7 @@ namespace HomeKitCatalog
 			var newIndex = displayedAccessories.IndexOf (newAccessory);
 			if (newIndex >= 0) {
 				var newIndexPath = NSIndexPath.FromRowSection (newIndex, 0);
-				TableView.InsertRows (new []{ newIndexPath }, UITableViewRowAnimation.Automatic);
+				TableView.InsertRows (new [] { newIndexPath }, UITableViewRowAnimation.Automatic);
 			}
 		}
 
@@ -352,7 +348,7 @@ namespace HomeKitCatalog
 
 			var removedIndexPath = NSIndexPath.FromRowSection (removedIndex, 0);
 			displayedAccessories.RemoveAt (removedIndex);
-			TableView.DeleteRows (new []{ removedIndexPath }, UITableViewRowAnimation.Automatic);
+			TableView.DeleteRows (new [] { removedIndexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		#endregion

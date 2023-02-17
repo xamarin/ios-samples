@@ -31,10 +31,8 @@ using UIKit;
 using MapKit;
 using Foundation;
 
-namespace WeatherMap
-{
-	public class WeatherAnnotationView : MKAnnotationView
-	{
+namespace WeatherMap {
+	public class WeatherAnnotationView : MKAnnotationView {
 		public WeatherAnnotationView (IMKAnnotation annotation, string reuseIdentifier) : base (annotation, reuseIdentifier)
 		{
 			CGRect frame = Frame;
@@ -96,7 +94,7 @@ namespace WeatherMap
 
 				// Draw the icon for the weather condition
 				string imageName = string.Format ("WeatherMap.WeatherIcons.{0}.png", forecast.Condition);
-				UIImage image = UIImage.FromResource (typeof(WeatherAnnotationView).Assembly, imageName);
+				UIImage image = UIImage.FromResource (typeof (WeatherAnnotationView).Assembly, imageName);
 				image.Draw (new CGRect (12.5f, 28.0f, 45.0f, 45.0f));
 				image.Dispose ();
 			}

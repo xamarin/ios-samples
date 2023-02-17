@@ -1,26 +1,24 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreLocation;
 
-namespace Location
-{
-	public partial class ViewController : UIViewController
-	{
+namespace Location {
+	public partial class ViewController : UIViewController {
 		#region Computed Properties
 		public static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
 
-		public static LocationManager Manager { get; set;}
+		public static LocationManager Manager { get; set; }
 		#endregion
 
 		#region Constructors
 		public ViewController (IntPtr handle) : base (handle)
 		{
 			// As soon as the app is done launching, begin generating location updates in the location manager
-			Manager = new LocationManager();
-			Manager.StartLocationUpdates();
+			Manager = new LocationManager ();
+			Manager.StartLocationUpdates ();
 		}
 		#endregion
 

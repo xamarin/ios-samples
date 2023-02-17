@@ -5,10 +5,8 @@ using Foundation;
 using CoreAnimation;
 using UIKit;
 
-namespace CircleLayout
-{
-	public class CircleLayout : UICollectionViewLayout
-	{
+namespace CircleLayout {
+	public class CircleLayout : UICollectionViewLayout {
 		const float ItemSize = 70.0f;
 
 		int cellCount = 20;
@@ -24,9 +22,9 @@ namespace CircleLayout
 			base.PrepareLayout ();
 
 			CGSize size = CollectionView.Frame.Size;
-			cellCount = (int)CollectionView.NumberOfItemsInSection (0);
+			cellCount = (int) CollectionView.NumberOfItemsInSection (0);
 			center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
-			radius = (int)Math.Min (size.Width, size.Height) / 2.5f;
+			radius = (int) Math.Min (size.Width, size.Height) / 2.5f;
 		}
 
 		public override CGSize CollectionViewContentSize {
@@ -40,11 +38,11 @@ namespace CircleLayout
 			UICollectionViewLayoutAttributes attributes = UICollectionViewLayoutAttributes.CreateForCell (path);
 			attributes.Size = new CGSize (ItemSize, ItemSize);
 			attributes.Center = new CGPoint (center.X + radius * (float) Math.Cos (2 * path.Row * Math.PI / cellCount),
-			                                center.Y + radius * (float) Math.Sin (2 * path.Row * Math.PI / cellCount));
+											center.Y + radius * (float) Math.Sin (2 * path.Row * Math.PI / cellCount));
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var attributes = new UICollectionViewLayoutAttributes [cellCount];
 

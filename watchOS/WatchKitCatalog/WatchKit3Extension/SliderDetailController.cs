@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays sliders and their various configurations.
 */
 
@@ -8,13 +8,11 @@ using UIKit;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class SliderDetailController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class SliderDetailController : WKInterfaceController {
 		public SliderDetailController ()
 		{
-			 coloredSlider.SetColor (UIColor.Red);
+			coloredSlider.SetColor (UIColor.Red);
 		}
 
 		public override void WillActivate ()

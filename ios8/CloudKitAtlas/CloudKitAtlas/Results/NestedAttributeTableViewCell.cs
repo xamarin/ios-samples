@@ -1,11 +1,9 @@
 using System;
 using Foundation;
 
-namespace CloudKitAtlas
-{
+namespace CloudKitAtlas {
 	// TODO: why do we need this class?
-	public partial class NestedAttributeTableViewCell : AttributeTableViewCell
-	{
+	public partial class NestedAttributeTableViewCell : AttributeTableViewCell {
 		public NestedAttributeTableViewCell (IntPtr handle)
 			: base (handle)
 		{
@@ -15,7 +13,7 @@ namespace CloudKitAtlas
 		public NestedAttributeTableViewCell (NSCoder coder)
 			: base (coder)
 		{
-			
+
 		}
 	}
 }

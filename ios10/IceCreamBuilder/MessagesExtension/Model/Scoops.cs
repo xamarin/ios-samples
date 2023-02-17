@@ -1,4 +1,4 @@
-﻿namespace MessagesExtension {
+namespace MessagesExtension {
 	public enum ScoopsType {
 		scoops01,
 		scoops02,
@@ -13,7 +13,7 @@
 	}
 
 	public class Scoops : IceCreamPart {
-		public static Scoops[] All { get; } = {
+		public static Scoops [] All { get; } = {
 			new Scoops (ScoopsType.scoops01),
 			new Scoops (ScoopsType.scoops02),
 			new Scoops (ScoopsType.scoops03),

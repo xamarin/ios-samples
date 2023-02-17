@@ -2,13 +2,11 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvSplit
-{
-	public partial class MasterViewController : UIViewController
-	{
+namespace tvSplit {
+	public partial class MasterViewController : UIViewController {
 		#region Computed Properties
-		public MainSplitViewController SplitViewController { get; set;}
-		public DetailViewController DetailController { get; set;}
+		public MainSplitViewController SplitViewController { get; set; }
+		public DetailViewController DetailController { get; set; }
 		#endregion
 
 		#region Constructors
@@ -18,7 +16,8 @@ namespace tvSplit
 		#endregion
 
 		#region Custom Actions
-		partial void PlayPausePressed (Foundation.NSObject sender) {
+		partial void PlayPausePressed (Foundation.NSObject sender)
+		{
 
 			// Show hide split view
 			if (SplitViewController.DisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden) {
@@ -29,7 +28,8 @@ namespace tvSplit
 
 		}
 
-		partial void Page1Pressed (Foundation.NSObject sender) {
+		partial void Page1Pressed (Foundation.NSObject sender)
+		{
 
 			// Update GUI
 			DetailController.Title = "Hot or Cold?";
@@ -38,7 +38,8 @@ namespace tvSplit
 
 		}
 
-		partial void Page2Pressed (Foundation.NSObject sender) {
+		partial void Page2Pressed (Foundation.NSObject sender)
+		{
 
 			// Update GUI
 			DetailController.Title = "Wet or Dry?";
@@ -46,7 +47,8 @@ namespace tvSplit
 			DetailController.SecondChoice = "Ocean";
 		}
 
-		partial void Page3Pressed (Foundation.NSObject sender) {
+		partial void Page3Pressed (Foundation.NSObject sender)
+		{
 
 			// Update GUI
 			DetailController.Title = "Sweet or Sour?";

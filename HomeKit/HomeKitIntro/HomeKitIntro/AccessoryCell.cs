@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class AccessoryCell : UITableViewCell
-	{
+namespace HomeKitIntro {
+	public partial class AccessoryCell : UITableViewCell {
 		#region Static Properties
 		public static readonly NSString Key = new NSString ("AccessoryCell");
 		#endregion
@@ -19,7 +17,8 @@ namespace HomeKitIntro
 		#endregion
 
 		#region Public Methods
-		public void DisplayAccessory(HMAccessory accessory) {
+		public void DisplayAccessory (HMAccessory accessory)
+		{
 
 			// Update the UI
 			AccessoryName.Text = accessory.Name;
@@ -29,7 +28,8 @@ namespace HomeKitIntro
 				AccessoryImage.Image = UIImage.FromFile ("61-brightness.png");
 			} else if (accessory.Name.Contains ("Garage")) {
 				AccessoryImage.Image = UIImage.FromFile ("24-circle-north.png");
-			} if (accessory.Name.Contains ("Thermostat")) {
+			}
+			if (accessory.Name.Contains ("Thermostat")) {
 				AccessoryImage.Image = UIImage.FromFile ("81-dashboard.png");
 			} else if (accessory.Name.Contains ("Switch")) {
 				AccessoryImage.Image = UIImage.FromFile ("51-power.png");

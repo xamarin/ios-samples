@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace MultichannelMixer
-{
-	public partial class MultichannelMixerViewController : UIViewController
-	{
+namespace MultichannelMixer {
+	public partial class MultichannelMixerViewController : UIViewController {
 		public MultichannelMixerViewController (IntPtr handle) : base (handle)
 		{
 			Mixer = new MultichannelMixerController ();
@@ -63,7 +61,7 @@ namespace MultichannelMixer
 		partial void setInputVolume (NSObject sender)
 		{
 			var slider = (UISlider) sender;
-			Mixer.SetInputVolume ((int)slider.Tag, slider.Value);
+			Mixer.SetInputVolume ((int) slider.Tag, slider.Value);
 		}
 
 		partial void setOutputVolume (NSObject sender)
@@ -85,7 +83,7 @@ namespace MultichannelMixer
 				break;
 			}
 
-			Mixer.EnableInput ((int)ctrl.Tag, ctrl.On);
+			Mixer.EnableInput ((int) ctrl.Tag, ctrl.On);
 		}
 
 		// called if we've been interrupted and if we're playing, stop

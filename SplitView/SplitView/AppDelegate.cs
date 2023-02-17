@@ -3,11 +3,9 @@ using UIKit;
 using Foundation;
 using Example_SplitView.Screens;
 
-namespace Example_SplitView
-{
-	[Register("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+namespace Example_SplitView {
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
 		protected UIWindow window;
 		protected Screens.MainSplitView.MainSplitView splitView;
 

@@ -34,12 +34,9 @@ using CoreFoundation;
 using AudioUnit;
 using System.Diagnostics;
 
-namespace AQTapDemo
-{
-	public class CCFWebRadioPlayer
-	{
-		class ConnectionDelegate : NSUrlConnectionDataDelegate
-		{
+namespace AQTapDemo {
+	public class CCFWebRadioPlayer {
+		class ConnectionDelegate : NSUrlConnectionDataDelegate {
 			AudioFileStream audioFileStream;
 
 			public ConnectionDelegate (AudioFileStream stream)
@@ -63,7 +60,7 @@ namespace AQTapDemo
 		AudioUnit.AudioUnit convertToEffectUnit;
 		AudioUnit.AudioUnit convertFromEffectUnit;
 		AUGraph auGraph;
-		readonly IntPtr[] preRenderData = new IntPtr[20];
+		readonly IntPtr [] preRenderData = new IntPtr [20];
 		AudioTimeStamp renderTimeStamp;
 
 		int totalPacketsReceived;
@@ -209,7 +206,7 @@ namespace AQTapDemo
 				throw new ApplicationException ();
 
 			for (int channel = 0; channel < data.Count; channel++) {
-				preRenderData[channel] = data [channel].Data;
+				preRenderData [channel] = data [channel].Data;
 				data.SetData (channel, IntPtr.Zero);
 			}
 
@@ -239,7 +236,7 @@ namespace AQTapDemo
 				if (audioQueue.AllocateBuffer (args.Bytes, out buffer) != AudioQueueStatus.Ok)
 					throw new ApplicationException ();
 
-				buffer->AudioDataByteSize = (uint)args.Bytes;
+				buffer->AudioDataByteSize = (uint) args.Bytes;
 				buffer->CopyToAudioData (args.InputData, args.Bytes);
 
 				if (audioQueue.EnqueueBuffer (buffer, args.PacketDescriptions) != AudioQueueStatus.Ok)

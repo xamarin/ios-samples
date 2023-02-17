@@ -3,10 +3,8 @@ using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace TicTacToe
-{
-	public class TTTGameHistoryViewController : UIViewController
-	{
+namespace TicTacToe {
+	public class TTTGameHistoryViewController : UIViewController {
 		const float Margin = 20f;
 
 		TTTGameView gameView;
@@ -23,8 +21,8 @@ namespace TicTacToe
 			ratingControl.ValueChanged += ChangeRating;
 			NavigationItem.TitleView = ratingControl;
 
-			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTProfile.IconDidChangeNotification,
-			                                                IconDidChange);
+			NSNotificationCenter.DefaultCenter.AddObserver ((NSString) TTTProfile.IconDidChangeNotification,
+															IconDidChange);
 		}
 
 		public override void LoadView ()
@@ -46,12 +44,12 @@ namespace TicTacToe
 				NavigationController.NavigationBar.Frame.Size.Height;
 
 			view.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-margin-[gameView]-margin-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"margin", Margin,
 				"gameView", gameView));
 
 			view.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-topHeight-[gameView]-bottomHeight-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"topHeight", topHeight + Margin,
 				"gameView", gameView,
 				"bottomHeight", Margin));
@@ -61,7 +59,7 @@ namespace TicTacToe
 
 		void ChangeRating (object sender, EventArgs e)
 		{
-			Game.Rating = ((TTTRatingControl)sender).Rating;
+			Game.Rating = ((TTTRatingControl) sender).Rating;
 		}
 
 		#region Game View

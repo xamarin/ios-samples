@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays a table with rows. This controller demonstrates how to insert rows after the intial set of rows has been added and displayed.
 */
 
@@ -7,11 +7,9 @@ using System;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class TableDetailController : WKInterfaceController
-	{
-		string[] cityNames;
+namespace WatchkitExtension {
+	public partial class TableDetailController : WKInterfaceController {
+		string [] cityNames;
 
 		public TableDetailController ()
 		{
@@ -41,7 +39,7 @@ namespace WatchkitExtension
 			interfaceTable.SetNumberOfRows (cityNames.Length, "default");
 
 			for (var i = 0; i < cityNames.Length; i++) {
-				var row = (TableRowController)interfaceTable.GetRowController (i);
+				var row = (TableRowController) interfaceTable.GetRowController (i);
 				row.RowLabel.SetText (cityNames [i]);
 			}
 		}
@@ -59,7 +57,7 @@ namespace WatchkitExtension
 			var newCityNumber = 0;
 			newCityIndexes.EnumerateIndexes ((nuint idx, ref bool stop) => {
 				var newCityName = newCityNames [newCityNumber];
-				var row = (TableRowController)interfaceTable.GetRowController ((nint) idx);
+				var row = (TableRowController) interfaceTable.GetRowController ((nint) idx);
 				row.RowLabel.SetText (newCityName);
 				newCityNumber++;
 			});

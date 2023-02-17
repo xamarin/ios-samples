@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace HelloGoodbye
-{
-	public class Person
-	{
+namespace HelloGoodbye {
+	public class Person {
 		const string PhotoKey = "photo";
 		const string AgeKey = "age";
 		const string HobbiesKey = "hobbies";
@@ -17,13 +15,13 @@ namespace HelloGoodbye
 		public string Hobbies { get; set; }
 		public string ElevatorPitch { get; set; }
 
-		public static Person PersonFromDictionary(NSDictionary dict)
+		public static Person PersonFromDictionary (NSDictionary dict)
 		{
 			Person person = new Person {
-				Photo = UIImage.FromBundle((string)(NSString)dict[PhotoKey]),
-				Age = ((NSNumber)dict[AgeKey]).Int32Value,
-				Hobbies = (string)(NSString)dict[HobbiesKey],
-				ElevatorPitch = (string)(NSString)dict[ElevatorPitchKey],
+				Photo = UIImage.FromBundle ((string) (NSString) dict [PhotoKey]),
+				Age = ((NSNumber) dict [AgeKey]).Int32Value,
+				Hobbies = (string) (NSString) dict [HobbiesKey],
+				ElevatorPitch = (string) (NSString) dict [ElevatorPitchKey],
 			};
 
 			return person;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -8,10 +8,8 @@ using CoreGraphics;
 using static SpeedSketch.RingControlState;
 using static CoreGraphics.CGAffineTransform;
 
-namespace SpeedSketch
-{
-	public class RingControl : UIView
-	{
+namespace SpeedSketch {
+	public class RingControl : UIView {
 		RingView selectedView;
 
 		nfloat RingRadius {
@@ -76,7 +74,7 @@ namespace SpeedSketch
 				view.StateClosures [Selected] = selectedGenerator (view);
 				view.StateClosures [Normal] = normalGenerator (view);
 
-				nfloat angle = index / (nfloat)(itemCount - 1) * absoluteRingSegment;
+				nfloat angle = index / (nfloat) (itemCount - 1) * absoluteRingSegment;
 				var fan = normalDistance.Apply (MakeRotation (angle)).RoundTo (scale);
 				view.StateClosures [LocationFan] = locationFanGenerator (view, fan);
 

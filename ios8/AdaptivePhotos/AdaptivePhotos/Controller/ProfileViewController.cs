@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using UIKit;
 
-namespace AdaptivePhotos
-{
-	public class ProfileViewController : CustomViewController
-	{
+namespace AdaptivePhotos {
+	public class ProfileViewController : CustomViewController {
 		List<NSLayoutConstraint> constraints;
 		User user;
 
@@ -26,7 +24,7 @@ namespace AdaptivePhotos
 			get {
 				nuint photosCount = 0;
 				for (nuint i = 0; i < User.Conversations.Count; i++)
-					photosCount += User.Conversations.GetItem <Conversation> (i).Photos.Count;
+					photosCount += User.Conversations.GetItem<Conversation> (i).Photos.Count;
 
 				return string.Format ("{0} photos", photosCount);
 			}
@@ -40,7 +38,7 @@ namespace AdaptivePhotos
 
 		UILabel PhotosLabel { get; set; }
 
-		public  User User {
+		public User User {
 			get {
 				return user;
 			}

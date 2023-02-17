@@ -5,10 +5,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace MusicKitSample
-{
-	public partial class PlaylistTableViewCell : UITableViewCell
-	{
+namespace MusicKitSample {
+	public partial class PlaylistTableViewCell : UITableViewCell {
 		#region Cell Identifier
 
 		public static readonly NSString Key = new NSString ("PlaylistTableViewCell");

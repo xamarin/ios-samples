@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `UITableViewCell` subclass that displays the current value of an `HMCharacteristic` and
 	// notifies its delegate of changes. Subclasses of this class will provide additional controls
 	// to display different kinds of data.
 	[Register ("CharacteristicCell")]
-	public class CharacteristicCell : UITableViewCell
-	{
+	public class CharacteristicCell : UITableViewCell {
 		// An alpha percentage used when disabling cells.
 		protected readonly nfloat DisabledAlpha = 0.4f;
 
@@ -106,7 +104,7 @@ namespace HomeKitCatalog
 				TypeLabel.Alpha = alpha;
 
 				var lable = ValueLabel;
-				if(lable != null)
+				if (lable != null)
 					ValueLabel.Alpha = alpha;
 
 				if (Enabled) {

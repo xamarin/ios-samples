@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,7 +27,7 @@ namespace TouchCanvas {
 			rect = CGRectNull ();
 
 			var estimationUpdateIndex = touch.EstimationUpdateIndex;
-			var point = pointsWaitingForUpdatesByEstimationIndex[estimationUpdateIndex];
+			var point = pointsWaitingForUpdatesByEstimationIndex [estimationUpdateIndex];
 			if (point != null) {
 				rect = UpdateRectForExistingPoint (point);
 				var didUpdate = point.UpdateWithTouch (touch);
@@ -116,7 +116,7 @@ namespace TouchCanvas {
 						color = UIColor.Red;
 					else if (pointType.HasFlag (PointType.Finger))
 						color = UIColor.Purple;
-					
+
 					if (pointType.HasFlag (PointType.Predicted) && !pointType.HasFlag (PointType.Cancelled))
 						color = color.ColorWithAlpha (.5f);
 				}
@@ -133,9 +133,9 @@ namespace TouchCanvas {
 
 				// Draw azimuith and elevation on all non-coalesced points when debugging.
 				if (isDebuggingEnabled &&
-				    !point.PointType.HasFlag (PointType.Coalesced) &&
-				    !point.PointType.HasFlag (PointType.Predicted) &&
-				    !point.PointType.HasFlag (PointType.Finger)) {
+					!point.PointType.HasFlag (PointType.Coalesced) &&
+					!point.PointType.HasFlag (PointType.Predicted) &&
+					!point.PointType.HasFlag (PointType.Finger)) {
 					context.BeginPath ();
 					context.SetStrokeColor (UIColor.Red.CGColor);
 					context.SetLineWidth (.5f);
@@ -162,7 +162,7 @@ namespace TouchCanvas {
 				Points.Clear ();
 			} else {
 				for (int i = 0; i < allPoints.Count; i++) {
-					var point = allPoints[i];
+					var point = allPoints [i];
 					if (!point.PointType.HasFlag (PointType.NeedsUpdate | PointType.Predicted) || i >= (allPoints.Count - 2)) {
 						committing.Add (Points.First ());
 						break;
@@ -235,10 +235,10 @@ namespace TouchCanvas {
 			var arrayIndex = point.SequenceNumber - Points.First ().SequenceNumber;
 
 			if (arrayIndex > 0 && arrayIndex + 1 < Points.Count)
-				rect = rect.UnionWith (UpdateRectForLinePoint (point, Points[arrayIndex - 1]));
+				rect = rect.UnionWith (UpdateRectForLinePoint (point, Points [arrayIndex - 1]));
 
 			if (arrayIndex + 1 < Points.Count && arrayIndex + 1 > 0)
-				rect = rect.UnionWith (UpdateRectForLinePoint (point, Points[arrayIndex + 1]));
+				rect = rect.UnionWith (UpdateRectForLinePoint (point, Points [arrayIndex + 1]));
 
 			return rect;
 		}

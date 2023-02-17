@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalTexturedQuad", "MetalTexturedQuad\MetalTexturedQuad.csproj", "{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalTexturedQuad", "MetalTexturedQuad\MetalTexturedQuad.csproj", "{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +13,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Debug|iPhone.Build.0 = Debug|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Release|iPhone.ActiveCfg = Release|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Release|iPhone.Build.0 = Release|iPhone
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Debug|iPhone.Build.0 = Debug|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Debug|iPhoneSimulator.Build.0 = Debug|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Release|iPhone.ActiveCfg = Release|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Release|iPhone.Build.0 = Release|iPhone
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MetalTexturedQuad\MetalTexturedQuad.csproj

@@ -14,7 +14,7 @@ namespace FourInARow {
 		const int NanoSecondsPerSeond = 1000000000;
 
 		GKMinMaxStrategist strategist;
-		CAShapeLayer[][] chipLayers;
+		CAShapeLayer [] [] chipLayers;
 		Board board;
 		UIBezierPath chipPath;
 
@@ -31,9 +31,9 @@ namespace FourInARow {
 				RandomSource = new GKARC4RandomSource ()
 			};
 
-			var columns = new CAShapeLayer[Board.Width][];
+			var columns = new CAShapeLayer [Board.Width] [];
 			for (int column = 0; column < Board.Width; column++)
-				columns [column] = new CAShapeLayer[Board.Height];
+				columns [column] = new CAShapeLayer [Board.Height];
 
 			chipLayers = columns;
 			ResetBoard ();
@@ -62,7 +62,7 @@ namespace FourInARow {
 
 		partial void MakeMove (UIButton sender)
 		{
-			var column = (int)sender.Tag;
+			var column = (int) sender.Tag;
 			if (!board.CanMoveInColumn (column))
 				return;
 
@@ -73,7 +73,7 @@ namespace FourInARow {
 
 		void UpdateButton (UIControl button)
 		{
-			var column = (int)button.Tag;
+			var column = (int) button.Tag;
 			button.Enabled = board.CanMoveInColumn (column);
 			int row = Board.Height;
 			var chip = Chip.None;
@@ -98,7 +98,7 @@ namespace FourInARow {
 		{
 			int count = chipLayers [column].Count (c => c != null);
 			if (count < row + 1) {
-				var newChip = (CAShapeLayer)CAShapeLayer.Create ();
+				var newChip = (CAShapeLayer) CAShapeLayer.Create ();
 				newChip.Path = chipPath.CGPath;
 				newChip.Frame = chipPath.Bounds;
 				newChip.FillColor = color.CGColor;
@@ -158,7 +158,7 @@ namespace FourInARow {
 			NavigationItem.Title = string.Format ("{0} Turn", board.CurrentPlayer.Name);
 			NavigationController.NavigationBar.BackgroundColor = board.CurrentPlayer.Color;
 
-			#if USE_AI_PLAYER
+#if USE_AI_PLAYER
 			if (board.CurrentPlayer.Chip != Chip.Black)
 				return;
 
@@ -181,7 +181,7 @@ namespace FourInARow {
 				DispatchQueue.MainQueue.DispatchAfter (new DispatchTime (DispatchTime.Now, delay * NanoSecondsPerSeond),
 					() => MakeAIMoveInColumn (column));
 			});
-			#endif
+#endif
 		}
 
 		int ColumnForAIMove ()

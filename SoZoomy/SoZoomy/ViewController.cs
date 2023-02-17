@@ -9,14 +9,12 @@ using CoreMedia;
 using Foundation;
 using UIKit;
 
-namespace SoZoomy
-{
-	public partial class ViewController : UIViewController
-	{
+namespace SoZoomy {
+	public partial class ViewController : UIViewController {
 		AVCaptureSession session;
 		AVCaptureDevice device;
 		AVCaptureMetadataOutput metadataOutput;
-		Dictionary <int, FaceView> faceViews;
+		Dictionary<int, FaceView> faceViews;
 		int? lockedFaceID;
 		float lockedFaceSize;
 		double lockTime;
@@ -31,7 +29,7 @@ namespace SoZoomy
 
 		float MaxZoom {
 			get {
-				return (float)Math.Min (device != null ? device.ActiveFormat.VideoMaxZoomFactor : 1, 6);
+				return (float) Math.Min (device != null ? device.ActiveFormat.VideoMaxZoomFactor : 1, 6);
 			}
 		}
 
@@ -64,10 +62,10 @@ namespace SoZoomy
 			setupAVFoundationFaceDetection ();
 
 			if (device != null) {
-				device.AddObserver (this, (NSString) "videoZoomFactor", (NSKeyValueObservingOptions)0,
-				                    VideoZoomFactorContext);
-				device.AddObserver (this, (NSString) "rampingVideoZoom", (NSKeyValueObservingOptions)0,
-				                    VideoZoomRampingContext);
+				device.AddObserver (this, (NSString) "videoZoomFactor", (NSKeyValueObservingOptions) 0,
+									VideoZoomFactorContext);
+				device.AddObserver (this, (NSString) "rampingVideoZoom", (NSKeyValueObservingOptions) 0,
+									VideoZoomRampingContext);
 			}
 
 			session.StartRunning ();
@@ -155,7 +153,7 @@ namespace SoZoomy
 		{
 			session.BeginConfiguration ();
 
-			AVCaptureInput[] oldInputs = session.Inputs;
+			AVCaptureInput [] oldInputs = session.Inputs;
 			foreach (var oldInput in oldInputs)
 				session.RemoveInput (oldInput);
 
@@ -177,7 +175,7 @@ namespace SoZoomy
 			session.CommitConfiguration ();
 		}
 
-		public void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject[] faces, AVCaptureConnection connection)
+		public void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject [] faces, AVCaptureConnection connection)
 		{
 			List<int> unseen = faceViews.Keys.ToList ();
 			List<int> seen = new List<int> ();
@@ -187,7 +185,7 @@ namespace SoZoomy
 
 			foreach (var face in faces) {
 				// HACK: int faceId = (face as AVMetadataFaceObject).FaceID;
-				int faceId = (int)(face as AVMetadataFaceObject).FaceID;
+				int faceId = (int) (face as AVMetadataFaceObject).FaceID;
 				unseen.Remove (faceId);
 				seen.Add (faceId);
 
@@ -207,7 +205,7 @@ namespace SoZoomy
 						view.Alpha = 0;
 				}
 
-				AVMetadataFaceObject adjusted = (AVMetadataFaceObject)(previewView.Layer as AVCaptureVideoPreviewLayer).GetTransformedMetadataObject (face);
+				AVMetadataFaceObject adjusted = (AVMetadataFaceObject) (previewView.Layer as AVCaptureVideoPreviewLayer).GetTransformedMetadataObject (face);
 				view.Frame = adjusted.Bounds;
 			}
 
@@ -223,10 +221,10 @@ namespace SoZoomy
 				FaceView view = faceViews [lockedFaceID.GetValueOrDefault ()];
 				// HACK: Cast resulting nfloat to float
 				// float size = (float)Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor;
-				float size = (float)(Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor);
+				float size = (float) (Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor);
 				float zoomDelta = lockedFaceSize / size;
-				float lockTime = (float)(CATransition.CurrentMediaTime () - this.lockTime);
-				float zoomRate = (float)(Math.Log (zoomDelta) / lockTime);
+				float lockTime = (float) (CATransition.CurrentMediaTime () - this.lockTime);
+				float zoomRate = (float) (Math.Log (zoomDelta) / lockTime);
 				if (Math.Abs (zoomDelta) > 0.1)
 					device.RampToVideoZoom (zoomRate > 0 ? MaxZoom : 1, zoomRate);
 			}
@@ -239,7 +237,7 @@ namespace SoZoomy
 			lockedFaceID = faceId;
 			// HACK: Cast double to float
 			// lockedFaceSize = Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor;
-			lockedFaceSize = (float)(Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor);
+			lockedFaceSize = (float) (Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor);
 			lockTime = CATransition.CurrentMediaTime ();
 
 			UIView.BeginAnimations (null, IntPtr.Zero);
@@ -257,7 +255,8 @@ namespace SoZoomy
 
 		void displayErrorOnMainQueue (NSError error, string message)
 		{
-			DispatchQueue.MainQueue.DispatchAsync (delegate {
+			DispatchQueue.MainQueue.DispatchAsync (delegate
+			{
 				UIAlertView alert = new UIAlertView ();
 				if (error != null) {
 					alert.Title = message + " (" + error.Code + ")";
@@ -276,7 +275,7 @@ namespace SoZoomy
 				if (lockedFaceID != null)
 					clearLockedFace ();
 				else {
-					UITouch touch = (UITouch)touches.AnyObject;
+					UITouch touch = (UITouch) touches.AnyObject;
 					CGPoint point = touch.LocationInView (previewView);
 					point = (previewView.Layer as AVCaptureVideoPreviewLayer).CaptureDevicePointOfInterestForPoint (point);
 
@@ -303,7 +302,7 @@ namespace SoZoomy
 			if (context == VideoZoomFactorContext) {
 				// HACK: Cast nfloat to float
 				// setZoomSliderValue (device.VideoZoomFactor);
-				setZoomSliderValue ((float)device.VideoZoomFactor);
+				setZoomSliderValue ((float) device.VideoZoomFactor);
 				memeButton.Enabled = (device.VideoZoomFactor > 1);
 			} else if (context == VideoZoomRampingContext) {
 				slider.Enabled = device.RampingVideoZoom;
@@ -324,7 +323,7 @@ namespace SoZoomy
 			string path = NSBundle.MainBundle.PathForResource ("Dramatic2", "m4a");
 			if (path != null) {
 				memeEffect = AVPlayer.FromUrl (NSUrl.FromFilename (path));
-				memeEffect.AddObserver (this, (NSString) "rate", (NSKeyValueObservingOptions)0, MemePlaybackContext);
+				memeEffect.AddObserver (this, (NSString) "rate", (NSKeyValueObservingOptions) 0, MemePlaybackContext);
 			}
 			path = NSBundle.MainBundle.PathForResource ("Sosumi", "wav");
 			if (path != null)
@@ -341,7 +340,7 @@ namespace SoZoomy
 		public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
 			(previewView.Layer as AVCaptureVideoPreviewLayer).Connection.VideoOrientation =
-				(AVCaptureVideoOrientation)toInterfaceOrientation;
+				(AVCaptureVideoOrientation) toInterfaceOrientation;
 		}
 
 		partial void meme (NSObject sender)
@@ -355,25 +354,24 @@ namespace SoZoomy
 
 			if (faceViews == null)
 				return;
-			
-			foreach (var faceId in faceViews.Keys)
-			{
-				FaceView view = faceViews[faceId];
+
+			foreach (var faceId in faceViews.Keys) {
+				FaceView view = faceViews [faceId];
 				view.Alpha = 0;
 			}
 		}
 
-		[Export("flash")]
+		[Export ("flash")]
 		void flash ()
 		{
 			if (device.TorchAvailable)
 				device.TorchMode = AVCaptureTorchMode.On;
 		}
 
-		[Export("startZoom:")]
+		[Export ("startZoom:")]
 		void startZoom (NSNumber target)
 		{
-			float zoomPower = (float)Math.Log (target.FloatValue);
+			float zoomPower = (float) Math.Log (target.FloatValue);
 			device.RampToVideoZoom (target.FloatValue, zoomPower / MEME_ZOOM_TIME);
 		}
 
@@ -403,19 +401,18 @@ namespace SoZoomy
 
 		float getZoomSliderValue ()
 		{
-			return (float)Math.Pow (MaxZoom, slider.Value);
+			return (float) Math.Pow (MaxZoom, slider.Value);
 		}
 
 		void setZoomSliderValue (float value)
 		{
-			slider.Value = (float)Math.Log (value) / (float)Math.Log (MaxZoom);
+			slider.Value = (float) Math.Log (value) / (float) Math.Log (MaxZoom);
 		}
 
-		public class MetaDataObjectDelegate : AVCaptureMetadataOutputObjectsDelegate
-		{
-			public Action<AVCaptureMetadataOutput, AVMetadataObject[], AVCaptureConnection> DidOutputMetadataObjectsAction;
+		public class MetaDataObjectDelegate : AVCaptureMetadataOutputObjectsDelegate {
+			public Action<AVCaptureMetadataOutput, AVMetadataObject [], AVCaptureConnection> DidOutputMetadataObjectsAction;
 
-			public override void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject[] faces, AVCaptureConnection connection)
+			public override void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject [] faces, AVCaptureConnection connection)
 			{
 				if (DidOutputMetadataObjectsAction != null)
 					DidOutputMetadataObjectsAction (captureOutput, faces, connection);

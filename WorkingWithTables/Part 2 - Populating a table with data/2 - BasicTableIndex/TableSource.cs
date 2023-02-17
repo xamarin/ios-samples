@@ -10,24 +10,24 @@ namespace BasicTable {
 		string cellIdentifier = "TableCell";
 
 		Dictionary<string, List<string>> indexedTableItems;
-		string[] keys;
+		string [] keys;
 		HomeScreen owner;
 
-		public TableSource (string[] items, HomeScreen owner)
+		public TableSource (string [] items, HomeScreen owner)
 		{
 			this.owner = owner;
 
-			indexedTableItems = new Dictionary<string, List<string>>();
+			indexedTableItems = new Dictionary<string, List<string>> ();
 			foreach (var t in items) {
-				if (indexedTableItems.ContainsKey (t[0].ToString ())) {
-					indexedTableItems[t[0].ToString ()].Add(t);
+				if (indexedTableItems.ContainsKey (t [0].ToString ())) {
+					indexedTableItems [t [0].ToString ()].Add (t);
 				} else {
-					indexedTableItems.Add (t[0].ToString (), new List<string>() {t});
+					indexedTableItems.Add (t [0].ToString (), new List<string> () { t });
 				}
 			}
 			keys = indexedTableItems.Keys.ToArray ();
 		}
-	
+
 		/// <summary>
 		/// Called by the TableView to determine how many sections(groups) there are.
 		/// </summary>
@@ -41,13 +41,13 @@ namespace BasicTable {
 		/// </summary>
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return indexedTableItems[keys[section]].Count;
+			return indexedTableItems [keys [section]].Count;
 		}
-		
+
 		/// <summary>
 		/// Sections the index titles.
 		/// </summary>
-		public override String[] SectionIndexTitles (UITableView tableView)
+		public override String [] SectionIndexTitles (UITableView tableView)
 		{
 			return indexedTableItems.Keys.ToArray ();
 		}
@@ -57,12 +57,12 @@ namespace BasicTable {
 		/// </summary>
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			UIAlertController okAlertController = UIAlertController.Create ("Row Selected", indexedTableItems[keys[indexPath.Section]][indexPath.Row], UIAlertControllerStyle.Alert);
-			okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+			UIAlertController okAlertController = UIAlertController.Create ("Row Selected", indexedTableItems [keys [indexPath.Section]] [indexPath.Row], UIAlertControllerStyle.Alert);
+			okAlertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, null));
 			owner.PresentViewController (okAlertController, true, null);
 			tableView.DeselectRow (indexPath, true);
 		}
-		
+
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
 		/// </summary>
@@ -73,9 +73,9 @@ namespace BasicTable {
 			// if there are no cells to reuse, create a new one
 			if (cell == null)
 				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
-			
-			cell.TextLabel.Text = indexedTableItems[keys[indexPath.Section]][indexPath.Row];
-			
+
+			cell.TextLabel.Text = indexedTableItems [keys [indexPath.Section]] [indexPath.Row];
+
 			return cell;
 		}
 	}

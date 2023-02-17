@@ -5,10 +5,8 @@ using Foundation;
 using GameKit;
 using UIKit;
 
-namespace GameCenterSample
-{
-	public class PlayerModel
-	{
+namespace GameCenterSample {
+	public class PlayerModel {
 
 		string storedScoresFilename;
 		string storedAchievementsFilename;
@@ -57,7 +55,7 @@ namespace GameCenterSample
 							new UIAlertView ("Score Stored", "Score Stored ", null, "OK", null).Show ();
 						}
 					}));
-					storedScores.RemoveObject ((nint)index);
+					storedScores.RemoveObject ((nint) index);
 					index--;
 				}
 			}
@@ -76,9 +74,9 @@ namespace GameCenterSample
 		// Load stored scores from disk
 		public void loadStoredScores ()
 		{
-			NSArray unarchivedObj = (NSArray)NSKeyedUnarchiver.UnarchiveFile (this.storedScoresFilename);
+			NSArray unarchivedObj = (NSArray) NSKeyedUnarchiver.UnarchiveFile (this.storedScoresFilename);
 			if (unarchivedObj != null) {
-				storedScores = (NSMutableArray)unarchivedObj;
+				storedScores = (NSMutableArray) unarchivedObj;
 				this.resubmitSotredScores ();
 			} else {
 				storedScores = new NSMutableArray ();
@@ -113,7 +111,7 @@ namespace GameCenterSample
 		// Create an entry for an achievement that hasn't been submitted to the server
 		void storeAchievement (GKAchievement achievement)
 		{
-			GKAchievement currentStorage = (GKAchievement)storedAchievements.ValueForKey (new NSString (achievement.Identifier));
+			GKAchievement currentStorage = (GKAchievement) storedAchievements.ValueForKey (new NSString (achievement.Identifier));
 
 			if (currentStorage == null) {
 				storedAchievements.Add (new NSString (achievement.Identifier), achievement);
@@ -157,7 +155,7 @@ namespace GameCenterSample
 		{
 			if (storedAchievements == null) {
 
-				NSMutableDictionary unarchivedObj = (NSMutableDictionary)NSKeyedUnarchiver.UnarchiveFile (this.storedAchievementsFilename);
+				NSMutableDictionary unarchivedObj = (NSMutableDictionary) NSKeyedUnarchiver.UnarchiveFile (this.storedAchievementsFilename);
 				if (unarchivedObj != null) {
 					this.resubmitStoredAchievements ();
 				} else {
@@ -171,7 +169,7 @@ namespace GameCenterSample
 		{
 			if (storedAchievements != null) {
 				foreach (NSString key in storedAchievements.Keys) {
-					GKAchievement achievement = (GKAchievement)storedAchievements.ObjectForKey (key);
+					GKAchievement achievement = (GKAchievement) storedAchievements.ObjectForKey (key);
 					this.submitAchievement (achievement);
 				}
 			}
@@ -180,7 +178,8 @@ namespace GameCenterSample
 		// Reset all the achievements for local player
 		public void resetAchievements ()
 		{
-			GKAchievement.ResetAchivements (new Action<NSError> (delegate(NSError error) {
+			GKAchievement.ResetAchivements (new Action<NSError> (delegate (NSError error)
+			{
 				if (error == null)
 					new UIAlertView ("Achievement reset", "Achievement reset successfully", null, "OK", null).Show ();
 				else

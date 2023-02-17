@@ -2,17 +2,15 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace TransitionsDemo.AnimationControllers
-{
-	public class CECrossfadeAnimationController : CEReversibleAnimationController
-	{
+namespace TransitionsDemo.AnimationControllers {
+	public class CECrossfadeAnimationController : CEReversibleAnimationController {
 		public CECrossfadeAnimationController ()
 		{
 		}
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
-		                                        UIViewController fromViewController, UIViewController toViewController,
-		                                        UIView fromView, UIView toView)
+												UIViewController fromViewController, UIViewController toViewController,
+												UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 			containerView.AddSubview (toView);

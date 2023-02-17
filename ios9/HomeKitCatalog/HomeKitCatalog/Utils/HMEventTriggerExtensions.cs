@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using HomeKit;
 
-namespace HomeKitCatalog
-{
-	public static class HMEventTriggerExtensions
-	{
+namespace HomeKitCatalog {
+	public static class HMEventTriggerExtensions {
 		// returns:  `true` if the trigger contains a location event, `false` otherwise.
 		public static bool IsLocationEvent (this HMEventTrigger trigger)
 		{
@@ -24,7 +22,7 @@ namespace HomeKitCatalog
 			return null;
 		}
 
-		public static HMCharacteristicEvent[] CharacteristicEvents(this HMEventTrigger self)
+		public static HMCharacteristicEvent [] CharacteristicEvents (this HMEventTrigger self)
 		{
 			return self.Events.OfType<HMCharacteristicEvent> ().ToArray ();
 		}

@@ -1,8 +1,20 @@
-Soup Chef
-============
+---
+name: Xamarin.iOS - Soup Chef
+description: "This is a Xamarin port of Apple's Soup Chef sample. It demonstrates how to create an app that makes use of Siri Shortcuts (iOS12)"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+extensions:
+    tags:
+    - ios12
+urlFragment: ios12-soupchef
+---
+# Soup Chef
 
 This is a Xamarin port of Apple's [Soup Chef](https://developer.apple.com/documentation/sirikit/accelerating_app_interactions_with_shortcuts?language=objc)
-sample. It demonstrates how to create an app that makes use of Siri 
+sample. It demonstrates how to create an app that makes use of Siri
 Shortcuts, introduced in iOS 12.
 
 The application provides a way to order soup from a fictitious soup
@@ -10,8 +22,7 @@ restaurant, view your order history, and assign voice shortcuts to
 orders. These voice shortcuts can then be invoked with Siri, making it
 possible to order soup without even opening the app.
 
-Usage
--------
+## Usage
 
 To use the app, set up an order and assign it a voice shortcut:
 
@@ -19,7 +30,7 @@ To use the app, set up an order and assign it a voice shortcut:
 - Click the **+** button in the upper-right, and create a new soup order. 
 - After creating the order, it will appear on the **Order History** screen 
 in the app. Select the order, then tap **Add to Siri** on the bottom of the 
-screen. 
+screen.
 - Record a phrase to use to make the same order again in the future with 
 Siri. For example, for an order that contains two bowls of chowder with 
 cheese, you might specify, "Order two bowls of chowder with cheese."
@@ -31,8 +42,7 @@ Then, order soup with Siri:
 defined above. For example, "Hey Siri, order two bowls of chowder with 
 cheese." Siri will interact with you to create and execute the order.
 
-Repository overview
--------
+## Repository overview
 
 This repository contains the following folders:
 
@@ -85,8 +95,7 @@ This repository contains the following folders:
     - **SoupChefIntentsUI**
     - **SoupKit**
 
-Building the static library and C# bindings definitions
--------
+## Building the static library and C# bindings definitions
 
 The **SoupChef** app relies on the **OrderSoupIntentBinding** project,
 which in turn relies on the static library produced by
@@ -99,27 +108,26 @@ bindings definitions build as expected:
 the tool used to generate bindings definitions from the .h and .m files
 created by Xcode.
 - Configure your system to use Xcode 10 Command Line Tools:
-    - WARNING: Updating the selected Command Line Tools impacts all 
+  - WARNING: Updating the selected Command Line Tools impacts all 
     installed versions of Xcode on your system. When you are done using the 
     Soup Chef sample app, be sure to revert this setting to its original
     configuration.
-    - In Xcode, choose **Xcode > Preferences > Locations** and set
+  - In Xcode, choose **Xcode > Preferences > Locations** and set
     **Command Line Tools** to the most current Xcode 10 installation
     available on your system.
 - In the terminal, `cd` to the **OrderSoupIntentStaticLib** directory.
 - Type `make`, which builds:
-    - The static library, **libOrderSoupIntentStaticLib.a** 
-    - In the **bo** output directory, C# bindings definitions:
-        - **ApiDefinitions.cs**
-        - **StructsAndEnums.cs**
+  - The static library, **libOrderSoupIntentStaticLib.a** 
+  - In the **bo** output directory, C# bindings definitions:
+    - **ApiDefinitions.cs**
+    - **StructsAndEnums.cs**
 
 The **OrderSoupIntentBindings** project, which relies on this static library
 and its associated bindings definitions, builds these items automatically.
 However, manually running through the above process will ensure that the
 static library and bindings definitions build as expected.
 
-Running the app on simulator or device
--------
+## Running the app on simulator or device
 
 It can be helpful when working with Siri Shortcuts to enable two settings
 on your iOS device or simulator:
@@ -131,8 +139,7 @@ These settings will surface recently created shortcuts on the lock screen
 and in the search results (accessible by swiping down on the iOS home
 screen).
 
-Running on simulator
--------
+## Running on simulator
 
 This app works on the simulator. On the **Hardware** menu of macOS
 **Simulator** application (the iOS simulator), select **Siri** to invoke
@@ -141,8 +148,7 @@ physical device. If you run the app on simulator, you will not need
 to to through the provisioning steps described below in the
 **Running on device** section.
 
-Running on device
--------
+## Running on device
 
 To run this application on a device, you'll need to set up an App Group,
 some App IDs, and some development provisioning profiles; make a few edits
@@ -263,15 +269,10 @@ with the Swift-based app.
 
 - After successfully completing an order made via voice, Siri does not 
 report back the success message defined by the **Intents.intentdefinition**
-file. 
+file.
 - There is a persistent warning in the application console: "Warning:
 observer object was not disposed manually with Dispose()"
 
-License
--------
+## License
+
 Xamarin port changes are released under the MIT license.
-
-Author
--------
-Ported to Xamarin.iOS by Brad Umbaugh
-

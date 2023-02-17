@@ -16,8 +16,7 @@ namespace MarsHabitatPricePredictor {
 	/// <summary>
 	/// Model Prediction Input Type
 	/// </summary>
-	public class MarsHabitatPricerInput : NSObject, IMLFeatureProvider
-	{
+	public class MarsHabitatPricerInput : NSObject, IMLFeatureProvider {
 		static readonly NSSet<NSString> featureNames = new NSSet<NSString> (
 			new NSString ("solarPanels"), new NSString ("greenhouses"), new NSString ("size")
 		);
@@ -88,8 +87,7 @@ namespace MarsHabitatPricePredictor {
 	/// <summary>
 	/// Model Prediction Output Type
 	/// </summary>
-	public class MarsHabitatPricerOutput : NSObject, IMLFeatureProvider
-	{
+	public class MarsHabitatPricerOutput : NSObject, IMLFeatureProvider {
 		static readonly NSSet<NSString> featureNames = new NSSet<NSString> (
 			new NSString ("price")
 		);
@@ -130,8 +128,7 @@ namespace MarsHabitatPricePredictor {
 	/// <summary>
 	/// Class for model loading and prediction
 	/// </summary>
-	public class MarsHabitatPricer : NSObject
-	{
+	public class MarsHabitatPricer : NSObject {
 		readonly MLModel model;
 
 		static NSUrl GetModelUrl ()

@@ -42,7 +42,10 @@ namespace LazyTableImages {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
 
-		static readonly Uri RssFeedUrl = new Uri ("http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=75/xml");
+		/// <summary>
+		/// Choose a feed from https://rss.itunes.apple.com/
+		/// </summary>
+		static readonly Uri RssFeedUrl = new Uri ("https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/50/non-explicit.atom");
 
 		UINavigationController NavigationController { get; set; }
 
@@ -58,7 +61,7 @@ namespace LazyTableImages {
 		/// <remarks>
 		/// You have 5 seconds to return from this method, or iOS will terminate your application.
 		/// </remarks>
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			Window = new UIWindow (UIScreen.MainScreen.Bounds);
 			RootController = new RootViewController ("RootViewController", null);
@@ -107,7 +110,7 @@ namespace LazyTableImages {
 			});
 		}
 
-		void DisplayError (string title, string errorMessage, params object[] formatting)
+		void DisplayError (string title, string errorMessage, params object [] formatting)
 		{
 			var alert = new UIAlertView (title, string.Format (errorMessage, formatting), null, "ok", null);
 			alert.Show ();

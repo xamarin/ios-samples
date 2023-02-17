@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhone</Platform>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{AEFD890E-3ED0-4653-B0A5-2E255D7C444B}</ProjectGuid>
+    <ProjectGuid>{61486E0E-8197-4E72-86C1-AFBDFC4A2E69}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>MetalTexturedQuad</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>

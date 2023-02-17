@@ -5,14 +5,12 @@ using SpriteKit;
 using Foundation;
 using CoreGraphics;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public class SpaceScene : SKScene, ISKPhysicsContactDelegate
-	{
+namespace SpriteKitPhysicsCollisions {
+	public class SpaceScene : SKScene, ISKPhysicsContactDelegate {
 		const float collisionDamageThreshold = 1.0f;
 		const int missileDamage = 1;
 
-		bool[] actions = new bool [5];
+		bool [] actions = new bool [5];
 		bool contentCreated;
 		ShipSprite controlledShip;
 
@@ -20,7 +18,7 @@ namespace SpriteKitPhysicsCollisions
 
 		static float myRand (float low, float high)
 		{
-			return (float)rand.NextDouble () * (high - low) + low;
+			return (float) rand.NextDouble () * (high - low) + low;
 		}
 
 		public SpaceScene (CGSize size)
@@ -68,12 +66,12 @@ namespace SpriteKitPhysicsCollisions
 		{
 			// Only ships take damage from missiles.
 			if ((target.CategoryBitMask & Category.Ship) != 0)
-				((ShipSprite)target.Node).ApplyDamage (missileDamage);
+				((ShipSprite) target.Node).ApplyDamage (missileDamage);
 
 			DetonateMissile (missile);
 		}
 
-		void DetonateMissile(SKNode missile)
+		void DetonateMissile (SKNode missile)
 		{
 			SKEmitterNode explosion = new ExplosionNode (this);
 			explosion.Position = missile.Position;
@@ -117,10 +115,10 @@ namespace SpriteKitPhysicsCollisions
 				// so ships should not take damage when they hit the edge.
 				if (contact.CollisionImpulse > collisionDamageThreshold && (secondBody.CategoryBitMask & Category.Edge) == 0) {
 					int damage = (int) (contact.CollisionImpulse / collisionDamageThreshold);
-					((ShipSprite)firstBody.Node).ApplyDamage (damage);
+					((ShipSprite) firstBody.Node).ApplyDamage (damage);
 
 					if ((secondBody.CategoryBitMask == Category.Ship))
-						((ShipSprite)secondBody.Node).ApplyDamage (damage);
+						((ShipSprite) secondBody.Node).ApplyDamage (damage);
 				}
 			}
 
@@ -140,21 +138,21 @@ namespace SpriteKitPhysicsCollisions
 			// if the target ship was controlled by the computer, you might run AI from this routine.
 
 			// Use the stored key information to control the ship.
-			if (actions [(int)PlayerActions.Forward])
+			if (actions [(int) PlayerActions.Forward])
 				controlledShip.ActivateMainEngine ();
 			else
 				controlledShip.DeactivateMainEngine ();
 
-			if (actions [(int)PlayerActions.Back])
+			if (actions [(int) PlayerActions.Back])
 				controlledShip.ReverseThrust ();
 
-			if (actions [(int)PlayerActions.Left])
+			if (actions [(int) PlayerActions.Left])
 				controlledShip.RotateShipLeft ();
 
-			if (actions [(int)PlayerActions.Right])
+			if (actions [(int) PlayerActions.Right])
 				controlledShip.RotateShipRight ();
 
-			if (actions [(int)PlayerActions.Action])
+			if (actions [(int) PlayerActions.Action])
 				controlledShip.AttemptMissileLaunch (currentTime);
 		}
 
@@ -164,30 +162,30 @@ namespace SpriteKitPhysicsCollisions
 		{
 			base.TouchesMoved (touches, evt);
 
-			actions [(int)PlayerActions.Action] = false;
-			actions [(int)PlayerActions.Left] = false;
-			actions [(int)PlayerActions.Right] = false;
-			actions [(int)PlayerActions.Forward] = false;
-			actions [(int)PlayerActions.Back] = false;
+			actions [(int) PlayerActions.Action] = false;
+			actions [(int) PlayerActions.Left] = false;
+			actions [(int) PlayerActions.Right] = false;
+			actions [(int) PlayerActions.Forward] = false;
+			actions [(int) PlayerActions.Back] = false;
 
-			UITouch touch = (UITouch)touches.AnyObject;
+			UITouch touch = (UITouch) touches.AnyObject;
 			var location = touch.LocationInView (View);
 
 			var deltaX = location.X - controlledShip.Position.X;
 			var deltaY = (View.Bounds.Height - location.Y) - controlledShip.Position.Y;
 
 			if (Math.Abs (deltaX) < 30 && Math.Abs (deltaY) < 30) {
-				actions [(int)PlayerActions.Action] = true;
+				actions [(int) PlayerActions.Action] = true;
 			} else if (Math.Abs (deltaX) > Math.Abs (deltaY)) {
 				if (deltaX < 0)
-					actions [(int)PlayerActions.Left] = true;
+					actions [(int) PlayerActions.Left] = true;
 				else
-					actions [(int)PlayerActions.Right] = true;
+					actions [(int) PlayerActions.Right] = true;
 			} else {
 				if (deltaY < 0)
-					actions [(int)PlayerActions.Forward] = true;
+					actions [(int) PlayerActions.Forward] = true;
 				else
-					actions [(int)PlayerActions.Back] = true;
+					actions [(int) PlayerActions.Back] = true;
 			}
 		}
 
@@ -195,30 +193,30 @@ namespace SpriteKitPhysicsCollisions
 		{
 			base.TouchesMoved (touches, evt);
 
-			actions [(int)PlayerActions.Action] = false;
-			actions [(int)PlayerActions.Left] = false;
-			actions [(int)PlayerActions.Right] = false;
-			actions [(int)PlayerActions.Forward] = false;
-			actions [(int)PlayerActions.Back] = false;
+			actions [(int) PlayerActions.Action] = false;
+			actions [(int) PlayerActions.Left] = false;
+			actions [(int) PlayerActions.Right] = false;
+			actions [(int) PlayerActions.Forward] = false;
+			actions [(int) PlayerActions.Back] = false;
 
-			UITouch touch = (UITouch)touches.AnyObject;
+			UITouch touch = (UITouch) touches.AnyObject;
 			var location = touch.LocationInView (View);
 
 			var deltaX = location.X - controlledShip.Position.X;
 			var deltaY = (View.Bounds.Height - location.Y) - controlledShip.Position.Y;
 
 			if (Math.Abs (deltaX) < 30 && Math.Abs (deltaY) < 30)
-				actions [(int)PlayerActions.Action] = true;
+				actions [(int) PlayerActions.Action] = true;
 			else if (Math.Abs (deltaX) > Math.Abs (deltaY)) {
 				if (deltaX < 0)
-					actions [(int)PlayerActions.Left] = true;
+					actions [(int) PlayerActions.Left] = true;
 				else
-					actions [(int)PlayerActions.Right] = true;
+					actions [(int) PlayerActions.Right] = true;
 			} else {
 				if (deltaY < 0)
-					actions [(int)PlayerActions.Forward] = true;
+					actions [(int) PlayerActions.Forward] = true;
 				else
-					actions [(int)PlayerActions.Back] = true;
+					actions [(int) PlayerActions.Back] = true;
 			}
 		}
 
@@ -226,11 +224,11 @@ namespace SpriteKitPhysicsCollisions
 		{
 			base.TouchesMoved (touches, evt);
 
-			actions [(int)PlayerActions.Action] = false;
-			actions [(int)PlayerActions.Left] = false;
-			actions [(int)PlayerActions.Right] = false;
-			actions [(int)PlayerActions.Forward] = false;
-			actions [(int)PlayerActions.Back] = false;
+			actions [(int) PlayerActions.Action] = false;
+			actions [(int) PlayerActions.Left] = false;
+			actions [(int) PlayerActions.Right] = false;
+			actions [(int) PlayerActions.Forward] = false;
+			actions [(int) PlayerActions.Back] = false;
 		}
 	}
 }

@@ -13,26 +13,29 @@ namespace Consumables {
 	// Basically, this is ONLY intended as a demo of the StoreKit code,
 	// NOT how you should build a credits system for iOS.
 	public static class CreditManager {
-		static NSString defaultKey = new NSString("monkeyDollarsBalance");
+		static NSString defaultKey = new NSString ("monkeyDollarsBalance");
 		static nint monkeyCredits = 0;
 		static CreditManager ()
 		{
-			monkeyCredits = NSUserDefaults.StandardUserDefaults.IntForKey(defaultKey);
+			monkeyCredits = NSUserDefaults.StandardUserDefaults.IntForKey (defaultKey);
 		}
 
-		public static int Balance() {
+		public static int Balance ()
+		{
 			NSUserDefaults.StandardUserDefaults.Synchronize ();
-			return (int)NSUserDefaults.StandardUserDefaults.IntForKey(defaultKey);
+			return (int) NSUserDefaults.StandardUserDefaults.IntForKey (defaultKey);
 		}
-		public static void Add (int moreDollars) {
+		public static void Add (int moreDollars)
+		{
 			monkeyCredits += moreDollars;
-			NSUserDefaults.StandardUserDefaults.SetInt(monkeyCredits, defaultKey);
+			NSUserDefaults.StandardUserDefaults.SetInt (monkeyCredits, defaultKey);
 			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
-		public static bool Spend (int lessDollars) {
+		public static bool Spend (int lessDollars)
+		{
 			if (monkeyCredits >= lessDollars) {
 				monkeyCredits -= lessDollars;
-				NSUserDefaults.StandardUserDefaults.SetInt(monkeyCredits, defaultKey);
+				NSUserDefaults.StandardUserDefaults.SetInt (monkeyCredits, defaultKey);
 				NSUserDefaults.StandardUserDefaults.Synchronize ();
 				return true;
 			} else {

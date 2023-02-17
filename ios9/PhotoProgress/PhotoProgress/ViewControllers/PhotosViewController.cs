@@ -52,7 +52,7 @@ namespace PhotoProgress {
 
 		partial void CanceltImport (NSObject sender)
 		{
-			OverallProgress.Cancel();
+			OverallProgress.Cancel ();
 		}
 
 		partial void PauseImport (NSObject sender)
@@ -76,7 +76,7 @@ namespace PhotoProgress {
 			if (segue.Identifier != "photos collection")
 				return;
 
-			var collectionViewController = (PhotosCollectionViewController)segue.DestinationViewController;
+			var collectionViewController = (PhotosCollectionViewController) segue.DestinationViewController;
 			collectionViewController.Album = album;
 		}
 
@@ -110,7 +110,7 @@ namespace PhotoProgress {
 
 			if (OverallProgress != null) {
 				shouldHide = OverallProgressIsFinished || OverallProgress.Cancelled;
-				ProgressView.Progress = (float)OverallProgress.FractionCompleted;
+				ProgressView.Progress = (float) OverallProgress.FractionCompleted;
 			} else {
 				shouldHide = true;
 			}

@@ -4,10 +4,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace StateRestoration
-{
-	public partial class CollectionViewController : UICollectionViewController
-	{
+namespace StateRestoration {
+	public partial class CollectionViewController : UICollectionViewController {
 		const string DetailedViewControllerID = "DetailView";
 		const string CellID = "cellID";
 
@@ -49,7 +47,7 @@ namespace StateRestoration
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var cell = (CollectionCell)collectionView.DequeueReusableCell ((NSString)CellID, indexPath);
+			var cell = (CollectionCell) collectionView.DequeueReusableCell ((NSString) CellID, indexPath);
 
 			string identifier = DataSource.GetIdentifier (indexPath);
 			cell.Label.Text = DataSource.GetTitle (identifier);
@@ -63,7 +61,7 @@ namespace StateRestoration
 			base.PrepareForSegue (segue, sender);
 
 			if (segue.Identifier == "showDetail")
-				PrepareForSegue ((DetailViewController)segue.DestinationViewController);
+				PrepareForSegue ((DetailViewController) segue.DestinationViewController);
 		}
 
 		void PrepareForSegue (DetailViewController detailViewController)

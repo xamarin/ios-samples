@@ -4,16 +4,14 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
+namespace HomeKitIntro {
 	/// <summary>
 	/// Accessory table source.
 	/// </summary>
-	public class AccessoryTableSource : UITableViewSource
-	{
+	public class AccessoryTableSource : UITableViewSource {
 		#region Private Variables
 		private AccessoryTableViewController _controller;
-		#endregion 
+		#endregion
 
 		#region Computed Properties
 		/// <summary>
@@ -21,7 +19,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 

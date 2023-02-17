@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
 using ObjCRuntime;
 
-namespace PhotoHandoff
-{
-	public class ImageFilter : UIStateRestoring
-	{
+namespace PhotoHandoff {
+	public class ImageFilter : UIStateRestoring {
 		const string ActiveKey = "kImageFilterActiveKey";
 
 		public event EventHandler DirtyChanged;

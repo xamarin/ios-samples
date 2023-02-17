@@ -4,11 +4,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `UITableViewCell` subclass with a `UIDatePicker`, used for selecting a specific time of day.
-	public partial class TimePickerCell : UITableViewCell
-	{
+	public partial class TimePickerCell : UITableViewCell {
 		[Outlet ("datePicker")]
 		public UIDatePicker DatePicker { get; set; }
 

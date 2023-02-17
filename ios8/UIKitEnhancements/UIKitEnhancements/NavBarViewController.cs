@@ -3,12 +3,10 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace UIKitEnhancements
-{
-	partial class NavBarViewController : UIViewController
-	{
+namespace UIKitEnhancements {
+	partial class NavBarViewController : UIViewController {
 		#region Constructors
-		public NavBarViewController(IntPtr handle) : base (handle)
+		public NavBarViewController (IntPtr handle) : base (handle)
 		{
 		}
 		#endregion
@@ -24,7 +22,7 @@ namespace UIKitEnhancements
 			// Wireup segment controller
 			NavBarMode.ValueChanged += (sender, e) => {
 				// Take action based on the selected mode
-				switch(NavBarMode.SelectedSegment) {
+				switch (NavBarMode.SelectedSegment) {
 				case 0:
 					this.NavigationController.HidesBarsOnTap = true;
 					this.NavigationController.HidesBarsOnSwipe = false;

@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
 namespace UICatalog {
@@ -10,7 +10,7 @@ namespace UICatalog {
 		public DataItem RepresentedDataItem { get; set; }
 
 		[Export ("initWithCoder:")]
-		public DataItemCollectionViewCell (NSCoder coder): base (coder)
+		public DataItemCollectionViewCell (NSCoder coder) : base (coder)
 		{
 		}
 

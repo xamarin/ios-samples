@@ -4,8 +4,7 @@ using Foundation;
 using CoreGraphics;
 using QuartzSample;
 
-public class LineDrawingView : QuartzView
-{
+public class LineDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Draw lines with a white stroke color
@@ -46,8 +45,7 @@ public class LineDrawingView : QuartzView
 	}
 }
 
-public class LineWidthDrawingView : QuartzView
-{
+public class LineWidthDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		context.SetStrokeColor (1, 1, 1, 1f);
@@ -55,8 +53,8 @@ public class LineWidthDrawingView : QuartzView
 		// Draw lines with a stroke width from 1-10
 		for (int i = 1; i <= 10; ++i) {
 			context.SetLineWidth (i);
-			context.MoveTo (10, (float)i * 20.5f);
-			context.AddLineToPoint (310, (float)i * 20.5f);
+			context.MoveTo (10, (float) i * 20.5f);
+			context.AddLineToPoint (310, (float) i * 20.5f);
 			context.StrokePath ();
 		}
 
@@ -74,8 +72,7 @@ public class LineWidthDrawingView : QuartzView
 	}
 }
 
-public class LineCapJoinDrawingView : QuartzView
-{
+public class LineCapJoinDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing lines with a white stroke color
@@ -160,8 +157,7 @@ public class LineCapJoinDrawingView : QuartzView
 	}
 }
 
-public class LineDashDrawingView : QuartzView
-{
+public class LineDashDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing lines with a white stroke color
@@ -189,13 +185,13 @@ public class LineDashDrawingView : QuartzView
 		// phase=6 starts 6 points in, so we draw 4, skip 10, draw 20, skip 20, draw 10, skip 10, etc.
 		// phase=12 stats us 12 points in, so we skip 8, draw 20, skip 20, draw 10, skip 10, etc.
 		// and so on.
-		nfloat[] dash2 = { 10, 10, 20, 20 };
+		nfloat [] dash2 = { 10, 10, 20, 20 };
 
 		// Different dash phases
 		for (int i = 0; i < 10; ++i) {
 			context.SetLineDash (i * 6, dash2, 4);
-			context.MoveTo (10, (float)(i + 6) * 20);
-			context.AddLineToPoint (310, (float)(i + 6) * 20);
+			context.MoveTo (10, (float) (i + 6) * 20);
+			context.AddLineToPoint (310, (float) (i + 6) * 20);
 			context.StrokePath ();
 		}
 	}

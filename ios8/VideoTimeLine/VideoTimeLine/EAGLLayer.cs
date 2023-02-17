@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 using AVFoundation;
@@ -10,10 +10,8 @@ using OpenGLES;
 using OpenTK.Graphics.ES20;
 using UIKit;
 
-namespace VideoTimeLine
-{
-	public class EAGLLayer : CAEAGLLayer
-	{
+namespace VideoTimeLine {
+	public class EAGLLayer : CAEAGLLayer {
 		public enum UniformIndex {
 			Y = 0,
 			UV,
@@ -29,14 +27,14 @@ namespace VideoTimeLine
 		}
 
 		// BT.601, which is the standard for SDTV.
-		static float[] colorConversion601 = {
+		static float [] colorConversion601 = {
 			1.164f, 1.164f, 1.164f,
 			0.0f, -0.392f, 2.017f,
 			1.596f, -0.813f, 0.0f
 		};
 
 		// BT.709, which is the standard for HDTV.
-		static float[] colorConversion709 = {
+		static float [] colorConversion709 = {
 			1.164f, 1.164f, 1.164f,
 			0.0f, -0.213f, 2.112f,
 			1.793f, -0.533f, 0.0f
@@ -52,8 +50,8 @@ namespace VideoTimeLine
 		uint frameBufferHandle;
 		uint colorBufferHandle;
 
-		float[] preferredConversion;
-		int[] uniforms = new int[(int)UniformIndex.NumUniforms];
+		float [] preferredConversion;
+		int [] uniforms = new int [(int) UniformIndex.NumUniforms];
 
 		static string fragmentShaderSource;
 
@@ -91,8 +89,8 @@ namespace VideoTimeLine
 		{
 			Opaque = true;
 			DrawableProperties = NSDictionary.FromObjectsAndKeys (
-				new object[] { NSNumber.FromBoolean (false), EAGLColorFormat.RGBA8 },
-				new object[] { EAGLDrawableProperty.RetainedBacking, EAGLDrawableProperty.ColorFormat }
+				new object [] { NSNumber.FromBoolean (false), EAGLColorFormat.RGBA8 },
+				new object [] { EAGLDrawableProperty.RetainedBacking, EAGLDrawableProperty.ColorFormat }
 			);
 
 			context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
@@ -138,10 +136,10 @@ namespace VideoTimeLine
 			GL.UseProgram (Program);
 
 			// 0 and 1 are the texture IDs of lumaTexture and chromaTexture respectively.
-			GL.Uniform1 (uniforms [(int)UniformIndex.Y], 0);
-			GL.Uniform1 (uniforms [(int)UniformIndex.UV], 1);
-			GL.Uniform1 (uniforms [(int)UniformIndex.RotationAngle], 0);
-			GL.UniformMatrix3 (uniforms [(int)UniformIndex.ColorConversionMatrix], 1, false, preferredConversion);
+			GL.Uniform1 (uniforms [(int) UniformIndex.Y], 0);
+			GL.Uniform1 (uniforms [(int) UniformIndex.UV], 1);
+			GL.Uniform1 (uniforms [(int) UniformIndex.RotationAngle], 0);
+			GL.UniformMatrix3 (uniforms [(int) UniformIndex.ColorConversionMatrix], 1, false, preferredConversion);
 
 			if (videoTextureCache != null)
 				return;
@@ -157,8 +155,8 @@ namespace VideoTimeLine
 			CVReturn error;
 
 			if (pixelBuffer != null) {
-				int frameWidth = (int)pixelBuffer.Width;
-				int frameHeight = (int)pixelBuffer.Height;
+				int frameWidth = (int) pixelBuffer.Width;
+				int frameHeight = (int) pixelBuffer.Height;
 
 				if (videoTextureCache == null) {
 					Console.WriteLine ("No video texture cache");
@@ -167,7 +165,7 @@ namespace VideoTimeLine
 
 				CleanUpTextures ();
 				CVAttachmentMode attachmentMode;
-				var colorAttachments = pixelBuffer.GetAttachment <NSString> (CVImageBuffer.YCbCrMatrixKey, out attachmentMode);
+				var colorAttachments = pixelBuffer.GetAttachment<NSString> (CVImageBuffer.YCbCrMatrixKey, out attachmentMode);
 
 				if (colorAttachments == CVImageBuffer.YCbCrMatrix_ITU_R_601_4)
 					preferredConversion = colorConversion601;
@@ -182,10 +180,10 @@ namespace VideoTimeLine
 					Console.WriteLine ("Error at CVOpenGLESTextureCach.TextureFromImage");
 
 				GL.BindTexture (lumaTexture.Target, lumaTexture.Name);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Linear);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)All.Linear);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int) All.Linear);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int) All.Linear);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) All.ClampToEdge);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) All.ClampToEdge);
 
 				GL.ActiveTexture (TextureUnit.Texture1);
 				chromaTexture = videoTextureCache.TextureFromImage (pixelBuffer, true, All.RgExt, frameWidth / 2, frameHeight / 2,
@@ -195,10 +193,10 @@ namespace VideoTimeLine
 					Console.WriteLine ("Error at CVOpenGLESTextureCach.TextureFromImage");
 
 				GL.BindTexture (chromaTexture.Target, chromaTexture.Name);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Linear);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)All.Linear);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
-				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int) All.Linear);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int) All.Linear);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) All.ClampToEdge);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) All.ClampToEdge);
 
 				GL.BindFramebuffer (FramebufferTarget.Framebuffer, frameBufferHandle);
 				GL.Viewport (0, 0, backingWidth, backingHeight);
@@ -208,8 +206,8 @@ namespace VideoTimeLine
 			GL.Clear (ClearBufferMask.ColorBufferBit);
 
 			GL.UseProgram (Program);
-			GL.Uniform1 (uniforms [(int)UniformIndex.RotationAngle], 0f);
-			GL.UniformMatrix3 (uniforms [(int)UniformIndex.ColorConversionMatrix], 1, false, preferredConversion);
+			GL.Uniform1 (uniforms [(int) UniformIndex.RotationAngle], 0f);
+			GL.UniformMatrix3 (uniforms [(int) UniformIndex.ColorConversionMatrix], 1, false, preferredConversion);
 
 			CGRect vertexSamplingRect = AVUtilities.WithAspectRatio (Bounds, PresentationRect);
 
@@ -224,30 +222,30 @@ namespace VideoTimeLine
 				normalizedSamplingSize.Height = cropScaleAmount.Width / cropScaleAmount.Height;
 			}
 
-			float[] quadVertexData = {
+			float [] quadVertexData = {
 				-1f * (float)normalizedSamplingSize.Width, -1f * (float)normalizedSamplingSize.Height,
 				(float)normalizedSamplingSize.Width, -1f * (float)normalizedSamplingSize.Height,
 				-1f * (float)normalizedSamplingSize.Width, (float)normalizedSamplingSize.Height,
 				(float)normalizedSamplingSize.Width, (float)normalizedSamplingSize.Height,
 			};
 
-			GL.VertexAttribPointer ((int)AttributeIndex.Vertex, 2, VertexAttribPointerType.Float, false, 0, quadVertexData);
-			GL.EnableVertexAttribArray ((int)AttributeIndex.Vertex);
+			GL.VertexAttribPointer ((int) AttributeIndex.Vertex, 2, VertexAttribPointerType.Float, false, 0, quadVertexData);
+			GL.EnableVertexAttribArray ((int) AttributeIndex.Vertex);
 
 			var textureSamplingRect = new CGRect (0, 0, 1, 1);
-			float[] quadTextureData = {
+			float [] quadTextureData = {
 				(float)textureSamplingRect.GetMinX (), (float)textureSamplingRect.GetMaxY (),
 				(float)textureSamplingRect.GetMaxX (), (float)textureSamplingRect.GetMaxY (),
 				(float)textureSamplingRect.GetMinX (), (float)textureSamplingRect.GetMinY (),
 				(float)textureSamplingRect.GetMaxX (), (float)textureSamplingRect.GetMinY ()
 			};
 
-			GL.VertexAttribPointer ((int)AttributeIndex.TextureCoordinates, 2, VertexAttribPointerType.Float, false, 0, quadTextureData);
-			GL.EnableVertexAttribArray ((int)AttributeIndex.TextureCoordinates);
+			GL.VertexAttribPointer ((int) AttributeIndex.TextureCoordinates, 2, VertexAttribPointerType.Float, false, 0, quadTextureData);
+			GL.EnableVertexAttribArray ((int) AttributeIndex.TextureCoordinates);
 
 			GL.DrawArrays (BeginMode.TriangleStrip, 0, 4);
 			GL.BindRenderbuffer (RenderbufferTarget.Renderbuffer, colorBufferHandle);
-			context.PresentRenderBuffer ((int)RenderbufferTarget.Renderbuffer);
+			context.PresentRenderBuffer ((int) RenderbufferTarget.Renderbuffer);
 		}
 
 		void CleanUpTextures ()
@@ -267,11 +265,11 @@ namespace VideoTimeLine
 		{
 			GL.Disable (EnableCap.DepthTest);
 
-			GL.EnableVertexAttribArray ((int)AttributeIndex.Vertex);
-			GL.VertexAttribPointer ((int)AttributeIndex.Vertex, 2, VertexAttribPointerType.Float, false, 2 * sizeof(float), 0);
+			GL.EnableVertexAttribArray ((int) AttributeIndex.Vertex);
+			GL.VertexAttribPointer ((int) AttributeIndex.Vertex, 2, VertexAttribPointerType.Float, false, 2 * sizeof (float), 0);
 
-			GL.EnableVertexAttribArray ((int)AttributeIndex.TextureCoordinates);
-			GL.VertexAttribPointer ((int)AttributeIndex.TextureCoordinates, 2, VertexAttribPointerType.Float, false, 2 * sizeof(float), 0);
+			GL.EnableVertexAttribArray ((int) AttributeIndex.TextureCoordinates);
+			GL.VertexAttribPointer ((int) AttributeIndex.TextureCoordinates, 2, VertexAttribPointerType.Float, false, 2 * sizeof (float), 0);
 
 			GL.GenFramebuffers (1, out frameBufferHandle);
 			GL.BindFramebuffer (FramebufferTarget.Framebuffer, frameBufferHandle);
@@ -279,9 +277,9 @@ namespace VideoTimeLine
 			GL.GenRenderbuffers (1, out colorBufferHandle);
 			GL.BindRenderbuffer (RenderbufferTarget.Renderbuffer, colorBufferHandle);
 
-			context.RenderBufferStorage ((int)RenderbufferTarget.Renderbuffer, this);
-			GL.GetRenderbufferParameter (RenderbufferTarget.Renderbuffer, RenderbufferParameterName.RenderbufferWidth, out backingWidth); 
-			GL.GetRenderbufferParameter (RenderbufferTarget.Renderbuffer, RenderbufferParameterName.RenderbufferHeight, out backingHeight); 
+			context.RenderBufferStorage ((int) RenderbufferTarget.Renderbuffer, this);
+			GL.GetRenderbufferParameter (RenderbufferTarget.Renderbuffer, RenderbufferParameterName.RenderbufferWidth, out backingWidth);
+			GL.GetRenderbufferParameter (RenderbufferTarget.Renderbuffer, RenderbufferParameterName.RenderbufferHeight, out backingHeight);
 
 			GL.FramebufferRenderbuffer (FramebufferTarget.Framebuffer, FramebufferSlot.ColorAttachment0, RenderbufferTarget.Renderbuffer, colorBufferHandle);
 
@@ -309,8 +307,8 @@ namespace VideoTimeLine
 			GL.AttachShader (Program, vertShader);
 			GL.AttachShader (Program, fragShader);
 
-			GL.BindAttribLocation (Program, (int)AttributeIndex.Vertex, "position");
-			GL.BindAttribLocation (Program, (int)AttributeIndex.TextureCoordinates, "texCoord");
+			GL.BindAttribLocation (Program, (int) AttributeIndex.Vertex, "position");
+			GL.BindAttribLocation (Program, (int) AttributeIndex.TextureCoordinates, "texCoord");
 
 			GL.LinkProgram (Program);
 #if DEBUG
@@ -351,7 +349,7 @@ namespace VideoTimeLine
 				Console.WriteLine ("Failed to load {0}", shaderType);
 				return false;
 			}
-				
+
 			shader = GL.CreateShader (shaderType);
 			GL.ShaderSource (shader, source);
 			GL.CompileShader (shader);
@@ -381,7 +379,7 @@ namespace VideoTimeLine
 					AffineTransform.xx * -1f, AffineTransform.xy * -1f,
 					AffineTransform.yx * -1f, AffineTransform.yy * -1f,
 					AffineTransform.x0, AffineTransform.y0
-                );
+				);
 			}
 
 			textLayer.Frame = new CGRect (Bounds.Size.Width - textLayerWidth, 0f, textLayerWidth, textLayerHeight);

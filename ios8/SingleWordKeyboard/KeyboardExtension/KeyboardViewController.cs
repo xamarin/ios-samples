@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using ObjCRuntime;
 using Foundation;
 using UIKit;
 
-namespace KeyboardExtension
-{
-	public partial class KeyboardViewController : UIInputViewController
-	{
+namespace KeyboardExtension {
+	public partial class KeyboardViewController : UIInputViewController {
 		const string SingleWord = "SingleWord";
 
 		UIButton nextKeyboardButton;
@@ -27,7 +25,7 @@ namespace KeyboardExtension
 			SetupNextKeyboardButton ();
 		}
 
-		void SetupNextKeyboardButton()
+		void SetupNextKeyboardButton ()
 		{
 			nextKeyboardButton = new UIButton (UIButtonType.System);
 

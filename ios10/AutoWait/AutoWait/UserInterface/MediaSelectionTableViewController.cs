@@ -2,16 +2,13 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace AutoWait
-{
-	public struct MediaItem
-	{
+namespace AutoWait {
+	public struct MediaItem {
 		public string Name;
 		public NSUrl Url;
 	}
 
-	public partial class MediaSelectionTableViewController : UITableViewController
-	{
+	public partial class MediaSelectionTableViewController : UITableViewController {
 		readonly MediaItem [] mediaItems = {
 			new MediaItem {
 				Name = "In the Woods",

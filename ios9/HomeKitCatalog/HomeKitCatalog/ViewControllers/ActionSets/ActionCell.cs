@@ -5,11 +5,9 @@ using Foundation;
 using CoreGraphics;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `UITableViewCell` subclass that displays a characteristic's 'target value'.
-	public partial class ActionCell : UITableViewCell
-	{
+	public partial class ActionCell : UITableViewCell {
 		public ActionCell (UITableViewCellStyle style, string reuseId)
 			: base (UITableViewCellStyle.Subtitle, reuseId)
 		{

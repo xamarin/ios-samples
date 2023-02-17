@@ -2,11 +2,9 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CoreAnimationExample
-{
+namespace CoreAnimationExample {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		MainSplitView splitView;
 

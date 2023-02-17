@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,11 +6,9 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents all possible sections in a `TriggerViewController` subclass.
-	public enum TriggerTableViewSection
-	{
+	public enum TriggerTableViewSection {
 		None,
 		// All triggers have these sections.
 		Name,
@@ -32,9 +30,8 @@ namespace HomeKitCatalog
 	// It manages the name, enabled state, and action set components of the view,
 	// as these are shared components.
 	[Register ("TriggerViewController")]
-	public class TriggerViewController : HMCatalogViewController
-	{
-		readonly NSString actionSetCell = (NSString)"ActionSetCell";
+	public class TriggerViewController : HMCatalogViewController {
+		readonly NSString actionSetCell = (NSString) "ActionSetCell";
 
 		[Outlet ("saveButton")]
 		public UIBarButtonItem SaveButton { get; set; }
@@ -96,7 +93,7 @@ namespace HomeKitCatalog
 			}
 
 			EnableSaveButtonIfApplicable ();
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), actionSetCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), actionSetCell);
 		}
 
 		#region IBAction Methods
@@ -201,7 +198,7 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			var triggerSection = SectionForIndex ((int)section);
+			var triggerSection = SectionForIndex ((int) section);
 			return triggerSection == TriggerTableViewSection.ActionSets
 				? actionSets.Count
 					: base.RowsInSection (tableView, section);
@@ -257,7 +254,7 @@ namespace HomeKitCatalog
 		// on this implementation after attempting to handle any special trigger sections.
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Enabled:
 				return "This trigger will only activate if it is enabled. You can disable triggers to temporarily stop them from running.";
 			case TriggerTableViewSection.ActionSets:
@@ -287,7 +284,7 @@ namespace HomeKitCatalog
 				selectedActionSets.Add (actionSet);
 
 			EnableSaveButtonIfApplicable ();
-			tableView.ReloadRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		#endregion

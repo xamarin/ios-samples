@@ -6,11 +6,11 @@ using UIKit;
 
 namespace UICatalog {
 	public partial class PageViewController : UIPageViewController, IUIPageViewControllerDataSource {
-		readonly DataItem[] dataItems = DataItem.SampleItems.Where (c => c.Group == Group.Lola).ToArray ();
+		readonly DataItem [] dataItems = DataItem.SampleItems.Where (c => c.Group == Group.Lola).ToArray ();
 		readonly NSCache dataItemViewControllerCache = new NSCache ();
 
 		[Export ("initWithCoder:")]
-		public PageViewController (NSCoder coder): base (coder)
+		public PageViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -29,7 +29,7 @@ namespace UICatalog {
 		[Export ("presentationCountForPageViewController:")]
 		public new nint GetPresentationCount (UIPageViewController pageViewController)
 		{
-			return (nint)dataItems.Length;
+			return (nint) dataItems.Length;
 		}
 
 		[Export ("presentationIndexForPageViewController:")]
@@ -41,7 +41,7 @@ namespace UICatalog {
 				throw new Exception ("Unexpected view controller type in page view controller.");
 
 			for (int i = 0; i < dataItems.Length; i++) {
-				if (firstViewController.DataItem == dataItems[i])
+				if (firstViewController.DataItem == dataItems [i])
 					return i;
 			}
 
@@ -67,7 +67,7 @@ namespace UICatalog {
 				throw new Exception ("Unexpected view controller type in page view controller");
 
 			for (int i = 0; i < dataItems.Length; i++) {
-				if (dataItemViewController.DataItem == dataItems[i])
+				if (dataItemViewController.DataItem == dataItems [i])
 					return i;
 			}
 
@@ -77,15 +77,15 @@ namespace UICatalog {
 		DataItemViewController DataItemViewControllerForPage (int index)
 		{
 			var dataItem = dataItems [index];
-			var cachedController = dataItemViewControllerCache.ObjectForKey ((NSString)dataItem.Identifier) as DataItemViewController;
+			var cachedController = dataItemViewControllerCache.ObjectForKey ((NSString) dataItem.Identifier) as DataItemViewController;
 
 			if (cachedController == null) {
-				var viewController = (DataItemViewController)Storyboard.InstantiateViewController (DataItemViewController.StoryboardIdentifier);
+				var viewController = (DataItemViewController) Storyboard.InstantiateViewController (DataItemViewController.StoryboardIdentifier);
 				if (viewController == null)
 					throw new Exception ("Unable to instantiate a DataItemViewController.");
 
 				viewController.ConfigureWithDataItem (dataItem);
-				dataItemViewControllerCache.SetObjectforKey (viewController, (NSString)dataItem.Identifier);
+				dataItemViewControllerCache.SetObjectforKey (viewController, (NSString) dataItem.Identifier);
 				return viewController;
 			} else {
 				return cachedController;

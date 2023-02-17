@@ -1,175 +1,158 @@
-﻿
-namespace XamarinShot.Models
-{
-    using CoreGraphics;
-    using Foundation;
-    using SceneKit;
-    using System;
-    using UIKit;
 
-    public enum Corner 
-    {
-        TopLeft,
-        TopRight,
-        BottomLeft,
-        BottomRight,
-    }
+namespace XamarinShot.Models {
+	using CoreGraphics;
+	using Foundation;
+	using SceneKit;
+	using System;
+	using UIKit;
 
-    public enum Alignment 
-    {
-        Horizontal,
-        Vertical
-    }
+	public enum Corner {
+		TopLeft,
+		TopRight,
+		BottomLeft,
+		BottomRight,
+	}
 
-    public static class CornerExtensions
-    {
-        public static float U(this Corner corner)
-        {
-            switch (corner) 
-            {
-                case Corner.TopLeft:     return -1;
-                case Corner.TopRight:    return 1;
-                case Corner.BottomLeft:  return -1;
-                case Corner.BottomRight: return 1;
-            }
+	public enum Alignment {
+		Horizontal,
+		Vertical
+	}
 
-            throw new NotImplementedException();
-        }
+	public static class CornerExtensions {
+		public static float U (this Corner corner)
+		{
+			switch (corner) {
+			case Corner.TopLeft: return -1;
+			case Corner.TopRight: return 1;
+			case Corner.BottomLeft: return -1;
+			case Corner.BottomRight: return 1;
+			}
 
-        public static float V(this Corner corner)
-        {
-            switch (corner)
-            {
-                case Corner.TopLeft: return -1;
-                case Corner.TopRight: return -1;
-                case Corner.BottomLeft: return 1;
-                case Corner.BottomRight: return 1;
-            }
+			throw new NotImplementedException ();
+		}
 
-            throw new NotImplementedException();
-        }
-    }
+		public static float V (this Corner corner)
+		{
+			switch (corner) {
+			case Corner.TopLeft: return -1;
+			case Corner.TopRight: return -1;
+			case Corner.BottomLeft: return 1;
+			case Corner.BottomRight: return 1;
+			}
 
-    public static class AlignmentExtensions
-    {
-        public static float xOffset(this Alignment alignment, CGSize size)
-        {
-            switch (alignment) 
-            {
-                case Alignment.Horizontal:
-                    return (float)(size.Width / 2f - BorderSegment.Thickness) / 2f;
-                case Alignment.Vertical:
-                    return (float)(size.Width / 2f);
-            }
+			throw new NotImplementedException ();
+		}
+	}
 
-            throw new NotImplementedException();
-        }
+	public static class AlignmentExtensions {
+		public static float xOffset (this Alignment alignment, CGSize size)
+		{
+			switch (alignment) {
+			case Alignment.Horizontal:
+				return (float) (size.Width / 2f - BorderSegment.Thickness) / 2f;
+			case Alignment.Vertical:
+				return (float) (size.Width / 2f);
+			}
 
-        public static float yOffset(this Alignment alignment, CGSize size)
-        {
-            switch (alignment)
-            {
-                case Alignment.Horizontal:
-                    return (float)(size.Height / 2f - BorderSegment.Thickness / 2f);
-                case Alignment.Vertical:
-                    return (float)(size.Height / 2f) / 2f;
-            }
+			throw new NotImplementedException ();
+		}
 
-            throw new NotImplementedException();
-        }
-    }
+		public static float yOffset (this Alignment alignment, CGSize size)
+		{
+			switch (alignment) {
+			case Alignment.Horizontal:
+				return (float) (size.Height / 2f - BorderSegment.Thickness / 2f);
+			case Alignment.Vertical:
+				return (float) (size.Height / 2f) / 2f;
+			}
 
-    public class BorderSegment : SCNNode
-    {
-        /// Thickness of the border lines.
-        public const float Thickness = 0.012f;
+			throw new NotImplementedException ();
+		}
+	}
 
-        /// The scale of segment's length when in the open state
-        private const float OpenScale = 0.4f;
+	public class BorderSegment : SCNNode {
+		/// Thickness of the border lines.
+		public const float Thickness = 0.012f;
 
-        private readonly Corner corner;
-        private readonly Alignment alignment;
-        private readonly SCNPlane plane;
+		/// The scale of segment's length when in the open state
+		private const float OpenScale = 0.4f;
 
-        private CGSize borderSize;
+		private readonly Corner corner;
+		private readonly Alignment alignment;
+		private readonly SCNPlane plane;
 
-        public BorderSegment(Corner corner, Alignment alignment, CGSize borderSize) : base()
-        {
-            this.corner = corner;
-            this.alignment = alignment;
+		private CGSize borderSize;
 
-            this.plane = SCNPlane.Create(BorderSegment.Thickness, BorderSegment.Thickness);
-            this.borderSize = borderSize;
+		public BorderSegment (Corner corner, Alignment alignment, CGSize borderSize) : base ()
+		{
+			this.corner = corner;
+			this.alignment = alignment;
 
-            var material = this.plane.FirstMaterial;
-            material.Diffuse.Contents = GameBoard.BorderColor;
-            material.Emission.Contents = GameBoard.BorderColor;
-            material.DoubleSided = true;
-            material.Ambient.Contents = UIColor.Black;
-            material.LightingModelName = SCNLightingModel.Constant;
+			this.plane = SCNPlane.Create (BorderSegment.Thickness, BorderSegment.Thickness);
+			this.borderSize = borderSize;
 
-            this.Geometry = this.plane;
-            this.Opacity = 0.8f;
-        }
+			var material = this.plane.FirstMaterial;
+			material.Diffuse.Contents = GameBoard.BorderColor;
+			material.Emission.Contents = GameBoard.BorderColor;
+			material.DoubleSided = true;
+			material.Ambient.Contents = UIColor.Black;
+			material.LightingModelName = SCNLightingModel.Constant;
 
-        public BorderSegment(NSCoder coder) => throw new NotImplementedException("it has not been implemented");
+			this.Geometry = this.plane;
+			this.Opacity = 0.8f;
+		}
 
-        public CGSize BorderSize
-        {
-            get
-            {
-                return this.borderSize;
-            }
+		public BorderSegment (NSCoder coder) => throw new NotImplementedException ("it has not been implemented");
 
-            set
-            {
-                this.borderSize = value;
-                switch (this.alignment)
-                {
-                    case Alignment.Horizontal:
-                        this.plane.Width = this.borderSize.Width / 2f;
-                        break;
-                    case Alignment.Vertical:
-                        this.plane.Height = this.borderSize.Height / 2f;
-                        break;
-                }
+		public CGSize BorderSize {
+			get {
+				return this.borderSize;
+			}
 
-                this.Scale = SCNVector3.One;
-                this.Position = new SCNVector3(this.corner.U() * this.alignment.xOffset(this.borderSize),
-                                               this.corner.V() * this.alignment.yOffset(this.borderSize),
-                                               0f);
-            }
-        }
+			set {
+				this.borderSize = value;
+				switch (this.alignment) {
+				case Alignment.Horizontal:
+					this.plane.Width = this.borderSize.Width / 2f;
+					break;
+				case Alignment.Vertical:
+					this.plane.Height = this.borderSize.Height / 2f;
+					break;
+				}
 
-        #region Animating Open/Closed
+				this.Scale = SCNVector3.One;
+				this.Position = new SCNVector3 (this.corner.U () * this.alignment.xOffset (this.borderSize),
+											   this.corner.V () * this.alignment.yOffset (this.borderSize),
+											   0f);
+			}
+		}
 
-        public void Open()
-        {
-            var offset = new OpenTK.Vector2();
-            if (this.alignment == Alignment.Horizontal)
-            {
-                this.Scale = new SCNVector3(BorderSegment.OpenScale, 1f, 1f);
-                offset.X = (1f - BorderSegment.OpenScale) * (float)(this.borderSize.Width) / 4f;
-            }
-            else
-            {
-                this.Scale = new SCNVector3(1f, BorderSegment.OpenScale, 1f);
-                offset.Y = (1f - BorderSegment.OpenScale) * (float)(this.borderSize.Height) / 4f;
-            }
+		#region Animating Open/Closed
 
-            this.Position = new SCNVector3(this.corner.U() * this.alignment.xOffset(this.borderSize) + this.corner.U() * offset.X,
-                                           this.corner.V() * this.alignment.yOffset(this.borderSize) + this.corner.V() * offset.Y,
-                                           0f);
-        }
+		public void Open ()
+		{
+			var offset = new OpenTK.Vector2 ();
+			if (this.alignment == Alignment.Horizontal) {
+				this.Scale = new SCNVector3 (BorderSegment.OpenScale, 1f, 1f);
+				offset.X = (1f - BorderSegment.OpenScale) * (float) (this.borderSize.Width) / 4f;
+			} else {
+				this.Scale = new SCNVector3 (1f, BorderSegment.OpenScale, 1f);
+				offset.Y = (1f - BorderSegment.OpenScale) * (float) (this.borderSize.Height) / 4f;
+			}
 
-        public void Close()
-        {
-            this.Scale = SCNVector3.One;
-            this.Position = new SCNVector3(this.corner.U() * this.alignment.xOffset(this.borderSize),
-                                           this.corner.V() * this.alignment.yOffset(this.borderSize),
-                                           0f);
-        }
+			this.Position = new SCNVector3 (this.corner.U () * this.alignment.xOffset (this.borderSize) + this.corner.U () * offset.X,
+										   this.corner.V () * this.alignment.yOffset (this.borderSize) + this.corner.V () * offset.Y,
+										   0f);
+		}
 
-        #endregion
-    }
+		public void Close ()
+		{
+			this.Scale = SCNVector3.One;
+			this.Position = new SCNVector3 (this.corner.U () * this.alignment.xOffset (this.borderSize),
+										   this.corner.V () * this.alignment.yOffset (this.borderSize),
+										   0f);
+		}
+
+		#endregion
+	}
 }

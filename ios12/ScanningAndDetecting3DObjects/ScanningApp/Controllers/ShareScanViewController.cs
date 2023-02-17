@@ -1,20 +1,18 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace ScanningAndDetecting3DObjects
-{
+namespace ScanningAndDetecting3DObjects {
 	// Customized share sheet for exporting scanned AR reference objects.
-	internal class ShareScanViewController : UIActivityViewController
-	{
-		internal ShareScanViewController(UIView sourceView, NSObject any) 
-			: base(new[] { any }, null)
+	internal class ShareScanViewController : UIActivityViewController {
+		internal ShareScanViewController (UIView sourceView, NSObject any)
+			: base (new [] { any }, null)
 		{
 			// Set up popover presentation style
 			ModalPresentationStyle = UIModalPresentationStyle.Popover;
 			PopoverPresentationController.SourceView = sourceView;
 			PopoverPresentationController.SourceRect = sourceView.Bounds;
 
-			ExcludedActivityTypes = new[]
+			ExcludedActivityTypes = new []
 			{
 				UIActivityType.MarkupAsPdf,
 				UIActivityType.OpenInIBooks,

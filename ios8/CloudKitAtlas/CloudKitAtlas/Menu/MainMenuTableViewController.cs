@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class MainMenuTableViewController : UITableViewController
-	{
+namespace CloudKitAtlas {
+	public partial class MainMenuTableViewController : UITableViewController {
 		public CodeSampleGroup [] CodeSampleGroups { get; set; } = new CodeSampleGroup [0];
 
 		public MainMenuTableViewController (IntPtr handle)
@@ -96,7 +94,7 @@ namespace CloudKitAtlas
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var codeSampleGroup = CodeSampleGroups [indexPath.Row];
-			var cell = (MainMenuTableViewCell)tableView.DequeueReusableCell ("MainMenuItem", indexPath);
+			var cell = (MainMenuTableViewCell) tableView.DequeueReusableCell ("MainMenuItem", indexPath);
 			cell.MenuLabel.Text = codeSampleGroup.Title;
 			cell.MenuIcon.Image = codeSampleGroup.Icon;
 
@@ -106,7 +104,7 @@ namespace CloudKitAtlas
 				var notificationSample = codeSampleGroup.CodeSamples [0] as MarkNotificationsReadSample;
 				if (notificationSample != null && UIApplication.SharedApplication.IsRegisteredForRemoteNotifications) {
 					if (notificationSample.Cache.AddedIndices.Count > 0) {
-						cell.BadgeLabel.Superview.Layer.CornerRadius = cell.BadgeLabel.Font.PointSize * (nfloat)1.2 / 2;
+						cell.BadgeLabel.Superview.Layer.CornerRadius = cell.BadgeLabel.Font.PointSize * (nfloat) 1.2 / 2;
 						cell.BadgeLabel.Text = notificationSample.Cache.AddedIndices.Count.ToString ();
 						cell.BadgeLabel.Superview.Hidden = false;
 						cell.BadgeLabel.Hidden = false;
@@ -138,11 +136,11 @@ namespace CloudKitAtlas
 			if (indexPath != null) {
 				var selectedCodeSampleGroup = CodeSampleGroups [indexPath.Row];
 				if (segue.Identifier == "ShowSubmenu") {
-					var submenuViewController = (SubmenuTableViewController)segue.DestinationViewController;
+					var submenuViewController = (SubmenuTableViewController) segue.DestinationViewController;
 					submenuViewController.CodeSamples = selectedCodeSampleGroup.CodeSamples;
 					submenuViewController.GroupTitle = selectedCodeSampleGroup.Title;
 				} else if (segue.Identifier == "ShowCodeSampleFromMenu" && selectedCodeSampleGroup.CodeSamples.Length > 0) {
-					var codeSampleViewController = (CodeSampleViewController)segue.DestinationViewController;
+					var codeSampleViewController = (CodeSampleViewController) segue.DestinationViewController;
 					codeSampleViewController.SelectedCodeSample = selectedCodeSampleGroup.CodeSamples [0];
 					codeSampleViewController.GroupTitle = selectedCodeSampleGroup.Title;
 				}

@@ -1,14 +1,12 @@
 using System;
 using UIKit;
 
-namespace Example_Drawing.Screens.iPad.FlagOnScreen
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.FlagOnScreen {
+	public class Controller : UIViewController {
 
 		#region -= constructors =-
 
-		public Controller () : base()
+		public Controller () : base ()
 		{
 		}
 

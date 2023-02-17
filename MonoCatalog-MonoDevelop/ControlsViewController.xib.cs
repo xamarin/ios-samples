@@ -48,9 +48,9 @@ namespace MonoCatalog {
 			{
 				UITableViewCell cell;
 
-				if (indexPath.Row == 0){
+				if (indexPath.Row == 0) {
 					cell = tableView.DequeueReusableCell (kDisplayCell_ID);
-					if (cell == null){
+					if (cell == null) {
 						cell = new UITableViewCell (UITableViewCellStyle.Default, kDisplayCell_ID);
 						cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 					} else {
@@ -64,7 +64,7 @@ namespace MonoCatalog {
 					cell.ContentView.AddSubview (cvc.samples [indexPath.Section].Control);
 				} else {
 					cell = tableView.DequeueReusableCell (kSourceCell_ID);
-					if (cell == null){
+					if (cell == null) {
 						// Construct the cell with reusability (the second argument is not null)
 						cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID);
 						cell.SelectionStyle = UITableViewCellSelectionStyle.None;
@@ -102,12 +102,13 @@ namespace MonoCatalog {
 
 		static UIControl SwitchControl (string id)
 		{
-			var sw = new UISwitch (new CGRect (198f, 12f, 94f, 27f)){
+			var sw = new UISwitch (new CGRect (198f, 12f, 94f, 27f)) {
 				BackgroundColor = UIColor.Clear,
 				Tag = kViewTag,
 				AccessibilityIdentifier = id
 			};
-			sw.ValueChanged += delegate {
+			sw.ValueChanged += delegate
+			{
 				// The enum variant causes a full-aot crash
 				Console.WriteLine ("New state: {0}", (int) sw.State);
 			};
@@ -116,7 +117,7 @@ namespace MonoCatalog {
 
 		static UIControl SliderControl (string id)
 		{
-			var slider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
+			var slider = new UISlider (new CGRect (174f, 12f, 120f, 7f)) {
 				BackgroundColor = UIColor.Clear,
 				MinValue = 0f,
 				MaxValue = 100f,
@@ -125,7 +126,8 @@ namespace MonoCatalog {
 				Tag = kViewTag,
 				AccessibilityIdentifier = id
 			};
-			slider.ValueChanged += delegate {
+			slider.ValueChanged += delegate
+			{
 				Console.WriteLine ("New value {0}", slider.Value);
 			};
 			return slider;
@@ -133,7 +135,7 @@ namespace MonoCatalog {
 
 		static UIControl CustomSliderControl (string id)
 		{
-			var cslider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
+			var cslider = new UISlider (new CGRect (174f, 12f, 120f, 7f)) {
 				BackgroundColor = UIColor.Clear,
 				MinValue = 0f,
 				MaxValue = 100f,
@@ -152,7 +154,8 @@ namespace MonoCatalog {
 			cslider.SetMinTrackImage (left, UIControlState.Normal);
 			cslider.SetMaxTrackImage (right, UIControlState.Normal);
 
-			cslider.ValueChanged += delegate {
+			cslider.ValueChanged += delegate
+			{
 				Console.WriteLine ("New value {0}", cslider.Value);
 			};
 			return cslider;
@@ -160,14 +163,15 @@ namespace MonoCatalog {
 
 		static UIControl PageControl (string id)
 		{
-			var page = new UIPageControl (new CGRect (120f, 14f, 178f, 20f)){
+			var page = new UIPageControl (new CGRect (120f, 14f, 178f, 20f)) {
 				BackgroundColor = UIColor.Gray,
 				Pages = 10,
 				Tag = kViewTag,
 				AccessibilityIdentifier = id
 			};
 
-			page.TouchUpInside += delegate {
+			page.TouchUpInside += delegate
+			{
 				Console.WriteLine ("Current page: {0}", page.CurrentPage);
 			};
 
@@ -176,7 +180,7 @@ namespace MonoCatalog {
 
 		static UIView ActivityIndicator (string id)
 		{
-			var pind = new UIActivityIndicatorView (new CGRect (265f, 12f, 40f, 40f)){
+			var pind = new UIActivityIndicatorView (new CGRect (265f, 12f, 40f, 40f)) {
 				ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray,
 				AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin |
 					UIViewAutoresizing.FlexibleRightMargin |
@@ -194,7 +198,7 @@ namespace MonoCatalog {
 
 		static UIView ProgressBar (string id)
 		{
-			return new UIProgressView (new CGRect (126f, 20f, 160f, 24f)){
+			return new UIProgressView (new CGRect (126f, 20f, 160f, 24f)) {
 				Style = UIProgressViewStyle.Default,
 				Progress = 0.5f,
 				Tag = kViewTag,

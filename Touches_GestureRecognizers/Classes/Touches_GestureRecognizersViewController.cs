@@ -31,10 +31,8 @@ using UIKit;
 using Foundation;
 using ObjCRuntime;
 
-namespace Touches_GestureRecognizers
-{
-	public partial class Touches_GestureRecognizersViewController : UIViewController
-	{
+namespace Touches_GestureRecognizers {
+	public partial class Touches_GestureRecognizersViewController : UIViewController {
 
 		public Touches_GestureRecognizersViewController (UIWindow window, string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
@@ -59,8 +57,7 @@ namespace Touches_GestureRecognizers
 		#endregion
 
 		#region Set up
-		class GestureDelegate : UIGestureRecognizerDelegate
-		{
+		class GestureDelegate : UIGestureRecognizerDelegate {
 			Touches_GestureRecognizersViewController controller;
 
 			public GestureDelegate (Touches_GestureRecognizersViewController controller)
@@ -68,7 +65,7 @@ namespace Touches_GestureRecognizers
 				this.controller = controller;
 			}
 
-			public override bool ShouldReceiveTouch(UIGestureRecognizer aRecogniser, UITouch aTouch)
+			public override bool ShouldReceiveTouch (UIGestureRecognizer aRecogniser, UITouch aTouch)
 			{
 				return true;
 			}
@@ -139,13 +136,13 @@ namespace Touches_GestureRecognizers
 		}
 
 		// Reset image to the default anchor point and transform
-		[Export("ResetImage:")]
+		[Export ("ResetImage:")]
 		void ResetImage (UIMenuController controller)
 		{
 			var mid = new CGPoint ((imageForReset.Bounds.Left + imageForReset.Bounds.Right) / 2, (imageForReset.Bounds.Top + imageForReset.Bounds.Bottom) / 2);
 			var locationInSuperview = imageForReset.ConvertPointToView (mid, imageForReset.Superview);
 			imageForReset.Layer.AnchorPoint = new CGPoint (0.5f, 0.5f);
-			imageForReset.Center =locationInSuperview;
+			imageForReset.Center = locationInSuperview;
 
 			UIView.BeginAnimations (null, IntPtr.Zero);
 			imageForReset.Transform = CoreGraphics.CGAffineTransform.MakeIdentity ();
@@ -198,7 +195,7 @@ namespace Touches_GestureRecognizers
 
 		UIView imageForReset;
 		// Display a menu with a single item to allow the piece's transform to be reset
-		[Export("ShowResetMenu:")]
+		[Export ("ShowResetMenu:")]
 		void ShowResetMenu (UILongPressGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Began) {
@@ -209,7 +206,7 @@ namespace Touches_GestureRecognizers
 				menuController.MenuItems = new [] { resetMenuItem };
 				menuController.SetTargetRect (new CGRect (location.X, location.Y, 0, 0), gestureRecognizer.View);
 				menuController.MenuVisible = true;
-//				menuController.Animated = true;
+				//				menuController.Animated = true;
 				imageForReset = gestureRecognizer.View;
 			}
 		}

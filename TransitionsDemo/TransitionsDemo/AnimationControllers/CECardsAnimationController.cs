@@ -4,13 +4,11 @@ using CoreAnimation;
 using Foundation;
 using UIKit;
 
-namespace TransitionsDemo.AnimationControllers
-{
-	public class CECardsAnimationController : CEReversibleAnimationController
-	{
+namespace TransitionsDemo.AnimationControllers {
+	public class CECardsAnimationController : CEReversibleAnimationController {
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
-		                                        UIViewController fromViewController, UIViewController toViewController,
-		                                        UIView fromView, UIView toView)
+												UIViewController fromViewController, UIViewController toViewController,
+												UIView fromView, UIView toView)
 		{
 			if (Reverse) {
 				ExecuteReverseAnimation (transitionContext, fromViewController, toViewController, fromView, toView);
@@ -20,8 +18,8 @@ namespace TransitionsDemo.AnimationControllers
 		}
 
 		private void ExecuteReverseAnimation (IUIViewControllerContextTransitioning transitionContext,
-		                                      UIViewController fromViewController, UIViewController toViewController,
-		                                      UIView fromView, UIView toView)
+											  UIViewController fromViewController, UIViewController toViewController,
+											  UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 
@@ -67,8 +65,8 @@ namespace TransitionsDemo.AnimationControllers
 		}
 
 		private void ExecuteForwardAnimation (IUIViewControllerContextTransitioning transitionContext,
-		                                      UIViewController fromViewController, UIViewController toViewController,
-		                                      UIView fromView, UIView toView)
+											  UIViewController fromViewController, UIViewController toViewController,
+											  UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 
@@ -94,7 +92,7 @@ namespace TransitionsDemo.AnimationControllers
 
 				UIView.AddKeyframeWithRelativeStartTime (0.6, 0.2, () => {
 					toView.Frame = new CGRect (toView.Frame.X, containerView.Frame.Y - 30f,
-					                               toView.Frame.Width, toView.Frame.Height);
+												   toView.Frame.Width, toView.Frame.Height);
 				});
 
 				UIView.AddKeyframeWithRelativeStartTime (0.8, 0.2, () => {
@@ -113,7 +111,7 @@ namespace TransitionsDemo.AnimationControllers
 			var firstTransform = CATransform3D.Identity;
 			firstTransform.m34 = 1f / -900f;
 			firstTransform = firstTransform.Scale (0.95f, 0.95f, 1f);
-			firstTransform = firstTransform.Rotate (15.0f * (float)Math.PI / 180f, 1f, 0f, 0f);
+			firstTransform = firstTransform.Rotate (15.0f * (float) Math.PI / 180f, 1f, 0f, 0f);
 			return firstTransform;
 		}
 

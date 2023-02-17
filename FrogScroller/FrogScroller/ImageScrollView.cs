@@ -8,10 +8,8 @@ using System.Xml.Serialization;
 using Foundation;
 using UIKit;
 
-namespace FrogScroller
-{
-	public class ImageScrollView : UIScrollView
-	{
+namespace FrogScroller {
+	public class ImageScrollView : UIScrollView {
 		// turn on to use tiled images, if off, we use whole images
 		bool TileImagesMode = true;
 
@@ -61,7 +59,7 @@ namespace FrogScroller
 			set {
 				_index = value;
 
-				if(TileImagesMode)
+				if (TileImagesMode)
 					DisplayTiledImageNamed (ImageNameAtIndex (_index), ImageSizeAtIndex (_index));
 				else
 					DisplayImage (ImageAtIndex (_index));
@@ -162,7 +160,7 @@ namespace FrogScroller
 			//fill width if the image and phone are both portrait or both landscape; otherwise take smaller scale
 			bool imagePortrait = _imageSize.Height > _imageSize.Width;
 			bool phonePortrait = boundsSize.Height > boundsSize.Width;
-			var minScale = (nfloat)(imagePortrait == phonePortrait ? xScale : NMath.Min (xScale, yScale));
+			var minScale = (nfloat) (imagePortrait == phonePortrait ? xScale : NMath.Min (xScale, yScale));
 
 			//on high resolution screens we have double the pixel density, so we will be seeing every pixel if we limit the maximum zoom scale to 0.5
 			nfloat maxScale = 1 / UIScreen.MainScreen.Scale;
@@ -180,7 +178,7 @@ namespace FrogScroller
 		// Rotation support
 		public void PrepareToResize ()
 		{
-			var boundsCenter = new CGPoint (Bounds.GetMidX(), Bounds.GetMidY());
+			var boundsCenter = new CGPoint (Bounds.GetMidX (), Bounds.GetMidY ());
 			_pointToCenterAfterResize = ConvertPointToView (boundsCenter, zoomView);
 			_scaleToRestoreAfterResize = ZoomScale;
 			// If we're at the minimum zoom scale, preserve that by returning 0, which will be converted to the minimum
@@ -258,8 +256,8 @@ namespace FrogScroller
 
 			try {
 				using (TextReader reader = new StreamReader (path)) {
-					XmlSerializer serializer = new XmlSerializer (typeof(List<ImageDetails>));
-					result = (List<ImageDetails>)serializer.Deserialize (reader);
+					XmlSerializer serializer = new XmlSerializer (typeof (List<ImageDetails>));
+					result = (List<ImageDetails>) serializer.Deserialize (reader);
 				}
 			} catch (XmlException e) {
 				Console.WriteLine (e);

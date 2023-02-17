@@ -7,10 +7,8 @@ using AVFoundation;
 using CoreMidi;
 using AudioToolbox;
 
-namespace QRchestra
-{
-	public class Synth : UIViewController
-	{
+namespace QRchestra {
+	public class Synth : UIViewController {
 		enum MIDIMessage {
 			NoteOn = 0x9,
 			NoteOff = 0x8
@@ -49,12 +47,12 @@ namespace QRchestra
 			processingGraph = new AUGraph ();
 
 			cd.ComponentType = AudioComponentType.MusicDevice;
-			cd.ComponentSubType = (int)AudioTypeMusicDevice.Sampler; //0x73616d70;
+			cd.ComponentSubType = (int) AudioTypeMusicDevice.Sampler; //0x73616d70;
 
 			samplerNode = processingGraph.AddNode (cd);
 
 			cd.ComponentType = AudioComponentType.Output;
-			cd.ComponentSubType = (int)AudioTypeOutput.Remote; //0x72696f63;
+			cd.ComponentSubType = (int) AudioTypeOutput.Remote; //0x72696f63;
 
 			ioNode = processingGraph.AddNode (cd);
 
@@ -80,7 +78,7 @@ namespace QRchestra
 
 			var status = ioUnit.SetSampleRate (graphSampleRate, AudioUnitScopeType.Output);
 			if (status != AudioUnitStatus.NoError)
-				throw new Exception ("AudioUnitSetProperty (set Sample output stream sample rate).  Error code: " + (int)status);
+				throw new Exception ("AudioUnitSetProperty (set Sample output stream sample rate).  Error code: " + (int) status);
 
 			framesPerSlice = ioUnit.GetMaximumFramesPerSlice (AudioUnitScopeType.Global);
 
@@ -88,15 +86,15 @@ namespace QRchestra
 			samplerUnit.SetMaximumFramesPerSlice (framesPerSlice, AudioUnitScopeType.Global);
 
 			if (graph != null) {
-				result = (int)graph.Initialize ();
-				if (result != (int)AUGraphError.OK)
+				result = (int) graph.Initialize ();
+				if (result != (int) AUGraphError.OK)
 					throw new Exception ("Unable to initialize AUGraph object.  Error code: " + result);
 
-				result = (int)graph.Start ();
-				if (result != (int)AUGraphError.OK)
+				result = (int) graph.Start ();
+				if (result != (int) AUGraphError.OK)
 					throw new Exception ("Unable to start audio processing graph.  Error code: " + result);
 
-//				TODO: CAShow
+				//				TODO: CAShow
 				Console.WriteLine (graph);
 			}
 		}
@@ -119,7 +117,7 @@ namespace QRchestra
 			var preset = new ClassInfoDictionary (dict);
 			var error = samplerUnit.SetClassInfo (preset);
 
-			return (int)error;
+			return (int) error;
 		}
 
 		bool setupAudioSession ()
@@ -157,21 +155,21 @@ namespace QRchestra
 		public void StartPlayNoteNumber (int noteNum)
 		{
 			uint onVelocity = 127;
-			uint noteCommand = (int)MIDIMessage.NoteOn << 4 | 0;
+			uint noteCommand = (int) MIDIMessage.NoteOn << 4 | 0;
 
-			var result = samplerUnit.MusicDeviceMIDIEvent (noteCommand, (uint)noteNum, onVelocity, 0);
+			var result = samplerUnit.MusicDeviceMIDIEvent (noteCommand, (uint) noteNum, onVelocity, 0);
 			if (result != AudioUnitStatus.NoError)
-				Console.WriteLine ("Unable to start playing the mid note.  Error code: {0}", (int)result);
+				Console.WriteLine ("Unable to start playing the mid note.  Error code: {0}", (int) result);
 
 		}
 
 		public void StopPlayNoteNumber (int noteNum)
 		{
-			uint noteCommand = (int)MIDIMessage.NoteOff << 4 | 0;
+			uint noteCommand = (int) MIDIMessage.NoteOff << 4 | 0;
 
-			var result = samplerUnit.MusicDeviceMIDIEvent (noteCommand, (uint)noteNum, 0, 0);
+			var result = samplerUnit.MusicDeviceMIDIEvent (noteCommand, (uint) noteNum, 0, 0);
 			if (result != AudioUnitStatus.NoError)
-				Console.WriteLine ("Unable to stop playing the mid note.  Error code: {0}", (int)result);
+				Console.WriteLine ("Unable to stop playing the mid note.  Error code: {0}", (int) result);
 		}
 
 		void stopAudioProcessingGraph ()
@@ -194,7 +192,7 @@ namespace QRchestra
 				throw new Exception ("Unable to restart the audio processing graph.  Error code: " + result);
 		}
 
-//		[Export("beginInterruption")]
+		//		[Export("beginInterruption")]
 		void Interruption (object sender, AVAudioSessionInterruptionEventArgs e)
 		{
 			if (e.InterruptionType == AVAudioSessionInterruptionType.Began)
@@ -213,13 +211,13 @@ namespace QRchestra
 			}
 		}
 
-		[Export("beginInterruption")]
+		[Export ("beginInterruption")]
 		void beginInterruption ()
 		{
 			stopAudioProcessingGraph ();
 		}
-//
-		[Export("endInterruptionWithFlags:")]
+		//
+		[Export ("endInterruptionWithFlags:")]
 		void endInterruption (AVAudioSessionInterruptionFlags flags)
 		{
 			NSError error = null;
@@ -229,13 +227,13 @@ namespace QRchestra
 				Console.WriteLine ("Unable to reactivate the audio session");
 				return;
 			}
-			#pragma warning disable 472
+#pragma warning disable 472
 			if ((flags & AVAudioSessionInterruptionFlags.ShouldResume) != null)
 				restartAudioProcessingGraph ();
-			#pragma warning restore 472
+#pragma warning restore 472
 		}
 
-		[Export("inputIsAvailableChanged:")]
+		[Export ("inputIsAvailableChanged:")]
 		public void InputIsAvailableChanged (bool isInputAvailable)
 		{
 
@@ -246,12 +244,12 @@ namespace QRchestra
 			NSNotificationCenter notificationCenter = NSNotificationCenter.DefaultCenter;
 
 			notificationCenter.AddObserver (UIApplication.WillResignActiveNotification,
-			                                handleResigningActive,
-			                                UIApplication.SharedApplication);
+											handleResigningActive,
+											UIApplication.SharedApplication);
 
 			notificationCenter.AddObserver (UIApplication.DidBecomeActiveNotification,
-			                                handleBecomingActive,
-			                                UIApplication.SharedApplication);
+											handleBecomingActive,
+											UIApplication.SharedApplication);
 		}
 
 		void handleResigningActive (NSNotification notification)

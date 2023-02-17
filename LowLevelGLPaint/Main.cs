@@ -9,21 +9,18 @@ using OpenTK.Platform;
 using OpenGLES;
 using OpenTK.Graphics.ES11;
 
-namespace LowLevelGLPaint
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace LowLevelGLPaint {
+	public class Application {
+		static void Main (string [] args)
 		{
-			using (var c = Utilities.CreateGraphicsContext(EAGLRenderingAPI.OpenGLES1)) {
+			using (var c = Utilities.CreateGraphicsContext (EAGLRenderingAPI.OpenGLES1)) {
 				UIApplication.Main (args, null, "AppDelegate");
 			}
 		}
 	}
 
 	// The name AppDelegate is referenced in the MainWindow.xib file.
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 
 		const int PaletteHeight = 30;
 		const int PaletteSize = 5;
@@ -37,9 +34,9 @@ namespace LowLevelGLPaint
 		const float TopMarginPadding = 10.0f;
 		const float RightMarginPadding = 10.0f;
 
-		double[] myAccelerometer = new double [3];
+		double [] myAccelerometer = new double [3];
 		SoundEffect erasingSound = new SoundEffect (NSBundle.MainBundle.PathForResource ("Erase", "caf"));
-		SoundEffect selectSound  = new SoundEffect (NSBundle.MainBundle.PathForResource ("Select", "caf"));
+		SoundEffect selectSound = new SoundEffect (NSBundle.MainBundle.PathForResource ("Select", "caf"));
 		DateTime lastTime;
 
 		PaintingView drawingView;
@@ -56,7 +53,7 @@ namespace LowLevelGLPaint
 			window.RootViewController = viewController;
 
 			// Create a segmented control so that the user can choose the brush color.
-			var images = new[] {
+			var images = new [] {
 				UIImage.FromFile ("Images/Red.png"),
 				UIImage.FromFile ("Images/Yellow.png"),
 				UIImage.FromFile ("Images/Green.png"),
@@ -116,8 +113,8 @@ namespace LowLevelGLPaint
 		private void OnAccelerated (object sender, UIAccelerometerEventArgs e)
 		{
 #if LINQ
-			myAccelerometer = new[]{e.Acceleration.X, e.Acceleration.Y, e.Acceleration.Z}
-				.Select((v, i) => v * FilteringFactor + myAccelerometer [i] * (1.0f - FilteringFactor))
+			myAccelerometer = new [] { e.Acceleration.X, e.Acceleration.Y, e.Acceleration.Z }
+				.Select ((v, i) => v * FilteringFactor + myAccelerometer [i] * (1.0f - FilteringFactor))
 				.ToArray ();
 #else
 			myAccelerometer [0] = e.Acceleration.X * FilteringFactor + myAccelerometer [0] * (1.0 - FilteringFactor);
@@ -158,7 +155,7 @@ namespace LowLevelGLPaint
 			float temp1 = 2.0f * l - temp2;
 
 			// Compute intermediate values based on hue
-			float[] temp = {
+			float [] temp = {
 				h + 1.0f / 3.0f,
 				h,
 				h - 1.0f / 3.0f,

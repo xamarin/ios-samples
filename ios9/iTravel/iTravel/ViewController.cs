@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Foundation;
@@ -28,7 +28,7 @@ namespace iTravel {
 				return;
 
 			var indexPath = TableView.IndexPathForSelectedRow;
-			var previewDetail = sampleData[indexPath.Row];
+			var previewDetail = sampleData [indexPath.Row];
 
 			var albumViewController = segue.DestinationViewController as AlbumViewController;
 			if (albumViewController == null)
@@ -46,7 +46,7 @@ namespace iTravel {
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = TableView.DequeueReusableCell ("Cell");
-			var previewDetail = sampleData[indexPath.Row];
+			var previewDetail = sampleData [indexPath.Row];
 			cell.TextLabel.Text = previewDetail.Title;
 			return cell;
 		}
