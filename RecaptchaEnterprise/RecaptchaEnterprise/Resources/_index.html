@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcqzrEnAAAAAG1ZeU6Fo5bWyVwskSlnPRnztcyE"></script>
+    <style>
+        /*body{
+            display:flex;
+            justify-content:center;
+            align-content:center;
+            height:100vh;
+            margin:0;
+        }
+        #rc-ancor-container{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }*/
+
+        .grecaptcha-badge{
+            position:relative !important;
+        }
+    </style>
+</head>
+<body>
+     <button id="btn-login" type="submit">
+         Login
+     </button>
+    <script>
+
+
+        const btnLogin = document.querySelector('#btn-login')
+
+        const logingIn = _ => {
+            const payload = {
+                action:"logingin"
+            }
+
+            window.webkit.messageHandlers.tokenHandler.postMessage(payload);
+        }
+
+        const post = function (payload) {
+            window.webkit.messageHandlers.tokenHandler.postMessage(payload);
+        };
+
+        function onClick(e) {
+
+            const RECAPTCHA_APP = "6LdgF7EnAAAAAKhEXNM-d3GaraanA0zG5uXxB79B"
+
+            const RECAPTCHA_WEB = "6LcqzrEnAAAAAG1ZeU6Fo5bWyVwskSlnPRnztcyE"
+
+
+            e.preventDefault();
+
+            grecaptcha.enterprise.ready(async () => {
+
+                const token = await grecaptcha.enterprise.execute(RECAPTCHA_WEB, { action: 'LOGIN' });
+
+                // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
+
+                // reCAPTCHA Enterprise to the end user's browser.
+
+                // This token must be validated by creating an assessment.
+
+                // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
+
+                const payload = {
+                    token:"getting token"
+                }
+                window.webkit.messageHandlers.tokenHandler.postMessage(payload)
+                //window.webkit.tokenHandler.recaptcha.postMessage(payload);
+
+            });
+
+            }
+
+            btnLogin.addEventListener('click', e => {
+                logingIn()
+            })
+    </script>
+</body>
+</html>

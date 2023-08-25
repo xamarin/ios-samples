@@ -1,0 +1,101 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">const post = function(value) {
+        window.webkit.messageHandlers.recaptcha.postMessage(value);
+      };
+
+      console.log = function(message) {
+        post("ConsoleDebug: " + message);
+      };
+
+      const observers = new Array();
+      const observeDOM = function(element, completion) {
+        const obs = new MutationObserver(completion);
+        obs.observe(element, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+          attributeFilter: ["style"]
+        });
+
+        observers.push(obs);
+      };
+
+      const clearObservers = function() {
+        observers.forEach(function(o) {
+          o.disconnect();
+        });
+        observers = [];
+      };
+
+      const execute = function() {
+        console.log("executing");
+
+        // Removes ReCaptcha dismissal when clicking outside div area
+        try {
+          document.getElementsByTagName("div")[4].outerHTML = "";
+        } catch (e) {}
+
+        try {
+          // Listens to changes on the div element that presents the ReCaptcha challenge
+          observeDOM(document.getElementsByTagName("div")[3], function() {
+            post("ShowReCaptchaChallenge");
+          });
+        } catch (e) {
+          post("Error27FailedSetup");
+        }
+
+        grecaptcha.execute();
+      };
+
+      const reset = function() {
+        console.log("resetting");
+        grecaptcha.reset();
+        grecaptcha.ready(function() {
+          post("DidLoad");
+        });
+      };
+
+      var onloadCallback = function() {
+        grecaptcha.render("submit", {
+          sitekey: "${siteKey}",
+          callback: function(token) {
+            console.log(token);
+            post(token);
+            clearObservers();
+          },
+          "expired-callback": function() {
+            post("Error28Expired");
+            clearObservers();
+          },
+          "error-callback": function() {
+            post("Error29FailedRender");
+            clearObservers();
+          },
+          size: "invisible"
+        });
+
+        grecaptcha.ready(function() {
+          observeDOM(document.getElementById("body"), function(mut) {
+            const success = !!mut.find(function({ addedNodes }) {
+              return Array.from(
+                addedNodes.values ? addedNodes.values() : addedNodes
+              ).find(function({ nodeName, name }) {
+                return nodeName === "IFRAME" && !!name;
+              });
+            });
+
+            if (success) {
+              post("DidLoad");
+            }
+          });
+        });
+      };</script>
+</head>
+<body id="body">
+    <h1>Loading.</h1>
+    <span id="submit" style="visibility: hidden;"></span>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&hl=en" async defer></script>
+</body>
+</html>
